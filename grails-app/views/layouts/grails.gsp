@@ -8,7 +8,7 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <asset:stylesheet src="application.css"/>
+    <asset:stylesheet src="grails-default.css"/>
 
     <g:layoutHead/>
 </head>
@@ -45,7 +45,7 @@
         <g:message code="spinner.alt" default="Loading&hellip;"/>
     </div>
 
-    <asset:javascript src="application.js"/>
+    <asset:javascript src="grails-default.js"/>
 
 </body>
 </html>
