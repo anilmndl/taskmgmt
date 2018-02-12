@@ -7,14 +7,21 @@
         <g:layoutTitle default="Task Management System"/>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
     <asset:stylesheet src="application.css"/>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all">
     <g:layoutHead/>
 </head>
-<body>
-    <g:layoutBody/>
 
-    <asset:javascript src="application.js"/>
+<body>
+<div id="wrapper">
+    <g:render template="/layouts/menu"/>
+    <div class="container-fluid">
+        <div class="row">
+            <g:layoutBody/>
+        </div>
+    </div>
+</div>
+
+<asset:javascript src="application.js"/>
 </body>
 </html>

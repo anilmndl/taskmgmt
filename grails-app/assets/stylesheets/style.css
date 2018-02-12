@@ -1,0 +1,15 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+}
+
+/* Sidebar */
+.sidebar {
+    top: 55px;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding: 10px;
+    border-right: 1px solid #eee;
+    min-width: 225px;
+}
