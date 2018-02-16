@@ -34,4 +34,7 @@ class TaskController {
     def listssss(){
 
     }
+    def update(){
+        render view: "list"
+    }
 }
