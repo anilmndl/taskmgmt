@@ -7,7 +7,20 @@ class TaskController {
      * @return
      */
     def list() {
-        render view: "list", model: [tasks: Task.list()]
+        // added a comment
+        render view: "list",
+                model:
+                        [
+                                tasks: Task.list()
+                        ]
+    }
+
+    def detail(){
+
+    }
+
+    def edit(){
+        
     }
 
     def listssss(){
