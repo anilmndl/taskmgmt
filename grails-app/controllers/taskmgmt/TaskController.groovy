@@ -18,4 +18,8 @@ class TaskController {
     def detail(){
 
     }
+
+    def edit(){
+        
+    }
 }
