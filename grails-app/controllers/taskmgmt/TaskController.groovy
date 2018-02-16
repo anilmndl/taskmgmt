@@ -9,4 +9,7 @@ class TaskController {
     def list() {
         render view: "list", model: [tasks: Task.list()]
     }
+    def update(){
+        render view: "list"
+    }
 }
