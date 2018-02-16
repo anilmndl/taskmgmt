@@ -9,13 +9,16 @@ import spock.lang.Specification
 @TestFor(TaskController)
 class TaskControllerSpec extends Specification {
 
-    def setup() {
+    def setup()
+    {
     }
 
-    def cleanup() {
+    def cleanup()
+    {
     }
 
-    void "test something"() {
+    void "test something"()
+    {
         expect:"fix me"
             true == false
     }

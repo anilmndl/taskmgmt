@@ -13,8 +13,20 @@ class TaskController {
                                 tasks: Task.list()
                         ]
     }
-    def redirect(){
+
+    def redirect() {
         //change
+
+
+
     }
+    def detail() {
+//
+    }
+
+    def edit() {
+        //
+    }
+
+   
 }
-ge
