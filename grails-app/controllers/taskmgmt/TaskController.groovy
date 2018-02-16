@@ -14,4 +14,12 @@ class TaskController {
                                 tasks: Task.list()
                         ]
     }
+
+    def detail(){
+
+    }
+
+    def edit(){
+        
+    }
 }
