@@ -6,7 +6,12 @@ class TaskController {
      * display the list of tasks
      * @return
      */
-    def list() {
-        render view: "list", model: [tasks: Task.list()]
+    def list()
+    {
+        render view: "list",
+                model:
+                        [
+                                tasks: Task.list()
+                        ]
     }
 }
