@@ -6,12 +6,14 @@ class TaskController {
      * display the list of tasks
      * @return
      */
-    def list()
-    {
+    def list() {
         render view: "list",
                 model:
                         [
                                 tasks: Task.list()
                         ]
+    }
+    def redirect(){
+        //change
     }
 }
