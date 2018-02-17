@@ -28,5 +28,10 @@ class TaskController {
         //
     }
 
+
    
+}
+    def update(){
+        render view: "list"
+    }
 }
