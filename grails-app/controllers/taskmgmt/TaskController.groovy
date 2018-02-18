@@ -2,6 +2,8 @@ package taskmgmt
 
 class TaskController {
 
+    TaskService taskService
+
     /**
      * display the list of tasks
      * @return
@@ -30,5 +32,10 @@ class TaskController {
 
     def update(){
         render view: "list"
+    }
+
+    def create(){
+        taskService.createTask()
+        redirect action: "list"
     }
 }
