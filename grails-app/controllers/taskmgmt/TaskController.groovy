@@ -20,7 +20,6 @@ class TaskController {
         //change
 
 
-
     }
     def detail() {
 //
@@ -37,5 +36,8 @@ class TaskController {
     def create(){
         taskService.createTask()
         redirect action: "list"
+    }
+    def index(){
+        render view: "index"
     }
 }
