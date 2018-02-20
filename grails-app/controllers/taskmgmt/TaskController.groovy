@@ -2,28 +2,25 @@ package taskmgmt
 
 class TaskController {
 
-    /**
-     * display the list of tasks
-     * @return
-     */
-    def list() {
-        // added a comment
-        render view: "list",
-                model:
-                        [
-                                tasks: Task.list()
-                        ]
+
+    def index() {
+        render view: "list", model: [tasks: Task.list()]
+    }
+    def create(){
+        render view:"create"
+    }
+        def save(Task mgmt) {
+            mgmt.dateCreated = new Date()
+            mgmt. dateModified= new Date()
+
+            if (mgmt.validate()) {
+                mgmt.save flush: true, failorError: true
+                flash.Message = "Sucessfully built."
+            } else {
+                flash.Message = "Error"
+            }
+            redirect action:"create"
+
+        }
     }
 
-    def detail(){
-
-    }
-
-    def edit(){
-        
-    }
-
-    def listssss(){
-
-    }
-}
