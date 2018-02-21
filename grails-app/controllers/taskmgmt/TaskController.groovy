@@ -4,10 +4,6 @@ class TaskController {
 
     TaskService taskService
 
-    /**
-     * display the list of tasks
-     * @return
-     */
     def list() {
         render view: "list",
                 model:
@@ -19,8 +15,8 @@ class TaskController {
     def redirect() {
         //change
 
-
     }
+
     def detail() {
 //
     }
@@ -29,15 +25,20 @@ class TaskController {
         //
     }
 
-    def update(){
+    def update() {
         render view: "list"
     }
 
-    def create(){
+    def delete() {
+
+    }
+
+    def create() {
         taskService.createTask()
         redirect action: "list"
     }
-    def index(){
+
+    def index() {
         render view: "index"
     }
 }
