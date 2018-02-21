@@ -4,14 +4,15 @@ class TaskController {
     def index() {
         render view: "list", model: [tasks: Task.list()]
     }
-
-    def create() {
-        render view: "create"
+    def list() {
+        render view: "list", model: [tasks: Task.list()]
     }
-
+    def create(){
+        render view:"create"
+    }
     def save(Task mgmt) {
         mgmt.dateCreated = new Date()
-        mgmt.dateModified = new Date()
+        mgmt. dateModified= new Date()
 
         if (mgmt.validate()) {
             mgmt.save flush: true, failorError: true
@@ -22,3 +23,4 @@ class TaskController {
         redirect action: "create"
     }
 }
+
