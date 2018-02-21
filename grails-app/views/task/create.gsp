@@ -1,4 +1,5 @@
 <!doctype html>
+<html>
 <head>
     <meta name="layout" content="main"/>
     <meta charset="UTF-8">
@@ -19,3 +20,4 @@
     <button type="submit" class="btn btn btn-primary">Add</button>
 </g:form>
 </body>
+</html>

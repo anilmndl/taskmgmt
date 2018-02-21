@@ -20,7 +20,6 @@ class TaskController {
                 flash.Message = "Error"
             }
             redirect action:"create"
-
         }
     }
 
