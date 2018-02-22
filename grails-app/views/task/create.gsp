@@ -14,8 +14,12 @@
 <body>
 <g:form controller="task" action="save">
     <div class="form-group">
-        <h1>Create Task </h1>
+        <h1>Title of Task </h1>
         <input type="text" class="form-control"  name="title" placeholder="Your Task" >
+    </div>
+    <div class="form-group">
+        <h1>Detail </h1>
+        <input type="text" class="form-control"  name="detail" placeholder="Your Task" >
     </div>
     <button type="submit" class="btn btn btn-primary">Add</button>
 </g:form>
