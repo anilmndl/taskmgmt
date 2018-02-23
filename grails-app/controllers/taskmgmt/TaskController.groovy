@@ -6,6 +6,11 @@ TaskService taskService
     def index() {
         render view: "list", model: [tasks: Task.list()]
     }
+
+    def list() {
+        render view: "list", model: [tasks: Task.list()]
+    }
+
     def create(){
         render view:"create"
     }
