@@ -3,6 +3,12 @@ package taskmgmt
 class TaskController {
 
     TaskService taskService
+    
+    def delete() {
+        Task task=Task.get(params.id)
+       taskService.delete(task)
+        redirect action: "list",modle:[tasks: Task.list()]
+    }
 
     def index() {
         render view: "list", model: [tasks: Task.list()]
@@ -13,6 +19,7 @@ class TaskController {
     }
 
     def create(){
+       // Task task=Task.get(params.id)
         render view:"create"
     }
 
@@ -20,7 +27,6 @@ class TaskController {
         Task tasks = Task.get(params.id)
         render view:"detail", model: [tasks: tasks]
     }
-
     def save(Task taskmgmt){
         taskService.save(taskmgmt)
         redirect action: "list"

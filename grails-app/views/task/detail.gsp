@@ -39,7 +39,7 @@
                     <div class="panel-body">
                         <g:hiddenField name="id" value="${tasks.id}"/>
                         <p><h3 class="text-center">${tasks.title}</h3></p>
-                        <g:link controller="task" action="delete" class="btn btn-danger btn-sm pull-right">Delete</g:link>
+                        <g:link controller="task" action="delete" id="${tasks.id}" class="btn btn-danger btn-sm pull-right">Delete</g:link>
 
                         <g:link controller="task" action="completed" class="btn btn-success btn-sm">Completed</g:link>
                         <hr>
