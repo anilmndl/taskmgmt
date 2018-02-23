@@ -14,9 +14,15 @@ TaskService taskService
     def create(){
         render view:"create"
     }
+
+    def detail(){
+        Task tasks = Task.get(params.id)
+        render view:"detail", model: [tasks: tasks]
+    }
+
     def save(Task taskmgmt){
         taskService.save(taskmgmt)
-        redirect action: "create"
+        redirect action: "list"
     }
 
 }
