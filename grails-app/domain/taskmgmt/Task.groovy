@@ -3,6 +3,7 @@ package taskmgmt
 class Task {
 
     String title
+    String detail
     Date dateCreated
     Date dateModified
     String flag

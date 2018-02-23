@@ -38,23 +38,20 @@
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
-                        <th>Date Created</th>
-                        <th>Date Modified</th>
                         <th>Action</th>
-                        <td>${tasks.title}</td>
                     </tr>
-                    <g:each in="${ (1..20) }">
-                        <g:if test="${tasks.flag!="deleted"}">
+                    <g:if test="${tasks}">
+
+                        <g:each in="${tasks}" var="show">
                             <tr>
-                                <td>${tasks.id}</td>
-                                <td>${tasks.title}</td>
-                                <td>${tasks.dateCreated}</td>
-                                <td>${tasks.dateModified}</td>
-                                <td><delete:hello name="delete" flag="${tasks}"/></td>
-                                <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
+                                <td>${show.id} </td>
+                                <td>${show.title}</td>
+                                <td><g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link></td>
                             </tr>
-                        </g:if>
-                    </g:each>
+                        </g:each>
+
+                    </g:if>
+
                 </table>
             </div>
             <ul class="pagination pagination-sm">
