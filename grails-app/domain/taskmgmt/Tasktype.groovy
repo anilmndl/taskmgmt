@@ -9,6 +9,8 @@ class Tasktype {
 
 
     static constraints = {
+        dateCreated nullable: true
+        dateModified nullable: true
         flag nullable:true
     }
 }
