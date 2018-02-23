@@ -41,7 +41,6 @@
                         <th>Taglib</th>
                         <th>Action</th>
                     </tr>
-<<<<<<< HEAD
                     <g:if test="${tasks}">
 
                         <g:each in="${tasks}" var="show">
@@ -53,8 +52,6 @@
                         </g:each>
 
                     </g:if>
-
-=======
                     <g:each in="${ (1..20) }">
                         <tr>
                             <td>${it}</td>
@@ -63,7 +60,6 @@
                             <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
                         </tr>
                     </g:each>
->>>>>>> develop
                 </table>
             </div>
             <ul class="pagination pagination-sm">
