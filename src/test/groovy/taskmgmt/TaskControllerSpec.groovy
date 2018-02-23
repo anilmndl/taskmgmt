@@ -17,9 +17,21 @@ class TaskControllerSpec extends Specification {
     {
     }
 
-    void "test something"()
-    {
-        expect:"fix me"
-            true == false
+    /*create a test for saving a task by Sabin */
+    void "test save"(){
+        when:"The create is executed"
+        Task newTask = new Task()
+        newTask.validate()
+        newTask.detail = "Detail"
+        newTask.title = "Test"
+        newTask.flag="Created"
+        controller.save(newTask)
+
+        then:
+        Task.count() == 1
+    }
+
+    void "test detail"(){
+
     }
 }

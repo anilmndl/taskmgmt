@@ -3,10 +3,10 @@ package taskmgmt
 class TaskController {
 
     TaskService taskService
-    
+
     def delete() {
         Task task=Task.get(params.id)
-       taskService.delete(task)
+        taskService.delete(task)
         redirect action: "list",modle:[tasks: Task.list()]
     }
 
