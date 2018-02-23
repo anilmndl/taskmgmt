@@ -2,7 +2,7 @@ package taskmgmt
 
 class TasktypeController {
 
-    TasktypeService taskTypeService
+    TaskTypeService taskTypeService
 
     def index() {
         render view:"list.gsp"
