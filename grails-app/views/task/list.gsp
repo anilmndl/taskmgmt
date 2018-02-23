@@ -10,13 +10,14 @@
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
+
     <form class="form-horizontal">
         <div class="col-sm-4">
             <div class="form-group form-group-sm">
                 <label for="title" class="col-sm-3 control-label">Task Title:</label>
 
                 <div class="col-sm-9">
-                    <g:textField name="title" value="${params.title}" class="form-control" />
+                    <g:textField name="title" value="${params.title}" class="form-control"/>
                 </div>
             </div>
         </div>
@@ -24,12 +25,15 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div class="pull-right">
-                    <g:link controller="task" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i> Clear</g:link>
-                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                    <g:link controller="task" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
+                                                                                             aria-hidden="true"></i> Clear</g:link>
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"
+                                                                            aria-hidden="true"></i> Search</button>
                 </div>
             </div>
         </div>
     </form>
+
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
@@ -38,17 +42,32 @@
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
+                        <th>Date Created</th>
                         <th>Action</th>
+                        <th>Check</th>
                     </tr>
                     <g:if test="${tasks}">
-                        <g:each in="${tasks}" var="show">
-                            <g:if test="${show.flag!="deleted"}">
+                        <g:each in="${tasks.reverse()}" var="show">
+                            <g:if test="${show.flag != "deleted"}">
                                 <tr>
+
+                                    <td>${show.id}</td>
+                                    <td><g:link controller="Task" action="detail">${show.title}</g:link></td>
+                                    <td>${show.dateCreated}</td>
+                                    <td><g:link controller="Task" action="detail" id="${show.id}"
+                                                class="btn btn-default btn-xs"><i class="fa fa-eye"
+                                                                                  aria-hidden="true"></i> View</g:link>
+                                    </td>
+                                    <td><g:link controller="Task" action="delete" id="${show.id}"
+                                                class="btn btn-success btn-xs"><i class="fa fa-check"
+                                                                                  aria-hidden="true"></i> Mark Completed</g:link>
+
                                     <td>${show.id} </td>
                                     <td>${show.title}</td>
                                     <td>
                                         <g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link>
                                         <g:link controller="Task" action="edit" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-edit" aria-hidden="true"></i> Edit</g:link>
+
                                     </td>
                                 </tr>
                             </g:if>
