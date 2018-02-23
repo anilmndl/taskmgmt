@@ -1,27 +1,27 @@
 <!doctype html>
 <html>
 <head>
+
     <meta name="layout" content="main"/>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>CreateTask</title>
+    <title>Create Task</title>
 </head>
-<asset:stylesheet src="Style.css"/>
-<asset:stylesheet src="bootstrap.css"/>
 <body>
-<g:form controller="task" action="save">
-    <div class="form-group">
-        <h1>Title of Task </h1>
-        <input type="text" class="form-control"  name="title" placeholder="Your Task" >
-    </div>
-    <div class="form-group">
-        <h1>Detail </h1>
-        <input type="text" class="form-control"  name="detail" placeholder="Your Task" >
-    </div>
-    <button type="submit" class="btn btn btn-primary">Add</button>
-</g:form>
+<g:render template="/task/sidebar"/>
+<div class="col-sm-10 col-md-offset-2 main">
+    <g:form controller="task" action="save">
+        <div class="form-group">
+           <label> <h1>Title of Task </h1></label>
+            <input type="text" class="form-control"  name="title" placeholder="Task Title" >
+        </div>
+        <div class="form-group">
+            <div class = "form-group col-lg-12">
+              <label>  <h2>Detail </h2></label>
+                <textarea class = "form-control" rows= "6" placeholder="Detail Task " name ="detail"></textarea>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn btn-primary">Add</button>
+    </g:form>
+</div>
 </body>
 </html>
