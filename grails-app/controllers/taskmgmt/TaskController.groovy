@@ -1,7 +1,7 @@
 package taskmgmt
 
 class TaskController {
-    TaskService taskService
+TaskService taskService
     
     def index() {
         render view: "list", model: [tasks: Task.list()]
@@ -14,5 +14,4 @@ class TaskController {
         redirect action: "create"
     }
 
-    }
-
+}
