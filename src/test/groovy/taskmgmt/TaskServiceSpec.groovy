@@ -17,29 +17,7 @@ class TaskServiceSpec extends Specification {
 
 
     void "test something"() {
-        expect:"fix me"
-            true == false
-
-    void "aplusbwholesquared returns 25 when a = 2 and b = 3"() {
-        setup:
-            int a = 2
-            int b = 3
-        when:
-            int result = service.aplusbwholesquared(a, b)
-
-        then:
-            result == 25
-    }
-
-    void "aminusbwholesquared return"(){
-        setup:
-            int a = 2
-            int b = 3
-        when:
-            int result = service.aminusbwholesquared(a, b)
-
-        then:
-            result == 1
-
+        expect: "fix me"
+        true == false
     }
 }
