@@ -2,6 +2,8 @@ package taskmgmt
 
 class TasktypeController {
 
+    TasktypeService taskTypeService
+
     def index() {
         render view:"list.gsp"
     }
@@ -15,7 +17,7 @@ class TasktypeController {
     }
 
     def save(Tasktype tskType){
-        tasktypeService.save(tskType)
+        taskTypeService.save(tskType)
         redirect action: "list"
     }
 }

@@ -6,8 +6,6 @@ import grails.transaction.Transactional
 class TasktypeService {
 
     def save(Tasktype tskType) {
-        tskType.dateCreated = new Date()
-        tskType.dateModified = new Date()
         tskType.flag="created"
         tskType.save failOnError: true, flush: true
     }

@@ -2,7 +2,7 @@ package taskmgmt
 
 class Tasktype {
 
-    String topic
+    String tag
     Date dateCreated
     Date dateModified
     String flag
