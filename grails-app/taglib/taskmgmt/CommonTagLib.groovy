@@ -1,11 +1,17 @@
 package taskmgmt
 
+import com.sun.jmx.snmp.tasks.TaskServer
+
+import javax.xml.ws.Service
+
 class CommonTagLib {
 
 //    static defaultEncodeAs = [taglib:'html']
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
 
     static namespace = "common"
+
+    TaskService taskService
 
     def hello = { attrs ->
         def output = ''

@@ -2,6 +2,8 @@ package taskmgmt
 
 import grails.transaction.Transactional
 
+import java.text.DateFormatSymbols
+
 @Transactional
 class TaskService {
 
@@ -13,5 +15,9 @@ class TaskService {
         task.dateModified=new Date()
         task.flag="deleted"
         task.save failOnError: true,flush: true
+    }
+
+    String MonthString(int month) {
+        return new DateFormatSymbols().getMonths()[month-1]
     }
 }

@@ -7,7 +7,7 @@ class TaskController {
     def delete() {
         Task task=Task.get(params.id)
        taskService.delete(task)
-        redirect action: "list",modle:[tasks: Task.list()]
+        redirect action: "list",model: [tasks: Task.list()]
     }
     
     def index() {
@@ -19,16 +19,11 @@ class TaskController {
     }
 
     def create(){
-<<<<<<< HEAD
-        render view: "main"
+
+        render view: "create"
     }
 
-    def listssss(){
-=======
-       // Task task=Task.get(params.id)
-        render view:"create"
-    }
->>>>>>> 706bd607ca0e90a2afa5aed68cfc1523e14dcf82
+
 
     def detail(){
         Task tasks = Task.get(params.id)
