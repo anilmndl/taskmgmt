@@ -38,17 +38,21 @@
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
-                        <th>Taglib</th>
                         <th>Action</th>
                     </tr>
-                    <g:each in="${ (1..20) }">
-                        <tr>
-                            <td>${it}</td>
-                            <td>Dummy data [implement me]</td>
-                            <td><common:hello name="Task Mgmt" status="success"/></td>
-                            <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
-                        </tr>
-                    </g:each>
+                    <g:if test="${tasks}">
+                        <g:each in="${tasks}" var="show">
+                            <g:if test="${show.flag!="deleted"}">
+                                <tr>
+                                    <td>${show.id} </td>
+                                    <td>${show.title}</td>
+                                    <td><g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link></td>
+                                </tr>
+                            </g:if>
+                        </g:each>
+
+                    </g:if>
+
                 </table>
             </div>
             <ul class="pagination pagination-sm">

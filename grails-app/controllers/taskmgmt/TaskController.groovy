@@ -4,32 +4,36 @@ class TaskController {
 
     TaskService taskService
 
-    /**
-     * display the list of tasks
-     * @return
-     */
-    def list() {
-        render view: "list",
-                model:
-                        [
-                                tasks: Task.list()
-                        ]
+    def delete() {
+        Task task = Task.get(params.id)
+        taskService.delete(task)
+        redirect action: "list", modle: [tasks: Task.list()]
     }
 
-    def redirect() {
-        //change
-
+    def index() {
+        render view: "list", model: [tasks: Task.list()]
     }
-    def detail() {
 
-    }
-    
-    def update(){
+    def update() {
         render view: "list"
     }
 
-    def create(){
-        taskService.createTask()
+    def list() {
+        render view: "list", model: [tasks: Task.list()]
+    }
+
+    def create() {
+        // Task task=Task.get(params.id)
+        render view: "create"
+    }
+
+    def detail() {
+        Task tasks = Task.get(params.id)
+        render view: "detail", model: [tasks: tasks]
+    }
+
+    def save(Task taskmgmt) {
+        taskService.save(taskmgmt)
         redirect action: "list"
     }
 }
