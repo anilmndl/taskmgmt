@@ -41,13 +41,14 @@
                         <th>Action</th>
                     </tr>
                     <g:if test="${tasks}">
-
                         <g:each in="${tasks}" var="show">
-                            <tr>
-                                <td>${show.id} </td>
-                                <td>${show.title}</td>
-                                <td><g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link></td>
-                            </tr>
+                            <g:if test="${show.flag!="deleted"}">
+                                <tr>
+                                    <td>${show.id} </td>
+                                    <td>${show.title}</td>
+                                    <td><g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link></td>
+                                </tr>
+                            </g:if>
                         </g:each>
 
                     </g:if>
