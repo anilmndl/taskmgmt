@@ -50,6 +50,7 @@
                         <g:each in="${tasks.reverse()}" var="show">
                             <g:if test="${show.flag != "deleted"}">
                                 <tr>
+<<<<<<< HEAD
                                     <td>${show.id}</td>
                                     <td><g:link controller="Task" action="detail">${show.title}</g:link></td>
                                     <td>${show.dateCreated}</td>
@@ -60,6 +61,13 @@
                                     <td><g:link controller="Task" action="delete" id="${show.id}"
                                                 class="btn btn-success btn-xs"><i class="fa fa-check"
                                                                                   aria-hidden="true"></i> Mark Completed</g:link>
+=======
+                                    <td>${show.id} </td>
+                                    <td>${show.title}</td>
+                                    <td>
+                                        <g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link>
+                                        <g:link controller="Task" action="edit" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-edit" aria-hidden="true"></i> Edit</g:link>
+>>>>>>> 110ae2f9df853c262aaeaf8ed3825ae8c7e5c60e
                                     </td>
                                 </tr>
                             </g:if>
