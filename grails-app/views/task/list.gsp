@@ -46,7 +46,7 @@
                             <tr>
                                 <td>${show.id} </td>
                                 <td>${show.title}</td>
-                                <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
+                                <td><g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link></td>
                             </tr>
                         </g:each>
                     </g:if>
