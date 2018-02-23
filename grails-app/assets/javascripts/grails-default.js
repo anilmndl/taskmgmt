@@ -10,12 +10,24 @@
 //= require_tree .
 //= require_self
 
-if (typeof jQuery !== 'undefined') {
-    (function($) {
-        $('#spinner').ajaxStart(function() {
+if (
+    typeof jQuery !== 'undefined'
+)
+{
+    (
+        function($)
+    {
+        $('#spinner').ajaxStart(
+            function()
+            {
             $(this).fadeIn();
-        }).ajaxStop(function() {
+            }
+        ).ajaxStop(
+            function()
+            {
             $(this).fadeOut();
-        });
-    })(jQuery);
+        }
+        );
+    }
+    )(jQuery);
 }
