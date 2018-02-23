@@ -38,16 +38,22 @@
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
-                        <th>Taglib</th>
+                        <th>Date Created</th>
+                        <th>Date Modified</th>
                         <th>Action</th>
+                        <td>${tasks.title}</td>
                     </tr>
                     <g:each in="${ (1..20) }">
-                        <tr>
-                            <td>${it}</td>
-                            <td>Dummy data [implement me]</td>
-                            <td><common:hello name="Task Mgmt" status="success"/></td>
-                            <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
-                        </tr>
+                        <g:if test="${tasks.flag!="deleted"}">
+                            <tr>
+                                <td>${tasks.id}</td>
+                                <td>${tasks.title}</td>
+                                <td>${tasks.dateCreated}</td>
+                                <td>${tasks.dateModified}</td>
+                                <td><delete:hello name="delete" flag="${tasks}"/></td>
+                                <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
+                            </tr>
+                        </g:if>
                     </g:each>
                 </table>
             </div>

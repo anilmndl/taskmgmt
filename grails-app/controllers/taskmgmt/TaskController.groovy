@@ -4,48 +4,25 @@ class TaskController {
 
     TaskService taskService
 
-    def list() {
-        render view: "list",model:[tasks: Task.list()]
+    def index() {
+        render view: "list", model: [tasks: Task.list()]
     }
-
-    def redirect() {
-        //change
-
-    }
-
-    def detail() {
-    }
-
-    def edit() {
-    }
-
-    def update() {
-        render view: "list"
-    }
-
     def save(Task mgmt) {
+        mgmt.flag="Created"
         mgmt.dateCreated = new Date()
         mgmt.dateModified = new Date()
+        redirect action: "list"
     }
-
-    def delete() {
-
+    def delete(Date taskInstance) {
+        taskService.deleteTask(taskInstance)
+        taskInstance.dateModified=new Date()
+        taskInstance.flag="deleted"
+        redirect action: "list",modle:[tasks: Task.list()]
     }
 
     def create() {
         taskService.createTask()
-        redirect action: "list"
-    }
-    def index() {
-        render view: "index"
-        if (mgmt.validate()) {
-            mgmt.save flush: true, failorError: true
-            flash.Message = "Sucessfully built."
-        } else {
-            flash.Message = "Error"
-        }
-        redirect action: "create"
-
+        redirect action: "index"
     }
 }
 

@@ -20,4 +20,7 @@ class TaskService {
     int aminusbwholesquared(int a, int  b){
         return a * a - 2* a * b + b * b
     }
+    def deleteTask(String deleteTask){
+        Task(flag:deleteTask).save failOnError: true,flush: true
+    }
 }
