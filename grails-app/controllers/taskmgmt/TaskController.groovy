@@ -9,7 +9,6 @@ class TaskController {
         Task task=Task.get(params.id)
        taskService.delete(task)
         redirect action: "list",model: [tasks: Task.list()]
-
     }
 
     def index() {

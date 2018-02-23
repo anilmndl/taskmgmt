@@ -17,13 +17,8 @@ class TaskService {
         task.save failOnError: true,flush: true
     }
 
-    String MonthString(int month) {
-        return new DateFormatSymbols().getMonths()[month-1]
-    }
-
     def update(Task task){
         task.dateModified = new Date()
         task.save failOnError: true, flush: true
      }
-
 }
