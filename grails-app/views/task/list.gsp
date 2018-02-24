@@ -59,11 +59,9 @@
                                         <g:link controller="Task" action="edit" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-edit"
                                                                                   aria-hidden="true"></i> Edit</g:link>
-
-                                    <g:link controller="Task" action="delete" id="${show.id}"
-                                                class="btn btn-success btn-xs"><i class="fa fa-check"
-                                                                                  aria-hidden="true"></i> Mark Completed</g:link>
-
+                                        <<g:link controller="Task" action="delete" id="${show.id}"
+                                                 class="btn btn-success btn-xs"><i class="fa fa-check"
+                                                                                   aria-hidden="true"></i> Mark Completed</g:link>
                                     </td>
                                 </tr>
                             </g:if>
