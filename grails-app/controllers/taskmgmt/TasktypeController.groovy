@@ -9,7 +9,8 @@ class TasktypeController {
     }
 
     def list(){
-        render view:"list.gsp"
+        List<Tasktype> typeList = Tasktype.list()
+        render view:"list.gsp", model: [typeList:typeList]
     }
 
     def create(){
@@ -19,5 +20,14 @@ class TasktypeController {
     def save(Tasktype tskType){
         taskTypeService.save(tskType)
         redirect action: "list"
+    }
+
+    def delete(){
+
+    }
+
+    def edit(Tasktype taskType){
+        taskTypeService.update(taskType)
+        redirect action: "index"
     }
 }
