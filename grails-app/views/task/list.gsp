@@ -44,7 +44,6 @@
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Action</th>
-                        <th>Check</th>
                     </tr>
                     <g:if test="${tasks}">
                         <g:each in="${tasks.reverse()}" var="show">
@@ -54,20 +53,17 @@
                                     <td>${show.id}</td>
                                     <td><g:link controller="Task" action="detail">${show.title}</g:link></td>
                                     <td>${show.dateCreated}</td>
-                                    <td><g:link controller="Task" action="detail" id="${show.id}"
+                                    <td>
+                                        <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"
                                                                                   aria-hidden="true"></i> View</g:link>
+                                        <g:link controller="Task" action="edit" id="${show.id}"
+                                                class="btn btn-default btn-xs"><i class="fa fa-edit"
+                                                                                  aria-hidden="true"></i> Edit</g:link>
                                     </td>
                                     <td><g:link controller="Task" action="delete" id="${show.id}"
                                                 class="btn btn-success btn-xs"><i class="fa fa-check"
                                                                                   aria-hidden="true"></i> Mark Completed</g:link>
-
-                                    <td>${show.id} </td>
-                                    <td>${show.title}</td>
-                                    <td>
-                                        <g:link controller="Task" action="detail" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</g:link>
-                                        <g:link controller="Task" action="edit" id="${show.id}" class="btn btn-default btn-xs"><i class="fa fa-edit" aria-hidden="true"></i> Edit</g:link>
-
                                     </td>
                                 </tr>
                             </g:if>
