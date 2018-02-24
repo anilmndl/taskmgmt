@@ -5,7 +5,7 @@ class TasktypeController {
     TaskTypeService taskTypeService
 
     def index() {
-        render view:"list.gsp"
+        redirect action: "list"
     }
 
     def list(){
@@ -23,11 +23,16 @@ class TasktypeController {
     }
 
     def delete(){
-
+        redirect action: "list"
     }
 
-    def edit(Tasktype taskType){
+    def edit(){
+        Tasktype taskType= Tasktype.get(params.id)
+        render view: "edit", model: [taskType:taskType]
+    }
+
+    def update(Tasktype taskType){
         taskTypeService.update(taskType)
-        redirect action: "index"
+        redirect action: "list"
     }
 }
