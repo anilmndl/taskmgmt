@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(TaskService)
-class TaskServiceSpec extends Specification {
+@TestFor(TaskTypeService)
+class TaskTypeServiceSpec extends Specification {
 
     def setup() {
     }
@@ -15,14 +15,8 @@ class TaskServiceSpec extends Specification {
     def cleanup() {
     }
 
-<<<<<<< HEAD
-    void "test detail"() {
-
-=======
-
     void "test something"() {
-        expect: "fix me"
-        true == false
->>>>>>> develop
+        expect:"fix me"
+            true == false
     }
 }
