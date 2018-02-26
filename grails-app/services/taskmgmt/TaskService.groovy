@@ -21,4 +21,8 @@ class TaskService {
         task.dateModified = new Date()
         task.save failOnError: true, flush: true
      }
+
+    def createTask() {
+        new Task(title: "Created by Task Service").save failOnError:true, flush:true
+    }
 }
