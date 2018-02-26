@@ -1,12 +1,15 @@
 package taskmgmt
 
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import grails.validation.ValidationException
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(TaskService)
+@Mock([Task])
 class TaskServiceSpec extends Specification {
 
     def setup() {
@@ -15,25 +18,20 @@ class TaskServiceSpec extends Specification {
     def cleanup() {
     }
 
-    void "aplusbwholesquared returns 25 when a = 2 and b = 3"() {
-        setup:
-            int a = 2
-            int b = 3
+    void "create_task_inserts_a_new_task_in_the_db"(){
         when:
-            int result = service.aplusbwholesquared(a, b)
+            service.createTask("Test Task")
 
         then:
-            result == 25
+            Task.list() != null
+            Task.get(1).title == "Test Task"
     }
 
-    void "aminusbwholesquared return"(){
-        setup:
-            int a = 2
-            int b = 3
+    void "create_task_throws ValidationException if title is empty or null"(){
         when:
-            int result = service.aminusbwholesquared(a, b)
+            service.createTask("")
 
         then:
-            result == 1
+            thrown ValidationException
     }
 }

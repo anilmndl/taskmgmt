@@ -14,7 +14,7 @@ class TaskController {
     }
 
     def create(){
-        taskService.createTask()
+        taskService?.createTask()
         redirect action: "list"
     }
 }
