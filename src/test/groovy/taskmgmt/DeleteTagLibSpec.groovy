@@ -4,10 +4,10 @@ import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
- * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
+ * See the API for {@link grails.test.mixin.web.GroovyPageUnitTestMixin} for usage instructions
  */
-@TestFor(TaskTypeService)
-class TaskTypeServiceSpec extends Specification {
+@TestFor(DeleteTagLib)
+class DeleteTagLibSpec extends Specification {
 
     def setup() {
     }

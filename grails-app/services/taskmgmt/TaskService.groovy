@@ -2,22 +2,23 @@ package taskmgmt
 
 import grails.transaction.Transactional
 
+import java.text.DateFormatSymbols
+
 @Transactional
 class TaskService {
 
-    def createTask() {
-        new Task(title: "Created by Task Service").save failOnError:true, flush:true
+    def save(Task taskmgmt) {
+        taskmgmt.flag="created"
+        taskmgmt.save failOnError: true, flush: true
+    }
+    def delete(Task task){
+        task.dateModified=new Date()
+        task.flag="deleted"
+        task.save failOnError: true,flush: true
     }
 
-    def createTask(String title){
-        new Task(title: title).save failOnError:true, flush:true
-    }
-
-    int aplusbwholesquared(int a, int b){
-       return  a * a + 2 * a * b + b * b
-    }
-
-    int aminusbwholesquared(int a, int  b){
-        return a * a - 2* a * b + b * b
-    }
+    def update(Task task){
+        task.dateModified = new Date()
+        task.save failOnError: true, flush: true
+     }
 }
