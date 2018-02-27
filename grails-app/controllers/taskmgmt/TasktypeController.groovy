@@ -9,7 +9,7 @@ class TasktypeController {
     }
 
     def list(){
-        List<Tasktype> typeList = Tasktype.list()
+        List<TaskType> typeList = TaskType.list()
         render view:"list.gsp", model: [typeList:typeList]
     }
 
@@ -17,7 +17,7 @@ class TasktypeController {
         render view:"create.gsp"
     }
 
-    def save(Tasktype tskType){
+    def save(TaskType tskType){
         taskTypeService.save(tskType)
         redirect action: "list"
     }
@@ -29,11 +29,11 @@ class TasktypeController {
     }
 
     def edit(){
-        Tasktype taskType= Tasktype.get(params.id)
+        TaskType taskType= TaskType.get(params.id)
         render view: "edit", model: [taskType:taskType]
     }
 
-    def update(Tasktype taskType){
+    def update(TaskType taskType){
         taskTypeService.update(taskType)
         redirect action: "list"
     }

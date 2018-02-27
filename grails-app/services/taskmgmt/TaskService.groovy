@@ -20,11 +20,15 @@ class TaskService {
     def update(Task task){
         task.dateModified = new Date()
         task.save failOnError: true, flush: true
-     }
+    }
 
-    def complete(Task task){
-        task.dateModified=new Date()
-        task.flag="completed"
-        task.save failOnError: true,flush: true
+    def complete(Task task) {
+        task.dateModified = new Date()
+        task.flag = "completed"
+        task.save failOnError: true, flush: true
+    }
+
+    def createTask() {
+        new Task(title: "Created by Task Service").save failOnError: true, flush: true
     }
 }

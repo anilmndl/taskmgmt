@@ -33,7 +33,8 @@ class TaskController {
         render view: "list.gsp", model: [tasks: Task.list()]
     }
 
-    def create() {
+    def create(){
+//        taskService?.createTask()
         // Task task=Task.get(params.id)
         render view: "create.gsp"
     }
