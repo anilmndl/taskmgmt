@@ -10,6 +10,12 @@ class TaskController {
         redirect action: "list",modle:[tasks: Task.list()]
     }
 
+    def completed() {
+        Task task=Task.get(params.id)
+        taskService.complete(task)
+        redirect action: "list",modle:[tasks: Task.list()]
+    }
+
     def index() {
         render view: "list.gsp", model: [tasks: Task.list()]
     }
@@ -35,6 +41,10 @@ class TaskController {
     def detail() {
         Task tasks = Task.get(params.id)
         render view: "detail.gsp", model: [tasks: tasks]
+    }
+
+    def listCompleted(){
+        render view: "completed.gsp", model: [tasks: Task.list()]
     }
 
     def save(Task taskmgmt) {

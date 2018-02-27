@@ -15,4 +15,9 @@ class TaskTypeService {
         taskType.save failOnError: true, flush: true
     }
 
+    def delete(Tasktype taskType){
+        taskType.dateModified=new Date()
+        taskType.flag="deleted"
+        taskType.save failOnError: true,flush: true
+    }
 }

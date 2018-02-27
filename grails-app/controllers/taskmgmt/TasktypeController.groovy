@@ -23,7 +23,9 @@ class TasktypeController {
     }
 
     def delete(){
-        redirect action: "list"
+        Tasktype taskType = Tasktype.get(params.id)
+        taskTypeService.delete(taskType)
+        redirect action: "list",model:[tasks: Task.list()]
     }
 
     def edit(){
