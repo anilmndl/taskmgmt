@@ -3,7 +3,9 @@ package taskmgmt
 class TaskController {
 
     TaskService taskService
-
+    def index() {
+        redirect action: "list"
+    }
     def list() {
         render view: "list.gsp", model: [tasks: Task.list()]
     }
