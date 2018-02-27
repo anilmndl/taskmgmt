@@ -1,6 +1,6 @@
 package taskmgmt
 
-class TasktypeController {
+class TaskTypeController {
 
     TaskTypeService taskTypeService
 
@@ -17,13 +17,13 @@ class TasktypeController {
         render view:"create.gsp"
     }
 
-    def save(TaskType tskType){
-        taskTypeService.save(tskType)
+    def save(TaskType taskType){
+        taskTypeService.save(taskType)
         redirect action: "list"
     }
 
     def delete(){
-        Tasktype taskType = Tasktype.get(params.id)
+        TaskType taskType = TaskType.get(params.id)
         taskTypeService.delete(taskType)
         redirect action: "list",model:[tasks: Task.list()]
     }
