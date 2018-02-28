@@ -56,7 +56,7 @@
                                         <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"
                                                                                   aria-hidden="true"></i> View</g:link>
-                                        <g:link controller="Task" action="edit" id="${show.id}"
+                                        <g:link controller="Task" actgrails ion="edit" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-edit"
                                                                                   aria-hidden="true"></i> Edit</g:link>
                                         <g:link controller="Task" action="delete" id="${show.id}"
