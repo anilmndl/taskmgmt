@@ -6,10 +6,34 @@
 </head>
 
 <body>
-<g:render template="/task/sidebar"/>
+<g:render template="/layouts/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Task Type List</h1>
+
+    <form class="form-horizontal">
+        <div class="col-sm-4">
+            <div class="form-group form-group-sm">
+                <label for="title" class="col-sm-3 control-label">TaskType:</label>
+
+                <div class="col-sm-9">
+                    <g:textField name="title" value="${params.title}" class="form-control"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="pull-right">
+                    <g:link controller="TaskType" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
+                                                                                             aria-hidden="true"></i> Clear</g:link>
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"
+                                                                            aria-hidden="true"></i> Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
 
 
     <div class="row">

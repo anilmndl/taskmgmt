@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Task List</title>
+    <title>Completed Tasks</title>
 </head>
 
 <body>
-<g:render template="/task/sidebar"/>
+<g:render template="/layouts/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
-    <h1 class="page-header">Tasks</h1>
+    <h1 class="page-header">Completed Tasks</h1>
 
     <form class="form-horizontal">
         <div class="col-sm-4">

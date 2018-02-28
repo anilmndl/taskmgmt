@@ -6,7 +6,7 @@
     <title>Update Tasktype</title>
 </head>
 <body>
-<g:render template="/taskType/sidebar"/>
+<g:render template="/layouts/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="taskType" action="update" id="${taskType.id}">
         <div class="form-group">

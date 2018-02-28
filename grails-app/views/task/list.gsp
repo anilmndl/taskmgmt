@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/task/sidebar"/>
+<g:render template="/layouts/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
@@ -56,7 +56,7 @@
                                         <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"
                                                                                   aria-hidden="true"></i> View</g:link>
-                                        <g:link controller="Task" actgrails ion="edit" id="${show.id}"
+                                        <g:link controller="Task" action="edit" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-edit"
                                                                                   aria-hidden="true"></i> Edit</g:link>
                                     </td>
