@@ -9,7 +9,7 @@ class TaskTypeController {
     }
 
     def list() {
-        render view: "list.gsp", model: [typeList: Task.list()]
+        render view: "list", model: [typeList: Task.list()]
     }
 
     def create() {
@@ -23,7 +23,7 @@ class TaskTypeController {
 
     def delete(TaskType taskType) {
         taskTypeService.delete(taskType)
-        redirect action: "list", model: [tasks: Task.list()]
+        redirect action: "list"
     }
 
     def edit(TaskType taskType) {

@@ -1,23 +1,26 @@
 package taskmgmt
 
 import grails.transaction.Transactional
+import taskmgmt.enums.TaskStatus
 
 import java.text.DateFormatSymbols
 
 @Transactional
 class TaskService {
 
-    def save(Task taskmgmt) {
-        taskmgmt.flag="created"
-        taskmgmt.save failOnError: true, flush: true
-    }
-    def delete(Task task){
-        task.dateModified=new Date()
-        task.flag="deleted"
-        task.save failOnError: true,flush: true
+    def save(Task task) {
+        task.flag = "created"
+        task.save failOnError: true, flush: true
     }
 
-    def update(Task task){
+    def delete(Task task) {
+        task.dateModified = new Date()
+        task.flag = "deleted"
+        task.taskStatus = TaskStatus.DELETED
+        task.save failOnError: true, flush: true
+    }
+
+    def update(Task task) {
         task.dateModified = new Date()
         task.save failOnError: true, flush: true
     }
@@ -25,6 +28,7 @@ class TaskService {
     def complete(Task task) {
         task.dateModified = new Date()
         task.flag = "completed"
+        task.taskStatus = TaskStatus.COMPLETED
         task.save failOnError: true, flush: true
     }
 

@@ -1,5 +1,7 @@
 package taskmgmt
 
+import taskmgmt.enums.TaskStatus
+
 class TaskController {
 
     TaskService taskService
@@ -9,7 +11,7 @@ class TaskController {
 
     def delete(Task task) {
         taskService.delete(task)
-        redirect action: "list", model: [tasks: Task.list()]
+        redirect action: "list"
     }
 
     def completed(Task task) {
@@ -27,7 +29,7 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.list()]
+        render view: "list", model: [tasks: Task.findAllByTaskStatus(TaskStatus.CREATED)]
     }
 
     def create() {
@@ -41,7 +43,7 @@ class TaskController {
     }
 
     def listCompleted() {
-        render view: "completed", model: [tasks: Task.list()]
+        render view: "completed", model: [tasks: Task.findAllByTaskStatus(TaskStatus.COMPLETED)]
     }
 
     def save(Task task) {
