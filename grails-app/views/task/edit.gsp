@@ -8,7 +8,7 @@
 <body>
 <g:render template="/task/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
-    <g:form controller="tasktype" action="update" id="${editTask.id}">
+    <g:form controller="task" action="update" id="${editTask.id}">
         <div class="form-group">
             <label><h1>Title of Task</h1></label>
             <input type="text" class="form-control"  name="title" placeholder="Task Title" value="${editTask.title}">
