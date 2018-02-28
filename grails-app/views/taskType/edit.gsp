@@ -11,7 +11,7 @@
     <g:form controller="taskType" action="update" id="${taskType.id}">
         <div class="form-group">
             <label><h1>Update Task Type</h1></label>
-            <input type="text" class="form-control" name="tag" placeholder="Task Tag" value="${taskType.tag}" >
+            <input type="text" class="form-control" name="title" placeholder="Task Type Description" value="${taskType.title}" >
         </div>
         <button type="submit" class="btn btn btn-primary">Update</button>
     </g:form>

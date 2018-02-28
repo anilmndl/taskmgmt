@@ -4,12 +4,10 @@ class TaskTypeController {
 
     TaskTypeService taskTypeService
 
-    def index() {
-        redirect action: "list"
-    }
+    static defaultAction = "list"
 
     def list() {
-        render view: "list", model: [typeList: Task.list()]
+        render view: "list", model: [typeList: TaskType.findAllByFlag("created",[order: "desc", sort: "dateCreated"])]
     }
 
     def create() {

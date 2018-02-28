@@ -8,10 +8,10 @@
 <body>
 <g:render template="/taskType/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
-    <g:form controller="taskType" action="save">
+    <g:form controller="TaskType" action="save">
         <div class="form-group">
            <label><h1>Topic of Task Type</h1></label>
-            <input type="text" class="form-control" name="tag" placeholder="Task Tag" >
+            <input type="text" class="form-control" name="title" placeholder="Task Type Description" >
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
     </g:form>

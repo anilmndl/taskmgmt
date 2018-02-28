@@ -2,7 +2,7 @@ package taskmgmt
 
 class TaskType {
 
-    String tag
+    String title
     String identifer                // use this to find specific task type. The title may change in future but identifier should never change
 
     Date dateCreated

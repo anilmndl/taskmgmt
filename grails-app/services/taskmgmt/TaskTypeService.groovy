@@ -8,6 +8,7 @@ class TaskTypeService {
     def save(TaskType taskType) {
         taskType.dateCreated = new Date()
         taskType.flag = "created"
+        taskType.identifer = taskType.title
         taskType.save failOnError: true, flush: true
     }
 

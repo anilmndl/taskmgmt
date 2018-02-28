@@ -23,10 +23,10 @@
                         <th>Action</th>
                     </tr>
                     <g:if test="${typeList}">
-                        <g:each in="${typeList.reverse()}" var="show">
+                        <g:each in="${typeList}" var="show">
                             <g:if test="${show.flag != "deleted"}">
                                 <tr>
-                                    <td><g:link controller="taskType" action="detail">${show.tag}</g:link></td>
+                                    <td><g:link controller="taskType" action="detail">${show.title}</g:link></td>
                                 <td>${show.dateCreated}</td>
                                 <td><g:link controller="taskType" action="edit" id="${show.id}"
                                             class="btn btn-success btn-xs"><i class="fa fa-edit"
