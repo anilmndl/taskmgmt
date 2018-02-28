@@ -46,7 +46,7 @@
                         <th>Action</th>
                     </tr>
                     <g:if test="${tasks}">
-                        <g:each in="${tasks.reverse()}" var="show">
+                        <g:each in="${tasks}" var="show">
                             %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
                                 <tr>
                                     <td>${show.id}</td>

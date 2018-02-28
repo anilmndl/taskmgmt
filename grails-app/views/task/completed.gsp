@@ -42,16 +42,16 @@
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
-                        <th>Date Created</th>
+                        <th>Date Completed</th>
                         <th>Action</th>
                     </tr>
                     <g:if test="${tasks}">
-                        <g:each in="${tasks.reverse()}" var="show">
+                        <g:each in="${tasks}" var="show">
                             %{--<g:if test="${show.flag == "completed"}">--}%
                                 <tr>
                                     <td>${show.id}</td>
                                     <td>${show.title}</td>
-                                    <td>${show.dateCreated}</td>
+                                    <td>${show.dateCompleted}</td>
                                     <td>
                                         <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"

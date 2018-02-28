@@ -27,6 +27,7 @@ class TaskService {
 
     def complete(Task task) {
         task.dateModified = new Date()
+        task.dateCompleted = task.dateModified
         task.flag = "completed"
         task.taskStatus = TaskStatus.COMPLETED
         task.save failOnError: true, flush: true

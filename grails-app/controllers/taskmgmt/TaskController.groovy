@@ -29,7 +29,7 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.findAllByTaskStatus(TaskStatus.CREATED)]
+        render view: "list", model: [tasks: Task.findAllByTaskStatus(TaskStatus.CREATED, [sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
@@ -43,7 +43,7 @@ class TaskController {
     }
 
     def listCompleted() {
-        render view: "completed", model: [tasks: Task.findAllByTaskStatus(TaskStatus.COMPLETED)]
+        render view: "completed", model: [tasks: Task.findAllByTaskStatus(TaskStatus.COMPLETED, [order: "desc", sort: "dateCompleted"])]
     }
 
     def save(Task task) {
