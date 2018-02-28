@@ -4,6 +4,9 @@ class TaskController {
 
     TaskService taskService
 
+    //page will be redirected to list() method by default instead of "index"
+    static defaultAction = "list"
+
     def delete(Task task) {
         taskService.delete(task)
         redirect action: "list", model: [tasks: Task.list()]
@@ -12,10 +15,6 @@ class TaskController {
     def completed(Task task) {
         taskService.complete(task)
         redirect action: "listCompleted"
-    }
-
-    def index() {
-        render view: "list", model: [tasks: Task.list()]
     }
 
     def edit(Task task) {
