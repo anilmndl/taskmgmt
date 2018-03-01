@@ -15,5 +15,6 @@ class TaskType {
         dateCreated nullable: true
         dateModified nullable: true
         flag nullable:true
+        identifer nullable: true
     }
 }

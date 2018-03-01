@@ -6,7 +6,7 @@
     <title>Create Task</title>
 </head>
 <body>
-<g:render template="/task/sidebar"/>
+<g:render template="/layouts/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="task" action="save">
         <div class="form-group">

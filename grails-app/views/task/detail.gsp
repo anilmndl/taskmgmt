@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/task/sidebar"/>
+<g:render template="/layouts/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
@@ -40,7 +40,7 @@
                         <g:hiddenField name="id" value="${tasks.id}"/>
                         <p><h3 class="text-center">${tasks.title}</h3></p>
                         <g:link controller="task" action="delete" id="${tasks.id}" class="btn btn-danger btn-sm pull-right">Delete</g:link>
-                        <g:link controller="task" action="completed" class="btn btn-success btn-sm">Completed</g:link>
+                        <g:link controller="task" action="completed" id="${tasks.id}" class="btn btn-success btn-sm">Completed</g:link>
                         <hr>
                         <p>Details: ${tasks.detail}</p>
                         <p>Date Created: ${tasks.dateCreated}</p>

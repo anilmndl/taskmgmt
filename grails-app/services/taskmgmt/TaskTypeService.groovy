@@ -5,9 +5,11 @@ import grails.transaction.Transactional
 @Transactional
 class TaskTypeService {
 
-    def save(TaskType tskType) {
-        tskType.flag = "created"
-        tskType.save failOnError: true, flush: true
+    def save(TaskType taskType) {
+        taskType.dateCreated = new Date()
+        taskType.flag = "created"
+        taskType.identifer = taskType.title
+        taskType.save failOnError: true, flush: true
     }
 
     def update(TaskType taskType) {
@@ -15,4 +17,9 @@ class TaskTypeService {
         taskType.save failOnError: true, flush: true
     }
 
+    def delete(TaskType taskType){
+        taskType.dateModified=new Date()
+        taskType.flag="deleted"
+        taskType.save failOnError: true,flush: true
+    }
 }
