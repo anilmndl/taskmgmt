@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Task List</title>
+    <title>Completed Tasks</title>
 </head>
 
 <body>
 <g:render template="/layouts/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
-    <h1 class="page-header">Tasks</h1>
+    <h1 class="page-header">Completed Tasks</h1>
 
     <form class="form-horizontal">
         <div class="col-sm-4">
@@ -42,16 +42,16 @@
                     <tr>
                         <th>Id</th>
                         <th>Title</th>
-                        <th>Date Created</th>
+                        <th>Date Completed</th>
                         <th>Action</th>
                     </tr>
                     <g:if test="${tasks}">
                         <g:each in="${tasks}" var="show">
-                            %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
+                            %{--<g:if test="${show.flag == "completed"}">--}%
                                 <tr>
                                     <td>${show.id}</td>
                                     <td>${show.title}</td>
-                                    <td>${show.dateCreated}</td>
+                                    <td>${show.dateCompleted}</td>
                                     <td>
                                         <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"
@@ -61,7 +61,7 @@
                                                                                   aria-hidden="true"></i> Edit</g:link>
                                     </td>
                                 </tr>
-                           %{-- </g:if>--}%
+                            %{--</g:if>--}%
                         </g:each>
                     </g:if>
                 </table>
