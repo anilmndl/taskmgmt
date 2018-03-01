@@ -32,10 +32,10 @@ class TaskController {
         render view: "list", model: [tasks: Task.findAllByTaskStatus(TaskStatus.CREATED, [sort: "dateCreated", order: "desc"])]
     }
     def create() {
-        taskService?.createTask()
+        //taskService?.createTask()
 
         // Task task=Task.get(params.id)
-        render view: "create"
+        render view: "create",model: [taskTypeList:TaskType.findAllByFlag("created")]
     }
 
     def detail(Task tasks) {
