@@ -15,7 +15,7 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: create.gsp-drop
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
             password:

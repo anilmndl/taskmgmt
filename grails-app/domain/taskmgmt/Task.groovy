@@ -8,7 +8,7 @@ class Task {
     String detail
 
     TaskStatus taskStatus = TaskStatus.CREATED
-    // TODO create a new enum for TaskPriority
+    // TODO create.gsp a new enum for TaskPriority
 
     TaskType taskType           // this creates a belongsTo relationship with TaskType
 

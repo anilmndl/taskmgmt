@@ -11,7 +11,7 @@ class TaskTypeController {
     }
 
     def create() {
-        render view: "create.gsp"
+        render view: "create.gsp.gsp"
     }
 
     def save(TaskType taskType) {
