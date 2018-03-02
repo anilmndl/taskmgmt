@@ -5,8 +5,7 @@ enum TaskStatus {
     CREATED("CREATED"),
     LOCKED("LOCKED"),
     UNLOCKED("UNLOCKED"),
-    COMPLETED("COMPLETED"),
-    DELETED("DELETED")//don't know if this is necessary, but couldn't check if the task if deleted or not, in any other ways; by @shreamar
+    COMPLETED("COMPLETED")
 
     final String value
 
