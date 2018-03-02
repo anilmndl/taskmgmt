@@ -20,8 +20,8 @@ class RoleService {
     }
 
     def update(Role role) {
-        role.dateModified = new Date()
         if (role.validate()) {
+            role.dateModified = new Date()
             role.save failOnError: true, flush: true
             //flash.message = "Role successfully update."
         } else {

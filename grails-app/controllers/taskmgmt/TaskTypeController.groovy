@@ -29,7 +29,7 @@ class TaskTypeController {
     }
 
     def update(TaskType taskType) {
-        taskTypeService.update(taskType)
+        taskTypeService?.update(taskType)
         redirect action: "list"
     }
 }
