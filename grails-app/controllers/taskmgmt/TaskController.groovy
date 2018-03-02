@@ -20,7 +20,7 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task]
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByFlag("created")]
     }
 
     def update(Task task) {
@@ -33,9 +33,10 @@ class TaskController {
     }
 
     def create() {
-//        taskService?.createTask()
+        //taskService?.createTask()
+
         // Task task=Task.get(params.id)
-        render view: "create"
+        render view: "create", model: [taskTypeList: TaskType.findAllByFlag("created")]
     }
 
     def detail(Task tasks) {
@@ -47,6 +48,13 @@ class TaskController {
     }
 
     def save(Task task) {
+        List<TaskType> taskTypeList = params.list()
+        taskTypeList.each { list->
+            if(list.title == task.taskTypeName)
+            {
+                task.taskType = list
+            }
+        }
         taskService.save(task)
         redirect action: "list"
     }

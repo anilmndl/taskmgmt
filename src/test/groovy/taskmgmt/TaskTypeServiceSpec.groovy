@@ -13,7 +13,6 @@ class TaskTypeServiceSpec extends Specification {
 
     def setup() {
     }
-
     def cleanup() {
     }
 
@@ -35,5 +34,6 @@ class TaskTypeServiceSpec extends Specification {
         then:
         //each time taskType is updated it's version increases by 1
         version<taskType.version
+
     }
 }

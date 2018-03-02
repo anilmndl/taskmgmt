@@ -11,12 +11,11 @@ class Task {
     // TODO create a new enum for TaskPriority
 
     TaskType taskType           // this creates a belongsTo relationship with TaskType
-
+    String taskTypeName
     Date dateCreated
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed
     Date dateDeleted            // use this to indicate if the task was deleted
-
 
     String flag                 // what is this for?? AM 02/26/2018
 
