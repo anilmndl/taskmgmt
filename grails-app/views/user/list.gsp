@@ -48,8 +48,8 @@
                         <th>Phone Number</th>
                         <th>Action</th>
                     </tr>
-                    <g:if test="${users}">
-                        <g:each in="${users}" var="show">
+                    <g:if test="${User}">
+                        <g:each in="${User}" var="show">
                             <tr>
                                 <td>${show.id}</td>
                                 <td>${show.firstName}</td>

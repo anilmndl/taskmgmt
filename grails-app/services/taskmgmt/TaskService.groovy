@@ -3,7 +3,6 @@ package taskmgmt
 import grails.transaction.Transactional
 import taskmgmt.enums.TaskStatus
 
-import java.text.DateFormatSymbols
 
 @Transactional
 class TaskService {

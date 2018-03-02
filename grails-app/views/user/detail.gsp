@@ -39,6 +39,7 @@
                     <div class="panel-body">
                         <g:hiddenField name="id" value="${users.id}"/>
                         <p><h3 class="text-center">${users.firstName}</h3></p>
+                        <g:link controller="User" action="delete" id="${users.id}" class="btn btn-danger btn-sm pull-right">Delete</g:link>
                         <hr>
                         <label>Details: </label>
                         <p>First Name: ${users.firstName}</p>

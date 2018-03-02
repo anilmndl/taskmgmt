@@ -43,6 +43,7 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Date Created</th>
+                        <th>Task Type</th>
                         <th>Action</th>
                     </tr>
                     <g:if test="${tasks}">
@@ -52,6 +53,7 @@
                                     <td>${show.id}</td>
                                     <td>${show.title}</td>
                                     <td>${show.dateCreated}</td>
+                                    <td>${show.taskType}</td>
                                     <td>
                                         <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"
