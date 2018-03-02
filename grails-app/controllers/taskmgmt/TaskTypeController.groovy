@@ -11,7 +11,7 @@ class TaskTypeController {
     }
 
     def create() {
-        render view: "create.gsp"
+        render view: "create"
     }
 
     def save(TaskType taskType) {
@@ -29,7 +29,7 @@ class TaskTypeController {
     }
 
     def update(TaskType taskType) {
-        taskTypeService.update(taskType)
+        taskTypeService?.update(taskType)
         redirect action: "list"
     }
 }

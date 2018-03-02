@@ -18,7 +18,7 @@ class TaskService {
     def delete(Task task) {
         task.dateModified = new Date()
         task.flag = "deleted"
-        task.taskStatus = TaskStatus.DELETED
+        task.dateDeleted = new Date()
         task.save failOnError: true, flush: true
     }
 

@@ -2,22 +2,22 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Task Type List</title>
+    <title>Customer List</title>
 </head>
 
 <body>
 <g:render template="/layouts/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
-    <h1 class="page-header">Task Type List</h1>
+    <h1 class="page-header">Customer List</h1>
 
     <form class="form-horizontal">
         <div class="col-sm-4">
             <div class="form-group form-group-sm">
-                <label for="title" class="col-sm-3 control-label">TaskType:</label>
+                <label for="fullName" class="col-sm-4 control-label">Customer Name:</label>
 
-                <div class="col-sm-9">
-                    <g:textField name="title" value="${params.title}" class="form-control"/>
+                <div class="col-sm-8">
+                    <g:textField name="fullName" class="form-control"/>
                 </div>
             </div>
         </div>
@@ -25,8 +25,8 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div class="pull-right">
-                    <g:link controller="TaskType" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
-                                                                                                 aria-hidden="true"></i> Clear</g:link>
+                    <g:link controller="customer" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
+                                                                                             aria-hidden="true"></i> Clear</g:link>
                     <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"
                                                                             aria-hidden="true"></i> Search</button>
                 </div>
@@ -34,39 +34,37 @@
         </div>
     </form>
 
-
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><strong>TasksType List</strong></div>
+                <div class="panel-heading"><strong>Customers</strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th>Task Type</th>
+                        <th>ID</th>
+                        <th>Full Name</th>
                         <th>Date Created</th>
                         <th>Action</th>
                     </tr>
-                    <g:if test="${typeList}">
-                        <g:each in="${typeList}" var="show">
-                            <g:if test="${show.flag != "deleted"}">
-                                <tr>
-                                    <td><g:link controller="taskType" action="detail">${show.title}</g:link></td>
-                                <td>${show.dateCreated}</td>
-                                <td><g:link controller="taskType" action="edit" id="${show.id}"
-                                            class="btn btn-success btn-xs"><i class="fa fa-edit"
+                    <g:if test="${customerList}">
+                        <g:each in="${customerList}" var="list">
+                        %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
+                            <tr>
+                                <td>${list.id}</td>
+                                <td>${list.firstName} ${list.lastName}</td>
+                                <td>${list.dateCreated}</td>
+                                <td>
+                                    <g:link controller="customer" action="detail" id="${list.id}"
+                                            class="btn btn-default btn-xs"><i class="fa fa-eye"
+                                                                              aria-hidden="true"></i> View</g:link>
+                                    <g:link controller="customer" action="edit" id="${list.id}"
+                                            class="btn btn-default btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
-                                    <g:link controller="taskType" action="delete" id="${show.id}"
-                                            class="btn btn-danger btn-xs"><i class="fa fa-times"
-                                                                             aria-hidden="true"></i> Delete</g:link>
-                                </td>
                                 </td>
                             </tr>
-                            </g:if>
+                        %{-- </g:if>--}%
                         </g:each>
-
                     </g:if>
-
                 </table>
-
             </div>
             <ul class="pagination pagination-sm">
                 <li>
