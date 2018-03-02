@@ -10,7 +10,7 @@ class TaskController {
     static defaultAction = "list"
 
     def delete(Task task) {
-        taskService.delete(task)
+        taskService?.delete(task)
         redirect action: "list"
     }
 

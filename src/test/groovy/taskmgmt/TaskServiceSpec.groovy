@@ -18,20 +18,28 @@ class TaskServiceSpec extends Specification {
     def cleanup() {
     }
 
-    void "create_task_inserts_a_new_task_in_the_db"(){
+    void "create_task_inserts_a_new_task_in_the_db"() {
         when:
-            service.createTask("Test Task")
+        service.createTask("Test Task")
 
         then:
-            Task.list() != null
-            Task.get(1).title == "Test Task"
+        Task.list() != null
+        Task.get(1).title == "Test Task"
     }
 
-    void "create_task_throws ValidationException if title is empty or null"(){
+    void "create_task_throws ValidationException if title is empty or null"() {
         when:
-            service.createTask("")
+        service.createTask()
 
         then:
-            thrown ValidationException
+        thrown ValidationException
+    }
+
+        void "deleted_task should set the dateDeleted to date else null"() {
+        when:
+        service.delete(Task)
+        then:
+        Task.list() != null
+        Task.listOrderByDateDeleted().get(1).dateDeleted != null
     }
 }

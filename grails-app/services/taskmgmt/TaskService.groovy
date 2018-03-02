@@ -27,8 +27,8 @@ class TaskService {
     def complete(Task task) {
         task.dateModified = new Date()
         task.dateCompleted = task.dateModified
-        task.dateDeleted=new Date()
-        task.taskStatus = TaskStatus.COMPLETED
+        task.dateDeleted=null //it is going to be null unless deleted because it should not be displayed even if it is completed.
+        task.taskStatus = TaskStatus.COMPLETED// this will track if the event is completed.
         task.save failOnError: true, flush: true
     }
 
