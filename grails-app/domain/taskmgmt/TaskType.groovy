@@ -7,14 +7,14 @@ class TaskType {
 
     Date dateCreated
     Date dateModified
-    String flag                     // What does this flag do? This is very confusing. AM 02/26/2018
+    Date dateDeleted
 
     static hasMany = [tasks: Task]
 
     static constraints = {
         dateCreated nullable: true
         dateModified nullable: true
-        flag nullable:true
+        dateDeleted nullable: true
         identifer nullable: true
     }
 }
