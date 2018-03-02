@@ -47,7 +47,7 @@
                     </tr>
                     <g:if test="${typeList}">
                         <g:each in="${typeList}" var="show">
-                            <g:if test="${show.flag != "deleted"}">
+                            %{--<g:if test="${show.dateDeleted == null}">--}%
                                 <tr>
                                     <td><g:link controller="taskType" action="detail">${show.title}</g:link></td>
                                 <td>${show.dateCreated}</td>
@@ -60,7 +60,7 @@
                                 </td>
                                 </td>
                             </tr>
-                            </g:if>
+                            %{--</g:if>--}%
                         </g:each>
 
                     </g:if>
