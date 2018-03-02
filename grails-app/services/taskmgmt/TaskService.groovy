@@ -9,13 +9,12 @@ import java.text.DateFormatSymbols
 class TaskService {
 
     def save(Task task) {
-        task.flag = "created"
         task.save failOnError: true, flush: true
     }
 
     def delete(Task task) {
         task.dateModified = new Date()
-        task.flag = "deleted"
+        task.dateDeleted=new Date()
         task.taskStatus = TaskStatus.DELETED
         task.save failOnError: true, flush: true
     }
@@ -28,7 +27,7 @@ class TaskService {
     def complete(Task task) {
         task.dateModified = new Date()
         task.dateCompleted = task.dateModified
-        task.flag = "completed"
+
         task.taskStatus = TaskStatus.COMPLETED
         task.save failOnError: true, flush: true
     }

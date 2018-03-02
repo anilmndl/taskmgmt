@@ -6,7 +6,7 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.GroovyPageUnitTestMixin} for usage instructions
  */
-@TestFor(EditTagLib)
+//@TestFor(EditTagLib)
 class EditTagLibSpec extends Specification {
 
     def setup() {
