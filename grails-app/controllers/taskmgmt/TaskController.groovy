@@ -1,22 +1,26 @@
 package taskmgmt
 
+import taskmgmt.enums.TaskStatus
+
 class TaskController {
 
     TaskService taskService
 
-    def delete() {
+    //page will be redirected to list() method by default instead of "index"
+    static defaultAction = "list"
 
-        Task task=Task.get(params.id)
+    def delete(Task task) {
         taskService.delete(task)
-        redirect action: "list",model: [tasks: Task.list()]
+        redirect action: "list"
     }
 
-    def index() {
-        render view: "list.gsp", model: [tasks: Task.list()]
+    def completed(Task task) {
+        taskService.complete(task)
+        redirect action: "listCompleted"
     }
 
-    def edit(Task task){
-        render view: "edit.gsp", model: [editTask: task]
+    def edit(Task task) {
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByFlag("created")]
     }
 
     def update(Task task) {
@@ -25,21 +29,33 @@ class TaskController {
     }
 
     def list() {
-        render view: "list.gsp", model: [tasks: Task.list()]
+        render view: "list", model: [tasks: Task.findAllByTaskStatus(TaskStatus.CREATED, [sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
+        //taskService?.createTask()
+
         // Task task=Task.get(params.id)
-        render view: "create.gsp"
+        render view: "create", model: [taskTypeList: TaskType.findAllByFlag("created")]
     }
 
-    def detail() {
-        Task tasks = Task.get(params.id)
-        render view: "detail.gsp", model: [tasks: tasks]
+    def detail(Task tasks) {
+        render view: "detail", model: [tasks: tasks]
     }
 
-    def save(Task taskmgmt) {
-        taskService.save(taskmgmt)
+    def listCompleted() {
+        render view: "completed", model: [tasks: Task.findAllByTaskStatus(TaskStatus.COMPLETED, [order: "desc", sort: "dateCompleted"])]
+    }
+
+    def save(Task task) {
+        List<TaskType> taskTypeList = params.list()
+        taskTypeList.each { list->
+            if(list.title == task.taskTypeName)
+            {
+                task.taskType = list
+            }
+        }
+        taskService.save(task)
         redirect action: "list"
     }
 }
