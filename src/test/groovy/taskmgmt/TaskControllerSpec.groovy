@@ -36,15 +36,7 @@ class TaskControllerSpec extends Specification {
             controller.create()
 
         then:
-            response.status == 200
+            response.status == 302
             response.redirectedUrl == "/task/list"
     }
-    void "delete_task_redirects_to_list_action"(){
-        when:
-        controller.delete()
-        then:
-        response.status == 302
-        response.redirectedUrl == "/task/list"
-    }
-
 }
