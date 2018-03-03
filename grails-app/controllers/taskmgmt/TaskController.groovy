@@ -36,7 +36,7 @@ class TaskController {
         //taskService?.createTask()
 
         // Task task=Task.get(params.id)
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull("created")]
+        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def detail(Task tasks) {
@@ -48,7 +48,6 @@ class TaskController {
     }
 
     def save(Task task) {
-       
         taskService.save(task)
         redirect action: "list"
     }
