@@ -11,7 +11,7 @@ class Task {
     // TODO create a new enum for TaskPriority
 
     TaskType taskType           // this creates a belongsTo relationship with TaskType
-    String taskTypeName
+    //String taskTypeName
     Date dateCreated
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed

@@ -53,7 +53,7 @@
                                     <td>${show.id}</td>
                                     <td>${show.title}</td>
                                     <td>${show.dateCreated}</td>
-                                    <td>${show.taskType}</td>
+                                    <td>${show.taskType.title}</td>
                                     <td>
                                         <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"

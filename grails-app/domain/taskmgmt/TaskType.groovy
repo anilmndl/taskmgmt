@@ -10,7 +10,7 @@ class TaskType {
     Date dateDeleted
     //String flag                     // What does this flag do? This is very confusing. AM 02/26/2018
 
-    static hasMany = [tasks: Task]
+    static hasMany = [task: Task]
 
     static constraints = {
         dateCreated nullable: true
