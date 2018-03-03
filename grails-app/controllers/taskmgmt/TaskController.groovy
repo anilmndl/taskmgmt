@@ -29,7 +29,7 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.findAllByTaskStatus(TaskStatus.CREATED, [sort: "dateCreated", order: "desc"])]
+        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
@@ -56,6 +56,15 @@ class TaskController {
             }
         }
         taskService.save(task)
+        redirect action: "list"
+    }
+
+    def unlocked(Task task){
+        taskService.unlocked(task)
+        redirect action: "list"
+    }
+    def locked(Task task){
+        taskService.locked(task)
         redirect action: "list"
     }
 }

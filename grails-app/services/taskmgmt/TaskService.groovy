@@ -10,9 +10,9 @@ class TaskService {
     def save(Task task) {
         task.dateCreated = new Date()
         task.flag = "created"
-        //if (task.validate()) {
+        if (task.validate()) {
             task.save failOnError: true, flush: true
-        //}
+        }
     }
 
     def delete(Task task) {
@@ -37,6 +37,16 @@ class TaskService {
 
     def createTask() {
         new Task(title: "Created by Task Service").save failOnError: true, flush: true
+    }
+    def unlocked(Task task){
+
+        task.taskStatus=TaskStatus.UNLOCKED
+        task.save failOnError: true, flush: true
+    }
+    def locked(Task task){
+
+        task.taskStatus=TaskStatus.LOCKED
+        task.save failOnError: true, flush: true
     }
 
 }
