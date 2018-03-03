@@ -6,8 +6,9 @@ import grails.transaction.Transactional
 class UserService {
 
     def save(Users user) {
-        user.save failOnError: true, flush: true
-
+        if (user.validate()){
+            user.save failOnError: true, flush: true
+    }
     }
     def delete(Users users){
         users.dateDeleted= new Date()
@@ -16,6 +17,8 @@ class UserService {
     }
     def update(Users user) {
         user.dateModified = new Date()
-        user.save failOnError: true, flush: true
+        if (user.validate()) {
+            user.save failOnError: true, flush: true
+        }
     }
 }
