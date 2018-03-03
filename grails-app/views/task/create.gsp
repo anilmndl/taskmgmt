@@ -15,11 +15,8 @@
         </div>
         <div class="form-group">
             
-            <select class="selectpicker" name="taskTypeName">
-                <g:each in="${taskTypeList}" var="List">
-                    <option value="${List}">${List.title}</option>
-                </g:each>
-            </select>
+           <g:select from="${taskTypeList}"name="taskType" optionKey="id" optionValue="title"/>
+
         </div>
         <div class="form-group">
             <label><h2>Detail</h2></label>
