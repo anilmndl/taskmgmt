@@ -20,6 +20,7 @@ class Task {
     String flag                 // what is this for?? AM 02/26/2018
 
     static constraints = {
+        taskTypeName nullable: true
         taskStatus nullable: true
         dateCreated nullable: true
         dateModified nullable: true

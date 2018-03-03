@@ -16,7 +16,12 @@
         </div>
 
         <div class="form-group">
+
             <g:select from="${taskTypeList}" name="taskType" optionKey="id" optionValue="title"/>
+
+
+
+
         </div>
 
         <div class="form-group">
