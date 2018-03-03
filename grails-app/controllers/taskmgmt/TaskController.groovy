@@ -48,13 +48,7 @@ class TaskController {
     }
 
     def save(Task task) {
-        List<TaskType> taskTypeList = params.list()
-        taskTypeList.each { list->
-            if(list.title == task.taskTypeName)
-            {
-                task.taskType = list
-            }
-        }
+       
         taskService.save(task)
         redirect action: "list"
     }
