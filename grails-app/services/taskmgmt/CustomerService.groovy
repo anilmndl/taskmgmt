@@ -21,5 +21,4 @@ class CustomerService {
         customer.dateDeleted = new Date()
         customer.save failOnError: true, flush: true
     }
-
 }

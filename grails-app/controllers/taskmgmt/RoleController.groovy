@@ -36,4 +36,8 @@ class RoleController {
     def create() {
         render view: "create"
     }
+   // def setRolePriority(){
+   //     roleService.setRolePriority()
+    //    render view:"detail",model:[rolePriority: role]
+   // }
 }

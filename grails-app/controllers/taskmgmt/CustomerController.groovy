@@ -37,4 +37,9 @@ class CustomerController {
         render view: "detail", model: [customer: customer]
     }
 
+    def setTaskPriority(Customer customer) {
+        customerService.setTaskPriority(customer)
+        render view: "detail", model: [Priority: customer]
+    }
+
 }
