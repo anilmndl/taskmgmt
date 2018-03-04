@@ -20,7 +20,7 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task]
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByFlag("created")]
     }
 
     def update(Task task) {
@@ -29,13 +29,14 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.findAllByTaskStatus(TaskStatus.CREATED, [sort: "dateCreated", order: "desc"])]
+        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
-//        taskService?.createTask()
+        //taskService?.createTask()
+
         // Task task=Task.get(params.id)
-        render view: "create"
+        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def detail(Task tasks) {
@@ -48,6 +49,15 @@ class TaskController {
 
     def save(Task task) {
         taskService.save(task)
+        redirect action: "list"
+    }
+
+    def unlocked(Task task){
+        taskService.unlocked(task)
+        redirect action: "list"
+    }
+    def locked(Task task){
+        taskService.locked(task)
         redirect action: "list"
     }
 }

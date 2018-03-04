@@ -7,11 +7,11 @@ class TaskTypeController {
     static defaultAction = "list"
 
     def list() {
-        render view: "list", model: [typeList: TaskType.findAllByFlag("created",[order: "desc", sort: "dateCreated"])]
+        render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
-        render view: "create.gsp"
+        render view: "create"
     }
 
     def save(TaskType taskType) {
@@ -29,7 +29,7 @@ class TaskTypeController {
     }
 
     def update(TaskType taskType) {
-        taskTypeService.update(taskType)
+        taskTypeService?.update(taskType)
         redirect action: "list"
     }
 }
