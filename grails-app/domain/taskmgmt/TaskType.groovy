@@ -14,7 +14,6 @@ class TaskType {
     static constraints = {
         dateCreated nullable: true
         dateModified nullable: true
-        dateDeleted nullable: true
         identifer nullable: true
     }
 }

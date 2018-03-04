@@ -11,7 +11,6 @@ class CommonTagLibSpec extends Specification {
 
     def setup() {
     }
-
     def cleanup() {
     }
 
