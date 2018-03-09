@@ -6,7 +6,7 @@
     <title>Update User</title>
 </head>
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/user/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="User" action="update" id="${editUser.id}">
         <div class="form-group">
