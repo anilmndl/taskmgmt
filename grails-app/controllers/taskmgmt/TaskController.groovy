@@ -36,7 +36,7 @@ class TaskController {
         //taskService?.createTask()
 
         // Task task=Task.get(params.id)
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), users: Users.list()]
     }
 
     def detail(Task tasks) {

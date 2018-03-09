@@ -11,6 +11,8 @@ class Users {
     Date dateModified
     Date dateDeleted
 
+    Role role
+
     static constraints = {
         dateCreated nullable: true
         dateDeleted nullable:true

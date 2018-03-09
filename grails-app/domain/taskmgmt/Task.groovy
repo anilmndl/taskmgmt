@@ -11,6 +11,8 @@ class Task {
     // TODO create a new enum for TaskPriority
 
     TaskType taskType           // this creates a belongsTo relationship with TaskType
+    Users users
+
     String taskTypeName
     Date dateCreated
     Date dateModified
@@ -28,6 +30,7 @@ class Task {
         dateDeleted nullable: true
         flag nullable: true
         taskType nullable: true
+
     }
 
     static mapping = {

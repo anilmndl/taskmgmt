@@ -5,7 +5,7 @@ class UserController {
 
     static  defaultAction = "list"
     def list() {
-        render view: "list",model: [User : Users.findAllByDateDeletedIsNull([orders:"desc",sort:"dateCreated"])]
+        render view: "list",model: [users: Users.findAllByDateDeletedIsNull([orders:"desc",sort:"dateCreated"])]
     }
     def create(){
         render view: "create"

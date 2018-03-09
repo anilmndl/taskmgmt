@@ -20,6 +20,10 @@
         </div>
 
         <div class="form-group">
+            <g:select from="${users}" name="users" optionKey="id" optionValue="${users.firstName} ${users.lastName}"/>
+        </div>
+
+        <div class="form-group">
             <label><h2>Detail</h2></label>
             <textarea class="form-control" placeholder="Detail Task" name="detail"></textarea>
         </div>

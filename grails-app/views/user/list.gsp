@@ -48,20 +48,20 @@
                         <th>Phone Number</th>
                         <th>Action</th>
                     </tr>
-                    <g:if test="${User}">
-                        <g:each in="${User}" var="show">
+                    <g:if test="${users}">
+                        <g:each in="${users}" var="show">
                             <tr>
-                                <td>${show.id}</td>
-                                <td>${show.firstName}</td>
-                                <td>${show.middleName}</td>
-                                <td>${show.lastName}</td>
-                                <td>${show.address}</td>
-                                <td>${show.phoneNumber}</td>
+                                <td>${users.id}</td>
+                                <td>${users.firstName}</td>
+                                <td>${users.middleName}</td>
+                                <td>${users.lastName}</td>
+                                <td>${users.address}</td>
+                                <td>${users.phoneNumber}</td>
                                 <td>
-                                    <g:link controller="user" action="detail" id="${show.id}"
+                                    <g:link controller="user" action="detail" id="${users.id}"
                                             class="btn btn-default btn-xs"><i class="fa fa-eye"
                                                                               aria-hidden="true"></i> View</g:link>
-                                    <g:link controller="user" action="edit" id="${show.id}"
+                                    <g:link controller="user" action="edit" id="${users.id}"
                                             class="btn btn-default btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
                                 </td>
