@@ -23,6 +23,9 @@
             </select>
         </div>
         <div class="form-group">
+            <g:select from="${userList}" name="users" optionKey="id" optionValue="firstName"/>
+        </div>
+        <div class="form-group">
             <label><h2>Detail</h2></label>
             <textarea class = "form-control" placeholder="Detail Task" name ="detail">${editTask.detail}</textarea>
         </div>

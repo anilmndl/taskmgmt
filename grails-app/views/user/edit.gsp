@@ -16,6 +16,10 @@
             <input type="text" class="form-control"  name="middleName" placeholder="User Middle Name" value="${editUser.middleName}">
             <label>Last Name</label>
             <input type="text" class="form-control"  name="lastName" placeholder="User Last Name" value="${editUser.lastName}">
+            <label>Role</label>
+            <div class="form-group">
+                <g:select from="${roles}" name="role" optionKey="id" optionValue="title"/>
+            </div>
             <label>Address</label>
             <input type="text" class="form-control"  name="address" placeholder="User address" value="${editUser.address}">
             <label>Phone Number</label>

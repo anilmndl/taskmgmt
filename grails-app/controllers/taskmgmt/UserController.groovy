@@ -8,10 +8,10 @@ class UserController {
         render view: "list",model: [users: Users.findAllByDateDeletedIsNull([orders:"desc",sort:"dateCreated"])]
     }
     def create(){
-        render view: "create"
+        render view: "create", model: [roles: Role.list()]
     }
     def edit(Users user) {
-        render view: "edit", model: [editUser: user]
+        render view: "edit", model: [editUser: user, roles: Role.list()]
     }
     def save(Users user) {
         user.dateCreated = new Date()

@@ -44,24 +44,26 @@
                         <th>First name</th>
                         <th>Middle Name</th>
                         <th>Last Name</th>
+                        <th>Role</th>
                         <th>Address</th>
                         <th>Phone Number</th>
                         <th>Action</th>
                     </tr>
                     <g:if test="${users}">
-                        <g:each in="${users}" var="show">
+                        <g:each in="${users}" var="user">
                             <tr>
-                                <td>${users.id}</td>
-                                <td>${users.firstName}</td>
-                                <td>${users.middleName}</td>
-                                <td>${users.lastName}</td>
-                                <td>${users.address}</td>
-                                <td>${users.phoneNumber}</td>
+                                <td>${user.id}</td>
+                                <td>${user.firstName}</td>
+                                <td>${user.middleName}</td>
+                                <td>${user.lastName}</td>
+                                <td>${user.role.title}</td>
+                                <td>${user.address}</td>
+                                <td>${user.phoneNumber}</td>
                                 <td>
-                                    <g:link controller="user" action="detail" id="${users.id}"
+                                    <g:link controller="user" action="detail" id="${user.id}"
                                             class="btn btn-default btn-xs"><i class="fa fa-eye"
                                                                               aria-hidden="true"></i> View</g:link>
-                                    <g:link controller="user" action="edit" id="${users.id}"
+                                    <g:link controller="user" action="edit" id="${user.id}"
                                             class="btn btn-default btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
                                 </td>

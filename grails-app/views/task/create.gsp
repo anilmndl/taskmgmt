@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            <g:select from="${users}" name="users" optionKey="id" optionValue="${users.firstName} ${users.lastName}"/>
+            <g:select from="${userList}" name="users" optionKey="id" optionValue="firstName"/>
         </div>
 
         <div class="form-group">
