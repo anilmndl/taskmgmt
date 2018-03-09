@@ -1,6 +1,6 @@
 package taskmgmt
 
-class UserController {
+class aUserController {
     UserService userService
 
     static  defaultAction = "list"
