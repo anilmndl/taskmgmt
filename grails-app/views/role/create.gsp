@@ -13,7 +13,7 @@
     <g:form controller="Role" action="save">
         <div class="form-group">
             <label><h4>Role Title</h4></label>
-            <input type="text" class="form-control" name="title" placeholder="Role Title">
+            <input type="text" class="form-control" name="title" placeholder="Role Title" required>
         </div>
 
         <div class="form-group">

@@ -49,4 +49,8 @@ class TaskService {
         task.save failOnError: true, flush: true
     }
 
+    def testService(){
+        println "testing"
+    }
+
 }

@@ -11,6 +11,8 @@
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
 
+    <div class="alert alert-error" role="alert">${flash.message}</div>
+
     <form class="form-horizontal">
         <div class="col-sm-4">
             <div class="form-group form-group-sm">

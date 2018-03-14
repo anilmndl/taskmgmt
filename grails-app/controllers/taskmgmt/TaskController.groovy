@@ -1,5 +1,6 @@
 package taskmgmt
 
+import grails.gorm.DetachedCriteria
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -29,12 +30,30 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        DetachedCriteria query = new DetachedCriteria(Task)
+        query = query.build {
+//            isNull "dateDeleted"
+        }
+
+        if(params.title){
+            query = query.build {
+                ilike "title", "%${params.title}%"
+            }
+        }
+
+        if(params.user){
+            query = query.build {
+                users{
+                    ilike "firstName", "%${params.user}%"
+                }
+            }
+        }
+
+        //render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        render view: "list", model: [tasks: query.list([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
-        //taskService?.createTask()
-
         // Task task=Task.get(params.id)
         render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
     }
@@ -48,7 +67,14 @@ class TaskController {
     }
 
     def save(Task task) {
-        taskService.save(task)
+        try{
+            taskService.createTask()
+        }catch (e){
+            render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), task: task]
+            flash.message = "error occured while trying to save task"
+            return
+        }
+
         redirect action: "list"
     }
 

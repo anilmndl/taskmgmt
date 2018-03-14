@@ -10,6 +10,8 @@
     <asset:stylesheet src="application.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all">
     <g:layoutHead/>
+    <asset:javascript src="application.js"/>
+
 </head>
 
 <body>
@@ -22,6 +24,5 @@
     </div>
 </div>
 
-<asset:javascript src="application.js"/>
 </body>
 </html>

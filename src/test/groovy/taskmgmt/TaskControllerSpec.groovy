@@ -5,17 +5,27 @@ import grails.test.mixin.TestFor
 import grails.test.mixin.TestMixin
 import grails.test.mixin.support.GrailsUnitTestMixin
 import grails.test.mixin.web.GroovyPageUnitTestMixin
+import grails.util.Holders
 import spock.lang.Specification
+
+import javax.xml.ws.Holder
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
 @TestFor(TaskController)
 @TestMixin(GroovyPageUnitTestMixin)
-@Mock([Task])
+@Mock([Task, TaskType, Users])
 class TaskControllerSpec extends Specification {
 
+    TaskService taskService
+
+    static doWithSpring = {
+        taskService(TaskService)
+    }
+
     def setup() {
+        taskService = Holders.grailsApplication.mainContext.getBean("taskService")
     }
 
     def cleanup() {
@@ -33,10 +43,13 @@ class TaskControllerSpec extends Specification {
 
     void "create_redirects_to_list_action"(){
         when:
+            taskService.testService()
             controller.create()
 
+
         then:
-            response.status == 302
-            response.redirectedUrl == "/task/list"
+//            response.status == 302
+//            response.redirectedUrl == "/task/list"
+            true == false
     }
 }
