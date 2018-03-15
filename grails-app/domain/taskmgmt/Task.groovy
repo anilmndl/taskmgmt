@@ -1,5 +1,6 @@
 package taskmgmt
 
+import taskmgmt.enums.TaskPriority
 import taskmgmt.enums.TaskStatus
 
 class Task {
@@ -8,7 +9,8 @@ class Task {
     String detail
 
     TaskStatus taskStatus = TaskStatus.CREATED
-    // TODO create a new enum for TaskPriority
+    TaskPriority taskPriority = TaskPriority.HIGH
+
 
     TaskType taskType           // this creates a belongsTo relationship with TaskType
     Users users
@@ -30,7 +32,7 @@ class Task {
         dateDeleted nullable: true
         flag nullable: true
         taskType nullable: true
-
+        taskPriority nullable: true
     }
 
     static mapping = {
