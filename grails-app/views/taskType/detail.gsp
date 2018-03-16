@@ -26,6 +26,7 @@
                                 class="btn btn-success btn-sm">Edit</g:link>
                     </th>
                     <th class="bottom-right">
+                        %{--sends delete request as POST form submission--}%
                         <g:form controller="taskType" action="delete" id="${detailTaskType.id}" method="POST">
                             <button class="btn btn-danger btn-sm">Delete</button>
                         </g:form>
