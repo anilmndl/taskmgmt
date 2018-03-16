@@ -49,15 +49,18 @@
                         <g:each in="${typeList}" var="show">
                             %{--<g:if test="${show.dateDeleted == null}">--}%
                                 <tr>
-                                    <td><g:link controller="taskType" action="detail">${show.title}</g:link></td>
+                                    <td><g:link controller="taskType" action="detail" id="${show.id}">${show.title}</g:link></td>
                                 <td>${show.dateCreated}</td>
-                                <td><g:link controller="taskType" action="edit" id="${show.id}"
+                                <td> <g:link controller="taskType" action="detail" id="${show.id}"
+                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
+                                                                               aria-hidden="true"></i> View Detail</g:link>
+                                    <g:link controller="taskType" action="edit" id="${show.id}"
                                             class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
-                                    <g:link controller="taskType" action="delete" id="${show.id}"
+                                    %{--<g:link controller="taskType" action="delete" id="${show.id}"
                                             class="btn btn-danger btn-xs"><i class="fa fa-times"
-                                                                             aria-hidden="true"></i> Delete</g:link>
-                                </td>
+                                                                             aria-hidden="true"></i> Delete</g:link>--}%
+
                                 </td>
                             </tr>
                             %{--</g:if>--}%

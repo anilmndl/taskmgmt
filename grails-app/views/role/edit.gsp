@@ -12,7 +12,7 @@
     <h2>Update Role</h2>
 
     <div class="alert-info">
-        <h5>Date Create: ${editRole.dateCreated}</h5>
+        <h5>Date Created: ${editRole.dateCreated}</h5>
         <g:if test="${editRole.dateModified != null}"><h5>Last Modified: ${editRole.dateModified}</h5></g:if>
     </div>
     <g:form controller="Role" action="update" id="${editRole.id}">

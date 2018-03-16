@@ -6,6 +6,9 @@ class TaskTypeController {
 
     static defaultAction = "list"
 
+    //delete() method is only allows POST request
+    static  allowedMethods = [delete: 'POST']
+
     def list() {
         render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
@@ -31,5 +34,9 @@ class TaskTypeController {
     def update(TaskType taskType) {
         taskTypeService?.update(taskType)
         redirect action: "list"
+    }
+
+    def detail (TaskType taskType){
+        render view: "detail", model: [detailTaskType: taskType]
     }
 }
