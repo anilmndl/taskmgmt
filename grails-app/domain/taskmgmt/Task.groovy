@@ -13,6 +13,9 @@ class Task {
 
 
     TaskType taskType           // this creates a belongsTo relationship with TaskType
+
+    //String taskTypeName
+
     Users users
 
     String taskTypeName

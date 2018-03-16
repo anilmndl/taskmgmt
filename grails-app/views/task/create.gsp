@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/task/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="Task" action="save">
         <div class="form-group">
@@ -20,7 +20,16 @@
         </div>
 
         <div class="form-group">
+
+            
+            <select class="selectpicker" name="taskType">
+                <g:each in="${taskTypeList}" var="List">
+                    <option value="${List}">${List.title}</option>
+                </g:each>
+            </select>
+
             <g:select from="${userList}" name="users" optionKey="id" optionValue="firstName"/>
+
         </div>
 
         <div class="form-group">

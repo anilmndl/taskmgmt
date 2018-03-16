@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/task/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
@@ -47,6 +47,30 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
+
+                    <g:if test="${tasks}">
+                        <g:each in="${tasks}" var="show">
+                            %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
+                                <tr>
+                                    <td>${show.id}</td>
+                                    <td>${show.title}</td>
+                                    <td>${show.dateCreated}</td>
+
+                                    <td>${show.taskStatus}</td>
+
+                                    <td>
+                                        <g:link controller="Task" action="detail" id="${show.id}"
+                                                class="btn btn-default btn-xs"><i class="fa fa-eye"
+                                                                                  aria-hidden="true"></i> View</g:link>
+                                        <g:link controller="Task" action="edit" id="${show.id}"
+                                                class="btn btn-default btn-xs"><i class="fa fa-edit"
+                                                                                  aria-hidden="true"></i> Edit</g:link>
+                                    </td>
+                                </tr>
+                           %{-- </g:if>--}%
+                        </g:each>
+                    </g:if>
+
                 %{-- <g:if test="${tasks}">--}%
                     <g:each in="${tasks}" var="show">
                     %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
@@ -68,6 +92,7 @@
                         </tr>
                     </g:each>
                 %{--  </g:if>--}%
+
                 </table>
             </div>
             <ul class="pagination pagination-sm">
