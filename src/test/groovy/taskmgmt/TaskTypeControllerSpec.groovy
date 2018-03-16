@@ -31,7 +31,7 @@ class TaskTypeControllerSpec extends Specification {
         when:
         controller.list()
         then:
-        response.status == 100
+        response.status == 200
         view == '/taskType/list'
     }
 
