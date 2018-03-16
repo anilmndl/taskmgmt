@@ -21,6 +21,7 @@ class TaskController {
 
     def edit(Task task) {
         render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+
     }
 
     def update(Task task) {
@@ -36,7 +37,9 @@ class TaskController {
         //taskService?.createTask()
 
         // Task task=Task.get(params.id)
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+
+        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
+
     }
 
     def detail(Task tasks) {
@@ -48,13 +51,6 @@ class TaskController {
     }
 
     def save(Task task) {
-        List<TaskType> taskTypeList = params.list()
-        taskTypeList.each { list->
-            if(list.title == task.taskTypeName)
-            {
-                task.taskType = list
-            }
-        }
         taskService.save(task)
         redirect action: "list"
     }
