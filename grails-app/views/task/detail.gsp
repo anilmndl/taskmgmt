@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/task/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
@@ -45,7 +45,7 @@
                         <g:link controller="task" action="completed" id="${tasks.id}" class="btn btn-success btn-sm">Completed</g:link>
                         <hr>
                         <p>Details: ${tasks.detail}</p>
-                        <p>Date Created: ${tasks.dateCreated}</p>
+                        <p>Date Created: <g:formatDate format="dd-MM-yyyy" date="${tasks.dateCreated}"/></p>
                     </div>
                 </div>
             </div>

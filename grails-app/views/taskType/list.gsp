@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/taskType/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Task Type List</h1>
@@ -49,16 +49,14 @@
                         <g:each in="${typeList}" var="show">
                             %{--<g:if test="${show.dateDeleted == null}">--}%
                                 <tr>
-                                    <td><g:link controller="taskType" action="detail">${show.title}</g:link></td>
+                                    <td><g:link controller="taskType" action="detail" id="${show.id}">${show.title}</g:link></td>
                                 <td>${show.dateCreated}</td>
-                                <td><g:link controller="taskType" action="edit" id="${show.id}"
+                                <td> <g:link controller="taskType" action="detail" id="${show.id}"
+                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
+                                                                               aria-hidden="true"></i> View Detail</g:link>
+                                    <g:link controller="taskType" action="edit" id="${show.id}"
                                             class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
-                                    <g:link controller="taskType" action="delete" id="${show.id}"
-                                            class="btn btn-danger btn-xs"><i class="fa fa-times"
-                                                                             aria-hidden="true"></i> Delete</g:link>
-
-                                </td>
                                 </td>
                             </tr>
                             %{--</g:if>--}%
@@ -72,6 +70,8 @@
             <div>
             <g:paginate controller="taskType" action="list" total="${listCount}"></g:paginate>
             </div>
+</div>
+    </div>
 </div>
 </body>
 </html>

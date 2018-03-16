@@ -18,7 +18,7 @@
             <input type="text" class="form-control"  name="lastName" placeholder="Last Name" />
             <label>Role</label>
             <div class="form-group">
-                <g:select from="${roles}" name="role" optionKey="id" optionValue="title"/>
+                <g:select class="btn btn-default dropdown-toggle" from="${roles}" name="role" optionKey="id" optionValue="title"/>
             </div>
             <label>Address</label>
             <input type="text" class="form-control"  name="address" placeholder="Address" />

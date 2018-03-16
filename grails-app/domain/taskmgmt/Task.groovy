@@ -1,5 +1,6 @@
 package taskmgmt
 
+import taskmgmt.enums.TaskPriority
 import taskmgmt.enums.TaskStatus
 
 class Task {
@@ -8,12 +9,16 @@ class Task {
     String detail
 
     TaskStatus taskStatus = TaskStatus.CREATED
-    // TODO create a new enum for TaskPriority
+    TaskPriority taskPriority = TaskPriority.HIGH
+
 
     TaskType taskType           // this creates a belongsTo relationship with TaskType
+
+    //String taskTypeName
+
     Users users
 
-    String taskTypeName
+    //String taskTypeName
     Date dateCreated
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed
@@ -22,7 +27,7 @@ class Task {
     String flag                 // what is this for?? AM 02/26/2018
 
     static constraints = {
-        taskTypeName nullable: true
+        //taskTypeName nullable: true
         taskStatus nullable: true
         dateCreated nullable: true
         dateModified nullable: true
@@ -30,7 +35,7 @@ class Task {
         dateDeleted nullable: true
         flag nullable: true
         taskType nullable: true
-
+        taskPriority nullable: true
     }
 
     static mapping = {

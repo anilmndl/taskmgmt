@@ -14,5 +14,6 @@ class Customer {
         address nullable: true
         phoneNumber nullable: true
         dateDeleted nullable: true
+        dateModified nullable: true
     }
 }

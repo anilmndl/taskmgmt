@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/task/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
@@ -40,18 +40,15 @@
                 <div class="panel-heading"><strong>Tasks</strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th>Id</th>
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Task Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                %{-- <g:if test="${tasks}">--}%
                     <g:each in="${tasks}" var="show">
                     %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
                         <tr>
-                            <td>${show.id}</td>
                             <td>${show.title}</td>
                             <td>${show.dateCreated}</td>
                             <td>${show.taskType.title}</td>
@@ -68,6 +65,7 @@
                         </tr>
                     </g:each>
                 %{--  </g:if>--}%
+
                 </table>
             </div>
             <div>
