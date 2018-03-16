@@ -29,7 +29,8 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+       // render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        render view: "list", model: [tasks: Task.list(params), listCount: Task.count()]
     }
 
     def create() {

@@ -7,8 +7,8 @@ class TaskTypeController {
     static defaultAction = "list"
 
     def list() {
-       // render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
-        render view: "list" ,model: [typeList:TaskType.list(params), listCount:TaskType.count()]
+        // render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        render view: "list", model: [typeList: TaskType.list(params), listCount: TaskType.count()]
     }
 
     def create() {
@@ -33,4 +33,5 @@ class TaskTypeController {
         taskTypeService?.update(taskType)
         redirect action: "list"
     }
+
 }
