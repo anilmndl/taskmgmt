@@ -54,12 +54,12 @@
                                     <td>${show.id}</td>
                                     <td>${show.title}</td>
                                     <td>${show.dateCreated}</td>
-<<<<<<< HEAD
+
                                     <td>${show.taskType}</td>
-=======
+
                                     <td>${show.taskType}</td>
                                     <td>${show.taskStatus}</td>
->>>>>>> 3529fcd2def3cf35113f310c9a2ca4ba73e91a09
+
                                     <td>
                                         <g:link controller="Task" action="detail" id="${show.id}"
                                                 class="btn btn-default btn-xs"><i class="fa fa-eye"
