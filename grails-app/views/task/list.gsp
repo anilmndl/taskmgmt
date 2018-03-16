@@ -40,42 +40,15 @@
                 <div class="panel-heading"><strong>Tasks</strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th>Id</th>
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Task Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-
-                    <g:if test="${tasks}">
-                        <g:each in="${tasks}" var="show">
-                            %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
-                                <tr>
-                                    <td>${show.id}</td>
-                                    <td>${show.title}</td>
-                                    <td>${show.dateCreated}</td>
-
-                                    <td>${show.taskStatus}</td>
-
-                                    <td>
-                                        <g:link controller="Task" action="detail" id="${show.id}"
-                                                class="btn btn-default btn-xs"><i class="fa fa-eye"
-                                                                                  aria-hidden="true"></i> View</g:link>
-                                        <g:link controller="Task" action="edit" id="${show.id}"
-                                                class="btn btn-default btn-xs"><i class="fa fa-edit"
-                                                                                  aria-hidden="true"></i> Edit</g:link>
-                                    </td>
-                                </tr>
-                           %{-- </g:if>--}%
-                        </g:each>
-                    </g:if>
-
-                %{-- <g:if test="${tasks}">--}%
                     <g:each in="${tasks}" var="show">
                     %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
                         <tr>
-                            <td>${show.id}</td>
                             <td>${show.title}</td>
                             <td>${show.dateCreated}</td>
                             <td>${show.taskType.title}</td>

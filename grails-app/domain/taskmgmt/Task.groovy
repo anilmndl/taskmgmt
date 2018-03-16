@@ -18,7 +18,7 @@ class Task {
 
     Users users
 
-    String taskTypeName
+    //String taskTypeName
     Date dateCreated
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed
@@ -27,7 +27,7 @@ class Task {
     String flag                 // what is this for?? AM 02/26/2018
 
     static constraints = {
-        taskTypeName nullable: true
+        //taskTypeName nullable: true
         taskStatus nullable: true
         dateCreated nullable: true
         dateModified nullable: true

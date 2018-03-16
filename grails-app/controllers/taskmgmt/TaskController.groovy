@@ -20,7 +20,7 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),userList: Users.list()]
 
     }
 
