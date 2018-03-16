@@ -15,21 +15,21 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: update
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
             password:
             logSql: true
     test:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: update
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
             password:
             logSql: false
     production:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: update
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
             password:
