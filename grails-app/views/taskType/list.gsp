@@ -57,7 +57,7 @@
                                     <g:link controller="taskType" action="delete" id="${show.id}"
                                             class="btn btn-danger btn-xs"><i class="fa fa-times"
                                                                              aria-hidden="true"></i> Delete</g:link>
-                                    <g:paginate controller="taskType" action="list" total="${typeList.count(2)}"></g:paginate>
+
                                 </td>
                                 </td>
                             </tr>
@@ -75,7 +75,7 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li><a href="#">1</a></li>
+                <li> <g:paginate controller="taskType" action="list" total="${listCount.count()}"></g:paginate>1</li>
                 <li><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
                 <li><a href="#">4</a></li>
