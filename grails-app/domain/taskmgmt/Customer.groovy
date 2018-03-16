@@ -1,21 +1,19 @@
 package taskmgmt
 
-class Users {
-
+class Customer {
     String firstName
-    String middleName
     String lastName
     String address
-    long phoneNumber
+    Integer phoneNumber
+    String email
     Date dateCreated
     Date dateModified
     Date dateDeleted
 
-    Role role
-
     static constraints = {
-        dateCreated nullable: true
-        dateDeleted nullable:true
+        address nullable: true
+        phoneNumber nullable: true
+        dateDeleted nullable: true
         dateModified nullable: true
     }
 }

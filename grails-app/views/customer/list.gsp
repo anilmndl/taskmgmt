@@ -2,22 +2,22 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>User List</title>
+    <title>Customer List</title>
 </head>
 
 <body>
-<g:render template="/user/sidebar"/>
+<g:render template="/customer/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
-    <h1 class="page-header">Users</h1>
+    <h1 class="page-header">Customer List</h1>
 
     <form class="form-horizontal">
         <div class="col-sm-4">
             <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">User Name:</label>
+                <label for="fullName" class="col-sm-4 control-label">Customer Name:</label>
 
-                <div class="col-sm-9">
-                    <g:textField name="firstName" value="${params.firstName}" class="form-control"/>
+                <div class="col-sm-8">
+                    <g:textField name="fullName" class="form-control"/>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div class="pull-right">
-                    <g:link controller="user" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
+                    <g:link controller="customer" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
                                                                                              aria-hidden="true"></i> Clear</g:link>
                     <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"
                                                                             aria-hidden="true"></i> Search</button>
@@ -37,37 +37,31 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><strong>Tasks</strong></div>
+                <div class="panel-heading"><strong>Customers</strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th><Id></Id></th>
-                        <th>First name</th>
-                        <th>Middle Name</th>
-                        <th>Last Name</th>
-                        <th>Role</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Date Created</th>
                         <th>Action</th>
                     </tr>
-                    <g:if test="${users}">
-                        <g:each in="${users}" var="user">
+                    <g:if test="${customerList}">
+                        <g:each in="${customerList}" var="list">
+                        %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
                             <tr>
-                                <td>${user.id}</td>
-                                <td>${user.firstName}</td>
-                                <td>${user.middleName}</td>
-                                <td>${user.lastName}</td>
-                                <td>${user.role.title}</td>
-                                <td>${user.address}</td>
-                                <td>${user.phoneNumber}</td>
+                                <td>${list.id}</td>
+                                <td>${list.firstName} ${list.lastName}</td>
+                                <td>${list.dateCreated}</td>
                                 <td>
-                                    <g:link controller="user" action="detail" id="${user.id}"
+                                    <g:link controller="customer" action="detail" id="${list.id}"
                                             class="btn btn-default btn-xs"><i class="fa fa-eye"
                                                                               aria-hidden="true"></i> View</g:link>
-                                    <g:link controller="user" action="edit" id="${user.id}"
+                                    <g:link controller="customer" action="edit" id="${list.id}"
                                             class="btn btn-default btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
                                 </td>
                             </tr>
+                        %{-- </g:if>--}%
                         </g:each>
                     </g:if>
                 </table>

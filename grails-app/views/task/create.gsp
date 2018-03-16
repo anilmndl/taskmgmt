@@ -5,25 +5,29 @@
     <meta name="layout" content="main"/>
     <title>Create Task</title>
 </head>
+
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/task/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="Task" action="save">
         <div class="form-group">
-           <label><h1>Title of Task</h1></label>
-            <input type="text" class="form-control"  name="title" placeholder="Task Title" >
+            <label><h4>Title of Task</h4></label>
+            <input type="text" class="form-control" name="title" placeholder="Task Title">
         </div>
+
         <div class="form-group">
-            
-            <select class="selectpicker" name="taskTypeName">
-                <g:each in="${taskTypeList}" var="List">
-                    <option value="${List}">${List.title}</option>
-                </g:each>
-            </select>
+            <label><h4>Task type</h4></label>
+            <g:select class="btn btn-default dropdown-toggle" from="${taskTypeList}" name="taskType" optionKey="id" optionValue="title"/>
         </div>
+
         <div class="form-group">
-            <label><h2>Detail</h2></label>
-            <textarea class = "form-control" placeholder="Detail Task" name ="detail"></textarea>
+            <label><h4>Username</h4></label>
+            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id" optionValue="firstName"/>
+        </div>
+
+        <div class="form-group">
+            <label><h4>Detail</h4></label>
+            <textarea class="form-control" placeholder="Detail Task" name="detail"></textarea>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
     </g:form>

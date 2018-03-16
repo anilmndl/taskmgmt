@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/taskType/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Task Type List</h1>
@@ -26,7 +26,7 @@
             <div class="form-group">
                 <div class="pull-right">
                     <g:link controller="TaskType" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
-                                                                                             aria-hidden="true"></i> Clear</g:link>
+                                                                                                 aria-hidden="true"></i> Clear</g:link>
                     <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"
                                                                             aria-hidden="true"></i> Search</button>
                 </div>
@@ -35,11 +35,10 @@
     </form>
 
 
-
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><strong>Tasks</strong></div>
+                <div class="panel-heading"><strong>TasksType List</strong></div>
                 <table class="table table-striped">
                     <tr>
                         <th>Task Type</th>
@@ -48,20 +47,23 @@
                     </tr>
                     <g:if test="${typeList}">
                         <g:each in="${typeList}" var="show">
-                            <g:if test="${show.flag != "deleted"}">
+                            %{--<g:if test="${show.dateDeleted == null}">--}%
                                 <tr>
-                                    <td><g:link controller="taskType" action="detail">${show.title}</g:link></td>
+                                    <td><g:link controller="taskType" action="detail" id="${show.id}">${show.title}</g:link></td>
                                 <td>${show.dateCreated}</td>
-                                <td><g:link controller="taskType" action="edit" id="${show.id}"
+                                <td> <g:link controller="taskType" action="detail" id="${show.id}"
+                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
+                                                                               aria-hidden="true"></i> View Detail</g:link>
+                                    <g:link controller="taskType" action="edit" id="${show.id}"
                                             class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
-                                    <g:link controller="taskType" action="delete" id="${show.id}"
+                                    %{--<g:link controller="taskType" action="delete" id="${show.id}"
                                             class="btn btn-danger btn-xs"><i class="fa fa-times"
-                                                                             aria-hidden="true"></i> Delete</g:link>
-                                </td>
+                                                                             aria-hidden="true"></i> Delete</g:link>--}%
+
                                 </td>
                             </tr>
-                            </g:if>
+                            %{--</g:if>--}%
                         </g:each>
 
                     </g:if>

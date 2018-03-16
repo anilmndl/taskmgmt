@@ -1,15 +1,14 @@
 package taskmgmt.enums
 
-enum TaskStatus {
+enum TaskPriority {
 
-    CREATED("CREATED"),
-    LOCKED("LOCKED"),
-    UNLOCKED("UNLOCKED"),
-    COMPLETED("COMPLETED")
+    HIGH("HIGH"),
+    MEDIUM("MEDIUM"),
+    LOW("LOW"),
 
     final String value
 
-    TaskStatus(String value){
+    TaskPriority(String value){
         this.value = value
     }
 

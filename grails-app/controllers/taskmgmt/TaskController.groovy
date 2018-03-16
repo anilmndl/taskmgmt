@@ -20,7 +20,8 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
 
     }
 
@@ -55,11 +56,12 @@ class TaskController {
         redirect action: "list"
     }
 
-    def unlocked(Task task){
+    def unlocked(Task task) {
         taskService.unlocked(task)
         redirect action: "list"
     }
-    def locked(Task task){
+
+    def locked(Task task) {
         taskService.locked(task)
         redirect action: "list"
     }
