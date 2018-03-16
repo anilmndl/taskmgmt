@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/taskType/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Task Type List</h1>

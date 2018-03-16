@@ -6,7 +6,7 @@
     <title>Create Tasktype</title>
 </head>
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/taskType/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="TaskType" action="save">
         <div class="form-group">

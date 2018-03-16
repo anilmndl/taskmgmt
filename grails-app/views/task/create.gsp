@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/task/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="Task" action="save">
         <div class="form-group">

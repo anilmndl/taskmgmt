@@ -6,7 +6,7 @@
     <title>Create Customer</title>
 </head>
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/customer/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
 
     <div class = "col-lg-12">
