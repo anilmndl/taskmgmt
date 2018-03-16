@@ -54,7 +54,7 @@
                         </table>
                         <hr>
                         <p>Details: ${tasks.detail}</p>
-                        <p>Date Created: <g:formatDate format="dd-MM-yyyy" date="${tasks.dateCreated}"/></p>
+                        <p>Date Created: <common:dateFormat date="${tasks.dateCreated}"/></p>
                     </div>
                 </div>
             </div>

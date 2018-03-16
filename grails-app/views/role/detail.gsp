@@ -16,9 +16,9 @@
             <h1>${detailRole.title}</h1>
 
             <h4 class="tab-content">Date Created:
-                <g:formatDate format="dd-MM-yyyy" date="${detailRole.dateCreated}"/></h4></h4>
+                <common:dateFormat  date="${detailRole.dateCreated}"/></h4>
             <g:if test="${detailRole.dateModified != null}"><h4>Last Modified:
-                <g:formatDate format="dd-MM-yyyy" date="${detailRole.dateModified}"/></h4></g:if>
+                <common:dateFormat date="${detailRole.dateModified}"/></h4></g:if>
             <h3 class="alert-info">${detailRole.description}</h3>
             <table class="table-responsive col-sm-2">
                 <tr>

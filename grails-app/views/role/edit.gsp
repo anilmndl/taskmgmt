@@ -12,9 +12,9 @@
     <h2>Update Role</h2>
 
     <div class="alert-info">
-        <h5>Date Created: <g:formatDate format="dd-MM-yyyy" date="${editRole.dateModified}"/></h5>
+        <h5>Date Created: <common:dateFormat  date="${editRole.dateCreated}"/></h5>
         <g:if test="${editRole.dateModified != null}"><h5>Last Modified:
-            <g:formatDate format="dd-MM-yyyy" date="${editRole.dateModified}"/></h5></g:if>
+            <common:dateFormat date="${editRole.dateModified}"/></h5></g:if>
     </div>
     <g:form controller="Role" action="update" id="${editRole.id}">
         <div class="form-group">

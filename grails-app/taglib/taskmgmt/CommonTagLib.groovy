@@ -3,6 +3,7 @@ package taskmgmt
 import com.sun.jmx.snmp.tasks.TaskServer
 
 import javax.xml.ws.Service
+import java.text.SimpleDateFormat
 
 class CommonTagLib {
 
@@ -26,6 +27,6 @@ class CommonTagLib {
     }
 
     def dateFormat = { attrs, body ->
-        out << new java.text.SimpleDateFormat(attrs.format).format(attrs.date)
+        out << new SimpleDateFormat("dd-mm-yyyy").format(attrs.date)
     }
 }
