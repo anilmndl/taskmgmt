@@ -4,6 +4,9 @@ class UserController {
     UserService userService
 
     static  defaultAction = "list"
+    //delete() method is only allows POST request
+    static  allowedMethods = [delete: 'POST']
+
     def list() {
         render view: "list",model: [users: Users.findAllByDateDeletedIsNull([orders:"desc",sort:"dateCreated"])]
     }

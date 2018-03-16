@@ -56,9 +56,6 @@
                                 <g:link controller="Role" action="edit" id="${show.id}"
                                         class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                           aria-hidden="true"></i> Edit</g:link>
-                                <g:link controller="Role" action="delete" id="${show.id}"
-                                        class="btn btn-danger btn-xs"><i class="fa fa-times"
-                                                                         aria-hidden="true"></i> Delete</g:link>
                             </td>
                         </tr>
                     </g:each>

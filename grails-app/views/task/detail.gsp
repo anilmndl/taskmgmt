@@ -39,10 +39,19 @@
                     <div class="panel-body">
                         <g:hiddenField name="id" value="${tasks.id}"/>
                         <p><h3 class="text-center">${tasks.title}</h3></p>
-                        <g:link controller="task" action="delete" id="${tasks.id}" class="btn btn-danger btn-sm pull-right">Delete</g:link>
-                        <g:link controller="task" action="unlocked" id="${tasks.id}" class="btn btn-danger btn-sm">Unlocked</g:link>
-                        <g:link controller="task" action="locked" id="${tasks.id}" class="btn btn-danger btn-sm">Locked</g:link>
-                        <g:link controller="task" action="completed" id="${tasks.id}" class="btn btn-success btn-sm">Completed</g:link>
+                        <table class="table table-responsive">
+                            <tr>
+                                <th><g:link controller="task" action="unlocked" id="${tasks.id}" class="btn btn-danger btn-sm">Unlocked</g:link></th>
+                                <th><g:link controller="task" action="locked" id="${tasks.id}" class="btn btn-danger btn-sm">Locked</g:link></th>
+                                <th><g:link controller="task" action="completed" id="${tasks.id}" class="btn btn-success btn-sm">Completed</g:link></th>
+                                <th class="bottom-right">
+                                %{--sends delete request as POST form submission--}%
+                                    <g:form controller="task" action="delete" id="${tasks.id}" method="POST">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </g:form>
+                                </th>
+                            </tr>
+                        </table>
                         <hr>
                         <p>Details: ${tasks.detail}</p>
                         <p>Date Created: <g:formatDate format="dd-MM-yyyy" date="${tasks.dateCreated}"/></p>

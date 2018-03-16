@@ -6,6 +6,9 @@ class TaskController {
 
     TaskService taskService
 
+    //delete() method is only allows POST request
+    static  allowedMethods = [delete: 'POST']
+
     //page will be redirected to list() method by default instead of "index"
     static defaultAction = "list"
 

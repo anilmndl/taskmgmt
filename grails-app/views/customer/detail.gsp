@@ -39,9 +39,20 @@
                     <div class="panel-body">
                         <g:hiddenField name="id" value="${customer.id}"/>
                         <p><h3 class="text-center">${customer.firstName} ${customer.lastName}</h3></p>
-                        <g:link controller="customer" action="delete" id="${customer.id}"
-                                class="btn btn-danger btn-sm pull-right">Delete</g:link>
-                        <g:link controller="customer" action="assignTask" id="${customer.id}" class="btn btn-success btn-sm">Assign Task</g:link>
+                        <table class="table-responsive">
+                            <tr>
+                                <th>
+                                    <g:link controller="customer" action="edit" id="${customer.id}"
+                                            class="btn btn-success btn-sm">Edit</g:link>
+                                </th>
+                                <th class="bottom-right">
+                                %{--sends delete request as POST form submission--}%
+                                    <g:form controller="customer" action="delete" id="${customer.id}" method="POST">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </g:form>
+                                </th>
+                            </tr>
+                        </table>
                         <hr>
                         <p>Email: ${customer.email} </p>
                         <p>Phone Number: ${customer.phoneNumber} </p>

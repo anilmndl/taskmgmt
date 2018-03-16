@@ -39,7 +39,16 @@
                     <div class="panel-body">
                         <g:hiddenField name="id" value="${users.id}"/>
                         <p><h3 class="text-center">${users.firstName}</h3></p>
-                        <g:link controller="User" action="delete" id="${users.id}" class="btn btn-danger btn-sm pull-right">Delete</g:link>
+                        <table class="table-responsive col-sm-2">
+                            <tr>
+                                <th class="bottom-right">
+                                %{--sends delete request as POST form submission--}%
+                                    <g:form controller="user" action="delete" id="${users.id}" method="POST">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </g:form>
+                                </th>
+                            </tr>
+                        </table>
                         <hr>
                         <label>Details: </label>
                         <p>First Name: ${users.firstName}</p>
