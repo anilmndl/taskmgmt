@@ -17,11 +17,20 @@
                        aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i> Task<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Option 1</a> </li>
-                        <li><a href="#">Option 2</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="#">Option 3</a> </li>
-                        <li><a href="#">Option 4</a> </li>
+                        <li><g:link controller="task" action="create"><i class="fa fa-plus" aria-hidden="true"></i> New Task</g:link></li>
+                        <li><g:link controller="task" action="list"><i class="fa fa-paperclip" aria-hidden="true"></i> List Tasks</g:link></li>
+                        <li><g:link controller="task" action="listCompleted"><i class="fa fa-suitcase" aria-hidden="true"></i> Completed task </g:link></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i> Task Type<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><g:link controller="taskType" action="create"><i class="fa fa-plus" aria-hidden="true"></i> New TaskType</g:link></li>
+                        <li><g:link controller="taskType" action="list"><i class="fa fa-table" aria-hidden="true"></i> List Task Type</g:link></li>
                     </ul>
                 </li>
             </ul>

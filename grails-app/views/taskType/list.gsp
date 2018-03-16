@@ -57,6 +57,7 @@
                                     <g:link controller="taskType" action="delete" id="${show.id}"
                                             class="btn btn-danger btn-xs"><i class="fa fa-times"
                                                                              aria-hidden="true"></i> Delete</g:link>
+                                    <g:paginate controller="taskType" action="list" total="${typeList.count(2)}"></g:paginate>
                                 </td>
                                 </td>
                             </tr>

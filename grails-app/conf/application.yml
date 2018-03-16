@@ -18,21 +18,21 @@ environments:
             dbCreate: create-drop
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
-            password:
+            password: sa
             logSql: true
     test:
         dataSource:
             dbCreate: update
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
-            password:
+            password: sa
             logSql: false
     production:
         dataSource:
             dbCreate: update
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
-            password:
+            password: sa
             logSql: false
             properties:
                 jmxEnabled: true
