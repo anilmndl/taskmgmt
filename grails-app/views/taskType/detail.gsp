@@ -17,15 +17,25 @@
 
             <h4 class="tab-content">Date Created: ${detailTaskType.dateCreated}</h4>
             <g:if test="${detailTaskType.dateModified != null}"><h4>Last Modified: ${detailTaskType.dateModified}</h4></g:if>
-            <g:link controller="taskType" action="delete" id="${detailTaskType.id}" method=""
-                    class="btn btn-danger btn-sm pull-right">Delete</g:link>
-            <g:link controller="taskType" action="edit" id="${detailTaskType.id}"
-                    class="btn btn-success btn-sm">Edit</g:link>
+            <h3>${detailTaskType.description}</h3>
+
+            <table class="table-responsive col-sm-2">
+                <tr>
+                    <th>
+                        <g:link controller="taskType" action="edit" id="${detailTaskType.id}"
+                                class="btn btn-success btn-sm">Edit</g:link>
+                    </th>
+                    <th class="bottom-right">
+                        <g:form controller="taskType" action="delete" id="${detailTaskType.id}" method="POST">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </g:form>
+                    </th>
+                </tr>
+            </table>
         </div>
     </div>
 
 </div>
-
 
 </body>
 </html>

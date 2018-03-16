@@ -3,7 +3,8 @@ package taskmgmt
 class TaskType {
 
     String title
-    String identifer                // use this to find specific task type. The title may change in future but identifier should never change
+    String identifier    // use this to find specific task type. The title may change in future but identifier should never change
+    String description
 
     Date dateCreated
     Date dateModified
@@ -16,6 +17,6 @@ class TaskType {
         dateCreated nullable: true
         dateModified nullable: true
         dateDeleted nullable:true
-        identifer nullable: true
+        identifier nullable: true
     }
 }
