@@ -15,8 +15,9 @@
         <div class="jumbotron">
             <h1>${detailTaskType.title}</h1>
 
-            <h4 class="tab-content">Date Created: ${detailTaskType.dateCreated}</h4>
-            <g:if test="${detailTaskType.dateModified != null}"><h4>Last Modified: ${detailTaskType.dateModified}</h4></g:if>
+            <h4 class="tab-content">Date Created: <g:formatDate format="dd-MM-yyyy" date="${detailTaskType.dateCreated}"/></h4>
+            <g:if test="${detailTaskType.dateModified != null}"><h4>Last Modified:
+                <g:formatDate format="dd-MM-yyyy" date="${detailTaskType.dateModified}"/></h4></g:if>
             <h3>${detailTaskType.description}</h3>
 
             <table class="table-responsive col-sm-2">
@@ -37,6 +38,5 @@
     </div>
 
 </div>
-
 </body>
 </html>

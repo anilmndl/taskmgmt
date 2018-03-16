@@ -15,8 +15,10 @@
         <div class="jumbotron">
             <h1>${detailRole.title}</h1>
 
-            <h4 class="tab-content">Date Created: ${detailRole.dateCreated}</h4>
-            <g:if test="${detailRole.dateModified != null}"><h4>Last Modified: ${detailRole.dateModified}</h4></g:if>
+            <h4 class="tab-content">Date Created:
+                <g:formatDate format="dd-MM-yyyy" date="${detailRole.dateCreated}"/></h4></h4>
+            <g:if test="${detailRole.dateModified != null}"><h4>Last Modified:
+                <g:formatDate format="dd-MM-yyyy" date="${detailRole.dateModified}"/></h4></g:if>
             <h3 class="alert-info">${detailRole.description}</h3>
             <g:link controller="Role" action="delete" id="${detailRole.id}"
                     class="btn btn-danger btn-sm pull-right">Delete</g:link>

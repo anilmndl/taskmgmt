@@ -39,13 +39,14 @@
                     <div class="panel-body">
                         <g:hiddenField name="id" value="${customer.id}"/>
                         <p><h3 class="text-center">${customer.firstName} ${customer.lastName}</h3></p>
-                        <g:link controller="customer" action="delete" id="${customer.id}" class="btn btn-danger btn-sm pull-right">Delete</g:link>
+                        <g:link controller="customer" action="delete" id="${customer.id}"
+                                class="btn btn-danger btn-sm pull-right">Delete</g:link>
                         <g:link controller="customer" action="assignTask" id="${customer.id}" class="btn btn-success btn-sm">Assign Task</g:link>
                         <hr>
                         <p>Email: ${customer.email} </p>
                         <p>Phone Number: ${customer.phoneNumber} </p>
                         <p>Address: ${customer.address} </p>
-                        <p>Date Created: ${customer.dateCreated}</p>
+                        <p>Date Created: <g:formatDate format="dd-MM-yyyy" date="${customer.dateCreated}"/></p>
 
                     </div>
                 </div>

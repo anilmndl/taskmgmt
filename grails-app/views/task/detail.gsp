@@ -45,7 +45,7 @@
                         <g:link controller="task" action="completed" id="${tasks.id}" class="btn btn-success btn-sm">Completed</g:link>
                         <hr>
                         <p>Details: ${tasks.detail}</p>
-                        <p>Date Created: ${tasks.dateCreated}</p>
+                        <p>Date Created: <g:formatDate format="dd-MM-yyyy" date="${tasks.dateCreated}"/></p>
                     </div>
                 </div>
             </div>
