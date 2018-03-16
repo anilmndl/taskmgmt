@@ -1,3 +1,4 @@
+%{--detail view page--}%
 <!doctype html>
 <html>
 <head>
