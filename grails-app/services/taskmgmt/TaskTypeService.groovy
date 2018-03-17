@@ -22,4 +22,5 @@ class TaskTypeService {
         //taskType.flag="deleted"
         //taskType.save failOnError: true,flush: true
     }
+
 }

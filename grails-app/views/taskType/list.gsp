@@ -57,10 +57,6 @@
                                     <g:link controller="taskType" action="edit" id="${show.id}"
                                             class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
-                                    %{--<g:link controller="taskType" action="delete" id="${show.id}"
-                                            class="btn btn-danger btn-xs"><i class="fa fa-times"
-                                                                             aria-hidden="true"></i> Delete</g:link>--}%
-
                                 </td>
                             </tr>
                             %{--</g:if>--}%
@@ -71,24 +67,10 @@
                 </table>
 
             </div>
-            <ul class="pagination pagination-sm">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+            <div>
+            <g:paginate controller="taskType" action="list" total="${listCount}"></g:paginate>
+            </div>
+</div>
     </div>
 </div>
 </body>

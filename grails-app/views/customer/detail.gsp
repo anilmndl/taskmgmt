@@ -57,7 +57,7 @@
                         <p>Email: ${customer.email} </p>
                         <p>Phone Number: ${customer.phoneNumber} </p>
                         <p>Address: ${customer.address} </p>
-                        <p>Date Created: <g:formatDate format="dd-MM-yyyy" date="${customer.dateCreated}"/></p>
+                        <p>Date Created: <common:dateFormat date="${customer.dateCreated}"/></p>
 
                     </div>
                 </div>
