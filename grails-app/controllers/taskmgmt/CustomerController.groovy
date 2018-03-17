@@ -4,6 +4,9 @@ class CustomerController {
 
     static defaultAction = "list"
 
+    //delete() method is only allows POST request
+    static  allowedMethods = [delete: 'POST']
+
     CustomerService customerService
 
     def create() {
