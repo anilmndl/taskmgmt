@@ -1,4 +1,4 @@
-%{--detail view page--}%
+%{--Detail view page for task type--}%
 <!doctype html>
 <html>
 <head>

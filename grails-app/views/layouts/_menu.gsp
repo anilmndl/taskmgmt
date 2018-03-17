@@ -19,9 +19,13 @@
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
 
-                        <li><g:link controller="task" action="create"><i class="fa fa-plus" aria-hidden="true"></i> New Task</g:link></li>
-                        <li><g:link controller="task" action="list"><i class="fa fa-table" aria-hidden="true"></i> List Tasks</g:link></li>
-                        <li><g:link controller="task" action="listCompleted"><i class="fa fa-suitcase" aria-hidden="true"></i> Completed task </g:link></li>
+                        <li><g:link controller="task" action="create"><i class="fa fa-plus"
+                                                                         aria-hidden="true"></i> New Task</g:link></li>
+                        <li><g:link controller="task" action="list"><i class="fa fa-table"
+                                                                       aria-hidden="true"></i> List Tasks</g:link></li>
+                        <li><g:link controller="task" action="listCompleted"><i class="fa fa-suitcase"
+                                                                                aria-hidden="true"></i> Completed task</g:link>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -31,10 +35,11 @@
                        aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i> Task Type<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><g:link controller="taskType" action="create"><i class="fa fa-plus" aria-hidden="true"></i> New TaskType</g:link></li>
-                        <li><g:link controller="taskType" action="list"><i class="fa fa-table" aria-hidden="true"></i> List Task Type</g:link></li>
-                        <li><g:link controller="task" action="listCompleted"><i class="fa fa-suitcase"
-                                                                                aria-hidden="true"></i> Completed Tasks</g:link>
+                        <li><g:link controller="taskType" action="create"><i class="fa fa-plus"
+                                                                             aria-hidden="true"></i> New TaskType</g:link>
+                        </li>
+                        <li><g:link controller="taskType" action="list"><i class="fa fa-table"
+                                                                           aria-hidden="true"></i> List Task Type</g:link>
                         </li>
                     </ul>
                 </li>
@@ -45,8 +50,10 @@
                        aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i>Roles<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><g:link controller="Role" action="Create"><i class="fa fa-tags" aria-hidden="true"></i>New Roles</g:link></li>
-                        <li><g:link controller="Role" action="list"><i class="fa fa-table" aria-hidden="true"></i> List Roles</g:link></li>
+                        <li><g:link controller="Role" action="Create"><i class="fa fa-tags"
+                                                                         aria-hidden="true"></i>New Roles</g:link></li>
+                        <li><g:link controller="Role" action="list"><i class="fa fa-table"
+                                                                       aria-hidden="true"></i> List Roles</g:link></li>
 
                     </ul>
                 </li>
@@ -57,8 +64,10 @@
                        aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i>Users<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><g:link controller="user" action="create"><i class="fa fa-user" aria-hidden="true"></i>New  Users</g:link></li>
-                        <li><g:link controller="user" action="list"><i class="fa fa-table" aria-hidden="true"></i> List Users</g:link></li>
+                        <li><g:link controller="user" action="create"><i class="fa fa-user"
+                                                                         aria-hidden="true"></i>New  Users</g:link></li>
+                        <li><g:link controller="user" action="list"><i class="fa fa-table"
+                                                                       aria-hidden="true"></i> List Users</g:link></li>
 
                     </ul>
                 </li>
@@ -69,9 +78,11 @@
                        aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i>Customer<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><g:link controller="customer" action="create"><i class="fa fa-users" aria-hidden="true"></i>New Customer</g:link>
+                        <li><g:link controller="customer" action="create"><i class="fa fa-users"
+                                                                             aria-hidden="true"></i>New Customer</g:link>
                         </li>
-                        <li><g:link controller="customer" action="list"><i class="fa fa-table" aria-hidden="true"></i>List Customer</g:link>
+                        <li><g:link controller="customer" action="list"><i class="fa fa-table"
+                                                                           aria-hidden="true"></i>List Customer</g:link>
                         </li>
 
                     </ul>
