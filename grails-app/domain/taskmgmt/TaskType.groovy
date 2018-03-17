@@ -19,4 +19,8 @@ class TaskType {
         dateDeleted nullable:true
         identifier nullable: true
     }
+
+    static mapping = {
+        description type: "text"             // this allows to enter text more than 255 characters
+    }
 }

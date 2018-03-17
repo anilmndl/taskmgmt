@@ -28,13 +28,20 @@ class TaskController {
     }
 
     def update(Task task) {
-        taskService.update(task)
+        try{
+            taskService.update(task)
+        }
+        catch (Exception e){
+            flash.message = e.getMessage()
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),userList: Users.list()]
+
+        }
         redirect action: "list"
     }
 
     def list() {
        // render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
-        render view: "list", model: [tasks: Task.list(params), listCount: Task.count()]
+        render view: "list", model: [tasks: Task.list(params).reverse(), listCount: Task.count()]
     }
 
     def create() {
@@ -54,7 +61,18 @@ class TaskController {
     }
 
     def save(Task task) {
-        taskService.save(task)
+        if (task.title == null || task.detail == null){
+            task = taskService.createTask(task.taskType, task)
+        }
+        try{
+            taskService.save(task)
+        }
+        catch (Exception e){
+            flash.message = e.getMessage()
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),userList: Users.list()]
+
+        }
+
         redirect action: "list"
     }
 

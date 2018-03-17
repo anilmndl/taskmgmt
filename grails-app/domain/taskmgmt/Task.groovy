@@ -7,22 +7,17 @@ class Task {
 
     String title
     String detail
-
     TaskStatus taskStatus = TaskStatus.CREATED
     TaskPriority taskPriority = TaskPriority.HIGH
-
-
     TaskType taskType           // this creates a belongsTo relationship with TaskType
-
     Users users
-
     Date dateCreated
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed
     Date dateDeleted            // use this to indicate if the task was deleted
 
-
     static constraints = {
+        users nullable: true
         taskStatus nullable: true
         dateModified nullable: true
         dateCompleted nullable: true
