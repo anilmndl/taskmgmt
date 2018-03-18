@@ -16,9 +16,9 @@
         <div class="jumbotron">
             <h1>${detailTaskType.title}</h1>
 
-            <h4 class="tab-content">Date Created: <common:dateFormat date="${detailTaskType.dateCreated}"/></h4>
+            <h4 class="tab-content">Date Created: <common:dateFormat dateValue="${detailTaskType.dateCreated}"/></h4>
             <g:if test="${detailTaskType.dateModified != null}"><h4>Last Modified:
-                <common:dateFormat date="${detailTaskType.dateModified}"/></h4></g:if>
+                <common:dateFormat dateValue="${detailTaskType.dateModified}"/></h4></g:if>
             <h3 class="alert-info">${detailTaskType.description}</h3>
             <table class="table-responsive col-sm-2">
                 <tr>

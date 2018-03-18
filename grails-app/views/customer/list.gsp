@@ -51,7 +51,7 @@
                             <tr>
                                 <td>${list.id}</td>
                                 <td>${list.firstName} ${list.lastName}</td>
-                                <td>${list.dateCreated}</td>
+                                <td><common:dateFormatWithTime dateValue="${list.dateCreated}"/></td>
                                 <td>
                                     <g:link controller="customer" action="detail" id="${list.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"

@@ -50,12 +50,11 @@
                         <th>Action</th>
                     </tr>
                     <g:each in="${tasks}" var="show">
-                    %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
                         <tr>
                             <td>${show.title}</td>
-                            <td>${show.dateCreated}</td>
+                            <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
                             <td>${show.taskType.title}</td>
-                            <td>${show.dueDate}</td>
+                            <td><common:dateFormatWithTime dateValue="${show.dueDate}"/></td>
                             <td>${show.taskStatus}</td>
                             <td>
                                 <g:link controller="Task" action="detail" id="${show.id}"

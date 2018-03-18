@@ -48,7 +48,7 @@
                     <g:each in="${roleList}" var="show">
                         <tr>
                             <td>${show.title}</td>
-                            <td>${show.dateCreated}</td>
+                            <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
                             <td>
                                 <g:link controller="Role" action="detail" id="${show.id}"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"

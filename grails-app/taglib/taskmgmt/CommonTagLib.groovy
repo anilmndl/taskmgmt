@@ -16,17 +16,33 @@ class CommonTagLib {
 
     def hello = { attrs ->
         def output = ''
-        if(attrs.status == "default"){
+        if (attrs.status == "default") {
             output = "<span class=\"label label-default\"> " + attrs.name + "</span>"
-        }else if(attrs.status == "success"){
+        } else if (attrs.status == "success") {
             output = "<span class=\"label label-default\"> " + attrs.name + "</span>"
-        }else{
+        } else {
             output = "n/a"
         }
         out << output
     }
 
-    def dateFormat = { attrs, body ->
-        out << new SimpleDateFormat("dd-mm-yyyy").format(attrs.date)
+    def dateFormat = { attrs ->
+        def output = ""
+        if (attrs.dateValue != null) {
+            output = new SimpleDateFormat("EEE, dd MMMMMMMMMM yyyy").format(attrs.dateValue)
+        } else {
+            output = "<em>Not Specified</em>"
+        }
+        out << output
+    }
+
+    def dateFormatWithTime = { attrs ->
+        def output = ""
+        if (attrs.dateValue != null) {
+            output = new SimpleDateFormat("hh:mm a, EEE, dd MMMMMMMMMM yyyy").format(attrs.dateValue)
+        } else {
+            output = "<em>Not Specified</em>"
+        }
+        out << output
     }
 }

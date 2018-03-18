@@ -50,7 +50,7 @@
                             %{--<g:if test="${show.dateDeleted == null}">--}%
                                 <tr>
                                     <td><g:link controller="taskType" action="detail" id="${show.id}">${show.title}</g:link></td>
-                                <td>${show.dateCreated}</td>
+                                <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
                                 <td> <g:link controller="taskType" action="detail" id="${show.id}"
                                              class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                                aria-hidden="true"></i> View Detail</g:link>

@@ -27,6 +27,9 @@ class TaskController {
     }
 
     def update(Task task) {
+        if ((task.title == null || task.detail == null) && task.taskType != null) {
+            task = taskService?.createTask(task)
+        }
         try {
             taskService?.update(task)
             redirect action: "list"

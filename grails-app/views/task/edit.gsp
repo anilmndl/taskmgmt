@@ -29,9 +29,9 @@
                       optionValue="firstName" value="${editTask?.users?.id}" noSelection="['': '--Select--']"/>
         </div>
 
-        <div class="form form-inline">
+        <div class="form-group">
             <label><h4>Due Date</h4></label>
-            <input type="date" class="form-control" name="dueDate" value="${editTask?.dueDate}">
+            <g:datePicker name="dueDate" value="${editTask.dueDate}" noSelection="[null:'--select--']"/>
         </div>
 
         <div class="form-group">

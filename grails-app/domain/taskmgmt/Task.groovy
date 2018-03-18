@@ -23,7 +23,6 @@ class Task {
         dateModified nullable: true
         dateCompleted nullable: true
         dateDeleted nullable: true
-        taskType nullable: true
         taskPriority nullable: true
         dueDate nullable: true
     }
