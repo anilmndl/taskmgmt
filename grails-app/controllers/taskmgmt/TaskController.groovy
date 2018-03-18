@@ -26,7 +26,7 @@ class TaskController {
     def completed(Task task) {
         try {
             taskService?.complete(task)
-            redirect action: "list"
+            redirect action: "listCompleted"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -55,7 +55,7 @@ class TaskController {
 
     def list() {
         // render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
-        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), listCount: Task.count()]
+        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNullAndDateCompletedIsNull([sort: "dateCreated", order: "desc"]), listCount: Task.count()]
     }
 
     def create() {
@@ -70,7 +70,7 @@ class TaskController {
     }
 
     def listCompleted() {
-        render view: "completed", model: [tasks: Task.findAllByTaskStatus(TaskStatus.COMPLETED, [order: "desc", sort: "dateCompleted"])]
+        render view: "completed", model: [tasks: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull([order: "desc", sort: "dateCompleted"])]
     }
 
     def save(Task task) {
@@ -91,22 +91,20 @@ class TaskController {
     def unlocked(Task task) {
         try {
             taskService?.unlocked(task)
-            redirect action: "list"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "detail", model: [tasks: task]
         }
+        render view: "detail", model: [tasks: task]
     }
 
     def locked(Task task) {
         try {
             taskService?.locked(task)
-            redirect action: "list"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "detail", model: [tasks: task]
         }
+        render view: "detail", model: [tasks: task]
     }
 }
