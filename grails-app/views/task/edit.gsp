@@ -11,9 +11,13 @@
 
 <div class="col-sm-10 col-md-offset-2 main">
     <g:form controller="Task" action="update" id="${editTask?.id}">
-        <h2 class="alert-danger">${flash.message}</h2>
+        <h1>Update Task</h1>
+        <g:if test="${flash.message}">
+            <div class="alert alert-danger" role="alert"><h2>${flash.message}</h2></div>
+        </g:if>
+
         <div class="form-group">
-            <label><h1>Title of Task</h1></label>
+            <label><h4>Title of Task</h4></label>
             <input type="text" class="form-control" name="title" placeholder="Task Title" value="${editTask?.title}">
         </div>
 

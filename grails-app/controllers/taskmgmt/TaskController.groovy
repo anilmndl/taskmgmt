@@ -13,13 +13,25 @@ class TaskController {
     static defaultAction = "list"
 
     def delete(Task task) {
-        taskService.delete(task)
-        redirect action: "list"
+        try {
+            taskService.delete(task)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            redirect action: "detail"
+        }
     }
 
     def completed(Task task) {
-        taskService.complete(task)
-        redirect action: "listCompleted"
+        try {
+            taskService?.complete(task)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "detail", model: [tasks: task]
+        }
     }
 
     def edit(Task task) {
@@ -43,7 +55,7 @@ class TaskController {
 
     def list() {
         // render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
-        render view: "list", model: [tasks: Task.list(params).reverse(), listCount: Task.count()]
+        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), listCount: Task.count()]
     }
 
     def create() {
@@ -53,8 +65,8 @@ class TaskController {
         render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
     }
 
-    def detail(Task tasks) {
-        render view: "detail", model: [tasks: tasks]
+    def detail(Task task) {
+        render view: "detail", model: [tasks: task]
     }
 
     def listCompleted() {
@@ -77,12 +89,24 @@ class TaskController {
     }
 
     def unlocked(Task task) {
-        taskService.unlocked(task)
-        redirect action: "list"
+        try {
+            taskService?.unlocked(task)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "detail", model: [tasks: task]
+        }
     }
 
     def locked(Task task) {
-        taskService.locked(task)
-        redirect action: "list"
+        try {
+            taskService?.locked(task)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "detail", model: [tasks: task]
+        }
     }
 }

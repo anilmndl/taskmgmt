@@ -10,7 +10,7 @@ class TaskTypeController {
     static allowedMethods = [delete: 'POST']
 
     def list() {
-        render view: "list", model: [typeList: TaskType.list(params), listCount: TaskType.count()]
+        render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), listCount: TaskType.count()]
     }
 
     def create() {
@@ -18,13 +18,25 @@ class TaskTypeController {
     }
 
     def save(TaskType taskType) {
-        taskTypeService.save(taskType)
-        redirect action: "list"
+        try {
+            taskTypeService?.save(taskType)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [taskType: taskType]
+        }
     }
 
     def delete(TaskType taskType) {
-        taskTypeService.delete(taskType)
-        redirect action: "list"
+        try {
+            taskTypeService.delete(taskType)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            redirect action: "detail"
+        }
     }
 
     def edit(TaskType taskType) {
@@ -32,8 +44,14 @@ class TaskTypeController {
     }
 
     def update(TaskType taskType) {
-        taskTypeService?.update(taskType)
-        redirect action: "list"
+        try {
+            taskTypeService?.update(taskType)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [taskType: taskType]
+        }
     }
 
     def detail(TaskType taskType) {

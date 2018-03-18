@@ -11,6 +11,10 @@
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Task Details</h1>
 
+    <g:if test="${flash.message}">
+        <div class="alert alert-danger" role="alert"><h2>${flash.message}</h2></div>
+    </g:if>
+
     <g:if test="${tasks}">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-lg-4">
@@ -31,7 +35,7 @@
                                 <th class="bottom-right">
                                 %{--sends delete request as POST form submission--}%
                                     <g:form controller="task" action="delete" id="${tasks.id}" method="POST">
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                        <button class="btn btn-danger btn-sm pull-right">Delete</button>
                                     </g:form>
                                 </th>
                             </tr>

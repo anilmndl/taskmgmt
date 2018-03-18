@@ -5,14 +5,21 @@ class RoleController {
     RoleService roleService
 
     static defaultAction = "list"
+    static allowedMethods = [delete: 'POST']
 
     def list() {
         render view: "list", model: [roleList: Role.findAllByDateDeletedIsNull([order: "desc", sort: "dateCreated"])]
     }
 
     def save(Role role) {
-        roleService.save(role)
-        redirect action: "list"
+        try {
+            roleService?.save(role)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [editRole: role]
+        }
     }
 
     def edit(Role role) {
@@ -20,13 +27,25 @@ class RoleController {
     }
 
     def update(Role role) {
-        roleService.update(role)
-        redirect action: "list"
+        try {
+            roleService?.update(role)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [editRole: role]
+        }
     }
 
     def delete(Role role) {
-        roleService.delete(role)
-        redirect action: "list"
+        try {
+            roleService?.delete(role)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            redirect action: "detail"
+        }
     }
 
     def detail(Role role) {

@@ -13,7 +13,7 @@
     <g:form controller="TaskType" action="save">
         <div class="form-group">
             %{--input attribute 'required'--}%
-            <label><h3>Topic of Task Type*:</h3></label>
+            <label><h3>Task Type Title*:</h3></label>
             <input type="text" class="form-control" name="title" placeholder="Task Type Description" required="required" >
 
         </div>

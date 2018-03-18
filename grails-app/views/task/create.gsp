@@ -9,6 +9,7 @@
 <body>
 <g:render template="/task/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
+    <h2 class="alert-danger">${flash.message}</h2>
     <g:form controller="Task" action="save">
         <div class="form-group">
             <label><h4>Title of Task</h4></label>

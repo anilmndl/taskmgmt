@@ -21,13 +21,13 @@
         <g:form controller="customer" action="save">
         <div class = "row">
             <div class = "form-group col-lg-6">
-                <label>First Name:</label>
-                <input type= "text" class = "form-control" name = "firstName" placeholder = "First Name" />
+                <label>First Name*:</label>
+                <input type= "text" class = "form-control" name = "firstName" placeholder = "First Name" required="required"/>
             </div>
 
             <div class = "form-group col-lg-6">
-                <label>Last Name:</label>
-                <input type= "text" class = "form-control" name = "lastName" placeholder = "Last Name" />
+                <label>Last Name*:</label>
+                <input type= "text" class = "form-control" name = "lastName" placeholder = "Last Name" required="required"/>
             </div>
 
             <div class = "form-group col-lg-12">
@@ -36,8 +36,8 @@
             </div>
 
             <div class = "form-group col-lg-6">
-                <label>Email:</label>
-                <input type= "email" class = "form-control" name = "email" placeholder="abc@example.com"/>
+                <label>Email*:</label>
+                <input type= "email" class = "form-control" name = "email" placeholder="someone@email.com" required="required"/>
             </div>
 
             <div class = "form-group col-lg-6">

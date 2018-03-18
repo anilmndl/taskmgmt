@@ -11,16 +11,19 @@
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Role Details</h1>
 
+    <g:if test="${flash.message}">
+        <div class="alert alert-danger" role="alert"><h2>${flash.message}</h2></div>
+    </g:if>
     <div class="container-fluid">
         <div class="jumbotron">
             <h1>${detailRole.title}</h1>
 
             <h4 class="tab-content">Date Created:
-                <common:dateFormat  dateValue="${detailRole.dateCreated}"/></h4>
+                <common:dateFormatWithTime dateValue="${detailRole.dateCreated}"/></h4>
             <g:if test="${detailRole.dateModified != null}"><h4>Last Modified:
-                <common:dateFormat dateValue="${detailRole.dateModified}"/></h4></g:if>
-            <h3 class="alert-info">${detailRole.description}</h3>
-            <table class="table-responsive col-sm-2">
+                <common:dateFormatWithTime dateValue="${detailRole.dateModified}"/></h4></g:if>
+            <h3 class="alert alert-info">${detailRole.description}</h3>
+            <table class="table table-responsive col-sm-2">
                 <tr>
                     <th>
                         <g:link controller="role" action="edit" id="${detailRole.id}"
@@ -29,7 +32,7 @@
                     <th class="bottom-right">
                     %{--sends delete request as POST form submission--}%
                         <g:form controller="role" action="delete" id="${detailRole.id}" method="POST">
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <button class="btn btn-danger btn-sm pull-right">Delete</button>
                         </g:form>
                     </th>
                 </tr>

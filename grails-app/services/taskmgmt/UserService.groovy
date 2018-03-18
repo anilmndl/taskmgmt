@@ -6,14 +6,21 @@ import grails.transaction.Transactional
 class UserService {
 
     def save(Users user) {
+        user.dateCreated = new Date()
         if (user.validate()) {
             user.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Save failed.")
         }
     }
 
     def delete(Users users) {
         users.dateDeleted = new Date()
-        users.save failonError: false, flush: false
+        if (users.validate()) {
+            users.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Deletion failed.")
+        }
 
     }
 
@@ -21,6 +28,8 @@ class UserService {
         user.dateModified = new Date()
         if (user.validate()) {
             user.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Update failed.")
         }
     }
 }

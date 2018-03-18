@@ -17,9 +17,12 @@ class TaskService {
     }
 
     def delete(Task task) {
-        task.dateModified = new Date()
-        task.dateDeleted = task.dateModified
-        task.save failOnError: true, flush: true
+        task.dateDeleted = new Date()
+        if (task.validate()) {
+            task.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Deletion failed.")
+        }
     }
 
     def update(Task task) {
@@ -32,10 +35,13 @@ class TaskService {
     }
 
     def complete(Task task) {
-        task.dateModified = new Date()
         task.dateCompleted = task.dateModified
         task.taskStatus = TaskStatus.COMPLETED
-        task.save failOnError: true, flush: true
+        if (task.validate()) {
+            task.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
     }
 
     Task createTask(Task task) {
@@ -46,15 +52,21 @@ class TaskService {
     }
 
     def unlocked(Task task) {
-
         task.taskStatus = TaskStatus.UNLOCKED
-        task.save failOnError: true, flush: true
+        if (task.validate()) {
+            task.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
     }
 
     def locked(Task task) {
-
         task.taskStatus = TaskStatus.LOCKED
-        task.save failOnError: true, flush: true
+        if (task.validate()) {
+            task.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
     }
 
 }
