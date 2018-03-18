@@ -55,6 +55,7 @@
                         <hr>
                         <p>Details: ${tasks.detail}</p>
                         <p>Date Created: <common:dateFormat date="${tasks.dateCreated}"/></p>
+                        <p>Due Date: ${tasks.dueDate}</p>
                     </div>
                 </div>
             </div>

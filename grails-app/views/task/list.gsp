@@ -11,6 +11,8 @@
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Tasks</h1>
 
+    <h2 class="alert-danger">${flash.message}</h2>
+
     <form class="form-horizontal">
         <div class="col-sm-4">
             <div class="form-group form-group-sm">
@@ -43,6 +45,7 @@
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Task Type</th>
+                        <th>Due Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -52,14 +55,15 @@
                             <td>${show.title}</td>
                             <td>${show.dateCreated}</td>
                             <td>${show.taskType.title}</td>
+                            <td>${show.dueDate}</td>
                             <td>${show.taskStatus}</td>
                             <td>
                                 <g:link controller="Task" action="detail" id="${show.id}"
-                                        class="btn btn-default btn-xs"><i class="fa fa-eye"
-                                                                          aria-hidden="true"></i> View</g:link>
+                                        class="btn btn-info btn-xs"><i class="fa fa-eye"
+                                                                          aria-hidden="true"></i> View Details</g:link>
                                 <g:if test="${show.taskStatus != taskmgmt.enums.TaskStatus.LOCKED}"><g:link
                                         controller="Task" action="edit" id="${show.id}"
-                                        class="btn btn-default btn-xs"><i class="fa fa-edit"
+                                        class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                           aria-hidden="true"></i> Edit</g:link></g:if>
                             </td>
                         </tr>
@@ -68,6 +72,7 @@
 
                 </table>
             </div>
+
             <div>
                 <g:paginate controller="task" action="list" total="${listCount}"></g:paginate>
             </div>

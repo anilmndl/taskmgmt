@@ -10,7 +10,7 @@
 <g:render template="/role/sidebar"/>
 <div class="col-sm-10 col-md-offset-2 main">
     <h2>Update Role</h2>
-
+    <h4>${flash.message}</h4>
     <div class="alert-info">
         <h5>Date Created: <common:dateFormat  date="${editRole.dateCreated}"/></h5>
         <g:if test="${editRole.dateModified != null}"><h5>Last Modified:

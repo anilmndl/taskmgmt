@@ -7,7 +7,7 @@ class TaskController {
     TaskService taskService
 
     //delete() method is only allows POST request
-    static  allowedMethods = [delete: 'POST']
+    static allowedMethods = [delete: 'POST']
 
     //page will be redirected to list() method by default instead of "index"
     static defaultAction = "list"
@@ -23,24 +23,23 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),userList: Users.list()]
-
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
     }
 
     def update(Task task) {
-        try{
-            taskService.update(task)
+        try {
+            taskService?.update(task)
+            redirect action: "list"
         }
-        catch (Exception e){
+        catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),userList: Users.list()]
-
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
         }
-        redirect action: "list"
+
     }
 
     def list() {
-       // render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        // render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
         render view: "list", model: [tasks: Task.list(params).reverse(), listCount: Task.count()]
     }
 
@@ -49,7 +48,6 @@ class TaskController {
         // Task task=Task.get(params.id)
 
         render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
-
     }
 
     def detail(Task tasks) {
@@ -61,26 +59,26 @@ class TaskController {
     }
 
     def save(Task task) {
-        if (task.title == null || task.detail == null){
-            task = taskService.createTask(task.taskType, task)
+        if ((task.title == null || task.detail == null) && task.taskType != null) {
+            task = taskService?.createTask(task)
         }
-        try{
-            taskService.save(task)
+        try {
+            taskService?.save(task)
+            redirect action: "list"
         }
-        catch (Exception e){
+        catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),userList: Users.list()]
-
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
         }
 
-        redirect action: "list"
     }
 
-    def unlocked(Task task){
+    def unlocked(Task task) {
         taskService.unlocked(task)
         redirect action: "list"
     }
-    def locked(Task task){
+
+    def locked(Task task) {
         taskService.locked(task)
         redirect action: "list"
     }

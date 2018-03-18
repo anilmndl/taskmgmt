@@ -11,8 +11,7 @@ class TaskService {
         task.dateCreated = new Date()
         if (task.validate()) {
             task.save failOnError: true, flush: true
-        }
-        else {
+        } else {
             throw new Exception("Oops! Something went wrong. Save failed.")
         }
     }
@@ -27,8 +26,7 @@ class TaskService {
         task.dateModified = new Date()
         if (task.validate()) {
             task.save failOnError: true, flush: true
-        }
-        else {
+        } else {
             throw new Exception("Oops! Something went wrong. Update failed.")
         }
     }
@@ -40,21 +38,22 @@ class TaskService {
         task.save failOnError: true, flush: true
     }
 
-    def createTask(TaskType taskType, Task task) {
-        task.title = task.title?:taskType.title
-        task.detail = task.detail?:taskType.description
+    Task createTask(Task task) {
+        task.title = task.title ? task.title : task.taskType.title
+        task.detail = task.detail ? task.detail : task.taskType.description
 
         return task
     }
 
-    def unlocked(Task task){
+    def unlocked(Task task) {
 
-        task.taskStatus=TaskStatus.UNLOCKED
+        task.taskStatus = TaskStatus.UNLOCKED
         task.save failOnError: true, flush: true
     }
-    def locked(Task task){
 
-        task.taskStatus=TaskStatus.LOCKED
+    def locked(Task task) {
+
+        task.taskStatus = TaskStatus.LOCKED
         task.save failOnError: true, flush: true
     }
 

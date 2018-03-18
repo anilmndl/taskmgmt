@@ -61,10 +61,10 @@
                                 <td>${user.phoneNumber}</td>
                                 <td>
                                     <g:link controller="user" action="detail" id="${user.id}"
-                                            class="btn btn-default btn-xs"><i class="fa fa-eye"
-                                                                              aria-hidden="true"></i> View</g:link>
+                                            class="btn btn-info btn-xs"><i class="fa fa-eye"
+                                                                              aria-hidden="true"></i> View Details</g:link>
                                     <g:link controller="user" action="edit" id="${user.id}"
-                                            class="btn btn-default btn-xs"><i class="fa fa-edit"
+                                            class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
                                 </td>
                             </tr>

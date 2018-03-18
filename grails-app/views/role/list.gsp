@@ -10,7 +10,7 @@
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Roles</h1>
-
+    <h4>${flash.message}</h4>
     <form class="form-horizontal">
         <div class="col-sm-4">
             <div class="form-group form-group-sm">

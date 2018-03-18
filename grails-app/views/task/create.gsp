@@ -17,12 +17,20 @@
 
         <div class="form-group">
             <label><h4>Task type</h4></label>
-            <g:select class="btn btn-default dropdown-toggle" from="${taskTypeList}" name="taskType" optionKey="id" optionValue="title"/>
+            <g:select class="btn btn-default dropdown-toggle" from="${taskTypeList}" name="taskType" optionKey="id"
+                      optionValue="title" noSelection="['':'--Select--']"/>
         </div>
 
         <div class="form-group">
             <label><h4>Username</h4></label>
-            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id" optionValue="firstName"/>
+            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id"
+                      optionValue="firstName" noSelection="['': '--Select--']"/>
+        </div>
+
+        <div class="form-group">
+            <label><h4>Due Date</h4></label>
+            <g:datePicker name="dueDate" value="${new Date()}"
+                          noSelection="['':'-Choose-']"/>
         </div>
 
         <div class="form-group">

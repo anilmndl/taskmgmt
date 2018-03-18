@@ -15,6 +15,7 @@ class Task {
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed
     Date dateDeleted            // use this to indicate if the task was deleted
+    Date dueDate                //date when the task is expected to be completed
 
     static constraints = {
         users nullable: true
@@ -24,6 +25,7 @@ class Task {
         dateDeleted nullable: true
         taskType nullable: true
         taskPriority nullable: true
+        dueDate nullable: true
     }
 
     static mapping = {
