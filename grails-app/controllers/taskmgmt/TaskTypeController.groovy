@@ -10,7 +10,7 @@ class TaskTypeController {
     static allowedMethods = [delete: 'POST']
 
     def list() {
-        render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), listCount: TaskType.count()]
+        render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull(params, [sort: "dateCreated", order: "desc"]), listCount: TaskType.count()]
     }
 
     def create() {

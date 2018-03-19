@@ -45,6 +45,8 @@
                         <th>Title</th>
                         <th>Date Created</th>
                         <th>Task Type</th>
+                        <th>User</th>
+                        <th>Customer</th>
                         <th>Due Date</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -52,10 +54,37 @@
                     <g:each in="${tasks}" var="show">
                         <tr>
                             <td>${show.title}</td>
-                            <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
+                            <td>
+                                <div class="label label-primary">
+                                    <common:dateFormatWithTime
+                                            dateValue="${show.dateCreated}"/>
+                                </div>
+                            </td>
                             <td>${show.taskType.title}</td>
-                            <td><common:dateFormatWithTime dateValue="${show.dueDate}"/></td>
-                            <td>${show.taskStatus}</td>
+                            <td>
+                                <g:if test="${show.users == null}">
+
+                                    <div class="label label-warning">No data</div>
+                                </g:if>
+                                <g:else>
+                                    <mark>${show?.users?.firstName} ${show?.users?.lastName}</mark>
+                                </g:else>
+                            </td>
+                            <td>
+                                <g:if test="${show.customer == null}">
+
+                                    <div class="label label-warning">No data</div>
+                                </g:if>
+                                <g:else>
+                                    <mark>${show?.customer?.firstName} ${show?.customer?.lastName}</mark>
+                                </g:else>
+                            </td>
+                            <td>
+                                <div class="label label-warning">
+                                    <common:dateFormatWithTime dateValue="${show.dueDate}"/>
+                                </div>
+                            </td>
+                            <td><strong><em>${show.taskStatus}</em></strong></td>
 
                             <td>
                                 <g:link controller="Task" action="detail" id="${show.id}"
@@ -63,12 +92,11 @@
                                                                        aria-hidden="true"></i> View Details</g:link>
 
                                 <g:if test="${show.taskStatus != taskmgmt.enums.TaskStatus.LOCKED}">
-
-                                        <g:link
-                                                controller="Task" action="edit" id="${show.id}"
-                                                class="btn btn-success btn-xs"><i class="fa fa-edit"
-                                                                                  aria-hidden="true"></i> Edit
-                                        </g:link>
+                                    <g:link
+                                            controller="Task" action="edit" id="${show.id}"
+                                            class="btn btn-success btn-xs"><i class="fa fa-edit"
+                                                                              aria-hidden="true"></i> Edit
+                                    </g:link>
 
                                 </g:if>
                             </td>

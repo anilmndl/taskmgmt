@@ -9,6 +9,7 @@ class Customer {
     Date dateCreated
     Date dateModified
     Date dateDeleted
+    static hasMany = [tasks: Task]
 
     static constraints = {
         address nullable: true

@@ -10,6 +10,7 @@ class Task {
     TaskStatus taskStatus = TaskStatus.CREATED
     TaskPriority taskPriority = TaskPriority.HIGH
     TaskType taskType           // this creates a belongsTo relationship with TaskType
+    Customer customer           // this creates a belongsTO relationship with Customer
     Users users
     Date dateCreated
     Date dateModified
@@ -25,6 +26,7 @@ class Task {
         dateDeleted nullable: true
         taskPriority nullable: true
         dueDate nullable: true
+        customer nullable: true
     }
 
     static mapping = {

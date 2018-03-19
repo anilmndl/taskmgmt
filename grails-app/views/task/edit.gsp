@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group">
-            <label><h4>Task type</h4></label>
+            <label><h4>Task type*</h4></label>
             <g:select class="btn btn-default dropdown-toggle" from="${taskTypeList}" name="taskType" optionKey="id"
                       optionValue="title" value="${editTask?.taskType?.id}" noSelection="['': '--Select--']"/>
         </div>
@@ -31,6 +31,12 @@
             <label><h4>Username</h4></label>
             <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id"
                       optionValue="firstName" value="${editTask?.users?.id}" noSelection="['': '--Select--']"/>
+        </div>
+
+        <div class="form-group">
+            <label><h4>Customer</h4></label>
+            <g:select class="btn btn-default dropdown-toggle" from="${customerList}" name="customer" optionKey="id"
+                      optionValue="firstName" value="${editTask?.customer?.id}" noSelection="['': '--Select--']"/>
         </div>
 
         <div class="form-group">
