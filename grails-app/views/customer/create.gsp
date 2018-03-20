@@ -49,11 +49,8 @@
                 <button type="submit" class="btn btn-primary">Add Customer</button>
             </div>
         </div>
-<<<<<<< HEAD
          </g:form>
-=======
-        </g:form>
->>>>>>> develop
+
     </div>
 </div>
 </body>
