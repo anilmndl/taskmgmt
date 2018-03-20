@@ -57,6 +57,7 @@ class TaskService {
     }
 
     def unlocked(Task task) {
+
         task.taskStatus = TaskStatus.UNLOCKED
         if (task.validate()) {
             task.save failOnError: true, flush: true
@@ -72,6 +73,8 @@ class TaskService {
         } else {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
-    }
 
+        task.taskStatus = TaskStatus.UNLOCKED
+        task.save failOnError: true, flush: true
+    }
 }

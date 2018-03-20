@@ -37,7 +37,19 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><strong>Tasks</strong></div>
+                <div class="panel-heading"><strong>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <g:link controller="task" action="myTask">My task</g:link>
+                        </li>
+                        <li class="nav-item">
+                            <g:link controller="task" action="listCompleted">Completed Task</g:link>
+                        </li>
+                        <li class="nav-item">
+                            <g:link controller="task" action="list">All Task</g:link>
+                        </li>
+                    </ul>
+                </strong></div>
                 <table class="table table-striped">
                     <tr>
                         <th>Id</th>
