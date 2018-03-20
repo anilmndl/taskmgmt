@@ -37,7 +37,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><strong>Tasks</strong></div>
+                <div class="panel-heading"><strong>
+                    List
+                </strong></div>
                 <table class="table table-striped">
                     <tr>
                         <th><Id></Id></th>

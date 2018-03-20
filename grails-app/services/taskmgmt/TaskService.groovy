@@ -38,15 +38,16 @@ class TaskService {
     def createTask() {
         new Task(title: "Created by Task Service").save failOnError: true, flush: true
     }
-    def unlocked(Task task){
 
-        task.taskStatus=TaskStatus.UNLOCKED
-        task.save failOnError: true, flush: true
-    }
-    def locked(Task task){
+    def unlocked(Task task) {
 
-        task.taskStatus=TaskStatus.LOCKED
+        task.taskStatus = TaskStatus.UNLOCKED
         task.save failOnError: true, flush: true
     }
 
+    def locked(Task task) {
+
+        task.taskStatus = TaskStatus.LOCKED
+        task.save failOnError: true, flush: true
+    }
 }

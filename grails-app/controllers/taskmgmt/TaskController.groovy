@@ -65,4 +65,8 @@ class TaskController {
         taskService.locked(task)
         redirect action: "list"
     }
+
+    def myTask() {
+        render view: "list",model:[tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
+    }
 }
