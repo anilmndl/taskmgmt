@@ -7,18 +7,29 @@ class CustomerService {
 
     def save(Customer customer) {
         customer.dateCreated = new Date()
-        customer.dateModified = new Date()
-        customer.save failOnError: true, flush: true
+        if (customer.validate()) {
+            customer.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Save failed.")
+        }
     }
 
     def update(Customer customer) {
         customer.dateModified = new Date()
-        customer.save failOnError: true, flush: true
+        if (customer.validate()) {
+            customer.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Update failed.")
+        }
+
     }
 
     def delete(Customer customer) {
-        customer.dateModified = new Date()
         customer.dateDeleted = new Date()
-        customer.save failOnError: true, flush: true
+        if (customer.validate()) {
+            customer.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Delete failed.")
+        }
     }
 }

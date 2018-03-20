@@ -44,25 +44,29 @@
                         <th>First name</th>
                         <th>Middle Name</th>
                         <th>Last Name</th>
+                        <th>Role</th>
                         <th>Address</th>
                         <th>Phone Number</th>
+                        <th>Date Created</th>
                         <th>Action</th>
                     </tr>
-                    <g:if test="${User}">
-                        <g:each in="${User}" var="show">
+                    <g:if test="${users}">
+                        <g:each in="${users}" var="user">
                             <tr>
-                                <td>${show.id}</td>
-                                <td>${show.firstName}</td>
-                                <td>${show.middleName}</td>
-                                <td>${show.lastName}</td>
-                                <td>${show.address}</td>
-                                <td>${show.phoneNumber}</td>
+                                <td>${user.id}</td>
+                                <td>${user.firstName}</td>
+                                <td>${user.middleName}</td>
+                                <td>${user.lastName}</td>
+                                <td>${user.role.title}</td>
+                                <td>${user.address}</td>
+                                <td>${user.phoneNumber}</td>
+                                <td><common:dateFormatWithTime dateValue="${user.dateCreated}"/></td>
                                 <td>
-                                    <g:link controller="user" action="detail" id="${show.id}"
-                                            class="btn btn-default btn-xs"><i class="fa fa-eye"
-                                                                              aria-hidden="true"></i> View</g:link>
-                                    <g:link controller="user" action="edit" id="${show.id}"
-                                            class="btn btn-default btn-xs"><i class="fa fa-edit"
+                                    <g:link controller="user" action="detail" id="${user.id}"
+                                            class="btn btn-info btn-xs"><i class="fa fa-eye"
+                                                                              aria-hidden="true"></i> View Details</g:link>
+                                    <g:link controller="user" action="edit" id="${user.id}"
+                                            class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
                                 </td>
                             </tr>

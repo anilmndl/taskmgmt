@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<g:render template="/layouts/sidebar"/>
+<g:render template="/customer/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Customer List</h1>
@@ -51,13 +51,13 @@
                             <tr>
                                 <td>${list.id}</td>
                                 <td>${list.firstName} ${list.lastName}</td>
-                                <td>${list.dateCreated}</td>
+                                <td><common:dateFormatWithTime dateValue="${list.dateCreated}"/></td>
                                 <td>
                                     <g:link controller="customer" action="detail" id="${list.id}"
-                                            class="btn btn-default btn-xs"><i class="fa fa-eye"
-                                                                              aria-hidden="true"></i> View</g:link>
+                                            class="btn btn-info btn-xs"><i class="fa fa-eye"
+                                                                              aria-hidden="true"></i> View Details</g:link>
                                     <g:link controller="customer" action="edit" id="${list.id}"
-                                            class="btn btn-default btn-xs"><i class="fa fa-edit"
+                                            class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Edit</g:link>
                                 </td>
                             </tr>

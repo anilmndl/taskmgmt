@@ -12,12 +12,12 @@
     <h2>Create Role</h2>
     <g:form controller="Role" action="save">
         <div class="form-group">
-            <label><h4>Role Title</h4></label>
-            <input type="text" class="form-control" name="title" placeholder="Role Title">
+            <label><h4>Role Title*</h4></label>
+            <input type="text" class="form-control" name="title" placeholder="Role Title" required="required">
         </div>
 
         <div class="form-group">
-            <label><h4>Role Description(optional)</h4></label>
+            <label><h4>Role Description</h4></label>
             <textarea class="form-control" placeholder="Role Description" name="description"></textarea>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>

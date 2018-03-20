@@ -9,11 +9,12 @@ class Customer {
     Date dateCreated
     Date dateModified
     Date dateDeleted
-    Integer rolePriority =1 //low priority if nothing is set
+    static hasMany = [tasks: Task]
 
     static constraints = {
         address nullable: true
         phoneNumber nullable: true
         dateDeleted nullable: true
+        dateModified nullable: true
     }
 }
