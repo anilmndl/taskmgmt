@@ -1,11 +1,11 @@
 #!/user/bin/env groovy
 pipeline{
-  def workspace = pwd()
   agent any
 	
 
   stages{
     stage('Build'){
+      def workspace = pwd()
       steps{
         echo 'Building....'
 	sh 'cd ${workspace}/taskmgmt'
