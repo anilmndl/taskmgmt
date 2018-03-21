@@ -20,8 +20,9 @@ pipeline{
     stage('Deploy'){
       steps{
         echo 'Deploying....'
-	//mv 'build/libs/taskmgmt-*.war build/libs/taskmgmt.war'
-	//cp 'build/libs/taskmgmt.war /opt/tomcat/webapps/'
+	sh 'mv build/libs/taskmgmt-*.war build/libs/taskmgmt.war'
+	sh 'cp build/libs/taskmgmt.war /opt/tomcat/webapps/'
+	sh 'sudo systemctl reload tomcat'
       }
     }
   }
