@@ -7,7 +7,7 @@ pipeline{
     stage('Build'){
       steps{
         echo 'Building....'
-	sh 'cd taskmgmt'
+	echo '${pwd()}'
 	sh 'grails war'
       }
     }
