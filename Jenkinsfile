@@ -5,10 +5,9 @@ pipeline{
 
   stages{
     stage('Build'){
-      def workspace = pwd()
       steps{
         echo 'Building....'
-	sh 'cd ${workspace}/taskmgmt'
+	sh 'cd taskmgmt'
 	sh 'grails war'
       }
     }
