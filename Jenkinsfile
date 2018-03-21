@@ -14,7 +14,7 @@ pipeline{
     stage('Test'){
       steps{
         echo 'Testing....'
-	//grails 'test-app'
+	sh './gradle test'
       }
     }
     stage('Deploy'){
