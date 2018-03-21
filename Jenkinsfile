@@ -7,8 +7,7 @@ pipeline{
     stage('Build'){
       steps{
         echo 'Building....'
-	sh 'grails -version'
-	sh 'grails war'
+	sh './gradlew package'
       }
     }
     stage('Test'){
