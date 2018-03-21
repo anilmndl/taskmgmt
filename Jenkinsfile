@@ -21,10 +21,11 @@ pipeline{
     stage('Deploy'){
       steps{
         echo 'Deploying....'
+	sh 'sudo systemctl stop tomcat'
 	sh 'mv build/libs/taskmgmt-*.war build/libs/taskmgmt.war'
 	//sh 'chmod -R o+rwx build/libs/taskmgmt.war'
 	sh 'sudo cp build/libs/taskmgmt.war /opt/tomcat/webapps/'
-	sh 'sudo systemctl reload tomcat'
+	sh 'sudo systemctl start tomcat'
       }
     }
   }
