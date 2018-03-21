@@ -7,15 +7,15 @@ pipeline{
     stage('Build'){
       steps{
         echo 'Building....'
-	sh 'chmod +x gradlew'
-	sh './gradlew assemble'
+	//sh 'chmod +x gradlew'
+	sh 'sudo ./gradlew assemble'
       }
     }
     stage('Test'){
       steps{
         echo 'Testing....'
-	sh 'chmod +x gradlew'
-	sh './gradlew test'
+	//sh 'chmod +x gradlew'
+	sh 'sudo ./gradlew test'
       }
     }
     stage('Deploy'){
