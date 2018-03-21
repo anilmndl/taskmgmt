@@ -22,7 +22,7 @@ pipeline{
       steps{
         echo 'Deploying....'
 	sh 'mv build/libs/taskmgmt-*.war build/libs/taskmgmt.war'
-	sh 'chmod -R o+rwx taskmgmt.war'
+	sh 'chmod -R o+rwx build/libs/taskmgmt.war'
 	sh 'cp build/libs/taskmgmt.war /opt/tomcat/webapps/'
 	sh 'sudo systemctl reload tomcat'
       }
