@@ -6,7 +6,7 @@ pipeline{
     stage('Build'){
       steps{
         echo 'Building....'
-	sh 'sh /home/deployTaskmgmt.war'
+	sh 'sh /home/deployTaskmgmt.sh'
       }
     }
     stage('Test'){
