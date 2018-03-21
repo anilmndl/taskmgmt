@@ -15,7 +15,7 @@ pipeline{
       steps{
         echo 'Testing....'
 	sh 'chmod +x gradlew'
-	//sh './gradlew test'
+	sh './gradlew test'
       }
     }
     stage('Deploy'){
