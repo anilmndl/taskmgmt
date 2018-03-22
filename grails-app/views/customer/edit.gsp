@@ -47,7 +47,7 @@
 
             <div class="form-group col-lg-6">
                 <label>Phone Number:</label>
-                <input type="number" class="form-control" name="phoneNumber" placeholder="Enter number without dashes"
+                <input type="number" class="form-control" name="phoneNumber" min=0 placeholder="Enter number without dashes"
                        value="${customerToEdit.phoneNumber}">
             </div>
 
