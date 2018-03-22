@@ -35,7 +35,10 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
+
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
+
+
     }
 
     def update(Task task) {
@@ -105,5 +108,12 @@ class TaskController {
             flash.message = e.getMessage()
         }
         render view: "detail", model: [tasks: task]
+
+        taskService.unlocked(task)
+        redirect action: "list"
+    }
+
+    def myTask() {
+        render view: "list",model:[tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
 }

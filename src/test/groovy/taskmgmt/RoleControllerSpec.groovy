@@ -1,13 +1,19 @@
 package taskmgmt
 
+<<<<<<< HEAD
+=======
 import grails.test.mixin.Mock
+>>>>>>> develop
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
+<<<<<<< HEAD
+=======
 @Mock([Role])
+>>>>>>> develop
 @TestFor(RoleController)
 class RoleControllerSpec extends Specification {
 
@@ -17,6 +23,11 @@ class RoleControllerSpec extends Specification {
     def cleanup() {
     }
 
+<<<<<<< HEAD
+    void "test something"() {
+        expect:"fix me"
+            true == false
+=======
     void "role_controller_defaultAction"() {
         when:
         controller
@@ -60,5 +71,6 @@ class RoleControllerSpec extends Specification {
         then:
         response.status == 200
         view == '/role/create'
+>>>>>>> develop
     }
 }

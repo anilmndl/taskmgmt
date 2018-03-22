@@ -49,7 +49,8 @@
                 <button type="submit" class="btn btn-primary">Add Customer</button>
             </div>
         </div>
-        </g:form>
+         </g:form>
+
     </div>
 </div>
 </body>

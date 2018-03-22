@@ -37,7 +37,7 @@
                             <th>
                                 <g:link controller="customer" action="edit" id="${customer.id}"
                                         class="btn btn-success"><i class="fa fa-edit"
-                                                                aria-hidden="true"></i> Edit</g:link>
+                                                                   aria-hidden="true"></i> Edit</g:link>
                             </th>
                             <th class="bottom-right">
                             %{--sends delete request as POST form submission--}%
@@ -91,6 +91,5 @@
     </div>
 </div>
 </div>
-
 </body>
 </html>
