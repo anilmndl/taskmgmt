@@ -25,7 +25,7 @@ class CustomerController {
     }
 
     def list() {
-        render view: "list", model: [customerList: Customer.findAllByDateDeletedIsNull([order: "desc", sort: "dateCreated"])]
+        render view: "list", model: [customerList: Customer.findAllByDateDeletedIsNull(params, [order: "desc", sort: "dateCreated"]),listCount: Customer.count()]
     }
 
     def delete(Customer customer) {

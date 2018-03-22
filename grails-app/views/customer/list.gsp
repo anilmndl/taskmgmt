@@ -66,23 +66,9 @@
                     </g:if>
                 </table>
             </div>
-            <ul class="pagination pagination-sm">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
+                <div>
+                <g:paginate controller="customer" action="list" total="${listCount}"> </g:paginate>
+        </div>
         </div>
     </div>
 </div>

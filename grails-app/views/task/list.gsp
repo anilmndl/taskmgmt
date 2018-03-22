@@ -121,7 +121,7 @@
             </div>
 
             <div>
-                %{--<g:paginate controller="task" action="list" total="${listCount}"></g:paginate>--}%
+                <g:paginate controller="task" action="list" total="${listCount}"></g:paginate>
             </div>
         </div>
     </div>
