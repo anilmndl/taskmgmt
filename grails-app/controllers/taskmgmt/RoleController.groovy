@@ -1,5 +1,5 @@
 package taskmgmt
-
+import grails.gorm.DetachedCriteria
 class RoleController {
 
     RoleService roleService
@@ -8,7 +8,14 @@ class RoleController {
     static allowedMethods = [delete: 'POST']
 
     def list() {
-        render view: "list", model: [roleList: Role.findAllByDateDeletedIsNull([order: "desc", sort: "dateCreated"])]
+        DetachedCriteria query = new DetachedCriteria(Role)
+        if(params.title){
+            query= query.build {
+                ilike "title", "%${params.title}%"
+            }
+        }
+        //render view: "list", model: [roleList: Role.findAllByDateDeletedIsNull([order: "desc", sort: "dateCreated"])]
+        render view:"list",model: [roleList:query.list([sort:"dateCreated",order:"desc"])]
     }
 
     def save(Role role) {
@@ -55,8 +62,9 @@ class RoleController {
     def create() {
         render view: "create"
     }
-   // def setRolePriority(){
-   //     roleService.setRolePriority()
+    // def setRolePriority(){
+    //     roleService.setRolePriority()
     //    render view:"detail",model:[rolePriority: role]
-   // }
+    //
 }
+
