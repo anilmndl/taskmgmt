@@ -57,6 +57,7 @@ class TaskController {
     }
 
     def list() {
+        params.max=10
         render view: "list", model: [tasks: Task.list(params), listCount: Task.count()]
     }
 
