@@ -1,5 +1,5 @@
 package taskmgmt
-
+import grails.gorm.DetachedCriteria
 class TaskTypeController {
 
     TaskTypeService taskTypeService
@@ -11,7 +11,15 @@ class TaskTypeController {
 
     def list() {
         params.max=10
-        render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull(params, [sort: "dateCreated", order: "desc"]), listCount: TaskType.count()]
+        DetachedCriteria query = new DetachedCriteria(TaskType)
+        if(params.title){
+            query= query.build {
+                ilike "title", "%${params.title}%"
+            }
+        }
+
+
+        render view: "list", model: [typeList: query.list([sort: "dateCreated", order: "desc"]), listCount: TaskType.count()]
     }
 
     def create() {
