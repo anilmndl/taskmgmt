@@ -28,7 +28,7 @@
 
                     <p>Phone Number: ${customer.phoneNumber}</p>
 
-                    <p>Address: ${customer.address}</p>
+                    <p>Address: ${customer.mailingAddress1 +" "+ customer.mailingAddress2+" "+ customer.city+" "+ customer.state+" "+customer.zipCode+" "+ customer.country}</p>
 
                     <p>Date Created: <common:dateFormat dateValue="${customer.dateCreated}"/></p>
 
