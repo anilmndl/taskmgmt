@@ -6,15 +6,22 @@ hibernate:
         use_query_cache: false
         region.factory_class: 'org.hibernate.cache.ehcache.EhCacheRegionFactory'
 
-dataSource:
-    pooled: true
-    jmxExport: true
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    dialect: org.hibernate.dialect.SQLServerDialect
+
+#dataSources:
+#    inMemory:
+#        pooled: true
+#        jmxExport: true
+#        driverClassName: org.h2.Driver
+#        username: sa
+#        password:
 
 environments:
     development:
         dataSource:
+            pooled: true
+            jmxExport: true
+            driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+            dialect: org.hibernate.dialect.SQLServerDialect
             dbCreate: create-drop
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
@@ -22,6 +29,10 @@ environments:
             logSql: true
     test:
         dataSource:
+            pooled: true
+            jmxExport: true
+            driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+            dialect: org.hibernate.dialect.SQLServerDialect
             dbCreate: create-drop
             url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
             username: sa
@@ -29,8 +40,11 @@ environments:
             logSql: false
     production:
         dataSource:
+            pooled: true
+            jmxExport: true
+            driverClassName: org.h2.Driver
             dbCreate: create-drop
-            url: jdbc:sqlserver://localhost:1433;databaseName=taskmgmt
+            url: jdbc:h2:mem:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             username: sa
             password:
             logSql: false

@@ -1,24 +1,17 @@
 package taskmgmt
 
-<<<<<<< HEAD
 import grails.test.mixin.TestFor
-=======
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import grails.test.mixin.TestMixin
 import grails.test.mixin.web.GroovyPageUnitTestMixin
->>>>>>> develop
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(CustomerController)
-<<<<<<< HEAD
-=======
 @TestMixin(GroovyPageUnitTestMixin)
 @Mock([Customer])
->>>>>>> develop
 class CustomerControllerSpec extends Specification {
 
     def setup() {
@@ -27,11 +20,6 @@ class CustomerControllerSpec extends Specification {
     def cleanup() {
     }
 
-<<<<<<< HEAD
-    void "test something"() {
-        expect:"fix me"
-            true == false
-=======
     void "test_if_create_renders_to_create"() {
         when:
         controller.create()
@@ -84,6 +72,5 @@ class CustomerControllerSpec extends Specification {
 
         then:
         response.status == 301
->>>>>>> develop
     }
 }

@@ -57,7 +57,15 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.list(params), listCount: Task.count()]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def taskList = Task.createCriteria().list(params) {
+            if ( params.query ) {
+                ilike("title",  "%${params.query}%")
+            }
+        }
+
+        [tasks: taskList, listCount: taskList.totalCount]
     }
 
     def create() {
@@ -115,5 +123,17 @@ class TaskController {
 
     def myTask() {
         render view: "list",model:[tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
+    }
+
+    def search()
+    {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def criteria = Task.createCriteria().list (params) {
+            if ( params.query ) {
+                ilike("title", "%${params.title}%")
+            }
+        }
+        render view: "list", model: [tasks: criteria, listCount: Task.count()]
     }
 }
