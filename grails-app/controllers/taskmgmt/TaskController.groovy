@@ -6,63 +6,110 @@ class TaskController {
 
     TaskService taskService
 
+    //delete() method is only allows POST request
+    static allowedMethods = [delete: 'POST']
+
     //page will be redirected to list() method by default instead of "index"
     static defaultAction = "list"
 
     def delete(Task task) {
-        taskService.delete(task)
-        redirect action: "list"
+        try {
+            taskService.delete(task)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            redirect action: "detail"
+        }
     }
 
     def completed(Task task) {
-        taskService.complete(task)
-        redirect action: "listCompleted"
+        try {
+            taskService?.complete(task)
+            redirect action: "listCompleted"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "detail", model: [tasks: task]
+        }
     }
 
     def edit(Task task) {
 
         render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
 
+
     }
 
     def update(Task task) {
-        taskService.update(task)
-        redirect action: "list"
+        if ((task.title == null || task.detail == null) && task.taskType != null) {
+            task = taskService?.createTask(task)
+        }
+        try {
+            taskService?.update(task)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
+        }
+
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        render view: "list", model: [tasks: Task.list(params), listCount: Task.count()]
     }
 
     def create() {
         //taskService?.createTask()
-
         // Task task=Task.get(params.id)
 
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
-
+        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
     }
 
-    def detail(Task tasks) {
-        render view: "detail", model: [tasks: tasks]
+    def detail(Task task) {
+        render view: "detail", model: [tasks: task]
     }
 
     def listCompleted() {
-        render view: "completed", model: [tasks: Task.findAllByTaskStatus(TaskStatus.COMPLETED, [order: "desc", sort: "dateCompleted"])]
+        render view: "completed", model: [tasks: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull([order: "desc", sort: "dateCompleted"])]
     }
 
     def save(Task task) {
-        taskService.save(task)
-        redirect action: "list"
+        if ((task.title == null || task.detail == null) && task.taskType != null) {
+            task = taskService?.createTask(task)
+        }
+        try {
+            taskService?.save(task)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
+        }
+
     }
 
     def unlocked(Task task) {
-        taskService.unlocked(task)
-        redirect action: "list"
+        try {
+            taskService?.unlocked(task)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        render view: "detail", model: [tasks: task]
     }
 
     def locked(Task task) {
-        taskService.locked(task)
+        try {
+            taskService?.locked(task)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        render view: "detail", model: [tasks: task]
+
+        taskService.unlocked(task)
         redirect action: "list"
     }
 

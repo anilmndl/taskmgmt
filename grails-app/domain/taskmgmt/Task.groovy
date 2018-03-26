@@ -7,35 +7,27 @@ class Task {
 
     String title
     String detail
-
     TaskStatus taskStatus = TaskStatus.CREATED
     TaskPriority taskPriority = TaskPriority.HIGH
-
-
     TaskType taskType           // this creates a belongsTo relationship with TaskType
-
-    //String taskTypeName
-
+    Customer customer           // this creates a belongsTO relationship with Customer
     Users users
-
-    //String taskTypeName
     Date dateCreated
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed
     Date dateDeleted            // use this to indicate if the task was deleted
-
-    String flag                 // what is this for?? AM 02/26/2018
+    Date dueDate                //date when the task is expected to be completed
 
     static constraints = {
-        //taskTypeName nullable: true
+        users nullable: true
         taskStatus nullable: true
-        dateCreated nullable: true
         dateModified nullable: true
         dateCompleted nullable: true
         dateDeleted nullable: true
-        flag nullable: true
         taskType nullable: true
         taskPriority nullable: true
+        dueDate nullable: true
+        customer nullable: true
     }
 
     static mapping = {

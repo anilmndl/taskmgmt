@@ -7,19 +7,30 @@ class TaskTypeService {
 
     def save(TaskType taskType) {
         taskType.dateCreated = new Date()
-        //taskType.flag = "created"
         taskType.identifier = taskType.title
-        taskType.save failOnError: true, flush: true
+        if (taskType.validate()) {
+            taskType.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Save failed.")
+        }
     }
 
     def update(TaskType taskType) {
         taskType.dateModified = new Date()
-        taskType.save failOnError: true, flush: true
+        if (taskType.validate()) {
+            taskType.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Update failed.")
+        }
     }
 
     def delete(TaskType taskType) {
         taskType.dateDeleted = new Date()
-        //taskType.flag="deleted"
-        //taskType.save failOnError: true,flush: true
+        if (taskType.validate()) {
+            taskType.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Deletion failed.")
+        }
     }
+
 }

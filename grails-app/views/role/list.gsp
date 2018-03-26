@@ -10,7 +10,7 @@
 
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Roles</h1>
-
+    <h4>${flash.message}</h4>
     <form class="form-horizontal">
         <div class="col-sm-4">
             <div class="form-group form-group-sm">
@@ -48,7 +48,7 @@
                     <g:each in="${roleList}" var="show">
                         <tr>
                             <td>${show.title}</td>
-                            <td>${show.dateCreated}</td>
+                            <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
                             <td>
                                 <g:link controller="Role" action="detail" id="${show.id}"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
@@ -56,9 +56,6 @@
                                 <g:link controller="Role" action="edit" id="${show.id}"
                                         class="btn btn-success btn-xs"><i class="fa fa-edit"
                                                                           aria-hidden="true"></i> Edit</g:link>
-                                <g:link controller="Role" action="delete" id="${show.id}"
-                                        class="btn btn-danger btn-xs"><i class="fa fa-times"
-                                                                         aria-hidden="true"></i> Delete</g:link>
                             </td>
                         </tr>
                     </g:each>
