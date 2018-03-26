@@ -10,16 +10,15 @@ class TaskTypeController {
     static allowedMethods = [delete: 'POST']
 
     def list() {
-        params.max=10
-        DetachedCriteria query = new DetachedCriteria(TaskType)
-        if(params.title){
-            query= query.build {
-                ilike "title", "%${params.title}%"
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def taskTypeList = TaskType.createCriteria().list(params) {
+            if ( params.query ) {
+                ilike("title",  "%${params.query}%")
             }
         }
 
-
-        render view: "list", model: [typeList: query.list([sort: "dateCreated", order: "desc"]), listCount: TaskType.count()]
+        [typeList: taskTypeList, listCount: taskTypeList.totalCount]
     }
 
     def create() {

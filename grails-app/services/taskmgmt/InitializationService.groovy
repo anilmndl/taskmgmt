@@ -21,16 +21,22 @@ class InitializationService {
     }
 
     void initRole() {
-        new Role(dateCreated: new Date(), title: "manager", description: "Manages store").save()
+        for (int i; i < 100; i++) {
+            new Role(dateCreated: new Date(), title: "manager", description: "Manages store").save()
+        }
     }
 
     void initUser() {
-        new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findByTitle("manager"),
-                address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date()).save()
+        for (int i; i < 100; i++) {
+            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findByTitle("manager"),
+                    address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date()).save()
+        }
     }
 
     void initCustomer() {
-        new Customer(firstName: "Dumb", lastName: "customer", address: "1234 dumb street, dumbCity, dumbCountry",
-                email: "dumb_usermedumbness.dumb", phoneNumber: 123456789, dateCreated: new Date()).save()
+        for (int i; i < 100; i++) {
+            new Customer(firstName: "Dumb", lastName: "customer", address: "1234 dumb street, dumbCity, dumbCountry",
+                    email: "dumb_usermedumbness.dumb", phoneNumber: 123456789, dateCreated: new Date()).save()
+        }
     }
 }

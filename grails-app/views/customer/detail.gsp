@@ -18,20 +18,32 @@
         <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <div class="jumbotron">
                     <p>
 
                     <h3 class="text-center">${customer.firstName} ${customer.lastName}</h3></p>
 
                     <hr>
 
-                    <p>Email: ${customer.email}</p>
+                        <table class="table table-responsive">
 
-                    <p>Phone Number: ${customer.phoneNumber}</p>
+                    <tr>
+                        <td>Email:</td>
+                        <td><strong><em>${customer.email}</em></strong></td>
+                    </tr>
 
-                    <p>Address: ${customer.mailingAddress1 +" "+ customer.mailingAddress2+" "+ customer.city+" "+ customer.state+" "+customer.zipCode+" "+ customer.country}</p>
+                            <tr>
+                                <td>Phone Number:</td>
+                                <td><strong><em>${customer.phoneNumber}</em></strong></td>
+                            </tr>
 
-                    <p>Date Created: <common:dateFormat dateValue="${customer.dateCreated}"/></p>
+                            <tr><td>Address:</td>
+                                <td><strong><em>${customer.mailingAddress1 +" "+ customer.mailingAddress2+" "+ customer.city+" "+ customer.state+" "+customer.zipCode+" "+ customer.country}</em></strong></td>
+                            </tr>
 
+                            <h5>Date Created: <div class="label label-info"><common:dateFormatWithTime
+                                    dateValue="${customer.dateCreated}"/></div></h5>
+                        </table>
                     <table class="table table-responsive">
                         <tr>
                             <th>

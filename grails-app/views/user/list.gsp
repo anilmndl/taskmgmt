@@ -11,29 +11,22 @@
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Users</h1>
 
-    <form class="form-horizontal">
-        <div class="col-sm-4">
-            <div class="form-group form-group-sm">
-                <label class="col-sm-3 control-label">User Name:</label>
+    <h2 class="alert-danger">${flash.message}</h2>
 
-                <div class="col-sm-9">
-                    <g:textField name="firstName" value="${params.firstName}" class="form-control"/>
-                </div>
+    <fieldset class="form">
+        <g:form action="list" method="GET">
+            <div class="fieldcontain">
+                <label for="query">Search for User:</label>
+                <g:textField name="query" value="${params.query}"/>
+                <button id="submit-values" class="btn btn-small btn-success btn-xs" type="submit">
+                    <i class="icon-ok"></i>
+                    Search
+                </button>
+                <g:link controller="user" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
+                                                                                             aria-hidden="true"></i>New User</g:link>
             </div>
-        </div>
-
-        <div class="col-sm-12">
-            <div class="form-group">
-                <div class="pull-right">
-                    <g:link controller="user" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
-                                                                                             aria-hidden="true"></i> Clear</g:link>
-                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"
-                                                                            aria-hidden="true"></i> Search</button>
-                </div>
-            </div>
-        </div>
-    </form>
-
+        </g:form>
+    </fieldset>
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
@@ -67,9 +60,7 @@
                                     <g:link controller="user" action="detail" id="${user.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                               aria-hidden="true"></i> View Details</g:link>
-                                    <g:link controller="user" action="edit" id="${user.id}"
-                                            class="btn btn-success btn-xs"><i class="fa fa-edit"
-                                                                              aria-hidden="true"></i> Edit</g:link>
+
                                 </td>
                             </tr>
                         </g:each>
@@ -77,21 +68,9 @@
                 </table>
             </div>
             <ul class="pagination pagination-sm">
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
+                <div>
+                    <g:paginate controller="user" action="list" total="${listCount}"></g:paginate>
+                </div>
             </ul>
         </div>
     </div>

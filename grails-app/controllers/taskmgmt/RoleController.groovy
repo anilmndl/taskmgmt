@@ -8,14 +8,15 @@ class RoleController {
     static allowedMethods = [delete: 'POST']
 
     def list() {
-        DetachedCriteria query = new DetachedCriteria(Role)
-        if(params.title){
-            query= query.build {
-                ilike "title", "%${params.title}%"
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def roleList = Role.createCriteria().list(params) {
+            if ( params.query ) {
+                ilike("title",  "%${params.query}%")
             }
         }
-        //render view: "list", model: [roleList: Role.findAllByDateDeletedIsNull([order: "desc", sort: "dateCreated"])]
-        render view:"list",model: [roleList:query.list([sort:"dateCreated",order:"desc"])]
+
+        [roleList: roleList, listCount: roleList.totalCount]
     }
 
     def save(Role role) {

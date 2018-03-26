@@ -25,8 +25,15 @@ class CustomerController {
     }
 
     def list() {
-        params.max=10
-        render view: "list", model: [customerList: Customer.findAllByDateDeletedIsNull(params, [order: "desc", sort: "dateCreated"]),listCount: Customer.count()]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def customerList = Customer.createCriteria().list(params) {
+            if ( params.query ) {
+                ilike("firstName",  "%${params.query}%")
+            }
+        }
+
+        [customerList: customerList, listCount: customerList.totalCount]
     }
 
     def delete(Customer customer) {

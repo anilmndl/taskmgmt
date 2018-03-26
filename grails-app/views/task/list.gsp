@@ -103,9 +103,11 @@
                 </table>
             </div>
 
-            <div>
-                <g:paginate controller="task" action="list" total="${listCount}"/>
-            </div>
+            <ul class="pagination pagination-sm">
+                <div>
+                    <g:paginate controller="task" action="list" total="${listCount}"></g:paginate>
+                </div>
+            </ul>
         </div>
     </div>
 </div>
