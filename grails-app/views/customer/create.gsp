@@ -36,9 +36,9 @@
 
                 <div class="form-group col-lg-12">
                     <fieldset>
-                        <legend>Address:</legend>
+                        <legend>Address*:</legend>
 
-                        <button onclick="displayFunction()" class="btn-primary col-lg-12">Fill out the Address</button>
+                        <button onclick="displayFunction()" class="btn-primary col-lg-12">Fill out the Address*</button>
 
                         <div id="display">
                             <div class="form-group col-lg-6">
