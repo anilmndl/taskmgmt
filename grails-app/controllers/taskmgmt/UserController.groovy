@@ -4,8 +4,19 @@ class UserController {
     UserService userService
 
     static  defaultAction = "list"
+    //delete() method is only allows POST request
+    static  allowedMethods = [delete: 'POST']
+
     def list() {
-        render view: "list",model: [users: Users.findAllByDateDeletedIsNull([orders:"desc",sort:"dateCreated"])]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def userList = Users.createCriteria().list(params) {
+            if ( params.query ) {
+                ilike("firstName",  "%${params.query}%")
+            }
+        }
+
+        [users: userList, listCount: userList.totalCount]
     }
     def create(){
         render view: "create", model: [roles: Role.list()]
@@ -14,20 +25,37 @@ class UserController {
         render view: "edit", model: [editUser: user, roles: Role.list()]
     }
     def save(Users user) {
-        user.dateCreated = new Date()
-        userService.save(user)
-        redirect action: "list"
+        try {
+            userService?.save(user)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [editUser: user, roles: Role.list()]
+        }
     }
     def detail(Users users) {
         render view: "detail", model: [users: users]
     }
-    def delete(Users users){
-        userService.delete(users)
-        redirect action: "list"
+    def delete(Users user){
+        try {
+            userService?.delete(user)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            redirect action: "detail"
+        }
     }
     def update(Users user) {
-        userService.update(user)
-        redirect action: "list"
+        try {
+            userService?.update(user)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [editUser: user, roles: Role.list()]
+        }
     }
 
 }

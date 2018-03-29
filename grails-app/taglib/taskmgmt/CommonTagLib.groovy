@@ -1,10 +1,8 @@
 package taskmgmt
 
-import com.sun.jmx.snmp.tasks.TaskServer
+import java.text.SimpleDateFormat
 
-import javax.xml.ws.Service
-
-class CommonTagLib {
+class CommonTagLib{
 
 //    static defaultEncodeAs = [taglib:'html']
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
@@ -21,6 +19,26 @@ class CommonTagLib {
             output = "<span class=\"label label-default\"> " + attrs.name + "</span>"
         }else{
             output = "n/a"
+        }
+        out << output
+    }
+
+    def dateFormat = { attrs ->
+        def output = ""
+        if(attrs.dateValue != null){
+            output = new SimpleDateFormat("EEE, dd MMMMMMMMMM yyyy").format(attrs.dateValue)
+        }else{
+            output = "<span class=\"label label-warning\"><em>No Data</em></span>"
+        }
+        out << output
+    }
+
+    def dateFormatWithTime = { attrs ->
+        def output = ""
+        if(attrs.dateValue != null){
+            output = new SimpleDateFormat("hh:mm a, EEE, dd MMMMMMMMMM yyyy").format(attrs.dateValue)
+        }else{
+            output = "<span class=\"label label-warning\"><em>No Data</em></span>"
         }
         out << output
     }

@@ -35,7 +35,8 @@
             <label>Role</label>
 
             <div class="form-group">
-                <g:select class="form-control" from="${roles}" name="role" optionKey="id" optionValue="title"/>
+                <g:select class="btn btn-default dropdown-toggle" from="${roles}" name="role" optionKey="id"
+                          optionValue="title" noSelection="['': '--select--']" required="required"/>
             </div>
 
             <div class="form-row">
@@ -67,7 +68,8 @@
                 </div>
             </div>
             <label>Phone Number</label>
-            <input type="number" class="form-control" name="phoneNumber" placeholder="Phone Number"/>
+            <input type="number" class="form-control" name="phoneNumber" placeholder="Phone Number"
+                   required="required"/>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
     </g:form>

@@ -1,13 +1,24 @@
 package taskmgmt
-
+import grails.gorm.DetachedCriteria
 class TaskTypeController {
 
     TaskTypeService taskTypeService
 
     static defaultAction = "list"
 
+    //delete() method is only allows POST request
+    static allowedMethods = [delete: 'POST']
+
     def list() {
-        render view: "list", model: [typeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def taskTypeList = TaskType.createCriteria().list(params) {
+            if ( params.query ) {
+                ilike("title",  "%${params.query}%")
+            }
+        }
+
+        [typeList: taskTypeList, listCount: taskTypeList.totalCount]
     }
 
     def create() {
@@ -15,13 +26,25 @@ class TaskTypeController {
     }
 
     def save(TaskType taskType) {
-        taskTypeService.save(taskType)
-        redirect action: "list"
+        try {
+            taskTypeService?.save(taskType)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [taskType: taskType]
+        }
     }
 
     def delete(TaskType taskType) {
-        taskTypeService.delete(taskType)
-        redirect action: "list"
+        try {
+            taskTypeService.delete(taskType)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            redirect action: "detail"
+        }
     }
 
     def edit(TaskType taskType) {
@@ -29,7 +52,19 @@ class TaskTypeController {
     }
 
     def update(TaskType taskType) {
-        taskTypeService?.update(taskType)
-        redirect action: "list"
+        try {
+            taskTypeService?.update(taskType)
+            redirect action: "list"
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+            render view: "edit", model: [taskType: taskType]
+        }
+    }
+
+    def detail(TaskType taskType) {
+        render view: "detail", model: [detailTaskType: taskType]
     }
 }
+
+

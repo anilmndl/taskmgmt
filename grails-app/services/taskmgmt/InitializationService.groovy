@@ -7,7 +7,36 @@ import taskmgmt.enums.TaskStatus
 class InitializationService {
 
     void initTask() {
-        new Task(taskStatus: TaskStatus.CREATED, title: "Test title").save()
-        new Task(taskStatus: TaskStatus.LOCKED, title: "Another Task").save()
+        for (int i; i < 100; i++) {
+            new Task(taskStatus: TaskStatus.CREATED, title: "task", detail: "Please buy us 1 bottle of milk.",
+                    users: Users.findByFirstName("Sabin"), taskType: TaskType.findByTitle("Grocery"),
+                    dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+        }
+    }
+
+    void initTaskType() {
+        for (int i; i < 100; i++) {
+            new TaskType(title: "Grocery", description: "Buy stuffs").save()
+        }
+    }
+
+    void initRole() {
+        for (int i; i < 100; i++) {
+            new Role(dateCreated: new Date(), title: "manager", description: "Manages store").save()
+        }
+    }
+
+    void initUser() {
+        for (int i; i < 100; i++) {
+            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findByTitle("manager"),
+                    address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date()).save()
+        }
+    }
+
+    void initCustomer() {
+        for (int i; i < 100; i++) {
+            new Customer(firstName: "Dumb", lastName: "customer", address: "1234 dumb street, dumbCity, dumbCountry",
+                    email: "dumb_usermedumbness.dumb", phoneNumber: 123456789, dateCreated: new Date()).save()
+        }
     }
 }

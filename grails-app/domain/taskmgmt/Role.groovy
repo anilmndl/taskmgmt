@@ -16,4 +16,8 @@ class Role {
         dateModified nullable: true
         dateDeleted nullable: true
     }
+
+    static mapping = {
+        description type: "text"             // this allows to enter text more than 255 characters
+    }
 }

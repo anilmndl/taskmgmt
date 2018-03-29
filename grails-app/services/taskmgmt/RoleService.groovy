@@ -8,24 +8,26 @@ class RoleService {
     def save(Role role) {
         if (role.validate()) {
             role.save failOnError: true, flush: true
-            //flash.message = "Role successfully created"
         } else {
-            //flash.message = "Oops. Something went wrong. Cannot create.gsp role"
+            throw new Exception("Oops! Something went wrong. Save failed.")
         }
     }
 
     def delete(Role role) {
         role.dateDeleted = new Date()
-        //flash.message = "Role deleted"
+        if (role.validate()) {
+            role.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Deletion failed.")
+        }
     }
 
     def update(Role role) {
+        role.dateModified = new Date()
         if (role.validate()) {
-            role.dateModified = new Date()
             role.save failOnError: true, flush: true
-            //flash.message = "Role successfully update."
         } else {
-            //flash.message = "Oops. Something went wrong. Cannot update the role."
+            throw new Exception("Oops! Something went wrong. Update failed.")
         }
     }
 }
