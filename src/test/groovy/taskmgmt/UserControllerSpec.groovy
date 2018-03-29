@@ -8,20 +8,18 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-<<<<<<< HEAD:src/test/groovy/taskmgmt/EditTagLibSpec.groovy
+
 //@TestFor(EditTagLib)
 class EditTagLibSpec extends Specification {
-=======
-@TestFor(UserController)
+    @TestFor(UserController)
 //@Mock([Users])
-class UserControllerSpec extends Specification {
->>>>>>> cb6d8a045d9a2533b66aee2109d94a3ca04ee277:src/test/groovy/taskmgmt/UserControllerSpec.groovy
+    class UserControllerSpec extends Specification {
 
-    def setup() {
-    }
+        def setup() {
+        }
 
-    def cleanup() {
-    }
+        def cleanup() {
+        }
 //
 //    void "test_render"() {
 //        when:
@@ -33,4 +31,5 @@ class UserControllerSpec extends Specification {
 //        view == "/user/list"
 //        result.size() > 0
 //    }
+    }
 }

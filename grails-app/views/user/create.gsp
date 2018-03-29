@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <g:select class="btn btn-default dropdown-toggle" from="${roles}" name="role" optionKey="id"
-                          optionValue="title" noSelection="[null:'--select--']"/>
+                          optionValue="title" noSelection="['':'--select--']" required="required"/>
             </div>
             <label>Address*</label>
             <input type="text" class="form-control" name="address" placeholder="Address" required="required"/>
