@@ -9,7 +9,7 @@ class Customer {
     String city
     String state
     Integer zipCode
-    Integer phoneNumber
+    long phoneNumber
     String email
     Date dateCreated
     Date dateModified
