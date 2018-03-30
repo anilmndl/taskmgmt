@@ -124,9 +124,6 @@ class TaskController {
             flash.message = e.getMessage()
         }
         render view: "detail", model: [tasks: task]
-
-        taskService.unlocked(task)
-        redirect action: "list"
     }
 
     def myTask() {
