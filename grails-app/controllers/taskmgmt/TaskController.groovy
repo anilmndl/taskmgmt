@@ -1,5 +1,6 @@
 package taskmgmt
 
+import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -54,14 +55,40 @@ class TaskController {
     }
 
     def list() {
-        render view: "list", model: [tasks: Task.list(params), listCount: Task.count()]
+        def tasks = Task.createCriteria()
+        tasks = tasks.list {
+            isNull("dateDeleted")
+            and {
+                isNull("dateCompleted")
+            }
+            order("dateCreated","desc")
+        }
+        def dropdown = ["Title", "Task-type", "ID","Task Status", "Customer", "User"]
+        render view: "list", model: [tasks: tasks, listCount: Task.count(), dropdown: dropdown]
     }
 
     def create() {
         //taskService?.createTask()
         // Task task=Task.get(params.id)
+        def taskTypeList = TaskType.createCriteria()
+        taskTypeList = taskTypeList.list {
+            isNull("dateDeleted")
+            order("dateCreated","desc")
+        }
 
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
+        def userList = Users.createCriteria()
+        userList = userList.list {
+            isNull("dateDeleted")
+            order("dateCreated","desc")
+        }
+
+        def customerList = Customer.createCriteria()
+        customerList = customerList.list {
+            isNull("dateDeleted")
+            order("dateCreated","desc")
+        }
+
+        render view: "create", model: [taskTypeList: taskTypeList, userList: userList, customerList: customerList]
     }
 
     def detail(Task task) {
@@ -69,7 +96,17 @@ class TaskController {
     }
 
     def listCompleted() {
-        render view: "completed", model: [tasks: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull([order: "desc", sort: "dateCompleted"])]
+        def tasks = Task.createCriteria()
+        tasks = tasks.list{
+            isNull("dateDeleted")
+            and{
+                isNotNull("dateCompleted")
+            }
+            order("dateCompleted","desc")
+        }
+
+
+        render view: "completed", model: [tasks: tasks]
     }
 
     def save(Task task) {
