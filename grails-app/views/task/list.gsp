@@ -98,15 +98,11 @@
 
                         </tr>
                     </g:each>
-                %{--  </g:if>--}%
-
                 </table>
             </div>
 
             <ul class="pagination pagination-sm">
-                <div>
-                    <g:paginate controller="task" action="list" total="${listCount}"></g:paginate>
-                </div>
+                <li><g:paginate total="${listCount}" params="${params}"/></li>
             </ul>
         </div>
     </div>
