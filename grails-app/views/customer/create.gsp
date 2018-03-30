@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-group col-lg-6">
-                                <label>Zip Code</label> <input type="text" class="form-control" name="zipCode"
+                                <label>Zip Code</label> <input type="number" class="form-control" name="zipCode" min=0
                                                               required="required"/>
                             </div>
 
