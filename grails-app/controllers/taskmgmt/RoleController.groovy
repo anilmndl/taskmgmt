@@ -1,5 +1,4 @@
 package taskmgmt
-import grails.gorm.DetachedCriteria
 class RoleController {
 
     RoleService roleService
