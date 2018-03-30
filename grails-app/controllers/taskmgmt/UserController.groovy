@@ -11,8 +11,13 @@ class UserController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
         def userList = Users.createCriteria().list(params) {
-            if ( params.query ) {
-                ilike("firstName",  "%${params.query}%")
+            if (params.query) {
+                and {
+                    ilike("firstName", "%${params.query}%")
+                    isNull("dateDeleted")
+                }
+            } else {
+                isNull("dateDeleted")
             }
         }
 
