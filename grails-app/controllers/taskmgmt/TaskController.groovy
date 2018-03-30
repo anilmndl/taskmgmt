@@ -1,4 +1,6 @@
 package taskmgmt
+
+import org.apache.tools.ant.taskdefs.Parallel
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -13,7 +15,7 @@ class TaskController {
 
     def delete(Task task) {
         try {
-            taskService.delete(task)gbb
+            taskService.delete(task)
             redirect action: "list"
         }
         catch (Exception e) {
@@ -58,7 +60,18 @@ class TaskController {
         def taskList = Task.createCriteria().list(params) {
             if (params.query) {
                 and {
-                    ilike("title", "%${params.query}%")
+                    or{
+                        ilike("title", "%${params.query}%")
+                       // if(params.query.toInteger()){
+                       //     ilike("dateCreated".toString() , "%${"params.query"}%")
+                       // }else{
+                        //    ilike("dateCreated".toString() , "%${"params.query"}%")
+                        }
+                      // 
+                       // ilike("taskType","%${params.query}%")
+                       // ilike("taskStatus","%${params.query}%")
+                   // }
+
                     isNull("dateDeleted")
                 }
             } else {
