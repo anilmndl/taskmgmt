@@ -13,7 +13,7 @@ class TaskController {
 
     def delete(Task task) {
         try {
-            taskService.delete(task)
+            taskService.delete(task)gbb
             redirect action: "list"
         }
         catch (Exception e) {
