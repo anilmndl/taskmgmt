@@ -11,7 +11,12 @@ class RoleController {
 
         def roleList = Role.createCriteria().list(params) {
             if ( params.query ) {
-                ilike("title",  "%${params.query}%")
+                and {
+                    ilike("title", "%${params.query}%")
+                    isNull("dateDeleted")
+                }
+            }else{
+                isNull("dateDeleted")
             }
         }
 
