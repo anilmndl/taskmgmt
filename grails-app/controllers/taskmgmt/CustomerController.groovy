@@ -29,7 +29,12 @@ class CustomerController {
 
         def customerList = Customer.createCriteria().list(params) {
             if ( params.query ) {
-                ilike("firstName",  "%${params.query}%")
+                and{
+                    ilike("firstName",  "%${params.query}%")
+                    isNull("dateDeleted")
+                }
+            }else{
+                isNull("dateDeleted")
             }
         }
 
