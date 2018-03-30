@@ -1,5 +1,6 @@
 package taskmgmt
 
+import org.grails.datastore.mapping.model.types.Custom
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -35,10 +36,7 @@ class TaskController {
     }
 
     def edit(Task task) {
-
-        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
-
-
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
     }
 
     def update(Task task) {
@@ -60,18 +58,19 @@ class TaskController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
         def taskList = Task.createCriteria().list(params) {
-            if ( params.query ) {
-                ilike("title",  "%${params.query}%")
+            if (params.query) {
+                and {
+                    ilike("title", "%${params.query}%")
+                    isNull("dateDeleted")
+                }
+            } else {
+                isNull("dateDeleted")
             }
         }
-
-        [tasks: taskList, listCount: taskList.totalCount]
+        render view: "list", model: [tasks: taskList, listCount: Task.count()]
     }
 
     def create() {
-        //taskService?.createTask()
-        // Task task=Task.get(params.id)
-
         render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
     }
 
@@ -122,18 +121,6 @@ class TaskController {
     }
 
     def myTask() {
-        render view: "list",model:[tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
-    }
-
-    def search()
-    {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-
-        def criteria = Task.createCriteria().list (params) {
-            if ( params.query ) {
-                ilike("title", "%${params.title}%")
-            }
-        }
-        render view: "list", model: [tasks: criteria, listCount: Task.count()]
+        render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
 }
