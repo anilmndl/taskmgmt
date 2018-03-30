@@ -15,8 +15,22 @@ class CustomerController {
 
     def save(Customer customer) {
         try {
-            customerService.save(customer)
-            render view: "detail", model: [customer:customer]
+            List<Customer> customerList = Customer.list()
+            String messageToDisplay
+            for(int i = 0; i < customerList.size(); i++){
+                if(customerList[i].email == customer.email){
+                    messageToDisplay = "There is already a user with this email"
+                }
+            }
+
+            if(messageToDisplay != null){
+                flash.message = messageToDisplay
+                render view: "edit", model: [customerToEdit: customer]
+            }
+            else{
+                customerService.save(customer)
+                render view: "detail", model: [customer:customer]
+            }
         }
         catch (Exception e) {
             flash.message = e.getMessage()

@@ -1,6 +1,4 @@
 package taskmgmt
-
-import org.grails.datastore.mapping.model.types.Custom
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
