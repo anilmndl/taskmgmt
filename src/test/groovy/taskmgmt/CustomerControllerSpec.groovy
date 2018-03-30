@@ -1,5 +1,6 @@
 package taskmgmt
 
+import grails.test.mixin.TestFor
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import grails.test.mixin.TestMixin
@@ -9,7 +10,6 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(CustomerController)
 @TestMixin(GroovyPageUnitTestMixin)
 @Mock([Customer])
 class CustomerControllerSpec extends Specification {

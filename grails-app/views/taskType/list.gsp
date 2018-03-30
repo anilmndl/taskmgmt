@@ -11,28 +11,22 @@
 <div class="col-sm-10 col-md-offset-2 main">
     <h1 class="page-header">Task Type List</h1>
 
-    <form class="form-horizontal">
-        <div class="col-sm-4">
-            <div class="form-group form-group-sm">
-                <label for="title" class="col-sm-3 control-label">TaskType:</label>
+    <h2 class="alert-danger">${flash.message}</h2>
 
-                <div class="col-sm-9">
-                    <g:textField name="title" value="${params.title}" class="form-control"/>
-                </div>
+    <fieldset class="form">
+        <g:form action="list" method="GET">
+            <div class="fieldcontain">
+                <label for="query">Search for tasktype:</label>
+                <g:textField name="query" value="${params.query}"/>
+                <button id="submit-values" class="btn btn-small btn-success btn-xs" type="submit">
+                    <i class="icon-ok"></i>
+                    Search
+                </button>
+                <g:link controller="taskType" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
+                                                                                             aria-hidden="true"></i> New TaskType</g:link>
             </div>
-        </div>
-
-        <div class="col-sm-12">
-            <div class="form-group">
-                <div class="pull-right">
-                    <g:link controller="TaskType" action="list" class="btn btn-danger btn-sm"><i class="fa fa-times"
-                                                                                                 aria-hidden="true"></i> Clear</g:link>
-                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"
-                                                                            aria-hidden="true"></i> Search</button>
-                </div>
-            </div>
-        </div>
-    </form>
+        </g:form>
+    </fieldset>
 
 
     <div class="row">
@@ -57,9 +51,7 @@
                                 <td><g:link controller="taskType" action="detail" id="${show.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                            aria-hidden="true"></i> View Detail</g:link>
-                                    <g:link controller="taskType" action="edit" id="${show.id}"
-                                            class="btn btn-success btn-xs"><i class="fa fa-edit"
-                                                                              aria-hidden="true"></i> Edit</g:link>
+
                                 </td>
                             </tr>
                         %{--</g:if>--}%
@@ -71,9 +63,11 @@
 
             </div>
 
-            <div>
-                <g:paginate controller="taskType" action="list" total="${listCount}"></g:paginate>
-            </div>
+            <ul class="pagination pagination-sm">
+                <div>
+                    <g:paginate controller="taskType" action="list" total="${listCount}"></g:paginate>
+                </div>
+            </ul>
         </div>
     </div>
 </div>

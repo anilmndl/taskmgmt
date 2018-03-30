@@ -15,8 +15,22 @@ class CustomerController {
 
     def save(Customer customer) {
         try {
-            customerService.save(customer)
-            render view: "detail", model: [customer:customer]
+            List<Customer> customerList = Customer.list()
+            String messageToDisplay
+            for(int i = 0; i < customerList.size(); i++){
+                if(customerList[i].email == customer.email){
+                    messageToDisplay = "There is already a user with this email"
+                }
+            }
+
+            if(messageToDisplay != null){
+                flash.message = messageToDisplay
+                render view: "edit", model: [customerToEdit: customer]
+            }
+            else{
+                customerService.save(customer)
+                render view: "detail", model: [customer:customer]
+            }
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -25,7 +39,25 @@ class CustomerController {
     }
 
     def list() {
-        render view: "list", model: [customerList: Customer.findAllByDateDeletedIsNull([order: "desc", sort: "dateCreated"])]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def customerList = Customer.createCriteria().list(params) {
+            if (params.query) {
+                and {
+                    or {
+                        ilike("firstName", "%${params.query}%")
+                        ilike("lastName", "%${params.query}%")
+                        ilike("email", "%${params.query}%")
+                        //TODO: Add Number search
+                    }
+                    isNull("dateDeleted")
+                }
+            } else {
+                isNull("dateDeleted")
+            }
+        }
+
+        [customerList: customerList, listCount: customerList.totalCount]
     }
 
     def delete(Customer customer) {
@@ -46,7 +78,7 @@ class CustomerController {
     def update(Customer customer) {
         try {
             customerService.update(customer)
-            render view: "detail", model: [customer:customer]
+            render view: "detail", model: [customer: customer]
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -56,6 +88,11 @@ class CustomerController {
 
     def detail(Customer customer) {
         render view: "detail", model: [customer: customer]
+    }
+
+    def setTaskPriority(Customer customer) {
+        customerService.setTaskPriority(customer)
+        render view: "detail", model: [Priority: customer]
     }
 
 }

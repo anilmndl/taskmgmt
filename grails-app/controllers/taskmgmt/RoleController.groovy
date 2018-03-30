@@ -1,5 +1,4 @@
 package taskmgmt
-
 class RoleController {
 
     RoleService roleService
@@ -8,7 +7,20 @@ class RoleController {
     static allowedMethods = [delete: 'POST']
 
     def list() {
-        render view: "list", model: [roleList: Role.findAllByDateDeletedIsNull([order: "desc", sort: "dateCreated"])]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def roleList = Role.createCriteria().list(params) {
+            if ( params.query ) {
+                and {
+                    ilike("title", "%${params.query}%")
+                    isNull("dateDeleted")
+                }
+            }else{
+                isNull("dateDeleted")
+            }
+        }
+
+        [roleList: roleList, listCount: roleList.totalCount]
     }
 
     def save(Role role) {
@@ -55,4 +67,9 @@ class RoleController {
     def create() {
         render view: "create"
     }
+    // def setRolePriority(){
+    //     roleService.setRolePriority()
+    //    render view:"detail",model:[rolePriority: role]
+    //
 }
+

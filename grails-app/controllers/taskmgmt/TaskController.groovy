@@ -1,6 +1,9 @@
 package taskmgmt
+<<<<<<< HEAD
 
 import org.h2.engine.User
+=======
+>>>>>>> 7bc1443b2aac76693987bf82a3e3e4ca8763a020
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -55,6 +58,7 @@ class TaskController {
     }
 
     def list() {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
         def tasks = Task.createCriteria()
         tasks = tasks.list {
             isNull("dateDeleted")
@@ -63,32 +67,11 @@ class TaskController {
             }
             order("dateCreated","desc")
         }
-        def dropdown = ["Title", "Task-type", "ID","Task Status", "Customer", "User"]
         render view: "list", model: [tasks: tasks, listCount: Task.count(), dropdown: dropdown]
     }
 
     def create() {
-        //taskService?.createTask()
-        // Task task=Task.get(params.id)
-        def taskTypeList = TaskType.createCriteria()
-        taskTypeList = taskTypeList.list {
-            isNull("dateDeleted")
-            order("dateCreated","desc")
-        }
-
-        def userList = Users.createCriteria()
-        userList = userList.list {
-            isNull("dateDeleted")
-            order("dateCreated","desc")
-        }
-
-        def customerList = Customer.createCriteria()
-        customerList = customerList.list {
-            isNull("dateDeleted")
-            order("dateCreated","desc")
-        }
-
-        render view: "create", model: [taskTypeList: taskTypeList, userList: userList, customerList: customerList]
+        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
     }
 
     def detail(Task task) {
@@ -142,5 +125,12 @@ class TaskController {
             flash.message = e.getMessage()
         }
         render view: "detail", model: [tasks: task]
+
+        taskService.unlocked(task)
+        redirect action: "list"
+    }
+
+    def myTask() {
+        render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
 }

@@ -8,7 +8,20 @@ class UserController {
     static  allowedMethods = [delete: 'POST']
 
     def list() {
-        render view: "list",model: [users: Users.findAllByDateDeletedIsNull([orders:"desc",sort:"dateCreated"])]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def userList = Users.createCriteria().list(params) {
+            if (params.query) {
+                and {
+                    ilike("firstName", "%${params.query}%")
+                    isNull("dateDeleted")
+                }
+            } else {
+                isNull("dateDeleted")
+            }
+        }
+
+        [users: userList, listCount: userList.totalCount]
     }
     def create(){
         render view: "create", model: [roles: Role.list()]

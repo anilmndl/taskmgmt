@@ -34,21 +34,59 @@
             </div>
 
             <div class="form-group col-lg-12">
-                <label>Address:</label>
-                <input type="text" class="form-control" name="address" placeholder="Address"
-                       value="${customerToEdit.address}"/>
+                <fieldset>
+                    <legend>Address:</legend>
+
+                    <div class="form-group col-lg-6">
+                        <label>Mailing Address 1</label> <input type="text" class="form-control" name="mailingAddress1"
+                                                                required="required"
+                                                                value="${customerToEdit.mailingAddress1}"/>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label>Mailing Address 2</label> <input type="text" class="form-control" name="mailingAddress2"
+                                                                value="${customerToEdit.mailingAddress2}"/>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label>City</label> <input type="text" class="form-control" name="city" required="required"
+                                                   value="${customerToEdit.city}"/>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label>State</label> <input type="text" class="form-control" name="state" required="required"
+                                                    value="${customerToEdit.state}"/>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label>Zipcode</label> <input type="text" class="form-control" name="zipCode"
+                                                      required="required" value="${customerToEdit.zipCode}"/>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label>Country</label> <input type="text" class="form-control" name="country"
+                                                      required="required" value="${customerToEdit.country}"/>
+                    </div>
+                </fieldset>
             </div>
 
-            <div class="form-group col-lg-6">
-                <label>Email*:</label>
-                <input type="email" class="form-control" name="email" placeholder="abc@example.com"
-                       value="${customerToEdit.email}" required="required"/>
-            </div>
+            <div class="form-group col-lg-12">
+                <fieldset>
+                    <legend>Contact Information</legend>
 
-            <div class="form-group col-lg-6">
-                <label>Phone Number:</label>
-                <input type="number" class="form-control" name="phoneNumber" placeholder="Enter number without dashes"
-                       value="${customerToEdit.phoneNumber}">
+                    <div class="form-group col-lg-6">
+                        <label>Email*:</label>
+                        <input type="email" class="form-control" name="email" placeholder="abc@example.com"
+                               value="${customerToEdit.email}" required="required"/>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label>Phone Number:</label>
+                        <input type="number" class="form-control" name="phoneNumber" min=0
+                               placeholder="Enter number without dashes"
+                               value="${customerToEdit.phoneNumber}">
+                    </div>
+                </fieldset>
             </div>
 
             <div class="form-group col-lg-12">

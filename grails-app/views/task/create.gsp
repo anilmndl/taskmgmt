@@ -16,18 +16,18 @@
     <hr>
     <g:form controller="Task" action="save">
         <div class="form-group">
-            <label><h4>Title of Task</h4></label>
-            <input type="text" class="form-control" name="title" placeholder="Task Title">
+            <label><h4>Title of Task*</h4></label>
+            <input type="text" class="form-control" name="title" placeholder="Task Title" required="required">
         </div>
 
         <div class="form-group">
             <label><h4>Task type*</h4></label>
             <g:select class="btn btn-default dropdown-toggle" from="${taskTypeList}" name="taskType" optionKey="id"
-                      optionValue="title" noSelection="['': '--Select--']"/>
+                      optionValue="title" noSelection="['': '--Select--']" required="required"/>
         </div>
 
         <div class="form-group">
-            <label><h4>Username</h4></label>
+            <label><h4>User</h4></label>
             <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id"
                       optionValue="firstName" noSelection="['': '--Select--']"/>
         </div>
@@ -44,8 +44,8 @@
         </div>
 
         <div class="form-group">
-            <label><h4>Detail</h4></label>
-            <textarea class="form-control" placeholder="Detail Task" name="detail"></textarea>
+            <label><h4>Detail*</h4></label>
+            <textarea class="form-control" placeholder="Detail Task" name="detail" required="required"></textarea>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
     </g:form>

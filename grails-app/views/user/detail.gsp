@@ -16,26 +16,44 @@
     </g:if>
     <g:if test="${users}">
         <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
+                        <div class="jumbotron"
                         <g:hiddenField name="id" value="${users.id}"/>
                         <p>
 
                         <h3 class="text-center">${users.firstName}</h3></p>
                         <hr>
+                        <table class="table table-responsive">
                         <label>Details:</label>
+                        <tr>
+                            <td>First Name:</td>
+                            <td><strong><em>${users.firstName}</em></strong></td>
+                        </tr>
+                            <tr>
+                                <td>Middle Name:</td>
+                                <td><strong><em>${users.middleName}</em></strong></td>
+                            </tr>
 
-                        <p>First Name: ${users.firstName}</p>
 
-                        <p>Middle Name: ${users.middleName}</p>
+                        <tr>
+                            <td>
+                                Last Name:</td>
+                            <td><strong><em>${users.lastName}</em></strong></td>
+                        </tr>
 
-                        <p>Last Name: ${users.lastName}</p>
+                        <tr>
+                            <td>Address:</td>
+                            <td><strong><em>${users.address}</em></strong></td>
+                        </tr>
 
-                        <p>Address: ${users.address}</p>
-
-                        <p>Phone Number: ${users.phoneNumber}</p>
-                        <h4>Date Created: <common:dateFormatWithTime dateValue="${users.dateCreated}"/></h4>
+                        <tr>
+                            <td>Phone Number:</td>
+                            <td><strong><em>${users.phoneNumber}</em></strong></td>
+                        </tr>
+                            <h5>Date Created: <div class="label label-info"><common:dateFormatWithTime
+                                    dateValue="${users.dateCreated}"/></div></h5>
+                        </table>
                         <table class="table table-responsive">
                             <tr>
                                 <th><g:link controller="user" action="edit" id="${users.id}"
@@ -50,7 +68,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+        </div>
         </div>
     </g:if>
 

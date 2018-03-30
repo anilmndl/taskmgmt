@@ -1,5 +1,7 @@
 package taskmgmt
 
+import grails.gorm.DetachedCriteria
+
 class TaskTypeController {
 
     TaskTypeService taskTypeService
@@ -10,7 +12,20 @@ class TaskTypeController {
     static allowedMethods = [delete: 'POST']
 
     def list() {
-        render view: "list", model: [typeList: TaskType.list(params), listCount: TaskType.count()]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def taskTypeList = TaskType.createCriteria().list(params) {
+            if (params.query) {
+                and {
+                    ilike("title", "%${params.query}%")
+                    isNull("dateDeleted")
+                }
+            } else {
+                isNull("dateDeleted")
+            }
+
+        }
+        [typeList: taskTypeList, listCount: taskTypeList.totalCount]
     }
 
     def create() {
