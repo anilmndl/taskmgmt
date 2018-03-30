@@ -1,9 +1,6 @@
 package taskmgmt
-<<<<<<< HEAD
 
 import org.h2.engine.User
-=======
->>>>>>> 7bc1443b2aac76693987bf82a3e3e4ca8763a020
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -65,13 +62,15 @@ class TaskController {
             and {
                 isNull("dateCompleted")
             }
-            order("dateCreated","desc")
+            order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: tasks, listCount: Task.count(), dropdown: dropdown]
+        render view: "list", model: [tasks: tasks, listCount: Task.count()]
     }
 
     def create() {
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
+        render view: "create",
+                model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
+                        userList: Users.findAllByDateDeletedIsNull(), customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
@@ -80,12 +79,12 @@ class TaskController {
 
     def listCompleted() {
         def tasks = Task.createCriteria()
-        tasks = tasks.list{
+        tasks = tasks.list {
             isNull("dateDeleted")
-            and{
+            and {
                 isNotNull("dateCompleted")
             }
-            order("dateCompleted","desc")
+            order("dateCompleted", "desc")
         }
 
 

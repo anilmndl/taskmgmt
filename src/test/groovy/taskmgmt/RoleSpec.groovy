@@ -15,12 +15,9 @@ class RoleSpec extends Specification {
     def cleanup() {
     }
 
-<<<<<<< HEAD
     void "test something"() {
         expect:"fix me"
             true == false
     }
-=======
 
->>>>>>> develop
 }

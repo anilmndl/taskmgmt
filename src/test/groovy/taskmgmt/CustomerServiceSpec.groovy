@@ -1,9 +1,6 @@
 package taskmgmt
 
-<<<<<<< HEAD
-=======
 import grails.test.mixin.Mock
->>>>>>> develop
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
@@ -11,10 +8,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(CustomerService)
-<<<<<<< HEAD
-=======
 @Mock([Customer])
->>>>>>> develop
 class CustomerServiceSpec extends Specification {
 
     def setup() {
@@ -23,11 +17,7 @@ class CustomerServiceSpec extends Specification {
     def cleanup() {
     }
 
-<<<<<<< HEAD
-    void "test something"() {
-        expect:"fix me"
-            true == false
-=======
+
     void "test_save"() {
         when:
         Customer customer =  new Customer(firstName: "Sabin", lastName:"Shrestha", email: "43sanrizz@gmail.com", phoneNumber: 2087056491)
@@ -47,6 +37,6 @@ class CustomerServiceSpec extends Specification {
         then:
         Customer.list() != null
         Customer.get(1).dateDeleted != null
->>>>>>> develop
+
     }
 }

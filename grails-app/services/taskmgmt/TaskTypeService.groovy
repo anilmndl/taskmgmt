@@ -32,5 +32,4 @@ class TaskTypeService {
             throw new Exception("Oops! Something went wrong. Deletion failed.")
         }
     }
-
 }
