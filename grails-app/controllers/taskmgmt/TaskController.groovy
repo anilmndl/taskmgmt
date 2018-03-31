@@ -60,18 +60,15 @@ class TaskController {
         def taskList = Task.createCriteria().list(params) {
             if (params.query) {
                 and {
-                    or{
+                    or {
                         ilike("title", "%${params.query}%")
-                       // if(params.query.toInteger()){
-                       //     ilike("dateCreated".toString() , "%${"params.query"}%")
-                       // }else{
+                        // gtProperty("dateCreated", "%03-02-2018%")
+                        //    le("dateCreated", "%${params.query}%")
+                        // if(params.query.toInteger()){
+                        //     ilike("dateCreated".toString() , "%${"params.query"}%")
+                        // }else{
                         //    ilike("dateCreated".toString() , "%${"params.query"}%")
-                        }
-                      // 
-                       // ilike("taskType","%${params.query}%")
-                       // ilike("taskStatus","%${params.query}%")
-                   // }
-
+                    }
                     isNull("dateDeleted")
                 }
             } else {
