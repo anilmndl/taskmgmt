@@ -18,12 +18,19 @@
             <div class="fieldcontain">
                 <label for="query">Search for tasks by title:</label>
                 <g:textField name="query" value="${params.query}"/>
+                <label>Task type*</label>
+                <g:select class="btn btn-small  btn-xs" from="${taskTypeList}" name="taskType" optionKey="title"
+                          optionValue="title" noSelection="['': '--Select--']"/>
+                From
+                <g:datePicker name="myDate" value="${new Date()}"
+                              precision="day" years="${1930..1970}"/>To
+                <g:datePicker id="test" name="test" precision="day"></g:datePicker >
                 <button id="submit-values" class="btn btn-small btn-success btn-xs" type="submit">
                     <i class="icon-ok"></i>
                     Search
                 </button>
                 <g:link controller="task" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                                 aria-hidden="true"></i> New Task</g:link>
+                                                                                             aria-hidden="true"></i> New Task</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -95,22 +102,19 @@
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
-
                         </tr>
                     </g:each>
                 </table>
             </div>
+            <ul class="pagination pagination-lg">
+                <li>
+                    <g:paginate next="Forward" prev="Back" maxsteps="0" controller="task" action="list"
+                                total="${listCount}"/>
 
+                </li>
 
-
-                    <ul class="pagination pagination-lg">
-                      <li>
-                          <g:paginate next="Forward" prev="Back" maxsteps="0" controller="task" action="list" total="${listCount}"/>
-
-                      </li>
-
-                    </ul>
-                    %{--<g:paginate controller="task" action="list" total="${listCount}"></g:paginate>--}%
+            </ul>
+            %{--<g:paginate controller="task" action="list" total="${listCount}"></g:paginate>--}%
         </div>
     </div>
 </div>

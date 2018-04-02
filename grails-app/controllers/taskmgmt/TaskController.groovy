@@ -3,6 +3,10 @@ package taskmgmt
 import org.apache.tools.ant.taskdefs.Parallel
 import taskmgmt.enums.TaskStatus
 
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
+
 class TaskController {
 
     TaskService taskService
@@ -58,24 +62,29 @@ class TaskController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
         def taskList = Task.createCriteria().list(params) {
+            if (params.taskType) {
+                eq("taskType","%${params.taskType}")
+               // ilike("taskType","%${params.taskType}")
+              //  eq("${params.taskType}")
+                       // .findAll { if (exportFrom) { it.tsCreated.millis >= exportFrom.millis } else { it } }
+               // eq("taskType".contains(params.taskType),params.taskType)
+                //  render view: "list", model: [ listCount: Task.count ( ), taskTypeList: TaskType.
+                //        findAllByDateDeletedIsNullAndTitle(params.taskType)]
+               // render view: "list", model: [listCount: Task.count(), tasks: taskList, taskTypeList: TaskType.
+                 //       findAllByDateDeletedIsNullAndTasksInList(params.taskType)]
+            }
             if (params.query) {
                 and {
                     or {
+
                         ilike("title", "%${params.query}%")
-                        // gtProperty("dateCreated", "%03-02-2018%")
-                        //    le("dateCreated", "%${params.query}%")
-                        // if(params.query.toInteger()){
-                        //     ilike("dateCreated".toString() , "%${"params.query"}%")
-                        // }else{
-                        //    ilike("dateCreated".toString() , "%${"params.query"}%")
                     }
                     isNull("dateDeleted")
                 }
-            } else {
-                isNull("dateDeleted")
             }
         }
-        render view: "list", model: [tasks: taskList, listCount: Task.count()]
+        render view: "list", model: [tasks: taskList, listCount: Task.count(),tasks: taskList, taskTypeList: TaskType.
+              findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
@@ -131,4 +140,5 @@ class TaskController {
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
+
 }
