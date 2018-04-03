@@ -14,7 +14,7 @@
     <h2 class="alert-danger">${flash.message}</h2>
 
     <fieldset class="form">
-        <g:form action="IsCompleted" method="GET">
+        <g:form action="listCompleted" method="GET">
             <div class="fieldcontain">
                 <label for="query">Search for tasks by title:</label>
                 <g:textField name="query" value="${params.query}"/>
@@ -22,8 +22,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="task" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i> New Task</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -54,7 +52,6 @@
                     </tr>
                     <g:if test="${tasks}">
                         <g:each in="${tasks}" var="show">
-                        %{--<g:if test="${show.flag == "completed"}">--}%
                             <tr>
                                 <td>${show.id}</td>
                                 <td>${show.title}</td>
@@ -73,8 +70,7 @@
 
             <ul class="pagination pagination-sm">
                 <li>
-                    <g:paginate next="Forward" prev="Back" maxsteps="0" controller="task" action="list"
-                                total="${listCount}"/>
+                    <g:paginate next="Forward" prev="Back" controller="task" action="listCompleted" total="${listCount}"/>
                 </li>
             </ul>
         </div>

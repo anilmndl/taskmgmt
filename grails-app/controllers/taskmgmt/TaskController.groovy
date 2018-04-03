@@ -53,21 +53,57 @@ class TaskController {
 
     }
 
+
+    // The date picker needs all fields to be filled to search after a date
+    // need to make it better. For ex if a user selects one portion like a day of date, other field should be required
+    // trying to figure out how to search through task.taskType
+    // SanRIZZ .................
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
         def tasks = Task.createCriteria().list(params) {
-            if (params.query) {
-                and {
-                    ilike("title", "%${params.query}%")
-                    isNull("dateDeleted")
-                }
-            } else {
+            and {
                 isNull("dateDeleted")
+                isNull("dateCompleted")
+                if (params.query && params.date && params.taskType) {
+                    and{
+                        ilike("title", "%${params.query}%")
+                        eqProperty("taskType", "%${params.taskType}%")
+                    }
+                }
+                else if(params.query && params.date) {
+                    and{
+                        ilike("title", "%${params.query}%")
+                        gt("dateCreated", params.date)
+                    }
+                }
+                else if(params.query && params.taskType) {
+                    and{
+                        ilike("title", "%${params.query}%")
+                        eqProperty("taskType", "%${params.taskType}%")
+                    }
+                }
+                else if(params.taskType && params.date){
+                    gt("dateCreated", params.date)
+                    eqProperty("taskType", "%${params.taskType}%")
+                }
+                else if(params.date) {
+                    gt("dateCreated", params.date)
+                }
+                else if(params.query) {
+                    ilike("title", "%${params.query}%")
+                }
+                else if(params.taskType){
+                    eqProperty("taskType", "%${params.taskType}%")
+                }
+                else{
+                    true
+                }
             }
             order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: tasks, listCount: Task.count()]
+        render view: "list", model: [tasks: tasks, listCount: Task.findAllByDateCompletedIsNullAndDateDeletedIsNull().size(),taskTypeList: TaskType.
+                findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
@@ -81,6 +117,8 @@ class TaskController {
     }
 
     def listCompleted() {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
         def taskList = Task.createCriteria().list(params) {
             if (params.query) {
                  and {
@@ -93,11 +131,8 @@ class TaskController {
                 isNull("dateDeleted")
                 isNotNull("dateCompleted")
             }
-            order("dateCompleted", "desc")
         }
-
-
-        render view: "completed", model: [tasks: taskList]
+        render view: "completed", model: [tasks: taskList, listCount: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull().size()]
     }
 
     def save(Task task) {

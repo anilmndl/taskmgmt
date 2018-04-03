@@ -26,7 +26,7 @@ class CommonTagLib{
     def dateFormat = { attrs ->
         def output = ""
         if(attrs.dateValue != null){
-            output = new SimpleDateFormat("EEE, dd MMMMMMMMMM yyyy").format(attrs.dateValue)
+            output = new SimpleDateFormat("EEE, dd mm yyyy").format(attrs.dateValue)
         }else{
             output = "<span class=\"label label-warning\"><em>No Data</em></span>"
         }

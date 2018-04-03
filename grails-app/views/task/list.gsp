@@ -18,6 +18,12 @@
             <div class="fieldcontain">
                 <label for="query">Search for tasks by title:</label>
                 <g:textField name="query" value="${params.query}"/>
+                <label>Task type*</label>
+                <g:select class="btn btn-small  btn-xs" from="${taskTypeList}" name="taskType" optionKey="title"
+                          optionValue="title" noSelection="['': '--Select--']"/>
+                <label class="control-label" for="query">Date after:</label>
+                <g:datePicker name="date" default="none" precision="day" noSelection="[null: '--select--']"/>
+
                 <button id="submit-values" class="btn btn-small btn-success btn-xs" type="submit">
                     <i class="icon-ok"></i>
                     Search
