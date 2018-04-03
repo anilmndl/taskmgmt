@@ -41,17 +41,22 @@ class CustomerController {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
         def customerList = Customer.createCriteria().list(params) {
-            if ( params.query ) {
-                and{
-                    ilike("firstName",  "%${params.query}%")
+            if (params.query) {
+                and {
+                    or {
+                        ilike("firstName", "%${params.query}%")
+                        ilike("lastName", "%${params.query}%")
+                        ilike("email", "%${params.query}%")
+                        //TODO: Add Number search
+                    }
                     isNull("dateDeleted")
                 }
-            }else{
+            } else {
                 isNull("dateDeleted")
             }
         }
 
-        [customerList: customerList, listCount: customerList.totalCount]
+        [customerList: customerList, listCount: Customer.count()]
     }
 
     def delete(Customer customer) {
@@ -72,7 +77,7 @@ class CustomerController {
     def update(Customer customer) {
         try {
             customerService.update(customer)
-            render view: "detail", model: [customer:customer]
+            render view: "detail", model: [customer: customer]
         }
         catch (Exception e) {
             flash.message = e.getMessage()

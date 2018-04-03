@@ -21,10 +21,8 @@
                 <label>Task type*</label>
                 <g:select class="btn btn-small  btn-xs" from="${taskTypeList}" name="taskType" optionKey="title"
                           optionValue="title" noSelection="['': '--Select--']"/>
-                From
-                <g:datePicker name="myDate" value="${new Date()}"
-                              precision="day" years="${1930..1970}"/>To
-                <g:datePicker id="test" name="test" precision="day"></g:datePicker >
+                <label class="control-label" for="query">Date after:</label>
+                <g:datePicker name="date" default="none" precision="day" noSelection="[null: '--select--']"/>
                 <button id="submit-values" class="btn btn-small btn-success btn-xs" type="submit">
                     <i class="icon-ok"></i>
                     Search
@@ -110,11 +108,14 @@
                 <li>
                     <g:paginate next="Forward" prev="Back" maxsteps="0" controller="task" action="list"
                                 total="${listCount}"/>
-
                 </li>
 
             </ul>
-            %{--<g:paginate controller="task" action="list" total="${listCount}"></g:paginate>--}%
+            <ul class="pagination pagination-sm">
+                <li>
+                    <g:paginate next="Forward" prev="Back" controller="task" action="list" total="${listCount}"/>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
