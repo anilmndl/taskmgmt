@@ -1,4 +1,5 @@
 package taskmgmt
+
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -55,25 +56,24 @@ class TaskController {
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
-        def taskList = Task.createCriteria().list(params) {
+        def tasks = Task.createCriteria().list(params) {
             if (params.query) {
                 and {
                     ilike("title", "%${params.query}%")
                     isNull("dateDeleted")
-                    isNull("dateCompleted")
                 }
             } else {
-                and{
-                    isNull("dateDeleted")
-                    isNull("dateCompleted")
-                }
+                isNull("dateDeleted")
             }
+            order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: taskList, listCount: Task.count()]
+        render view: "list", model: [tasks: tasks, listCount: Task.count()]
     }
 
     def create() {
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
+        render view: "create",
+                model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
+                        userList: Users.findAllByDateDeletedIsNull(), customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
@@ -81,23 +81,23 @@ class TaskController {
     }
 
     def listCompleted() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-
         def taskList = Task.createCriteria().list(params) {
             if (params.query) {
-                and{
-                    ilike("title", "%${params.query}")
-                    isNotNull("dateCompleted")
-                    isNull("dateDeleted")
-                }
-            } else {
-                and{
-                    isNotNull("dateCompleted")
-                    isNull("dateDeleted")
-                }
+                 and {
+                     isNull("dateDeleted")
+                     isNotNull("dateCompleted")
+                     ilike("title", "%${params.query}%")
+                 }
             }
+            else{
+                isNull("dateDeleted")
+                isNotNull("dateCompleted")
+            }
+            order("dateCompleted", "desc")
         }
-        render view: "completed", model: [tasks: taskList, listCount: Task.findAllByDateCompletedIsNotNull()]
+
+
+        render view: "completed", model: [tasks: taskList]
     }
 
     def save(Task task) {
@@ -133,15 +133,9 @@ class TaskController {
             flash.message = e.getMessage()
         }
         render view: "detail", model: [tasks: task]
-
-        taskService.unlocked(task)
-        redirect action: "list"
     }
 
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
 }
-
-
- 
