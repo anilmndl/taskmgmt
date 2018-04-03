@@ -60,9 +60,13 @@ class TaskController {
                 and {
                     ilike("title", "%${params.query}%")
                     isNull("dateDeleted")
+                    isNull("dateCompleted")
                 }
             } else {
-                isNull("dateDeleted")
+                and{
+                    isNull("dateDeleted")
+                    isNull("dateCompleted")
+                }
             }
         }
         render view: "list", model: [tasks: taskList, listCount: Task.count()]
@@ -77,7 +81,23 @@ class TaskController {
     }
 
     def listCompleted() {
-        render view: "completed", model: [tasks: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull([order: "desc", sort: "dateCompleted"])]
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def taskList = Task.createCriteria().list(params) {
+            if (params.query) {
+                and{
+                    ilike("title", "%${params.query}")
+                    isNotNull("dateCompleted")
+                    isNull("dateDeleted")
+                }
+            } else {
+                and{
+                    isNotNull("dateCompleted")
+                    isNull("dateDeleted")
+                }
+            }
+        }
+        render view: "completed", model: [tasks: taskList, listCount: Task.findAllByDateCompletedIsNotNull()]
     }
 
     def save(Task task) {
@@ -122,3 +142,6 @@ class TaskController {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
 }
+
+
+ 
