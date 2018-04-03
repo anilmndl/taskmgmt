@@ -52,7 +52,6 @@ class TaskService {
     Task createTask(Task task) {
         task.title = task.title ? task.title : task.taskType.title
         task.detail = task.detail ? task.detail : task.taskType.description
-
         return task
     }
 
@@ -73,8 +72,5 @@ class TaskService {
         } else {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
-
-        task.taskStatus = TaskStatus.UNLOCKED
-        task.save failOnError: true, flush: true
     }
 }

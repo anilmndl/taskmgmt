@@ -1,4 +1,6 @@
 package taskmgmt
+
+import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -54,22 +56,21 @@ class TaskController {
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-
-        def taskList = Task.createCriteria().list(params) {
-            if (params.query) {
-                and {
-                    ilike("title", "%${params.query}%")
-                    isNull("dateDeleted")
-                }
-            } else {
-                isNull("dateDeleted")
+        def tasks = Task.createCriteria()
+        tasks = tasks.list {
+            isNull("dateDeleted")
+            and {
+                isNull("dateCompleted")
             }
+            order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: taskList, listCount: Task.count()]
+        render view: "list", model: [tasks: Task.list(params), listCount: Task.count()]
     }
 
     def create() {
-        render view: "create", model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
+        render view: "create",
+                model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
+                        userList: Users.findAllByDateDeletedIsNull(), customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
@@ -77,7 +78,17 @@ class TaskController {
     }
 
     def listCompleted() {
-        render view: "completed", model: [tasks: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull([order: "desc", sort: "dateCompleted"])]
+        def tasks = Task.createCriteria()
+        tasks = tasks.list {
+            isNull("dateDeleted")
+            and {
+                isNotNull("dateCompleted")
+            }
+            order("dateCompleted", "desc")
+        }
+
+
+        render view: "completed", model: [tasks: tasks]
     }
 
     def save(Task task) {
@@ -113,9 +124,6 @@ class TaskController {
             flash.message = e.getMessage()
         }
         render view: "detail", model: [tasks: task]
-
-        taskService.unlocked(task)
-        redirect action: "list"
     }
 
     def myTask() {

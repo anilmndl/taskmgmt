@@ -8,6 +8,7 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asset:stylesheet src="application.css"/>
+    <asset:javascript src="jquery-2.2.0.min.js"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all">
     <g:layoutHead/>
 </head>
