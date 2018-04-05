@@ -26,6 +26,7 @@ class TaskController {
     def completed(Task task) {
         try {
             taskService?.complete(task)
+            taskService?.assignRandomTaskToRandomUser()
             redirect action: "listCompleted"
         }
         catch (Exception e) {
