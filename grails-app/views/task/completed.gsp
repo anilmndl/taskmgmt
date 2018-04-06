@@ -55,7 +55,7 @@
                             <tr>
                                 <td>${show.id}</td>
                                 <td>${show.title}</td>
-                                <td><common:dateFormatWithTime dateValue="${show.dateCompleted}"/></td>
+                                <td><div class="label label-primary"><common:dateFormatWithTime dateValue="${show.dateCompleted}"/></div></td>
                                 <td>
                                     <g:link controller="Task" action="detail" id="${show.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"

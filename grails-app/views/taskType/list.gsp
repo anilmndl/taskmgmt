@@ -64,9 +64,9 @@
             </div>
 
             <ul class="pagination pagination-sm">
-                <div>
-                    <g:paginate controller="taskType" action="list" total="${listCount}"></g:paginate>
-                </div>
+                <li>
+                    <g:paginate next="Forward" prev="Back" controller="taskType" action="list" total="${listCount}"/>
+                </li>
             </ul>
         </div>
     </div>

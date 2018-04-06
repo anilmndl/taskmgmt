@@ -43,6 +43,7 @@
                         <th>Address</th>
                         <th>Phone Number</th>
                         <th>Date Created</th>
+                        <th> Vaccation Mode</th>
                         <th>Action</th>
                     </tr>
                     <g:if test="${users}">
@@ -56,6 +57,7 @@
                                 <td>${user.address}</td>
                                 <td>${user.phoneNumber}</td>
                                 <td><common:dateFormatWithTime dateValue="${user.dateCreated}"/></td>
+                                <td><common:vacationMode IsOnVacation="${user.vacationMode}"/> </td>
                                 <td>
                                     <g:link controller="user" action="detail" id="${user.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
@@ -68,9 +70,9 @@
                 </table>
             </div>
             <ul class="pagination pagination-sm">
-                <div>
-                    <g:paginate controller="user" action="list" total="${listCount}"></g:paginate>
-                </div>
+                <li>
+                    <g:paginate next="Forward" prev="Back" controller="user" action="list" total="${listCount}"/>
+                </li>
             </ul>
         </div>
     </div>

@@ -1,6 +1,11 @@
 package taskmgmt
 
+import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
+
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 class TaskController {
 
@@ -54,67 +59,82 @@ class TaskController {
 
     }
 
-
     // The date picker needs all fields to be filled to search after a date
     // need to make it better. For ex if a user selects one portion like a day of date, other field should be required
     // trying to figure out how to search through task.taskType
     // SanRIZZ .................
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-
         def tasks = Task.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
                 isNull("dateCompleted")
                 if (params.query && params.date && params.taskType) {
-                    and{
+                    and {
                         ilike("title", "%${params.query}%")
                         eqProperty("taskType", "%${params.taskType}%")
                     }
-                }
-                else if(params.query && params.date) {
-                    and{
+                } else if (params.query && params.date) {
+                    and {
                         ilike("title", "%${params.query}%")
                         gt("dateCreated", params.date)
                     }
-                }
-                else if(params.query && params.taskType) {
-                    and{
+                } else if (params.query && params.taskType) {
+                    and {
                         ilike("title", "%${params.query}%")
                         eqProperty("taskType", "%${params.taskType}%")
                     }
-                }
-                else if(params.taskType && params.date){
+                } else if (params.taskType && params.date) {
                     gt("dateCreated", params.date)
                     eqProperty("taskType", "%${params.taskType}%")
-                }
-                else if(params.date) {
+                } else if (params.date) {
                     gt("dateCreated", params.date)
-                }
-                else if(params.query) {
+                } else if (params.query) {
                     ilike("title", "%${params.query}%")
-                }
-                else if(params.taskType){
+                } else if (params.taskType) {
                     eqProperty("taskType", "%${params.taskType}%")
-                }
-                else{
+                } else {
                     true
                 }
             }
             order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: tasks, listCount: Task.findAllByDateCompletedIsNullAndDateDeletedIsNull().size(),taskTypeList: TaskType.
+        render view: "list", model: [tasks: tasks, listCount: Task.findAllByDateCompletedIsNullAndDateDeletedIsNull().size(), taskTypeList: TaskType.
                 findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
+        def userList = Users.createCriteria().list(params) {
+            and {
+                isNull("dateDeleted")
+                eq("vacationMode", false)
+            }
+            order("dateCreated", "desc")
+        }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList: Users.findAllByDateDeletedIsNull(), customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList    : userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
-        render view: "detail", model: [tasks: task]
+        def commentList = Comment.createCriteria().list(params) {
+            and {
+                //eq("task_id","${task.id}")
+                isNull("dateDeleted")
+            }
+            order("dateCreated", "desc")
+        }
+
+        def userList = Users.createCriteria().list(params) {
+            and {
+                isNull("dateDeleted")
+                eq("vacationMode", false)
+            }
+            order("dateCreated", "desc")
+        }
+
+        render view: "detail", model: [tasks: task, commentList: commentList,userList: userList]
+
     }
 
     def listCompleted() {
@@ -122,13 +142,12 @@ class TaskController {
 
         def taskList = Task.createCriteria().list(params) {
             if (params.query) {
-                 and {
-                     isNull("dateDeleted")
-                     isNotNull("dateCompleted")
-                     ilike("title", "%${params.query}%")
-                 }
-            }
-            else{
+                and {
+                    isNull("dateDeleted")
+                    isNotNull("dateCompleted")
+                    ilike("title", "%${params.query}%")
+                }
+            } else {
                 isNull("dateDeleted")
                 isNotNull("dateCompleted")
             }
@@ -151,9 +170,9 @@ class TaskController {
 
     }
 
-    def unlocked(Task task) {
+    def unassigned(Task task) {
         try {
-            taskService?.unlocked(task)
+            taskService?.unassigned(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -161,9 +180,19 @@ class TaskController {
         render view: "detail", model: [tasks: task]
     }
 
-    def locked(Task task) {
+    def assigned(Task task) {
         try {
-            taskService?.locked(task)
+            taskService?.assigned(task)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        render view: "detail", model: [tasks: task]
+    }
+
+    def inProgress(Task task) {
+        try {
+            taskService?.inProgress(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -173,5 +202,26 @@ class TaskController {
 
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
+    }
+    def saveComment(Comment comment) {
+        try {
+            taskService.commentSave(comment)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        redirect action: "detail"
+
+    }
+
+    def reassignTask(Task task) {
+        try {
+            taskService?.update(task)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        //redirects to details page
+        detail(task)
     }
 }
