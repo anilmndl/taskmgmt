@@ -21,6 +21,5 @@ class Users {
         dateCreated nullable: true
         dateDeleted nullable:true
         dateModified nullable: true
-        taskType nullable: true
     }
 }

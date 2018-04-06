@@ -16,7 +16,6 @@ class TaskType {
         dateModified nullable: true
         dateDeleted nullable:true
         identifier nullable: true
-        users nullable: true
     }
 
     static mapping = {
