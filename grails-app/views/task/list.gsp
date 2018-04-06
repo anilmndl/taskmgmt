@@ -23,7 +23,6 @@
                           optionValue="title" noSelection="['': '--Select--']"/>
                 <label class="control-label" for="query">Date after:</label>
                 <g:datePicker name="date" default="none" precision="day" noSelection="[null: '--select--']"/>
-
                 <button id="submit-values" class="btn btn-small btn-success btn-xs" type="submit">
                     <i class="icon-ok"></i>
                     Search
@@ -90,9 +89,7 @@
                                 </g:else>
                             </td>
                             <td>
-                                <div class="label label-warning">
-                                    <common:dateFormatWithTime dateValue="${show.dueDate}"/>
-                                </div>
+                                    <common:dueDate dateValue="${show.dueDate}"/>
                             </td>
                             <td><strong><em>${show.taskStatus}</em></strong></td>
 
@@ -101,12 +98,17 @@
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
-
                         </tr>
                     </g:each>
                 </table>
             </div>
+            <ul class="pagination pagination-lg">
+                <li>
+                    <g:paginate next="Forward" prev="Back" maxsteps="0" controller="task" action="list"
+                                total="${listCount}"/>
+                </li>
 
+            </ul>
             <ul class="pagination pagination-sm">
                 <li>
                     <g:paginate next="Forward" prev="Back" controller="task" action="list" total="${listCount}"/>

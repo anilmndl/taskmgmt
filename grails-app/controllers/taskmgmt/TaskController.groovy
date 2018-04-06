@@ -3,6 +3,10 @@ package taskmgmt
 import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
+
 class TaskController {
 
     TaskService taskService
@@ -61,7 +65,6 @@ class TaskController {
     // SanRIZZ .................
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-
         def tasks = Task.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
@@ -200,7 +203,6 @@ class TaskController {
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
-
     def saveComment(Comment comment) {
         try {
             taskService.commentSave(comment)
