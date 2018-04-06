@@ -68,9 +68,9 @@
                 </table>
             </div>
             <ul class="pagination pagination-sm">
-                <div>
-                    <g:paginate controller="user" action="list" total="${listCount}"></g:paginate>
-                </div>
+                <li>
+                    <g:paginate next="Forward" prev="Back" controller="user" action="list" total="${listCount}"/>
+                </li>
             </ul>
         </div>
     </div>
