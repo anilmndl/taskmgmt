@@ -13,6 +13,8 @@ class Users {
 
     Role role
 
+    static hasMany = [taskTypes: TaskType]
+
     static constraints = {
         middleName nullable: true
         dateCreated nullable: true

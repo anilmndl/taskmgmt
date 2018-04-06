@@ -3,9 +3,9 @@ package taskmgmt
 class UserController {
     UserService userService
 
-    static  defaultAction = "list"
+    static defaultAction = "list"
     //delete() method is only allows POST request
-    static  allowedMethods = [delete: 'POST']
+    static allowedMethods = [delete: 'POST']
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
@@ -23,12 +23,15 @@ class UserController {
 
         [users: userList, listCount: userList.totalCount]
     }
-    def create(){
+
+    def create() {
         render view: "create", model: [roles: Role.list()]
     }
+
     def edit(Users user) {
-        render view: "edit", model: [editUser: user, roles: Role.list()]
+        render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
     }
+
     def save(Users user) {
         try {
             userService?.save(user)
@@ -37,12 +40,15 @@ class UserController {
         catch (Exception e) {
             flash.message = e.getMessage()
             render view: "edit", model: [editUser: user, roles: Role.list()]
+            //redirect action: edit(user)
         }
     }
+
     def detail(Users users) {
-        render view: "detail", model: [users: users]
+        render view: "detail", model: [users: users, taskTypes: TaskType.list()]
     }
-    def delete(Users user){
+
+    def delete(Users user) {
         try {
             userService?.delete(user)
             redirect action: "list"
@@ -52,6 +58,7 @@ class UserController {
             redirect action: "detail"
         }
     }
+
     def update(Users user) {
         try {
             userService?.update(user)
@@ -63,4 +70,25 @@ class UserController {
         }
     }
 
+    def subscribe(Users user) {
+        TaskType taskType = TaskType.get(params.taskType)
+        if (params.isSubscribe == "true") {
+            try {
+                user.taskTypes.add(taskType)
+                flash.message = "Successfully subscribed to " + taskType.title
+            }
+            catch (Exception e) {
+                flash.message = "There was some error"
+            }
+        }else{
+            try {
+                user.taskTypes.remove(taskType)
+                flash.message = "Successfully unsubscribed from " + taskType.title
+            }
+            catch (Exception e) {
+                flash.message = "There was some error"
+            }
+        }
+        detail(user)
+    }
 }
