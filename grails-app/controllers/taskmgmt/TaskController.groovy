@@ -210,7 +210,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        redirect action: "detail"
+        redirect action: "detail", id:params.task
 
     }
 
