@@ -13,7 +13,7 @@ class Users {
     Boolean vacationMode = false
     Role role
 
-    static  hasMany = [commentTask: Comment]
+    static hasMany = [taskTypes: TaskType, commentTask: Comment]
 
     static constraints = {
         vacationMode nullable: true

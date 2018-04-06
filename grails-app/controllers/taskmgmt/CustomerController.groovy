@@ -22,7 +22,6 @@ class CustomerController {
                     messageToDisplay = "There is already a user with this email"
                 }
             }
-
             if(messageToDisplay != null){
                 flash.message = messageToDisplay
                 render view: "edit", model: [customerToEdit: customer]
