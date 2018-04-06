@@ -3,6 +3,7 @@ package taskmgmt
 import grails.transaction.Transactional
 import taskmgmt.enums.TaskStatus
 
+import javax.validation.constraints.Max
 import javax.validation.constraints.Null
 
 
@@ -50,24 +51,48 @@ class TaskService {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
     }
+
     def assignRandomTaskToRandomUser() {
         newUsers()
         newTasks()
-    }
+        /*//find the last saved entry in the database
+        Task lastSavedTask = Task.createCriteria().list(max: 1) {
+            isNull("dateDeleted")
+            order("dateCreated", "desc")
+        }
 
+        //if the user for the last saved task is in vacation mode
+        if(lastSavedTask.users.vacationMode){
+            //get a list of valid users
+            List<Users> usersList = Users.createCriteria().list{
+                and {
+                    isNull("dateDeleted")
+                    eq("vacationMode",false)
+                }
+            }
+            //randomly choose a user from list and update in database
+            int counter = usersList.count()
+            Random rnd = new Random()
+            int index = rnd.nextInt(counter)
+            lastSavedTask.refresh()
+            lastSavedTask.users = usersList[index]
+            lastSavedTask.save failOnError:true, flush: true*/
+        }
+    }
 
     // I did the restrict to a single task
     // SanRIZZ.........
     // 1.c done   
 
-    void newTasks(){
-            new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
-                    users: Users.findByFirstName("Alankar"), taskType: TaskType.findByTitle("Grocery"),
-                    dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+    void newTasks() {
+        new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
+                users: Users.findByFirstName("Alankar"), taskType: TaskType.findByTitle("Grocery"),
+                dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
     }
-    void newUsers(){
-            new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findByTitle("manager"),
-                    address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date()).save()
+
+    void newUsers() {
+        new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findByTitle("manager"),
+                address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(),vacationMode: true).save()
     }
 
     Task createTask(Task task) {
@@ -94,6 +119,7 @@ class TaskService {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
     }
+
     def inProgress(Task task) {
         task.taskStatus = TaskStatus.IN_PROGRESS
         if (task.validate()) {
@@ -103,12 +129,11 @@ class TaskService {
         }
     }
 
-    def commentSave(Comment comment){
-        comment.dateCreated = new  Date()
-        if(comment.validate()){
+    def commentSave(Comment comment) {
+        comment.dateCreated = new Date()
+        if (comment.validate()) {
             comment.save failOnError: true, flush: true
-        }
-        else {
+        } else {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
     }
