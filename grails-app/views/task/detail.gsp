@@ -53,17 +53,17 @@
                 <tr>
                     <td>User:</td>
                     <td>
-                        <g:if test="${tasks?.users == null}">
+                        %{--<g:if test="${tasks?.users == null}">
                             <div class="label label-warning">No data</div>
-                        </g:if>
-                        <g:else>
+                        </g:if>--}%
+                     %{--   <g:else>--}%
                             <g:link controller="user" id="${tasks.users.id}"
                                     action="detail">
 
                                 <mark>${tasks?.users?.firstName} ${tasks?.users?.lastName}</mark>
 
                             </g:link>
-                        </g:else>
+                      %{--  </g:else>--}%
                     </td>
                 </tr>
                 <tr>

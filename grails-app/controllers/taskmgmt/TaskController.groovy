@@ -32,6 +32,7 @@ class TaskController {
         try {
             taskService?.complete(task)
             taskService?.assignRandomTaskToRandomUser()
+            userValidation()
             redirect action: "listCompleted"
         }
         catch (Exception e) {
@@ -223,5 +224,30 @@ class TaskController {
         }
         //redirects to details page
         detail(task)
+    }
+
+    def userValidation(){
+        //finds the last saved task
+        List<Task> lastTaskSaved = Task.createCriteria().list {
+            isNull("dateDeleted")
+            maxResults(1)
+            order("dateCreated","desc")
+        }
+        //last saved task
+        def task = lastTaskSaved[0]
+        //check if the user of the task is in vacation
+        //if yes assign it to new user who is not in vacation
+        if(task.users.vacationMode){
+            List<Users> usersList = Task.createCriteria().list {
+                and{
+                    isNull("dateDeleted")
+                    eq("vacationMode",false)
+                }
+                order("dateCreated","desc")
+            }
+            Random random = new Random()
+            task.users = usersList[random.nextInt(usersList.size())]
+            taskService.update(task)
+        }
     }
 }
