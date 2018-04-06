@@ -18,6 +18,8 @@ class Task {
     Date dateDeleted            // use this to indicate if the task was deleted
     Date dueDate                //date when the task is expected to be completed
 
+    static  hasMany = [commentTask:Comment]
+
     static constraints = {
         users nullable: true
         taskStatus nullable: true

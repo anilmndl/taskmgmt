@@ -29,7 +29,7 @@ class InitializationService {
     void initUser() {
         for (int i; i < 100; i++) {
             new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findByTitle("manager"),
-                    address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date()).save()
+                    address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: true).save()
         }
     }
 
@@ -37,6 +37,12 @@ class InitializationService {
         for (int i; i < 100; i++) {
             new Customer(firstName: "Dumb", lastName: "customer", address: "1234 dumb street, dumbCity, dumbCountry",
                     email: "dumb_usermedumbness.dumb", phoneNumber: 123456789, dateCreated: new Date()).save()
+        }
+    }
+
+    void initComment(){
+        for(int i; i<5;i++){
+            new Comment(comment: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new  Date(),task: Task.findById(1),users: Users.findById(1)).save()
         }
     }
 }

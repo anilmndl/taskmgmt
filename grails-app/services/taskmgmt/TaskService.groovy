@@ -53,21 +53,21 @@ class TaskService {
     def assignRandomTaskToRandomUser() {
         newUsers()
         newTasks()
-
-
     }
+
+
+    // I did the restrict to a single task
+    // SanRIZZ.........
+    // 1.c done   
+
     void newTasks(){
-        for (int i; i < 4; i++) {
             new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
                     users: Users.findByFirstName("Alankar"), taskType: TaskType.findByTitle("Grocery"),
                     dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
-        }
     }
     void newUsers(){
-        for (int i; i < 4; i++) {
-            new Users(firstName: "Alankar", middleName: "", lastName: "Pokhrel", role: Role.findByTitle("manager"),
+            new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findByTitle("manager"),
                     address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date()).save()
-        }
     }
 
     Task createTask(Task task) {
@@ -99,6 +99,16 @@ class TaskService {
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
+    }
+
+    def commentSave(Comment comment){
+        comment.dateCreated = new  Date()
+        if(comment.validate()){
+            comment.save failOnError: true, flush: true
+        }
+        else {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
     }
