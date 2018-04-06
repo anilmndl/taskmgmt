@@ -115,7 +115,8 @@
                         <g:elseif test="${tasks.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
                             <th><g:link controller="task" action="unassigned" id="${tasks.id}"
                                         class="btn btn-info btn-sm"><i class="fa fa-unlock"
-                                                                       aria-hidden="true"></i> Unassigned Task</g:link></th>
+                                                                       aria-hidden="true"></i> Unassigned Task</g:link>
+                            </th>
                             <th><g:link controller="task" action="inProgress" id="${tasks.id}"
                                         class="btn btn-info btn-sm"><i class="fa fa-inprogress"
                                                                        aria-hidden="true"></i> In_Progress Task</g:link>
@@ -129,6 +130,53 @@
                         </g:elseif>
 
                     </g:if>
+                    <th>
+                        <g:form controller="task" action="reassignTask" id="${tasks.id}" method="POST">
+                            <button type="button" class="btn btn-primary btn-sm pull-left" data-toggle="modal"
+                                    data-target="#reassignUserModal"><i class="fa fa-male"
+                                                                        aria-hidden="true"></i> Reassign User
+                            </button>
+                        </g:form>
+                    <!-- Modal -->
+                        <div class="modal fade" id="reassignUserModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                        <h2 class="modal-title" id="exampleModalLongTitle">Reassign User</h2>
+                                    </div>
+                                    <g:form controller="task" action="reassignTask" id="${tasks.id}" method="POST">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label><h4>User</h4></label>
+                                                <g:select class="btn btn-default dropdown-toggle" from="${userList}"
+                                                          name="users" optionKey="id"
+                                                          optionValue="firstName"
+                                                          noSelection="['': '--Users--']" required="required"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <table class="table table-responsive">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                                                        class="fa fa-times"
+                                                        aria-hidden="true"></i> Cancel</button>
+
+                                                    <button type="submit" class="btn btn-success"><i class="fa fa-trash"
+                                                                                      aria-hidden="true"></i> Reassign</button>
+
+                                    </g:form>
+                                </table>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        %{--end Modal--}%
+                    </th>
 
                     <th class="bottom-right">
                     %{--sends delete request as POST form submission--}%
@@ -138,81 +186,78 @@
                                                                       aria-hidden="true"></i> Delete Task
                             </button>
                         </g:form>
+                    <!-- Modal -->
+                        <div class="modal fade" id="taskDeleteModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                        <h2 class="modal-title" id="exampleModalLongTitle">Delete Task</h2>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <h4>Are you sure you want to delete this task?</h4>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <table class="table table-responsive">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal"><i
+                                                    class="fa fa-times"
+                                                    aria-hidden="true"></i> No</button>
+                                            <g:form controller="task" action="delete" id="${tasks.id}"
+                                                    method="POST">
+                                                <button class="btn btn-danger"><i class="fa fa-trash"
+                                                                                  aria-hidden="true"></i> Yes</button>
+                                            </g:form>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        %{--end Modal--}%
                     </th>
+
                 </tr>
             </table>
 
-            <!-- Modal -->
-            <div class="modal fade" id="taskDeleteModal" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+        </h4>
+        </div>
 
-                            <h2 class="modal-title" id="exampleModalLongTitle">Delete Task</h2>
-                        </div>
 
-                        <div class="modal-body">
-                            <h4>Are you sure you want to delete this task?</h4>
-                        </div>
+        <fieldset>
+            <div class="form-group">
+                <label>Comment</label>
+                <g:form controller="task" action="saveComment">
+                    <textarea class="form-control" placeholder="Post your Comment" name="comment"></textarea>
+                    <g:hiddenField name="task" value="${tasks.id}"/>
+                    <g:hiddenField name="users" value="${tasks.users.id}"/>
+                    <div class="bottom-right">
 
-                        <div class="modal-footer">
-                            <table class="table table-responsive">
-                                <button type="button" class="btn btn-success" data-dismiss="modal"><i
-                                        class="fa fa-times"
-                                        aria-hidden="true"></i> No</button>
-                                <g:form controller="task" action="delete" id="${tasks.id}"
-                                        method="POST">
-                                    <button class="btn btn-danger"><i class="fa fa-trash"
-                                                                      aria-hidden="true"></i> Yes</button>
-                                </g:form>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                            <button type="submit" class="btn btn-info btn-sm pull-right"
+                                                                      aria-hidden="true"></i> Post </button>
+                </g:form>
+                <g:if test="${commentList}">
+                    <table class="table table-striped">
+                        <g:each in="${commentList}" var="review">
+                            <tr>
+                                <td><common:dateFormatWithTime dateValue="${review.dateCreated}"/></td>
+                            </tr>
+                            <tr>
+                                <td>${review.comment}</td>
+                            </tr>
+                        </g:each>
+                    </table>
+                </g:if>
+
             </div>
-        </div>
-        %{--end Modal--}%
+            </div>
+        </fieldset>
 
-    </h4>
     </div>
-
-
-    <fieldset>
-        <div class="form-group">
-            <label>Comment</label>
-            <g:form controller="task" action="saveComment">
-                <textarea class="form-control" placeholder="Post your Comment" name="comment"></textarea>
-                <g:hiddenField name="task" value="${tasks.id}"/>
-                <g:hiddenField name="users" value="${tasks.users.id}"/>
-                <div class="bottom-right">
-
-                        <button type="submit" class="btn btn-info btn-sm pull-right"
-                                                                  aria-hidden="true"></i> Post </button>
-            </g:form>
-            <g:if test="${commentList}">
-                <table class="table table-striped">
-                    <g:each in="${commentList}" var="review">
-                        <tr>
-                            <td><common:dateFormatWithTime dateValue="${review.dateCreated}"/> </td>
-                        </tr>
-                        <tr>
-                            <td>${review.comment}</td>
-                        </tr>
-                    </g:each>
-                </table>
-            </g:if>
-
-
-        </div>
-        </div>
-    </fieldset>
-
-
-</div>
 </div>
 
 </div>
