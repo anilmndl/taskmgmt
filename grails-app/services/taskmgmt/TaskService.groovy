@@ -73,4 +73,14 @@ class TaskService {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
     }
+
+    def commentSave(Comment comment){
+        comment.dateCreated = new  Date()
+        if(comment.validate()){
+            comment.save failOnError: true, flush: true
+        }
+        else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
+    }
 }
