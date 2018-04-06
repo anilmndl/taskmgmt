@@ -70,7 +70,29 @@ class TaskTypeController {
     }
 
     def detail(TaskType taskType) {
-        render view: "detail", model: [detailTaskType: taskType]
+        render view: "detail", model: [detailTaskType: taskType, taskTypes: TaskType.list()]
+    }
+
+    def assign(TaskType taskType){
+        TaskType toAssign = TaskType.get(params.taskType)
+        if (params.isAssign == "true") {
+            try {
+                taskType.children.add(toAssign)
+                flash.message = "Successfully added" + toAssign.title + "to " + taskType.title
+            }
+            catch (Exception e) {
+                flash.message = "There was some error"
+            }
+        }else{
+            try {
+                taskType.children.remove(toAssign)
+                flash.message = "Successfully removed " + toAssign.title + "from " + taskType.title
+            }
+            catch (Exception e) {
+                flash.message = "There was some error"
+            }
+        }
+        redirect action: "detail", params:["id": taskType.id]
     }
 }
 

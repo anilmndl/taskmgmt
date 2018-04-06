@@ -24,7 +24,44 @@
                     dateValue="${detailTaskType.dateCreated}"/></h4>
             <g:if test="${detailTaskType.dateModified != null}"><h4>Last Modified:
                 <common:dateFormatWithTime dateValue="${detailTaskType.dateModified}"/></h4></g:if>
+
             <span><h3 class="alert alert-info">${detailTaskType.description}</h3></span>
+
+            <div class="form-inline ">
+                <h2>TaskTypes</h2>
+                <g:if test="${detailTaskType.children}">
+                    <ul>
+                        <g:each var="taskType" in="${detailTaskType.children}">
+                            <li>${taskType.title}
+                                <g:form controller="taskType" action="assign" id="${detailTaskType.id}"
+                                        method="POST">
+                                    <g:hiddenField name="isAssign" value="false"/>
+                                    <g:hiddenField name="toAssign" value="${taskType.id}"/>
+                                    <button type="submit" class="btn btn-default btn-sm ">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </g:form>
+                            </li>
+                        </g:each>
+                    </ul>
+                </g:if>
+                <div class="list-inline">
+                    <g:form class="form-group"
+                            controller="taskType" action="assign" id="${detailTaskType.id}"
+                            method="POST">
+                        <g:hiddenField name="isAssign" value="true"/>
+                        <div class="form-group form-inline">
+                            <g:select from="${taskTypes}"
+                                      name="taskType"
+                                      optionKey="id" optionValue="title" required="required"
+                                      value="${taskTypes.id}"/>
+                            <button type="submit" class="btn btn-success">Assign</button>
+                        </div>
+
+                    </g:form>
+                </div>
+            </div>
+
             <table class="table table-responsive">
                 <tr>
                     <th>
@@ -53,6 +90,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+
                             <h2 class="modal-title" id="exampleModalLongTitle">Delete TaskType</h2>
                         </div>
 
