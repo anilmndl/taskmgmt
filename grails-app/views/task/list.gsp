@@ -89,9 +89,7 @@
                                 </g:else>
                             </td>
                             <td>
-                                <div class="label label-warning">
-                                    <common:dateFormatWithTime dateValue="${show.dueDate}"/>
-                                </div>
+                                    <common:dueDate dateValue="${show.dueDate}"/>
                             </td>
                             <td><strong><em>${show.taskStatus}</em></strong></td>
 
