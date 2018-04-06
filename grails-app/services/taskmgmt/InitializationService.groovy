@@ -6,11 +6,15 @@ import taskmgmt.enums.TaskStatus
 @Transactional
 class InitializationService {
 
+    Random rand = new Random()
+
+
     void initTask() {
         for (int i; i < 100; i++) {
             new Task(taskStatus: TaskStatus.CREATED, title: "task", detail: "Please buy us 1 bottle of milk.",
-                    users: Users.findById(1), taskType: TaskType.findById(i),
-                    dateCreated: new Date(), customer: Customer.findById(i)).save()
+                    users: Users.findById(rand.nextInt((int)Users.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
+                    dateCreated: new Date(), customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1)).save()
+
         }
     }
 
@@ -21,19 +25,17 @@ class InitializationService {
             new TaskType(title: "Crush the CrunchyRoll", description: "Anime is not cartoon").save()
             new TaskType(title: "Life of Prime", description: "Download now watch months later.").save()
         }
-
-
     }
-
     void initRole() {
-        for (int i; i < 100; i++) {
-            new Role(dateCreated: new Date(), title: "manager", description: "Manages store").save()
-        }
+        new Role(dateCreated: new Date(), title: "Manager", description: "Manages store").save()
+        new Role(dateCreated: new Date(), title: "User", description: "Manages store").save()
+        new Role(dateCreated: new Date(), title: "Customer", description: "Manages store").save()
+        new Role(dateCreated: new Date(), title: "Admin", description: "Manages store").save()
     }
 
     void initUser() {
         for (int i; i < 100; i++) {
-            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findByTitle("manager"),
+            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findById(rand.nextInt((int)Role.list().size())+1),
                     address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: false).save()
         }
     }
@@ -47,7 +49,7 @@ class InitializationService {
 
     void initComment(){
         for(int i; i<5;i++){
-            new Comment(comment: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new  Date(),task: Task.findById(1),users: Users.findById(1)).save()
+            new Comment(comment: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new  Date(),task: Task.findById(rand.nextInt((int)Task.list().size())+1),users: Users.findById(rand.nextInt((int)Users.list().size())+1)).save()
         }
     }
 }
