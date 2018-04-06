@@ -179,6 +179,39 @@
 
     </h4>
     </div>
+
+
+    <fieldset>
+        <div class="form-group">
+            <label>Comment</label>
+            <g:form controller="task" action="saveComment">
+                <textarea class="form-control" placeholder="Post your Comment" name="comment"></textarea>
+                <g:hiddenField name="task" value="${tasks.id}"/>
+                <g:hiddenField name="users" value="${tasks.users.id}"/>
+                <div class="bottom-right">
+
+                        <button type="submit" class="btn btn-info btn-sm pull-right"
+                                                                  aria-hidden="true"></i> Post </button>
+            </g:form>
+            <g:if test="${commentList}">
+                <table class="table table-striped">
+                    <g:each in="${commentList}" var="review">
+                        <tr>
+                            <td><common:dateFormatWithTime dateValue="${review.dateCreated}"/> </td>
+                        </tr>
+                        <tr>
+                            <td>${review.comment}</td>
+                        </tr>
+                    </g:each>
+                </table>
+            </g:if>
+
+
+        </div>
+        </div>
+    </fieldset>
+
+
 </div>
 </div>
 

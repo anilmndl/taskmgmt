@@ -1,5 +1,6 @@
 package taskmgmt
 
+import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
 class TaskController {
@@ -108,13 +109,29 @@ class TaskController {
     }
 
     def create() {
+        def userList = Users.createCriteria().list(params){
+            and{
+                isNull("dateDeleted")
+                eq("vacationMode",false)
+            }
+            order("dateCreated","desc")
+        }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList: Users.findAllByDateDeletedIsNull(), customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
-        render view: "detail", model: [tasks: task]
+        def commentList= Comment.createCriteria().list(params){
+            and {
+                //eq("task_id","${task.id}")
+                isNull("dateDeleted")
+            }
+            order("dateCreated","desc")
+        }
+
+        render view: "detail", model: [tasks: task,commentList: commentList]
+
     }
 
     def listCompleted() {
@@ -182,5 +199,16 @@ class TaskController {
 
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
+    }
+
+    def saveComment(Comment comment){
+        try {
+            taskService.commentSave(comment)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        redirect action: "detail"
+
     }
 }
