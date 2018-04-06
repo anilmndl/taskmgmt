@@ -55,9 +55,9 @@
 
         </div>
         <ul class="pagination pagination-sm">
-            <div>
-                <g:paginate controller="role" action="list" total="${listCount}"></g:paginate>
-            </div>
+            <li>
+                <g:paginate next="Forward" prev="Back" controller="role" action="list" total="${listCount}"/>
+            </li>
         </ul>
     </div>
 
