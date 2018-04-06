@@ -10,6 +10,7 @@ class BootStrap {
         initializationService.initTaskType()
         initializationService.initCustomer()
         initializationService.initTask()
+        initializationService.initComment()
     }
 
     def destroy = {

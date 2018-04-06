@@ -8,7 +8,7 @@
             <hr>
             <label>Filters:</label>
             <li><input type="checkbox" name="taskStatus">Created Task</li>
-            <li><input type="checkbox" name="taskStatus">Locked Task</li>
+            <li><input type="checkbox" name="taskStatus">Assigned Task</li>
             <li><input type="checkbox" name="taskStatus">Approaching due date</li>
         </ul>
     </div>

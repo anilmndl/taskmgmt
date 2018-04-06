@@ -9,31 +9,34 @@ class InitializationService {
     Random rand = new Random()
     int max = 100
 
-    def roleList = ["manager", "user", "admin", "customer"]
 
     void initTask() {
         for (int i; i < 100; i++) {
             new Task(taskStatus: TaskStatus.CREATED, title: "task", detail: "Please buy us 1 bottle of milk.",
-                    users: Users.findById(rand.nextInt(max)), taskType: TaskType.findById(rand.nextInt(max)),
-                    dateCreated: new Date(), customer: Customer.findById(1)).save()
+                    users: Users.findById(rand.nextInt(max)), taskType: TaskType.findById(rand.nextInt(6)),
+                    dateCreated: new Date(), customer: Customer.findById(rand.nextInt(max))).save()
         }
     }
 
     void initTaskType() {
-        for (int i; i < 100; i++) {
-            new TaskType(title: "Watch" + rand.nextInt(), description: "Binge watch and waste time").save()
-        }
+        new TaskType(title: "Watch", description: "Binge watch and waste time").save()
+        new TaskType(title: "Sleep", description: "Binge watch and waste time").save()
+        new TaskType(title: "Eat", description: "Binge watch and waste time").save()
+        new TaskType(title: "Code", description: "Binge watch and waste time").save()
+        new TaskType(title: "Cook", description: "Binge watch and waste time").save()
+        new TaskType(title: "Hike", description: "Binge watch and waste time").save()
     }
 
     void initRole() {
-        for (int i; i < 100; i++) {
-            new Role(dateCreated: new Date(), title: roleList.get(rand.nextInt(roleList.size())), description: "Manages store").save()
-        }
+        new Role(dateCreated: new Date(), title: "Manager", description: "Manages store").save()
+        new Role(dateCreated: new Date(), title: "User", description: "Manages store").save()
+        new Role(dateCreated: new Date(), title: "Customer", description: "Manages store").save()
+        new Role(dateCreated: new Date(), title: "Admin", description: "Manages store").save()
     }
 
     void initUser() {
         for (int i; i < 100; i++) {
-            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findByTitle("manager"),
+            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findById(rand.nextInt(4)),
                     address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: false).save()
         }
     }

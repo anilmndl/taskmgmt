@@ -3,6 +3,8 @@ package taskmgmt
 import grails.transaction.Transactional
 import taskmgmt.enums.TaskStatus
 
+import javax.validation.constraints.Null
+
 
 @Transactional
 class TaskService {
@@ -48,6 +50,25 @@ class TaskService {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
     }
+    def assignRandomTaskToRandomUser() {
+        newUsers()
+        newTasks()
+    }
+
+
+    // I did the restrict to a single task
+    // SanRIZZ.........
+    // 1.c done   
+
+    void newTasks(){
+            new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
+                    users: Users.findByFirstName("Alankar"), taskType: TaskType.findByTitle("Grocery"),
+                    dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+    }
+    void newUsers(){
+            new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findByTitle("manager"),
+                    address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date()).save()
+    }
 
     Task createTask(Task task) {
         task.title = task.title ? task.title : task.taskType.title
@@ -55,9 +76,9 @@ class TaskService {
         return task
     }
 
-    def unlocked(Task task) {
+    def unassigned(Task task) {
 
-        task.taskStatus = TaskStatus.UNLOCKED
+        task.taskStatus = TaskStatus.UNASSIGNED
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
@@ -65,11 +86,29 @@ class TaskService {
         }
     }
 
-    def locked(Task task) {
-        task.taskStatus = TaskStatus.LOCKED
+    def assigned(Task task) {
+        task.taskStatus = TaskStatus.ASSIGNED
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
+    }
+    def inProgress(Task task) {
+        task.taskStatus = TaskStatus.IN_PROGRESS
+        if (task.validate()) {
+            task.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
+    }
+
+    def commentSave(Comment comment){
+        comment.dateCreated = new  Date()
+        if(comment.validate()){
+            comment.save failOnError: true, flush: true
+        }
+        else {
             throw new Exception("Oops! Something went wrong. Operation failed.")
         }
     }

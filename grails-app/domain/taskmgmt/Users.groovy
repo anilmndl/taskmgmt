@@ -10,15 +10,16 @@ class Users {
     Date dateCreated
     Date dateModified
     Date dateDeleted
-
+    Boolean vacationMode = false
     Role role
 
-    static hasMany = [taskTypes: TaskType]
+    static hasMany = [taskTypes: TaskType, commentTask: Comment]
 
     static constraints = {
+        vacationMode nullable: true
         middleName nullable: true
         dateCreated nullable: true
-        dateDeleted nullable:true
+        dateDeleted nullable: true
         dateModified nullable: true
     }
 }

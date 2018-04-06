@@ -22,7 +22,6 @@ class CustomerController {
                     messageToDisplay = "There is already a user with this email"
                 }
             }
-
             if(messageToDisplay != null){
                 flash.message = messageToDisplay
                 render view: "edit", model: [customerToEdit: customer]
@@ -57,7 +56,7 @@ class CustomerController {
             }
         }
 
-        [customerList: customerList, listCount: customerList.totalCount]
+        [customerList: customerList, listCount: Customer.count()]
     }
 
     def delete(Customer customer) {
