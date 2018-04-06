@@ -134,7 +134,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [tasks: task, commentList: commentList,userList: userList]
+        render view: "detail", model: [tasks: task, commentList: commentList, userList: userList]
 
     }
 
@@ -159,6 +159,9 @@ class TaskController {
     def save(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
             task = taskService?.createTask(task)
+        }
+        if ((task.users == null)) {
+            task = taskService?.randomUser(task)
         }
         try {
             taskService?.save(task)
@@ -204,6 +207,7 @@ class TaskController {
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
+
     def saveComment(Comment comment) {
         try {
             taskService.commentSave(comment)

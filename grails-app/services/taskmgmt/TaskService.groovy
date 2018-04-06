@@ -19,6 +19,17 @@ class TaskService {
         }
     }
 
+    def randomUser(Task task) {
+        task.title = task.title ? task.title : task.taskType.title
+        task.detail = task.detail ? task.detail : task.taskType.description
+        Random rand = new Random()
+        new Task(title: "randTaskType", description: "This is random")
+        new Users(firstName: "Kishor", middleName: "", lastName: "Simkhada", role: Role.findById(rand.nextInt(100)),
+                address: "420 S. 6th Ave #5, Pocatello, Idaho",
+                phoneNumber: 1029384756, dateCreated: new Date()).save()
+        return task
+    }
+
     def delete(Task task) {
         task.dateModified = new Date()
         task.taskStatus = TaskStatus.DELETED
@@ -78,9 +89,8 @@ class TaskService {
 
     void newUsers() {
         new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findById(1),
-                address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(),vacationMode: true).save()
+                address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: true).save()
     }
-
     Task createTask(Task task) {
         task.title = task.title ? task.title : task.taskType.title
         task.detail = task.detail ? task.detail : task.taskType.description
