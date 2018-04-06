@@ -13,7 +13,6 @@ class Users {
 
     Role role
 
-    static  belongsTo = TaskType
     static hasMany = [taskTypes: TaskType]
 
     static constraints = {
