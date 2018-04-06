@@ -55,34 +55,37 @@
                     <tr>
                         <td>Task Types</td>
                         <td>
-                            <g:if test="${users.taskTypes}">
-                                <ul>
+                            <div class="list-group">
+
+                                <g:if test="${users.taskTypes}">
                                     <g:each var="taskType" in="${users.taskTypes}">
-                                        <li>${taskType.title}
-                                            <g:form controller="user" action="subscribe" id="${users.id}"
-                                                    method="POST">
-                                                <g:hiddenField name="isSubscribe" value="false"/>
-                                                <g:hiddenField name="taskType" value="${taskType.id}"/>
-                                                <button type="submit" class="btn btn-default btn-sm ">
+                                        <g:form controller="user" action="subscribe" id="${users.id}"
+                                                method="POST" class="form-inline">
+                                            <div class=" list-group-item list-inline">${taskType.title}
+                                            <g:hiddenField name="isSubscribe" value="false"/>
+                                            <g:hiddenField name="taskType" value="${taskType.id}"/>
+                                                <button type="submit" class="btn btn-default btn-sm">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
-                                            </g:form>
-                                        </li>
+                                            </div>
+                                        </g:form>
                                     </g:each>
-                                </ul>
-                                <g:form controller="user" action="subscribe" id="${users.id}" method="POST">
-                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
-                                            data-target="#userTaskTypeSubscriptionModal">Subscribe TaskType
-                                    </button>
-                                </g:form>
-                            </g:if>
-                            <g:else>
-                                <g:form controller="user" action="save" id="${users.id}" method="POST">
-                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
-                                            data-target="#userTaskTypeSubscriptionModal">Subscribe TaskType
-                                    </button>
-                                </g:form>
-                            </g:else>
+                                </g:if>
+                                <div class="list-group-item list-inline">
+                                    <g:form class="form-group" controller="user" action="subscribe" id="${users.id}"
+                                            method="POST">
+                                        <g:hiddenField name="isSubscribe" value="true"/>
+                                        <div class="form-group form-inline">
+                                            <g:select class="form-control dropdown-toggle" from="${taskTypes}"
+                                                      name="taskType"
+                                                      optionKey="id" optionValue="title" required="required"
+                                                      value="${taskTypes?.id}"/>
+                                            <button type="submit" class="btn btn-success">Subscribe</button>
+                                        </div>
+
+                                    </g:form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <h5>Date Created: <div class="label label-info"><common:dateFormatWithTime
@@ -137,69 +140,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="modal fade" id="userTaskTypeSubscriptionModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-
-                                <h2 class="modal-title" id="userTaskTypeSubscriptionTitle">Subscribe Task-Type</h2>
-                            </div>
-
-                            <div class="modal-body">
-                                <h4>Select the Task Type:</h4>
-                            </div>
-
-                            <div class="modal-footer">
-                                <table class="table table-responsive">
-                                    <g:form controller="user" action="subscribe" id="${users.id}"
-                                            method="POST">
-                                        <g:select class="btn btn-default dropdown-toggle" from="${taskTypes}"
-                                                  name="taskType" optionKey="id"
-                                                  optionValue="title" value="${taskTypes?.id}"
-                                                  noSelection="[null: '--select--']"/>
-                                        <g:hiddenField name="isSubscribe" value="true"/>
-                                        <button type="submit" class="btn btn-success"> Subscribe</button>
-                                    </g:form>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="userTaskTypeUnsubscriptionModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-
-                                <h2 class="modal-title"
-                                    id="userTaskTypeUnsubscriptionTitle">Are you sure you want to unsubscribe?</h2>
-                            </div>
-
-                            <div class="modal-footer">
-                                <table class="table table-responsive">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal"><i
-                                            class="fa fa-times"
-                                            aria-hidden="true"></i> No</button>
-                                    <g:form controller="user" action="subscribe" id="${users.id}"
-                                            method="POST">
-                                        <g:hiddenField name="isSubscribe" value="false"/>
-                                        <button class="btn btn-danger">Yes</button>
-                                    </g:form>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             %{--end Modal--}%
 

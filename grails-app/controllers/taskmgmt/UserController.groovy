@@ -89,6 +89,6 @@ class UserController {
                 flash.message = "There was some error"
             }
         }
-        detail(user)
+        redirect action: "detail", params: ["id": user.id]
     }
 }
