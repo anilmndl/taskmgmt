@@ -3,6 +3,8 @@ package taskmgmt
 import grails.transaction.Transactional
 import taskmgmt.enums.TaskStatus
 
+import javax.validation.constraints.Null
+
 
 @Transactional
 class TaskService {
@@ -46,6 +48,25 @@ class TaskService {
             task.save failOnError: true, flush: true
         } else {
             throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
+    }
+    def assignRandomTaskToRandomUser() {
+        newUsers()
+        newTasks()
+
+
+    }
+    void newTasks(){
+        for (int i; i < 4; i++) {
+            new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
+                    users: Users.findByFirstName("Alankar"), taskType: TaskType.findByTitle("Grocery"),
+                    dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+        }
+    }
+    void newUsers(){
+        for (int i; i < 4; i++) {
+            new Users(firstName: "Alankar", middleName: "", lastName: "Pokhrel", role: Role.findByTitle("manager"),
+                    address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date()).save()
         }
     }
 
