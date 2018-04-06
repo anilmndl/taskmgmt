@@ -101,27 +101,35 @@
             <table class="table table-responsive">
                 <tr>
                     <g:if test="${tasks.dateCompleted == null}">
-                        <g:if test="${tasks.taskStatus != taskmgmt.enums.TaskStatus.LOCKED}">
+                        <g:if test="${tasks.taskStatus == taskmgmt.enums.TaskStatus.CREATED || tasks.taskStatus == taskmgmt.enums.TaskStatus.UNASSIGNED}">
                             <th>
                                 <g:link controller="task" action="edit" id="${tasks.id}"
                                         class="btn btn-info btn-sm"><i class="fa fa-edit"
                                                                        aria-hidden="true"></i> Edit Task</g:link></th>
                             </th>
-                            <th><g:link controller="task" action="locked" id="${tasks.id}"
+                            <th><g:link controller="task" action="assigned" id="${tasks.id}"
                                         class="btn btn-warning btn-sm"><i class="fa fa-lock"
-                                                                          aria-hidden="true"></i> Lock Task</g:link>
+                                                                          aria-hidden="true"></i> Assigned Task</g:link>
                             </th>
                         </g:if>
-                        <g:else>
-                            <th><g:link controller="task" action="unlocked" id="${tasks.id}"
+                        <g:elseif test="${tasks.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
+                            <th><g:link controller="task" action="unassigned" id="${tasks.id}"
                                         class="btn btn-info btn-sm"><i class="fa fa-unlock"
-                                                                       aria-hidden="true"></i> Unlock Task</g:link></th>
-                        </g:else>
-                        <th><g:link controller="task" action="completed" id="${tasks.id}"
-                                    class="btn btn-success btn-sm pull-left"><i class="fa fa-check"
-                                                                                aria-hidden="true"></i> Mark Completed</g:link>
-                        </th>
+                                                                       aria-hidden="true"></i> Unassigned Task</g:link></th>
+                            <th><g:link controller="task" action="inProgress" id="${tasks.id}"
+                                        class="btn btn-info btn-sm"><i class="fa fa-inprogress"
+                                                                       aria-hidden="true"></i> In_Progress Task</g:link>
+                            </th>
+                        </g:elseif>
+                        <g:elseif test="${tasks.taskStatus == taskmgmt.enums.TaskStatus.IN_PROGRESS}">
+                            <th><g:link controller="task" action="completed" id="${tasks.id}"
+                                        class="btn btn-success btn-sm pull-left"><i class="fa fa-check"
+                                                                                    aria-hidden="true"></i> Mark Completed</g:link>
+                            </th>
+                        </g:elseif>
+
                     </g:if>
+
                     <th class="bottom-right">
                     %{--sends delete request as POST form submission--}%
                         <g:form controller="task" action="delete" id="${tasks.id}" method="POST">

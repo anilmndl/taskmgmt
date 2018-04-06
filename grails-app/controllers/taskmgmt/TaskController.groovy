@@ -151,9 +151,9 @@ class TaskController {
 
     }
 
-    def unlocked(Task task) {
+    def unassigned(Task task) {
         try {
-            taskService?.unlocked(task)
+            taskService?.unassigned(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -161,9 +161,18 @@ class TaskController {
         render view: "detail", model: [tasks: task]
     }
 
-    def locked(Task task) {
+    def assigned(Task task) {
         try {
-            taskService?.locked(task)
+            taskService?.assigned(task)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        render view: "detail", model: [tasks: task]
+    }
+    def inProgress(Task task) {
+        try {
+            taskService?.inProgress(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()

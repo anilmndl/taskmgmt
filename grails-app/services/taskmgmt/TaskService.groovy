@@ -76,9 +76,9 @@ class TaskService {
         return task
     }
 
-    def unlocked(Task task) {
+    def unassigned(Task task) {
 
-        task.taskStatus = TaskStatus.UNLOCKED
+        task.taskStatus = TaskStatus.UNASSIGNED
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
@@ -86,8 +86,16 @@ class TaskService {
         }
     }
 
-    def locked(Task task) {
-        task.taskStatus = TaskStatus.LOCKED
+    def assigned(Task task) {
+        task.taskStatus = TaskStatus.ASSIGNED
+        if (task.validate()) {
+            task.save failOnError: true, flush: true
+        } else {
+            throw new Exception("Oops! Something went wrong. Operation failed.")
+        }
+    }
+    def inProgress(Task task) {
+        task.taskStatus = TaskStatus.IN_PROGRESS
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
