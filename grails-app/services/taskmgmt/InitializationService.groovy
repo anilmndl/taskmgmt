@@ -7,14 +7,13 @@ import taskmgmt.enums.TaskStatus
 class InitializationService {
 
     Random rand = new Random()
-    int max = 100
 
 
     void initTask() {
         for (int i; i < 100; i++) {
             new Task(taskStatus: TaskStatus.CREATED, title: "task", detail: "Please buy us 1 bottle of milk.",
-                    users: Users.findById(rand.nextInt(max)), taskType: TaskType.findById(rand.nextInt(6)),
-                    dateCreated: new Date(), customer: Customer.findById(rand.nextInt(max))).save()
+                    users: Users.findById(rand.nextInt((int)Users.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
+                    dateCreated: new Date(), customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1)).save()
         }
     }
 
@@ -36,7 +35,7 @@ class InitializationService {
 
     void initUser() {
         for (int i; i < 100; i++) {
-            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findById(rand.nextInt(4)),
+            new Users(firstName: "Sabin", middleName: "wait for it......", lastName: "Shrestha", role: Role.findById(rand.nextInt((int)Role.list().size())+1),
                     address: "1234 awesomeness street, awesomeCity, awesomeCountry", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: false).save()
         }
     }
@@ -50,7 +49,7 @@ class InitializationService {
 
     void initComment(){
         for(int i; i<5;i++){
-            new Comment(comment: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new  Date(),task: Task.findById(1),users: Users.findById(1)).save()
+            new Comment(comment: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new  Date(),task: Task.findById(rand.nextInt((int)Task.list().size())+1),users: Users.findById(rand.nextInt((int)Users.list().size())+1)).save()
         }
     }
 }
