@@ -61,9 +61,17 @@ class TaskService {
     // 1.c done   
 
     void newTasks(){
-            new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
-                    users: Users.findByFirstName("Alankar"), taskType: TaskType.findByTitle("Grocery"),
+            Random rand=new Random()
+
+        new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
+                    users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
                     dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+        new Task(taskStatus: TaskStatus.CREATED, title: "rndTask1", detail: "This is random",
+                users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+        new Task(taskStatus: TaskStatus.CREATED, title: "rndTask2", detail: "This is random",
+                users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
     }
     void newUsers(){
             new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findByTitle("manager"),
