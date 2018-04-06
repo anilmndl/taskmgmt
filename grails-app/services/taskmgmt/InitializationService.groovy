@@ -14,18 +14,18 @@ class InitializationService {
             new Task(taskStatus: TaskStatus.CREATED, title: "task", detail: "Please buy us 1 bottle of milk.",
                     users: Users.findById(rand.nextInt((int)Users.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
                     dateCreated: new Date(), customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1)).save()
+
         }
     }
 
     void initTaskType() {
-        new TaskType(title: "Watch", description: "Binge watch and waste time").save()
-        new TaskType(title: "Sleep", description: "Binge watch and waste time").save()
-        new TaskType(title: "Eat", description: "Binge watch and waste time").save()
-        new TaskType(title: "Code", description: "Binge watch and waste time").save()
-        new TaskType(title: "Cook", description: "Binge watch and waste time").save()
-        new TaskType(title: "Hike", description: "Binge watch and waste time").save()
+        for (int i; i < 25; i++) {
+            new TaskType(title: "Watch Netflix", description: "Binge watch and waste time").save()
+            new TaskType(title: "Hulu is Life", description: "Next episode of family guy is out").save()
+            new TaskType(title: "Crush the CrunchyRoll", description: "Anime is not cartoon").save()
+            new TaskType(title: "Life of Prime", description: "Download now watch months later.").save()
+        }
     }
-
     void initRole() {
         new Role(dateCreated: new Date(), title: "Manager", description: "Manages store").save()
         new Role(dateCreated: new Date(), title: "User", description: "Manages store").save()

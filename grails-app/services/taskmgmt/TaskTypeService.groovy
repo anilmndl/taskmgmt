@@ -4,7 +4,6 @@ import grails.transaction.Transactional
 
 @Transactional
 class TaskTypeService {
-
     def save(TaskType taskType) {
         taskType.identifier = slugify(taskType.title)
         taskType.dateCreated = new Date()

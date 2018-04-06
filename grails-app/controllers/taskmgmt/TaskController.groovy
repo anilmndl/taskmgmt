@@ -32,6 +32,7 @@ class TaskController {
         try {
             taskService?.complete(task)
             taskService?.assignRandomTaskToRandomUser()
+            userValidation()
             redirect action: "listCompleted"
         }
         catch (Exception e) {
@@ -133,7 +134,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [tasks: task, commentList: commentList,userList: userList]
+        render view: "detail", model: [tasks: task, commentList: commentList, userList: userList]
 
     }
 
@@ -158,6 +159,9 @@ class TaskController {
     def save(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
             task = taskService?.createTask(task)
+        }
+        if ((task.users == null)) {
+            task = taskService?.randomUser(task)
         }
         try {
             taskService?.save(task)
@@ -203,6 +207,7 @@ class TaskController {
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
+
     def saveComment(Comment comment) {
         try {
             taskService.commentSave(comment)
@@ -223,5 +228,30 @@ class TaskController {
         }
         //redirects to details page
         detail(task)
+    }
+
+    def userValidation(){
+        //finds the last saved task
+        List<Task> lastTaskSaved = Task.createCriteria().list {
+            isNull("dateDeleted")
+            maxResults(1)
+            order("dateCreated","desc")
+        }
+        //last saved task
+        def task = lastTaskSaved[0]
+        //check if the user of the task is in vacation
+        //if yes assign it to new user who is not in vacation
+        if(task.users.vacationMode){
+            List<Users> usersList = Task.createCriteria().list {
+                and{
+                    isNull("dateDeleted")
+                    eq("vacationMode",false)
+                }
+                order("dateCreated","desc")
+            }
+            Random random = new Random()
+            task.users = usersList[random.nextInt(usersList.size())]
+            taskService.update(task)
+        }
     }
 }

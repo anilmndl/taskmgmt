@@ -53,17 +53,17 @@
                 <tr>
                     <td>User:</td>
                     <td>
-                        <g:if test="${tasks.users == null}">
+                        %{--<g:if test="${tasks?.users == null}">
                             <div class="label label-warning">No data</div>
-                        </g:if>
-                        <g:else>
+                        </g:if>--}%
+                     %{--   <g:else>--}%
                             <g:link controller="user" id="${tasks.users.id}"
                                     action="detail">
 
                                 <mark>${tasks?.users?.firstName} ${tasks?.users?.lastName}</mark>
 
                             </g:link>
-                        </g:else>
+                      %{--  </g:else>--}%
                     </td>
                 </tr>
                 <tr>
@@ -131,51 +131,53 @@
 
                     </g:if>
                     <th>
-                        <g:form controller="task" action="reassignTask" id="${tasks.id}" method="POST">
-                            <button type="button" class="btn btn-primary btn-sm pull-left" data-toggle="modal"
-                                    data-target="#reassignUserModal"><i class="fa fa-male"
-                                                                        aria-hidden="true"></i> Reassign User
-                            </button>
-                        </g:form>
-                    <!-- Modal -->
-                        <div class="modal fade" id="reassignUserModal" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                        <g:if test="${tasks.dateCompleted == null}">
+                            <g:form controller="task" action="reassignTask" id="${tasks.id}" method="POST">
+                                <button type="button" class="btn btn-primary btn-sm pull-left" data-toggle="modal"
+                                        data-target="#reassignUserModal"><i class="fa fa-male"
+                                                                            aria-hidden="true"></i> Reassign User
+                                </button>
+                            </g:form>
+                            <!-- Modal -->
+                            <div class="modal fade" id="reassignUserModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
 
-                                        <h2 class="modal-title" id="exampleModalLongTitle">Reassign User</h2>
-                                    </div>
-                                    <g:form controller="task" action="reassignTask" id="${tasks.id}" method="POST">
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label><h4>User</h4></label>
-                                                <g:select class="btn btn-default dropdown-toggle" from="${userList}"
-                                                          name="users" optionKey="id"
-                                                          optionValue="firstName"
-                                                          noSelection="['': '--Users--']" required="required"/>
-                                            </div>
+                                            <h2 class="modal-title" id="exampleModalLongTitle">Reassign User</h2>
                                         </div>
+                                        <g:form controller="task" action="reassignTask" id="${tasks.id}" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label><h4>User</h4></label>
+                                                    <g:select class="btn btn-default dropdown-toggle" from="${userList}"
+                                                              name="users" optionKey="id"
+                                                              optionValue="firstName"
+                                                              noSelection="['': '--Users--']" required="required"/>
+                                                </div>
+                                            </div>
 
-                                        <div class="modal-footer">
-                                            <table class="table table-responsive">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i
-                                                        class="fa fa-times"
-                                                        aria-hidden="true"></i> Cancel</button>
+                                            <div class="modal-footer">
+                                                <table class="table table-responsive">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                                                            class="fa fa-times"
+                                                            aria-hidden="true"></i> Cancel</button>
 
-                                                    <button type="submit" class="btn btn-success"><i class="fa fa-trash"
-                                                                                      aria-hidden="true"></i> Reassign</button>
+                                                        <button type="submit" class="btn btn-success"><i class="fa fa-trash"
+                                                                                          aria-hidden="true"></i> Reassign</button>
 
-                                    </g:form>
-                                </table>
-                                </div>
+                                        </g:form>
+                                    </table>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         %{--end Modal--}%
+                        </g:if>
                     </th>
 
                     <th class="bottom-right">
