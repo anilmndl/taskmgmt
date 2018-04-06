@@ -18,12 +18,18 @@
             <div class="fieldcontain">
                 <label for="query">Search for tasks by title:</label>
                 <g:textField name="query" value="${params.query}"/>
+                <label>Task type*</label>
+                <g:select class="btn btn-small  btn-xs" from="${taskTypeList}" name="taskType" optionKey="title"
+                          optionValue="title" noSelection="['': '--Select--']"/>
+                <label class="control-label" for="query">Date after:</label>
+                <g:datePicker name="date" default="none" precision="day" noSelection="[null: '--select--']"/>
+
                 <button id="submit-values" class="btn btn-small btn-success btn-xs" type="submit">
                     <i class="icon-ok"></i>
                     Search
                 </button>
                 <g:link controller="task" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                                 aria-hidden="true"></i> New Task</g:link>
+                                                                                             aria-hidden="true"></i> New Task</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -101,16 +107,11 @@
                 </table>
             </div>
 
-
-
-                    <ul class="pagination pagination-lg">
-                      <li>
-                          <g:paginate next="Forward" prev="Back" maxsteps="0" controller="task" action="list" total="${listCount}"/>
-
-                      </li>
-
-                    </ul>
-                    %{--<g:paginate controller="task" action="list" total="${listCount}"></g:paginate>--}%
+            <ul class="pagination pagination-sm">
+                <li>
+                    <g:paginate next="Forward" prev="Back" controller="task" action="list" total="${listCount}"/>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

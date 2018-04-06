@@ -23,7 +23,7 @@ class TaskTypeController {
             } else {
                 isNull("dateDeleted")
             }
-
+            order("dateCreated","desc")
         }
         [typeList: taskTypeList, listCount: taskTypeList.totalCount]
     }

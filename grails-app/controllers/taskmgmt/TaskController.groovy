@@ -27,6 +27,7 @@ class TaskController {
     def completed(Task task) {
         try {
             taskService?.complete(task)
+            taskService?.assignRandomTaskToRandomUser()
             redirect action: "listCompleted"
         }
         catch (Exception e) {
@@ -54,41 +55,102 @@ class TaskController {
 
     }
 
+
+    // The date picker needs all fields to be filled to search after a date
+    // need to make it better. For ex if a user selects one portion like a day of date, other field should be required
+    // trying to figure out how to search through task.taskType
+    // SanRIZZ .................
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        def tasks = Task.createCriteria()
-        tasks = tasks.list {
-            isNull("dateDeleted")
+
+        def tasks = Task.createCriteria().list(params) {
             and {
+                isNull("dateDeleted")
                 isNull("dateCompleted")
+                if (params.query && params.date && params.taskType) {
+                    and{
+                        ilike("title", "%${params.query}%")
+                        eqProperty("taskType", "%${params.taskType}%")
+                    }
+                }
+                else if(params.query && params.date) {
+                    and{
+                        ilike("title", "%${params.query}%")
+                        gt("dateCreated", params.date)
+                    }
+                }
+                else if(params.query && params.taskType) {
+                    and{
+                        ilike("title", "%${params.query}%")
+                        eqProperty("taskType", "%${params.taskType}%")
+                    }
+                }
+                else if(params.taskType && params.date){
+                    gt("dateCreated", params.date)
+                    eqProperty("taskType", "%${params.taskType}%")
+                }
+                else if(params.date) {
+                    gt("dateCreated", params.date)
+                }
+                else if(params.query) {
+                    ilike("title", "%${params.query}%")
+                }
+                else if(params.taskType){
+                    eqProperty("taskType", "%${params.taskType}%")
+                }
+                else{
+                    true
+                }
             }
             order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: tasks, listCount: Task.count()]
+        render view: "list", model: [tasks: tasks, listCount: Task.findAllByDateCompletedIsNullAndDateDeletedIsNull().size(),taskTypeList: TaskType.
+                findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"])]
     }
 
     def create() {
+        def userList = Users.createCriteria().list(params){
+            and{
+                isNull("dateDeleted")
+                eq("vacationMode",false)
+            }
+            order("dateCreated","desc")
+        }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList: Users.findAllByDateDeletedIsNull(), customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
-        render view: "detail", model: [tasks: task]
+        def commentList= Comment.createCriteria().list(params){
+            and {
+                //eq("task_id","${task.id}")
+                isNull("dateDeleted")
+            }
+            order("dateCreated","desc")
+        }
+
+        render view: "detail", model: [tasks: task,commentList: commentList]
+
     }
 
     def listCompleted() {
-        def tasks = Task.createCriteria()
-        tasks = tasks.list {
-            isNull("dateDeleted")
-            and {
+        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+
+        def taskList = Task.createCriteria().list(params) {
+            if (params.query) {
+                 and {
+                     isNull("dateDeleted")
+                     isNotNull("dateCompleted")
+                     ilike("title", "%${params.query}%")
+                 }
+            }
+            else{
+                isNull("dateDeleted")
                 isNotNull("dateCompleted")
             }
-            order("dateCompleted", "desc")
         }
-
-
-        render view: "completed", model: [tasks: tasks]
+        render view: "completed", model: [tasks: taskList, listCount: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull().size()]
     }
 
     def save(Task task) {
@@ -106,9 +168,9 @@ class TaskController {
 
     }
 
-    def unlocked(Task task) {
+    def unassigned(Task task) {
         try {
-            taskService?.unlocked(task)
+            taskService?.unassigned(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -116,9 +178,18 @@ class TaskController {
         render view: "detail", model: [tasks: task]
     }
 
-    def locked(Task task) {
+    def assigned(Task task) {
         try {
-            taskService?.locked(task)
+            taskService?.assigned(task)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        render view: "detail", model: [tasks: task]
+    }
+    def inProgress(Task task) {
+        try {
+            taskService?.inProgress(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()
@@ -128,5 +199,16 @@ class TaskController {
 
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
+    }
+
+    def saveComment(Comment comment){
+        try {
+            taskService.commentSave(comment)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        redirect action: "detail"
+
     }
 }

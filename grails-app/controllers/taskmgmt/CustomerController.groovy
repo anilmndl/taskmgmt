@@ -57,7 +57,7 @@ class CustomerController {
             }
         }
 
-        [customerList: customerList, listCount: customerList.totalCount]
+        [customerList: customerList, listCount: Customer.count()]
     }
 
     def delete(Customer customer) {
