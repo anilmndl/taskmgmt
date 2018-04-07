@@ -19,12 +19,12 @@ class InitializationService {
     }
 
     void initTaskType() {
-        for (int i; i < 25; i++) {
+
             new TaskType(title: "Watch Netflix", description: "Binge watch and waste time").save()
             new TaskType(title: "Hulu is Life", description: "Next episode of family guy is out").save()
             new TaskType(title: "Crush the CrunchyRoll", description: "Anime is not cartoon").save()
             new TaskType(title: "Life of Prime", description: "Download now watch months later.").save()
-        }
+
     }
     void initRole() {
         new Role(dateCreated: new Date(), title: "Manager", description: "Manages store").save()
