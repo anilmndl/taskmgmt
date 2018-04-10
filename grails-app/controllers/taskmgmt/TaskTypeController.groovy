@@ -29,7 +29,7 @@ class TaskTypeController {
     }
 
     def create() {
-        taskTypeService?.create()
+
         render view: "create"
     }
 
