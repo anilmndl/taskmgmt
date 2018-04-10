@@ -54,6 +54,7 @@ class CustomerController {
             } else {
                 isNull("dateDeleted")
             }
+            order("dateCreated","desc")
         }
 
         [customerList: customerList, listCount: Customer.count()]
