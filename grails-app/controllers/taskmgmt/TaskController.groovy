@@ -42,7 +42,14 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
+        def userList = Users.createCriteria().list(params) {
+            and {
+                isNull("dateDeleted")
+                eq("vacationMode", false)
+            }
+            order("dateCreated", "desc")
+        }
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: userList, customerList: Customer.list()]
     }
 
     def update(Task task) {

@@ -96,15 +96,27 @@
                         <th><g:link controller="user" action="edit" id="${users.id}"
                                     class="btn btn-success btn-sm"><i class="fa fa-edit"
                                                                       aria-hidden="true"></i> Edit</g:link></th>
-                        <th class="bottom-right">
-                        %{--sends delete request as POST form submission--}%
-                            <g:form controller="user" action="delete" id="${users.id}" method="POST">
-                                <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
-                                        data-target="#userDeleteModal"><i class="fa fa-trash"
-                                                                          aria-hidden="true"></i> Delete Task
-                                </button>
-                            </g:form>
+                    <th class="bottom-right">
+                        <g:if test="${users.vacationMode==false}">
+                            <th><g:link controller="user" action="Vacation" id="${users.id}"
+                                        class="btn btn-success btn-sm"><i class="fa fa-edit"
+                                                                          aria-hidden="true"></i> Vacataion Mode ON</g:link>
+                            </th>
+                            <th class="bottom-right">
+                        </g:if>
+                        <g:else><th><g:link controller="user" action="Working" id="${users.id}"
+                                            class="btn btn-success btn-sm"><i class="fa fa-edit"
+                                                                              aria-hidden="true"></i> Working Mode ON</g:link>
                         </th>
+                            <th class="bottom-right"></g:else>
+                        %{--sends delete request as POST form submission--}%
+                        <g:form controller="user" action="delete" id="${users.id}" method="POST">
+                            <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
+                                    data-target="#userDeleteModal"><i class="fa fa-trash"
+                                                                      aria-hidden="true"></i> Delete Task
+                            </button>
+                        </g:form>
+                    </th>
                     </tr>
                 </table>
 
