@@ -29,7 +29,7 @@
 
             <div class="form-inline ">
                 <h2>TaskTypes</h2>
-                <g:if test="${detailTaskType.children}">
+                <g:if test="${detailTaskType.linkedTaskTypes}">
                     <ul>
                         <g:each var="taskType" in="${detailTaskType.children}">
                             <li>${taskType.title}

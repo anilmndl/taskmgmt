@@ -3,10 +3,6 @@ package taskmgmt
 import grails.transaction.Transactional
 import taskmgmt.enums.TaskStatus
 
-import javax.validation.constraints.Max
-import javax.validation.constraints.Null
-
-
 @Transactional
 class TaskService {
 
@@ -52,11 +48,22 @@ class TaskService {
         }
     }
 
-    def assignRandomTaskToRandomUser() {
-        newUsers()
-        newTasks()
+    def assignRandomTaskToRandomUser(Task task) {
+        List<TaskType> newTaskTypeList = task.taskType.linkedTaskTypes
+        newTaskTypeList.each {
+            def newUsersList = it.users
+            List<Users> userList
+            newUsersList.each {
+                if(it.vacationMode==false){
+                    userList.add(it)
+                }
+            }
+            Random random = new Random()
+            new Task(taskStatus: TaskStatus.CREATED, title: it.title, detail: it.description,
+                    users: userList[random.nextInt(userList.size())], taskType: it,
+                    dateCreated: new Date()).save()
+        }
     }
-
     // I did the restrict to a single task
     // SanRIZZ.........
     // 1.c done   
