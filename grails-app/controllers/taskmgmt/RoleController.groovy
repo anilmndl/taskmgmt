@@ -18,6 +18,7 @@ class RoleController {
             }else{
                 isNull("dateDeleted")
             }
+            order("dateCreated","desc")
         }
 
         [roleList: roleList, listCount: roleList.totalCount]

@@ -41,7 +41,14 @@ class TaskController {
     }
 
     def edit(Task task) {
-        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list(), customerList: Customer.list()]
+        def userList = Users.createCriteria().list(params) {
+            and {
+                isNull("dateDeleted")
+                eq("vacationMode", false)
+            }
+            order("dateCreated", "desc")
+        }
+        render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: userList, customerList: Customer.list()]
     }
 
     def update(Task task) {
@@ -133,7 +140,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [tasks: task, commentList: commentList,userList: userList]
+        render view: "detail", model: [tasks: task, commentList: commentList, userList: userList]
 
     }
 
@@ -158,6 +165,9 @@ class TaskController {
     def save(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
             task = taskService?.createTask(task)
+        }
+        if ((task.users == null)) {
+            task = taskService?.randomUser(task)
         }
         try {
             taskService?.save(task)
@@ -203,6 +213,7 @@ class TaskController {
     def myTask() {
         render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED)]
     }
+
     def saveComment(Comment comment) {
         try {
             taskService.commentSave(comment)
@@ -210,7 +221,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        redirect action: "detail"
+        redirect action: "detail", id:params.task
 
     }
 

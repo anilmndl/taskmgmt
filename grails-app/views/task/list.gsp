@@ -109,11 +109,7 @@
                 </li>
 
             </ul>
-            <ul class="pagination pagination-sm">
-                <li>
-                    <g:paginate next="Forward" prev="Back" controller="task" action="list" total="${listCount}"/>
-                </li>
-            </ul>
+
         </div>
     </div>
 </div>

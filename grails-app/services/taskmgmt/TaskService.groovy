@@ -15,6 +15,17 @@ class TaskService {
         }
     }
 
+    def randomUser(Task task) {
+        task.title = task.title ? task.title : task.taskType.title
+        task.detail = task.detail ? task.detail : task.taskType.description
+        Random rand = new Random()
+        new Task(title: "randTaskType", description: "This is random")
+        new Users(firstName: "Kishor", middleName: "", lastName: "Simkhada", role: Role.findById(rand.nextInt(100)),
+                address: "420 S. 6th Ave #5, Pocatello, Idaho",
+                phoneNumber: 1029384756, dateCreated: new Date()).save()
+        return task
+    }
+
     def delete(Task task) {
         task.dateModified = new Date()
         task.taskStatus = TaskStatus.DELETED
@@ -68,17 +79,25 @@ class TaskService {
     // SanRIZZ.........
     // 1.c done   
 
-    void newTasks() {
+    void newTasks(){
+            Random rand=new Random()
+
         new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
-                users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(1),
-                dateCreated: new Date(), customer: Customer.findById(1)).save()
+                    users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                    dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+        new Task(taskStatus: TaskStatus.CREATED, title: "rndTask1", detail: "This is random",
+                users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+        new Task(taskStatus: TaskStatus.CREATED, title: "rndTask2", detail: "This is random",
+                users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+
     }
 
     void newUsers() {
         new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findById(1),
-                address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(),vacationMode: true).save()
+                address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: true).save()
     }
-
     Task createTask(Task task) {
         task.title = task.title ? task.title : task.taskType.title
         task.detail = task.detail ? task.detail : task.taskType.description

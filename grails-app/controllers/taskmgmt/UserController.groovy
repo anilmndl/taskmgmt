@@ -80,7 +80,7 @@ class UserController {
             catch (Exception e) {
                 flash.message = "There was some error"
             }
-        }else{
+        } else {
             try {
                 user.taskTypes.remove(taskType)
                 flash.message = "Successfully unsubscribed from " + taskType.title
@@ -90,5 +90,25 @@ class UserController {
             }
         }
         redirect action: "detail", params: ["id": user.id]
+    }
+
+    def Vacation(Users user) {
+        try {
+            userService?.Vacation(user)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        render view: "detail", model: [users: user]
+    }
+
+    def Working(Users user){
+        try {
+            userService?.Working(user)
+        }
+        catch (Exception e) {
+            flash.message = e.getMessage()
+        }
+        render view: "detail", model: [users: user]
     }
 }
