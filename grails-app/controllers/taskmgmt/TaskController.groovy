@@ -1,5 +1,6 @@
 package taskmgmt
 
+import grails.gorm.DetachedCriteria
 import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
@@ -73,6 +74,8 @@ class TaskController {
     // SanRIZZ .................
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        DetachedCriteria detachedCriteria = new DetachedCriteria()
+        
         def tasks = Task.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
