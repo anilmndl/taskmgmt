@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class UserService {
 
-    def save(Users user) {
+    def save(User user) {
         user.dateCreated = new Date()
         if (user.validate()) {
             user.save failOnError: true, flush: true
@@ -14,7 +14,7 @@ class UserService {
         }
     }
 
-    def delete(Users users) {
+    def delete(User users) {
         users.dateDeleted = new Date()
         if (users.validate()) {
             users.save failOnError: true, flush: true
@@ -24,7 +24,7 @@ class UserService {
 
     }
 
-    def update(Users user) {
+    def update(User user) {
         user.dateModified = new Date()
         if (user.validate()) {
             user.save failOnError: true, flush: true
@@ -33,7 +33,7 @@ class UserService {
         }
     }
 
-    def Vacation(Users user){
+    def Vacation(User user){
         user.vacationMode= true
         if (user.validate()) {
             user.save failOnError: true, flush: true
@@ -42,7 +42,7 @@ class UserService {
         }
     }
 
-    def Working(Users user){
+    def Working(User user){
         user.vacationMode=false
         if (user.validate()) {
             user.save failOnError: true, flush: true

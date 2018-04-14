@@ -10,7 +10,7 @@ class UserController {
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
-        def userList = Users.createCriteria().list(params) {
+        def userList = User.createCriteria().list(params) {
             if (params.query) {
                 and {
                     ilike("firstName", "%${params.query}%")
@@ -28,11 +28,11 @@ class UserController {
         render view: "create", model: [roles: Role.list()]
     }
 
-    def edit(Users user) {
+    def edit(User user) {
         render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
     }
 
-    def save(Users user) {
+    def save(User user) {
         try {
             userService?.save(user)
             redirect action: "list"
@@ -44,11 +44,11 @@ class UserController {
         }
     }
 
-    def detail(Users users) {
+    def detail(User users) {
         render view: "detail", model: [users: users, taskTypes: TaskType.list()]
     }
 
-    def delete(Users user) {
+    def delete(User user) {
         try {
             userService?.delete(user)
             redirect action: "list"
@@ -59,7 +59,7 @@ class UserController {
         }
     }
 
-    def update(Users user) {
+    def update(User user) {
         try {
             userService?.update(user)
             redirect action: "list"
@@ -70,7 +70,7 @@ class UserController {
         }
     }
 
-    def subscribe(Users user) {
+    def subscribe(User user) {
         TaskType taskType = TaskType.get(params.taskType)
         if (params.isSubscribe == "true") {
             try {
@@ -92,7 +92,7 @@ class UserController {
         redirect action: "detail", params: ["id": user.id]
     }
 
-    def Vacation(Users user) {
+    def Vacation(User user) {
         try {
             userService?.Vacation(user)
         }
@@ -102,7 +102,7 @@ class UserController {
         render view: "detail", model: [users: user]
     }
 
-    def Working(Users user){
+    def Working(User user){
         try {
             userService?.Working(user)
         }
