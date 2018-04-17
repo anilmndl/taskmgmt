@@ -51,13 +51,13 @@ class UserRole implements Serializable {
 
 	static UserRole create(User user, Role role, boolean flush = false) {
 		def instance = new UserRole(user: user, role: role)
-		instance.save(flush: flush)
+//		instance.save(flush: flush)
 		instance
 	}
 
 	static boolean remove(User u, Role r) {
 		if (u != null && r != null) {
-			UserRole.where { user == u && role == r }.deleteAll()
+			//UserRole.where { user == u && role == r }.deleteAll()
 		}
 	}
 
@@ -73,9 +73,9 @@ class UserRole implements Serializable {
 		role validator: { Role r, UserRole ur ->
 			if (ur.user?.id) {
 				UserRole.withNewSession {
-					if (UserRole.exists(ur.user.id, r.id)) {
-						return ['userRole.exists']
-					}
+//					if (UserRole.exists(ur.user.id, r.id)) {
+//						return ['userRole.exists']
+//					}
 				}
 			}
 		}

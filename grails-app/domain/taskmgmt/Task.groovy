@@ -21,7 +21,7 @@ class Task {
     static  hasMany = [comments:Comment]
 
     static constraints = {
-        users nullable: true
+        user nullable: true
         taskStatus nullable: true
         dateModified nullable: true
         dateCompleted nullable: true
