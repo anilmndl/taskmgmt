@@ -14,11 +14,14 @@ class BootStrap {
         initializationService.initTask()
         initializationService.initComment()
 
-        def role = new Role(authority: 'ROLE_ADMIN').save()
-        def admin = new User(username: 'hack',password: 'hack',firstName:'Kishor',lastName: 'Simkkhada',enabled: true, email: 'admin@servername')
-        admin.authorities(role)
+        def roleAdmin = new Role(authority: 'ROLE_ADMIN',title: "Admin").save()
+        def roleUser=new Role(authority: 'ROLE_USER').save()
+        def admin = new User(username: 'role',password: 'hack',firstName:'Kishor',lastName: 'Simkkhada', email: 'admin@servername')
+       //admin.authorities(roleAdmin)
+        admin.role=roleAdmin
         //admin.addToAuthorities(role)
         admin.save()
+        admin
     }
 //
 //        def adminRole=Role.findOrSaveWhere(authority: 'ROLE_ADMIN')
