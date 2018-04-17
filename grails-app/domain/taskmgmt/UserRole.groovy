@@ -50,14 +50,12 @@ class UserRole implements Serializable {
 	}
 
 	static UserRole create(User user, Role role, boolean flush = false) {
-		def instance = new UserRole(user: user, role: role)
-//		instance.save(flush: flush)
-		instance
+		new UserRole(user: user, role: role).save(flush:flush)
 	}
 
 	static boolean remove(User u, Role r) {
 		if (u != null && r != null) {
-			//UserRole.where { user == u && role == r }.deleteAll()
+			UserRole.where { user == u && role == r }.deleteAll()
 		}
 	}
 
@@ -70,15 +68,15 @@ class UserRole implements Serializable {
 	}
 
 	static constraints = {
-		role validator: { Role r, UserRole ur ->
-			if (ur.user?.id) {
-				UserRole.withNewSession {
+//		role validator: { Role r, UserRole ur ->
+//			if (ur.user?.id) {
+//				UserRole.withNewSession {
 //					if (UserRole.exists(ur.user.id, r.id)) {
 //						return ['userRole.exists']
 //					}
-				}
-			}
-		}
+//				}
+//			}
+//		}
 	}
 
 	static mapping = {

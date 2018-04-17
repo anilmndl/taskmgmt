@@ -7,35 +7,24 @@ class BootStrap {
 
     InitializationService initializationService
     def init = { servletContext ->
-        //      initializationService.initRole()
-//        initializationService.initUser()
         initializationService.initTaskType()
         initializationService.initCustomer()
         initializationService.initTask()
         initializationService.initComment()
+        //creating user
+        User adminUser = new User(username: 'admin', password: 'admin', enabled: true).save()
+        User managerUser = new User(username: 'manager', password: 'mgmt', enabled: true).save()
+        User userUser = new User(username: 'user', password: 'user', enabled: true).save()
+        //creating the role
+        Role adminRole = new Role(authority: 'ROLE_ADMIN').save()
+        Role userRole = new Role(authority: 'ROLE_USER').save()
+        Role managerRole = new Role(authority: 'ROLE_MANAGER').save()
 
-        def roleAdmin = new Role(authority: 'ROLE_ADMIN',title: "Admin").save()
-        def roleUser=new Role(authority: 'ROLE_USER').save()
-        def admin = new User(username: 'role',password: 'hack',firstName:'Kishor',lastName: 'Simkkhada', email: 'admin@servername')
-       //admin.authorities(roleAdmin)
-        admin.role=roleAdmin
-        //admin.addToAuthorities(role)
-        admin.save()
-        admin
+        //assigning role to the user
+        UserRole.create(adminUser, adminRole)
+        UserRole.create(managerUser, managerRole)
+        UserRole.create(userUser, userRole)
     }
-//
-//        def adminRole=Role.findOrSaveWhere(authority: 'ROLE_ADMIN')
-//        def userRole=Role.findOrSaveWhere(authority: 'ROLE_USER')
-//       def admin=User.findOrSaveWhere(username: 'hack',password: 'hack',firstName:'Kishor',lastName: 'Simkkhada',authorities:'ROLE_ADMIN')
-//        def user=User.findOrSaveWhere(username: 'kishor',password: 'kishor',firstName:'Kishor',lastName: 'Simkkhada',authorities:'ROLE_USER')
-//        if (!admin.authorities.contains(adminRole)) {
-////            UserRole.create(admin, adminRole, true)
-//        }
-//        if (!user.authorities.contains(adminRole)) {
-////            UserRole.create(user, userRole, true)
-//        }
-   // }
-
 
     def destroy = {
     }

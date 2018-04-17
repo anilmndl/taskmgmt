@@ -29,12 +29,23 @@ class User implements Serializable {
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
-    Role role
 
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }
-
+    static constraints = {
+        password blank: false, password: true
+        username blank: false, unique: true
+        firstName nullable: true
+        lastName nullable:true
+        vacationMode nullable: true
+        middleName nullable: true
+        dateCreated nullable: true
+        dateDeleted nullable: true
+        dateModified nullable: true
+        phoneNumber nullable: true
+        address nullable: true
+    }
     def beforeInsert() {
         encodePassword()
     }
@@ -51,17 +62,7 @@ class User implements Serializable {
 
     static transients = ['springSecurityService']
 
-    static constraints = {
-        password blank: false, password: true
-        username blank: false, unique: true
-        vacationMode nullable: true
-        middleName nullable: true
-        dateCreated nullable: true
-        dateDeleted nullable: true
-        dateModified nullable: true
-        phoneNumber nullable: true
-        address nullable: true
-    }
+
     static hasMany = [taskTypes: TaskType, comments: Comment]
     static mapping = {
         table 'tbl_user'

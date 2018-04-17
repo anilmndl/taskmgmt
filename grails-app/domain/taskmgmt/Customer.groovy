@@ -1,8 +1,4 @@
 package taskmgmt
-
-import grails.plugin.springsecurity.annotation.Secured
-
-@Secured(['ROLE_USER'])
 class Customer {
     String firstName
     String lastName

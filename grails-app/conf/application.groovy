@@ -3,8 +3,6 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'taskmgmt.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'taskmgmt.UserRole'
 grails.plugin.springsecurity.authority.className = 'taskmgmt.Role'
 grails.plugin.springsecurity.controllerAnnaotations.staticRules = [
-
-        [pattern: '/', access: ['permitAll']],
         [pattern: '/', access: ['permitAll']],
         [pattern: '/error', access: ['permitAll']],
         [pattern: '/index', access: ['permitAll']],
@@ -15,7 +13,7 @@ grails.plugin.springsecurity.controllerAnnaotations.staticRules = [
         [pattern: '/**/css/**', access: ['permitAll']],
         [pattern: '/**/images/**', access: ['permitAll']],
         [pattern: '/**/favicon.ico', access: ['permitAll']],
-        [pattern: '/login/**', access: ['permitAll']],
+
         ]
         grails.plugin.springsecurity.filterChain.chainMap = [
                 [pattern: '/assets/**', filters: 'none'],

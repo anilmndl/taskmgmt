@@ -19,6 +19,7 @@ class Role implements Serializable {
     static constraints = {
         authority blank: false, unique: true
         description nullable: true
+        title nullable: true
         dateModified nullable: true
         dateDeleted nullable: true
 

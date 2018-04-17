@@ -1,7 +1,7 @@
 package taskmgmt
+import grails.plugin.springsecurity.annotation.Secured
 
-import grails.gorm.DetachedCriteria
-
+@Secured(['ROLE_ADMIN'])
 class TaskTypeController {
 
     TaskTypeService taskTypeService
