@@ -4,6 +4,7 @@ import grails.plugin.springsecurity.annotation.Secured
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'taskmgmt.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'taskmgmt.UserRole'
 grails.plugin.springsecurity.authority.className = 'taskmgmt.Role'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnaotations.staticRules = [
         [pattern: '/', access: ['permitAll']],
         [pattern: '/error', access: ['permitAll']],
