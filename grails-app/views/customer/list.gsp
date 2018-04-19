@@ -34,7 +34,7 @@
                 <div class="panel-heading"><strong>Customers</strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th>ID</th>
+
                         <th>Full Name</th>
                         <th>Date Created</th>
                         <th>Action</th>
@@ -43,11 +43,11 @@
                         <g:each in="${customerList}" var="list">
                         %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
                             <tr>
-                                <td>${list.id}</td>
+
                                 <td>${list.firstName} ${list.lastName}</td>
                                 <td><common:dateFormatWithTime dateValue="${list.dateCreated}"/></td>
                                 <td>
-                                    <g:link controller="customer" action="detail" id="${list.id}"
+                                    <g:link controller="customer" action="detail"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                               aria-hidden="true"></i> View Details</g:link>
                                 </td>

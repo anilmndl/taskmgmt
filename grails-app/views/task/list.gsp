@@ -94,7 +94,7 @@
                             <td><strong><em>${show.taskStatus}</em></strong></td>
 
                             <td>
-                                <g:link controller="Task" action="detail" id="${show.id}"
+                                <g:link controller="Task" action="detail"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
