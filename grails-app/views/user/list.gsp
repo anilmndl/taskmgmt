@@ -40,7 +40,7 @@
                         <th>Middle Name</th>
                         <th>Last Name</th>
                         <th>Phone Number</th>
-                        <th> Vaccation Mode</th>
+                        <th> Vacation Mode</th>
                         <th>Action</th>
                     </tr>
                     <g:if test="${users}">
