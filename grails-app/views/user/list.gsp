@@ -35,7 +35,7 @@
                 </strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th><Id></Id></th>
+
                         <th>First name</th>
                         <th>Middle Name</th>
                         <th>Last Name</th>
@@ -46,14 +46,13 @@
                     <g:if test="${users}">
                         <g:each in="${users}" var="user">
                             <tr>
-                                <td>${user.id}</td>
                                 <td>${user.firstName}</td>
                                 <td>${user.middleName}</td>
                                 <td>${user.lastName}</td>
                                 <td>${user.phoneNumber}</td>
                                 <td><common:vacationMode IsOnVacation="${user.vacationMode}"/> </td>
                                 <td>
-                                    <g:link controller="user" action="detail" id="${user.id}"
+                                    <g:link controller="user" action="detail"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                               aria-hidden="true"></i> View Details</g:link>
 
