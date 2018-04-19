@@ -3,7 +3,7 @@ package taskmgmt
 class Comment {
     String comment
     Task task
-    Users users
+    User user
     Date dateCreated
     Date dateDeleted
     Date dateModified

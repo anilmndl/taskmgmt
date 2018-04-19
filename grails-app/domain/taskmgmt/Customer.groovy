@@ -1,5 +1,4 @@
 package taskmgmt
-
 class Customer {
     String firstName
     String lastName

@@ -9,8 +9,8 @@ class TaskType {
     Date dateModified
     Date dateDeleted
 
-    static belongsTo = [Users, TaskType]
-    static hasMany = [tasks: Task, users: Users, linkedTaskTypes: TaskType]
+    static belongsTo = [User, TaskType]
+    static hasMany = [tasks: Task, users: User, linkedTaskTypes: TaskType]
 
     static constraints = {
         dateCreated nullable: true

@@ -1,18 +1,16 @@
 package taskmgmt
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN'])
 class CustomerController {
-
     static defaultAction = "list"
-
     //delete() method is only allows POST request
     static allowedMethods = [delete: 'POST']
-
     CustomerService customerService
-
     def create() {
         render view: "create"
     }
-
     def save(Customer customer) {
         try {
             List<Customer> customerList = Customer.list()
@@ -36,7 +34,6 @@ class CustomerController {
             render view: "edit", model: [customerToEdit: customer]
         }
     }
-
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 

@@ -12,7 +12,7 @@ import spock.lang.Specification
 //@TestFor(EditTagLib)
 class EditTagLibSpec extends Specification {
     @TestFor(UserController)
-//@Mock([Users])
+//@Mock([User])
     class UserControllerSpec extends Specification {
 
         def setup() {
