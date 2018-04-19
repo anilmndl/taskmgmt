@@ -54,7 +54,7 @@
                                 <td>
                                     <g:link controller="user" action="detail"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
-                                                                              aria-hidden="true"></i> View Details</g:link>
+                                                                           aria-hidden="true"></i> View Details</g:link>
 
                                 </td>
                             </tr>
