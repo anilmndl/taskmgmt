@@ -34,7 +34,7 @@
                 <div class="panel-heading"><strong>Customers</strong></div>
                 <table class="table table-striped">
                     <tr>
-                        
+
                         <th>Full Name</th>
                         <th>Date Created</th>
                         <th>Action</th>
