@@ -1,6 +1,7 @@
 package taskmgmt
 
 import grails.gorm.DetachedCriteria
+import grails.plugin.springsecurity.annotation.Secured
 import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
@@ -8,6 +9,8 @@ import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
+
+@Secured(['ROLE_ADMIN'])
 class TaskController {
 
     TaskService taskService
@@ -42,7 +45,7 @@ class TaskController {
     }
 
     def edit(Task task) {
-        def userList = Users.createCriteria().list(params) {
+        def userList = taskmgmt.User.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
                 eq("vacationMode", false)
@@ -62,7 +65,7 @@ class TaskController {
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: taskmgmt.User.list()]
         }
 
     }
@@ -112,7 +115,7 @@ class TaskController {
     }
 
     def create() {
-        def userList = Users.createCriteria().list(params) {
+        def userList = taskmgmt.User.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
                 eq("vacationMode", false)
@@ -121,7 +124,7 @@ class TaskController {
         }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList    : userList, customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
@@ -133,7 +136,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        def userList = Users.createCriteria().list(params) {
+        def userList = taskmgmt.User.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
                 eq("vacationMode", false)
@@ -167,7 +170,7 @@ class TaskController {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
             task = taskService?.createTask(task)
         }
-        if ((task.users == null)) {
+        if ((task.user == null)) {
             task = taskService?.randomUser(task)
         }
         try {
@@ -176,7 +179,7 @@ class TaskController {
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: Users.list()]
+            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: taskmgmt.User.list()]
         }
 
     }

@@ -39,10 +39,7 @@
                         <th>First name</th>
                         <th>Middle Name</th>
                         <th>Last Name</th>
-                        <th>Role</th>
-                        <th>Address</th>
                         <th>Phone Number</th>
-                        <th>Date Created</th>
                         <th> Vaccation Mode</th>
                         <th>Action</th>
                     </tr>
@@ -53,10 +50,7 @@
                                 <td>${user.firstName}</td>
                                 <td>${user.middleName}</td>
                                 <td>${user.lastName}</td>
-                                <td>${user.role.title}</td>
-                                <td>${user.address}</td>
                                 <td>${user.phoneNumber}</td>
-                                <td><common:dateFormatWithTime dateValue="${user.dateCreated}"/></td>
                                 <td><common:vacationMode IsOnVacation="${user.vacationMode}"/> </td>
                                 <td>
                                     <g:link controller="user" action="detail" id="${user.id}"

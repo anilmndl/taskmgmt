@@ -11,14 +11,14 @@ class InitializationService {
     Random rand = new Random()
 
 
-    void initTask() {
+//    void initTask() {
 //        for (int i; i < 100; i++) {
 //            new Task(taskStatus: TaskStatus.CREATED, title: "task", detail: "Please buy us 1 bottle of milk.",
 //                    users: User.findById(rand.nextInt((int)User.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
 //                    dateCreated: new Date(), customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1)).save()
 //
 //        }
-    }
+//    }
 
     void initTaskType() {
 
