@@ -71,7 +71,7 @@
                             </td>
                             <td>${show.taskType.title}</td>
                             <td>
-                                <g:if test="${show.users == null}">
+                                <g:if test="${show.user == null}">
 
                                     <div class="label label-warning">No data</div>
                                 </g:if>
