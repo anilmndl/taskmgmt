@@ -45,7 +45,7 @@
 
         <div class="form-group">
             <label><h4>Detail*</h4></label>
-            <textarea class="form-control" placeholder="Detail Task" name="detail" required="required"></textarea>
+            <textarea class="form-control" placeholder="Detail Task" name="detail"></textarea>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
     </g:form>

@@ -10,7 +10,7 @@ class BootStrap {
     def init = { servletContext ->
         initializationService.initTaskType()
         initializationService.initCustomer()
-        //initializationService.initTask()
+
         initializationService.initComment()
 
         //creating the role
@@ -30,6 +30,8 @@ class BootStrap {
         User userUser = new User(username: 'user', password: 'user',firstName: "Alankar", lastName: "Pokhrael",
                 address: new Address(address: "890 S. 1st Ave", city:"Salt Lake", state: "UT", country: "US").save(),
                 role:userRole, phoneNumber: 95151231, dateCreated: new Date(), enabled: true).save()
+
+        initializationService.initTask()
 
         //assigning role to the user
         UserRole.create(adminUser, adminRole)

@@ -40,7 +40,7 @@ class TaskController {
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "detail", model: [tasks: task]
+            render view: "detail", model: [task: task]
         }
     }
 
@@ -128,7 +128,7 @@ class TaskController {
     }
 
     def detail(Task task) {
-        def commentList = Comment.createCriteria().list(params) {
+        def commentList = Comment.createCriteria().list() {
             and {
                 //eq("task_id","${task.id}")
                 isNull("dateDeleted")
@@ -136,7 +136,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        def userList = taskmgmt.User.createCriteria().list(params) {
+        def userList = taskmgmt.User.createCriteria().list() {
             and {
                 isNull("dateDeleted")
                 eq("vacationMode", false)
@@ -144,7 +144,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [tasks: task, commentList: commentList, userList: userList]
+        render view: "detail", model: [task: task, commentList: commentList, userList: userList]
 
     }
 
@@ -191,7 +191,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [tasks: task]
+        render view: "detail", model: [task: task]
     }
 
     def assigned(Task task) {
@@ -201,7 +201,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [tasks: task]
+        render view: "detail", model: [task: task]
     }
 
     def inProgress(Task task) {
@@ -211,7 +211,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [tasks: task]
+        render view: "detail", model: [task: task]
     }
 
     def myTask() {
@@ -222,6 +222,7 @@ class TaskController {
         }
         render view: "list", model: [tasks: taskList,listCount: taskList.size()]
     }
+
 
     def saveComment(Comment comment) {
         try {

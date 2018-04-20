@@ -60,41 +60,41 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                    <g:each in="${tasks}" var="show">
+                    <g:each in="${tasks}" var="eachTask">
                         <tr>
-                            <td>${show.title}</td>
+                            <td>${eachTask.title}</td>
                             <td>
                                 <div class="label label-primary">
                                     <common:dateFormatWithTime
-                                            dateValue="${show.dateCreated}"/>
+                                            dateValue="${eachTask.dateCreated}"/>
                                 </div>
                             </td>
-                            <td>${show.taskType.title}</td>
+                            <td>${eachTask.taskType.title}</td>
                             <td>
-                                <g:if test="${show.user == null}">
+                                <g:if test="${eachTask.user == null}">
 
                                     <div class="label label-warning">No data</div>
                                 </g:if>
                                 <g:else>
-                                    <mark>${show?.user?.firstName} ${show?.user?.lastName}</mark>
+                                    <mark>${eachTask?.user?.firstName} ${eachTask?.user?.lastName}</mark>
                                 </g:else>
                             </td>
                             <td>
-                                <g:if test="${show.customer == null}">
+                                <g:if test="${eachTask.customer == null}">
 
                                     <div class="label label-warning">No data</div>
                                 </g:if>
                                 <g:else>
-                                    <mark>${show?.customer?.firstName} ${show?.customer?.lastName}</mark>
+                                    <mark>${eachTask?.customer?.firstName} ${eachTask?.customer?.lastName}</mark>
                                 </g:else>
                             </td>
                             <td>
-                                    <common:dueDate dateValue="${show.dueDate}"/>
+                                    <common:dueDate dateValue="${eachTask.dueDate}"/>
                             </td>
-                            <td><strong><em>${show.taskStatus}</em></strong></td>
+                            <td><strong><em>${eachTask.taskStatus}</em></strong></td>
 
                             <td>
-                                <g:link controller="Task" action="detail"
+                                <g:link controller="Task" action="detail" id="${eachTask.id}"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
