@@ -52,23 +52,17 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Title</th>
-                        <th>Date Created</th>
                         <th>Task Type</th>
                         <th>User</th>
                         <th>Customer</th>
                         <th>Due Date</th>
+                        <th>Task Priority</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                     <g:each in="${tasks}" var="eachTask">
                         <tr>
-                            <td>${eachTask.title}</td>
-                            <td>
-                                <div class="label label-primary">
-                                    <common:dateFormatWithTime
-                                            dateValue="${eachTask.dateCreated}"/>
-                                </div>
-                            </td>
+                            <td><span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="${eachTask.detail}">${eachTask.title}</span></td>
                             <td>${eachTask.taskType.title}</td>
                             <td>
                                 <g:if test="${eachTask.user == null}">
@@ -91,7 +85,10 @@
                             <td>
                                     <common:dueDate dateValue="${eachTask.dueDate}"/>
                             </td>
-                            <td><strong><em>${eachTask.taskStatus}</em></strong></td>
+                            <td>
+                                ${eachTask.taskPriority}
+                            </td>
+                            <td>${eachTask.taskStatus}</td>
 
                             <td>
                                 <g:link controller="Task" action="detail" id="${eachTask.id}"

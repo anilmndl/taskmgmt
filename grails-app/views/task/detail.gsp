@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Task List</title>
+    <title>Task Details</title>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
                 </h4>
                 <tr>
                     <td>Task Status:</td>
-                    <td><strong><em>${task.taskStatus}</em></strong></td>
+                    <td>${task.taskStatus}</td>
                 </tr>
                 <tr>
                     <td>Task Priority:</td>
