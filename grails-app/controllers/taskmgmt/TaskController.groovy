@@ -212,7 +212,11 @@ class TaskController {
 
     def myTask() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED),listCount: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED).size()]
+        def taskList = Task.createCriteria().list(){
+            eq("taskType",TaskStatus.COMPLETED)
+            order("dateCreated","desc")
+        }
+        render view: "list", model: [tasks: taskList,listCount: taskList.size()]
     }
 
     def saveComment(Comment comment) {
