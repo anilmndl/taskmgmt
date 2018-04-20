@@ -124,17 +124,11 @@ class TaskController {
         }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList    : userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
-        def commentList = Comment.createCriteria().list() {
-            and {
-                //eq("task_id","${task.id}")
-                isNull("dateDeleted")
-            }
-            order("dateCreated", "desc")
-        }
+        List<Comment> commentList = task.comments.collect()
 
         def userList = taskmgmt.User.createCriteria().list() {
             and {
@@ -145,8 +139,8 @@ class TaskController {
         }
 
         render view: "detail", model: [task: task, commentList: commentList, userList: userList]
-
     }
+
 
     def listCompleted() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
@@ -216,11 +210,11 @@ class TaskController {
 
     def myTask() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        def taskList = Task.createCriteria().list(){
-            eq("taskType",TaskStatus.COMPLETED)
-            order("dateCreated","desc")
+        def taskList = Task.createCriteria().list(params) {
+            eq("taskType", TaskStatus.COMPLETED)
+            order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: taskList,listCount: taskList.size()]
+        render view: "list", model: [tasks: taskList, listCount: taskList.size()]
     }
 
 
@@ -231,7 +225,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        redirect action: "detail", id:params.task
+        redirect action: "detail", id: params.task
 
     }
 
@@ -245,4 +239,5 @@ class TaskController {
         //redirects to details page
         detail(task)
     }
+
 }

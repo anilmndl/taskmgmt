@@ -166,7 +166,7 @@
                                                         class="fa fa-times"
                                                         aria-hidden="true"></i> Cancel</button>
 
-                                                    <button type="submit" class="btn btn-success"><i class="fa fa-trash"
+                                                    <button type="submit" class="btn btn-success"><i class="fa fa-male"
                                                                                       aria-hidden="true"></i> Reassign</button>
 
                                     </g:form>
@@ -206,7 +206,7 @@
                                     <div class="modal-footer">
                                         <table class="table table-responsive">
                                             <button type="button" class="btn btn-success" data-dismiss="modal"><i
-                                                    class="fa fa-times"
+                                                    class="fa fa-male"
                                                     aria-hidden="true"></i> No</button>
                                             <g:form controller="task" action="delete" id="${task.id}"
                                                     method="POST">
@@ -230,30 +230,30 @@
 
         <fieldset>
             <div class="form-group">
-                <label>Comment</label>
+                <div class="panel panel-body">
+                <label><h3>Comment</h3></label>
                 <g:form controller="task" action="saveComment">
-                    <textarea class="form-control" placeholder="Post your Comment" name="comment"></textarea>
+                    <textarea class="form-control" placeholder="Post your Comment" name="content"></textarea>
                     <g:hiddenField name="task" value="${task.id}"/>
-                    %{--<g:hiddenField name="user" value="${task.user.id}"/>--}%
+                    <g:hiddenField name="user" value="${task?.user?.id}"/>
                     <div class="bottom-right">
 
-                            <button type="submit" class="btn btn-info btn-sm pull-right"
-                                                                      aria-hidden="true"></i> Post </button>
+                        <button type="submit" class="btn btn-info btn-lg pull-right"
+                                aria-hidden="true"></i> Post</button></div>
                 </g:form>
+                </div>
                 <g:if test="${commentList}">
                     <table class="table table-striped">
                         <g:each in="${commentList}" var="commentText">
                             <tr>
-                                <td><common:dateFormatWithTime dateValue="${commentText.dateCreated}"/></td>
-                            </tr>
-                            <tr>
-                                <td>${commentText.comment}</td>
+                                <td><blockquote class="blockquote-reverse">${commentText.content}<footer>
+                                    <common:dateFormatWithTime dateValue="${commentText.dateCreated}"/>
+                                </footer></blockquote></td>
                             </tr>
                         </g:each>
                     </table>
                 </g:if>
 
-            </div>
             </div>
         </fieldset>
 

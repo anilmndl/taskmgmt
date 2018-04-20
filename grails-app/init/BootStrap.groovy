@@ -11,8 +11,6 @@ class BootStrap {
         initializationService.initTaskType()
         initializationService.initCustomer()
 
-        initializationService.initComment()
-
         //creating the role
         Role adminRole = new Role(title: "Admin", description: "This is the main system controller", dateCreated: new Date(), authority: 'ROLE_ADMIN').save()
         Role userRole = new Role(title: "Manager", description: "This is the regular user", dateCreated: new Date(),authority: 'ROLE_USER').save()
@@ -32,6 +30,7 @@ class BootStrap {
                 role:userRole, phoneNumber: 95151231, dateCreated: new Date(), enabled: true).save()
 
         initializationService.initTask()
+        initializationService.initComment()
 
         //assigning role to the user
         UserRole.create(adminUser, adminRole)
