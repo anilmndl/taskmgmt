@@ -52,7 +52,7 @@
                                 <td>${user.phoneNumber}</td>
                                 <td><common:vacationMode IsOnVacation="${user.vacationMode}"/> </td>
                                 <td>
-                                    <g:link controller="user" action="detail"
+                                    <g:link controller="user" action="detail" id="${user.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                            aria-hidden="true"></i> View Details</g:link>
 
