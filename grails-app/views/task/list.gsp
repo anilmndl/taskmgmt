@@ -27,8 +27,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="task" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i> New Task</g:link>
             </div>
         </g:form>
     </fieldset>

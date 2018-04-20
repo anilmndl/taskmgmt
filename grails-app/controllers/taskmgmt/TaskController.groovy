@@ -157,7 +157,7 @@ class TaskController {
                 isNotNull("dateCompleted")
             }
         }
-        render view: "completed", model: [tasks: taskList, listCount: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull().size()]
+        render view: "completed", model: [tasks: taskList, listCount: taskList.size()]
     }
 
     def save(Task task) {
@@ -231,6 +231,7 @@ class TaskController {
 
     def reassignTask(Task task) {
         try {
+            task.taskStatus=TaskStatus.ASSIGNED
             taskService?.update(task)
         }
         catch (Exception e) {

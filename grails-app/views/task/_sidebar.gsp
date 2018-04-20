@@ -5,11 +5,9 @@
                                                            aria-hidden="true"></i> List Tasks</g:link></li>
             <li><g:link controller="task" action="listCompleted"><i class="fa fa-suitcase"
                                                                     aria-hidden="true"></i> List Completed task</g:link></li>
+            <li><g:link controller="task" action="create"><i class="fa fa-plus"
+                                                                    aria-hidden="true"></i> Create New Task</g:link></li>
             <hr>
-            <label>Filters:</label>
-            <li><input type="checkbox" name="taskStatus">Created Task</li>
-            <li><input type="checkbox" name="taskStatus">Assigned Task</li>
-            <li><input type="checkbox" name="taskStatus">Approaching due date</li>
         </ul>
     </div>
 </div>
