@@ -40,14 +40,14 @@
                         <th>Action</th>
                     </tr>
                     <g:if test="${customerList}">
-                        <g:each in="${customerList}" var="list">
+                        <g:each in="${customerList}" var="customer">
                         %{--<g:if test="${show.flag != "deleted"  && show.flag != "completed"}">--}%
                             <tr>
 
-                                <td>${list.firstName} ${list.lastName}</td>
-                                <td><common:dateFormatWithTime dateValue="${list.dateCreated}"/></td>
+                                <td>${customer.firstName} ${customer.lastName}</td>
+                                <td><common:dateFormatWithTime dateValue="${customer.dateCreated}"/></td>
                                 <td>
-                                    <g:link controller="customer" action="detail"
+                                    <g:link controller="customer" action="detail" id="${customer.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                               aria-hidden="true"></i> View Details</g:link>
                                 </td>
