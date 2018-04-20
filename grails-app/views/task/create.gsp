@@ -17,7 +17,7 @@
     <g:form controller="Task" action="save">
         <div class="form-group">
             <label><h4>Title of Task*</h4></label>
-            <input type="text" class="form-control" name="title" placeholder="Task Title" required="required">
+            <input type="text" class="form-control" name="title" placeholder="Task Title">
         </div>
 
         <div class="form-group">
@@ -45,7 +45,7 @@
 
         <div class="form-group">
             <label><h4>Detail*</h4></label>
-            <textarea class="form-control" placeholder="Detail Task" name="detail" required="required"></textarea>
+            <textarea class="form-control" placeholder="Detail Task" name="detail"></textarea>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
     </g:form>

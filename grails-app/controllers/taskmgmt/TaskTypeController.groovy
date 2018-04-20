@@ -25,7 +25,7 @@ class TaskTypeController {
             }
             order("dateCreated","desc")
         }
-        [typeList: taskTypeList, listCount: taskTypeList.totalCount]
+        [taskTypeList: taskTypeList, listCount: taskTypeList.totalCount]
     }
 
     def create() {

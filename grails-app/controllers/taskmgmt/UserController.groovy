@@ -35,20 +35,22 @@ class UserController {
         render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
     }
 
-    def save(User user) {
+    def save(User user, Address address) {
         try {
-            userService?.save(user)
+            Role role = Role.get(params.role)
+            userService?.save(user, address)
+            UserRole.create(user, role)
             redirect action: "list"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editUser: user, roles: Role.list()]
+            render view: "create", model: [user: user, address: address, roles: Role.list()]
             //redirect action: edit(user)
         }
     }
 
-    def detail(User users) {
-        render view: "detail", model: [users: users, taskTypes: TaskType.list()]
+    def detail(User user) {
+        render view: "detail", model: [user: user, taskTypes: TaskType.list()]
     }
 
     def delete(User user) {
@@ -62,14 +64,16 @@ class UserController {
         }
     }
 
-    def update(User user) {
+    def update(User user, Address address) {
         try {
-            userService?.update(user)
+            Role role = Role.get(params.role)
+            userService?.update(user, address)
+            UserRole.create(user, role)
             redirect action: "list"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editUser: user, roles: Role.list()]
+            render view: "edit", model: [editUser: user, address: address, roles: Role.list()]
         }
     }
 
@@ -102,7 +106,7 @@ class UserController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [users: user]
+        render view: "detail", model: [user: user]
     }
 
     def Working(User user){
@@ -112,6 +116,6 @@ class UserController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [users: user]
+        render view: "detail", model: [user: user]
     }
 }

@@ -1,7 +1,7 @@
 package taskmgmt
 
 class Comment {
-    String comment
+    String content
     Task task
     User user
     Date dateCreated
@@ -14,6 +14,6 @@ class Comment {
     }
 
     static mapping = {
-        comment type: "text"             // this allows to enter text more than 255 characters
+        content type: "text"             // this allows to enter text more than 255 characters
     }
 }

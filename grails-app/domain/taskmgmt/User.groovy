@@ -19,8 +19,9 @@ class User implements Serializable {
     String firstName
     String middleName
     String lastName
-    String address
-    long phoneNumber
+    Address address
+
+    String phoneNumber
     Date dateCreated
     Date dateModified
     Date dateDeleted

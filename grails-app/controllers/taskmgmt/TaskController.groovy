@@ -40,7 +40,7 @@ class TaskController {
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "detail", model: [tasks: task]
+            render view: "detail", model: [task: task]
         }
     }
 
@@ -124,19 +124,13 @@ class TaskController {
         }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList    : userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
-        def commentList = Comment.createCriteria().list(params) {
-            and {
-                //eq("task_id","${task.id}")
-                isNull("dateDeleted")
-            }
-            order("dateCreated", "desc")
-        }
+        List<Comment> commentList = task.comments.collect()
 
-        def userList = taskmgmt.User.createCriteria().list(params) {
+        def userList = taskmgmt.User.createCriteria().list() {
             and {
                 isNull("dateDeleted")
                 eq("vacationMode", false)
@@ -144,9 +138,9 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [tasks: task, commentList: commentList, userList: userList]
-
+        render view: "detail", model: [task: task, commentList: commentList, userList: userList]
     }
+
 
     def listCompleted() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
@@ -163,7 +157,7 @@ class TaskController {
                 isNotNull("dateCompleted")
             }
         }
-        render view: "completed", model: [tasks: taskList, listCount: Task.findAllByDateCompletedIsNotNullAndDateDeletedIsNull().size()]
+        render view: "completed", model: [tasks: taskList, listCount: taskList.size()]
     }
 
     def save(Task task) {
@@ -191,7 +185,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [tasks: task]
+        render view: "detail", model: [task: task]
     }
 
     def assigned(Task task) {
@@ -201,7 +195,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [tasks: task]
+        render view: "detail", model: [task: task]
     }
 
     def inProgress(Task task) {
@@ -211,13 +205,18 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [tasks: task]
+        render view: "detail", model: [task: task]
     }
 
     def myTask() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        render view: "list", model: [tasks: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED),listCount: Task.findAllByTaskStatusNotEqual(TaskStatus.COMPLETED).size()]
+        def taskList = Task.createCriteria().list(params) {
+            eq("taskType", TaskStatus.COMPLETED)
+            order("dateCreated", "desc")
+        }
+        render view: "list", model: [tasks: taskList, listCount: taskList.size()]
     }
+
 
     def saveComment(Comment comment) {
         try {
@@ -226,12 +225,13 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        redirect action: "detail", id:params.task
+        redirect action: "detail", id: params.task
 
     }
 
     def reassignTask(Task task) {
         try {
+            task.taskStatus=TaskStatus.ASSIGNED
             taskService?.update(task)
         }
         catch (Exception e) {
@@ -240,4 +240,5 @@ class TaskController {
         //redirects to details page
         detail(task)
     }
+
 }

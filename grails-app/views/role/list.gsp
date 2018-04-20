@@ -21,8 +21,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="role" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i> New Role</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -43,7 +41,7 @@
                             <td>${show.title}</td>
                             <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
                             <td>
-                                <g:link controller="Role" action="detail"
+                                <g:link controller="Role" action="detail" id="${show.id}"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>

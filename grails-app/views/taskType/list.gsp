@@ -22,8 +22,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="taskType" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i> New TaskType</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -40,15 +38,15 @@
                         <th>Date Modified</th>
                         <th>Action</th>
                     </tr>
-                    <g:if test="${typeList}">
-                        <g:each in="${typeList}" var="show">
-                        %{--<g:if test="${show.dateDeleted == null}">--}%
+                    <g:if test="${taskTypeList}">
+                        <g:each in="${taskTypeList}" var="eachTaskType">
+                        %{--<g:if test="${eachTaskType.dateDeleted == null}">--}%
                             <tr>
                                 <td><g:link controller="taskType" action="detail"
-                                            id="${show.id}">${show.title}</g:link></td>
-                                <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
-                                <td><common:dateFormatWithTime dateValue="${show.dateModified}"/></td>
-                                <td><g:link controller="taskType" action="detail"
+                                            id="${eachTaskType.id}">${eachTaskType.title}</g:link></td>
+                                <td><common:dateFormatWithTime dateValue="${eachTaskType.dateCreated}"/></td>
+                                <td><common:dateFormatWithTime dateValue="${eachTaskType.dateModified}"/></td>
+                                <td><g:link controller="taskType" action="detail" id="${eachTaskType.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                            aria-hidden="true"></i> View Detail</g:link>
 

@@ -27,8 +27,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="task" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i> New Task</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -52,17 +50,18 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Title</th>
-                        <th>Date Created</th>
                         <th>Task Type</th>
                         <th>User</th>
                         <th>Customer</th>
                         <th>Due Date</th>
+                        <th>Task Priority</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                    <g:each in="${tasks}" var="show">
+                    <g:each in="${tasks}" var="eachTask">
                         <tr>
-                            <td>${show.title}</td>
+                            <td><span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="${eachTask.detail}">${eachTask.title}</span></td>
+                            <td>${eachTask.taskType.title}</td>
                             <td>
                                 <div class="label label-primary">
                                     <common:dateFormatWithTime
@@ -73,33 +72,38 @@
                             <td>
                                 <g:if test="${show.user == null}">
 
-                                    <div class="label label-warning">No data</div>
-                                </g:if>
-                                <g:else>
-                                    <mark>${show?.users?.firstName} ${show?.users?.lastName}</mark>
-                                </g:else>
-                            </td>
-                            <td>
-                                <g:if test="${show.customer == null}">
+                                <g:if test="${eachTask.user == null}">
 
                                     <div class="label label-warning">No data</div>
                                 </g:if>
                                 <g:else>
-                                    <mark>${show?.customer?.firstName} ${show?.customer?.lastName}</mark>
+                                    <mark>${eachTask?.user?.firstName} ${eachTask?.user?.lastName}</mark>
                                 </g:else>
                             </td>
                             <td>
-                                    <common:dueDate dateValue="${show.dueDate}"/>
+                                <g:if test="${eachTask.customer == null}">
+
+                                    <div class="label label-warning">No data</div>
+                                </g:if>
+                                <g:else>
+                                    <mark>${eachTask?.customer?.firstName} ${eachTask?.customer?.lastName}</mark>
+                                </g:else>
                             </td>
-                            <td><strong><em>${show.taskStatus}</em></strong></td>
+                            <td>
+                                    <common:dueDate dateValue="${eachTask.dueDate}"/>
+                            </td>
+                            <td>
+                                ${eachTask.taskPriority}
+                            </td>
+                            <td>${eachTask.taskStatus}</td>
 
                             <td>
-                                <g:link controller="Task" action="detail"
+                                <g:link controller="Task" action="detail" id="${eachTask.id}"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
                         </tr>
-                    </g:each>
+                                </g:if></g:each>
                 </table>
             </div>
             <ul class="pagination pagination-lg">

@@ -5,13 +5,11 @@ import grails.transaction.Transactional
 @Transactional
 class UserService {
 
-    def save(User user) {
+    def save(User user, Address address) {
         user.dateCreated = new Date()
-        if (user.validate()) {
-            user.save failOnError: true, flush: true
-        } else {
-            throw new Exception("Oops! Something went wrong. Save failed.")
-        }
+        address.save failOnError: true, flush: true
+        user.address = address
+        user.save failOnError: true, flush: true
     }
 
     def delete(User users) {
@@ -24,13 +22,11 @@ class UserService {
 
     }
 
-    def update(User user) {
+    def update(User user, Address address) {
         user.dateModified = new Date()
-        if (user.validate()) {
-            user.save failOnError: true, flush: true
-        } else {
-            throw new Exception("Oops! Something went wrong. Update failed.")
-        }
+        address.save failOnError: true
+        user.address = address
+        user.save failOnError: true, flush:true
     }
 
     def Vacation(User user){

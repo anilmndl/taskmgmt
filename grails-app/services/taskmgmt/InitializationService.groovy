@@ -6,19 +6,20 @@ import taskmgmt.enums.TaskStatus
 
 @Transactional
 @Secured(['Role'])
+
 class InitializationService {
 
     Random rand = new Random()
 
 
-//    void initTask() {
-//        for (int i; i < 100; i++) {
-//            new Task(taskStatus: TaskStatus.CREATED, title: "task", detail: "Please buy us 1 bottle of milk.",
-//                    users: User.findById(rand.nextInt((int)User.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
-//                    dateCreated: new Date(), customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1)).save()
-//
-//        }
-//    }
+    void initTask() {
+        for (int i; i < 5; i++) {
+            new Task(taskStatus: TaskStatus.CREATED, title: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1).title, detail: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1).description,
+                    users: User.findById(rand.nextInt((int)User.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
+                    dateCreated: new Date()/*, customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1)*/).save()
+
+        }
+    }
 
     void initTaskType() {
 
@@ -138,8 +139,10 @@ class InitializationService {
     }
 
     void initComment() {
-//        for(int i; i<5;i++){
-//            new Comment(comment: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new  Date(),task: Task.findById(rand.nextInt((int)Task.list().size())+1),users: Users.findById(rand.nextInt((int)User.list().size())+1)).save()
-//        }
+        for(int i; i<100;i++){
+            Task task = Task.findById(rand.nextInt((int)Task.list().size())+1)
+            new Comment(content: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new Date(),task:task ,user: task
+                    .user).save()
+        }
     }
 }

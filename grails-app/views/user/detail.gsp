@@ -14,42 +14,53 @@
 <g:if test="${flash.message}">
     <div class="alert alert-danger" role="alert"><h2>${flash.message}</h2></div>
 </g:if>
-<g:if test="${users}">
+<g:if test="${user}">
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="jumbotron"
-                <g:hiddenField name="id" value="${users.id}"/>
+                <g:hiddenField name="id" value="${user.id}"/>
                 <p>
 
-                <h3 class="text-center">${users.firstName}</h3></p>
+                <h3 class="text-center">${user.firstName}</h3></p>
                 <hr>
                 <table class="table table-responsive">
                     <label>Details:</label>
                     <tr>
                         <td>First Name:</td>
-                        <td><strong><em>${users.firstName}</em></strong></td>
+                        <td><strong><em>${user.firstName}</em></strong></td>
                     </tr>
                     <tr>
                         <td>Middle Name:</td>
-                        <td><strong><em>${users.middleName}</em></strong></td>
+                        <td><strong><em>${user.middleName}</em></strong></td>
                     </tr>
 
 
                     <tr>
                         <td>
                             Last Name:</td>
-                        <td><strong><em>${users.lastName}</em></strong></td>
+                        <td><strong><em>${user.lastName}</em></strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            UserName:</td>
+                        <td><strong><em>${user.username}</em></strong></td>
                     </tr>
 
                     <tr>
                         <td>Address:</td>
-                        <td><strong><em>${users.address}</em></strong></td>
+                        <td><address>
+                            ${user.address?.line1}<br/>
+                            ${user.address?.line2}<br/>
+                            ${user.address?.city}, ${user.address?.state}, ${user.address?.postalCode}<br/>
+                            ${user.address?.country}
+                        </address></td>
                     </tr>
 
                     <tr>
                         <td>Phone Number:</td>
-                        <td><strong><em>${users.phoneNumber}</em></strong></td>
+                        <td><strong><em>${user.phoneNumber}</em></strong></td>
                     </tr>
 
                     <tr>
@@ -57,9 +68,9 @@
                         <td>
                             <div class="list-group">
 
-                                <g:if test="${users.taskTypes}">
-                                    <g:each var="taskType" in="${users.taskTypes}">
-                                        <g:form controller="user" action="subscribe" id="${users.id}"
+                                <g:if test="${user.taskTypes}">
+                                    <g:each var="taskType" in="${user.taskTypes}">
+                                        <g:form controller="user" action="subscribe" id="${user.id}"
                                                 method="POST" class="form-inline">
                                             <div class=" list-group-item list-inline">${taskType.title}
                                             <g:hiddenField name="isSubscribe" value="false"/>
@@ -72,7 +83,7 @@
                                     </g:each>
                                 </g:if>
                                 <div class="list-group-item list-inline">
-                                    <g:form class="form-group" controller="user" action="subscribe" id="${users.id}"
+                                    <g:form class="form-group" controller="user" action="subscribe" id="${user.id}"
                                             method="POST">
                                         <g:hiddenField name="isSubscribe" value="true"/>
                                         <div class="form-group form-inline">
@@ -89,28 +100,28 @@
                         </td>
                     </tr>
                     <h5>Date Created: <div class="label label-info"><common:dateFormatWithTime
-                            dateValue="${users.dateCreated}"/></div></h5>
+                            dateValue="${user.dateCreated}"/></div></h5>
                 </table>
                 <table class="table table-responsive">
                     <tr>
-                        <th><g:link controller="user" action="edit" id="${users.id}"
+                        <th><g:link controller="user" action="edit" id="${user.id}"
                                     class="btn btn-success btn-sm"><i class="fa fa-edit"
                                                                       aria-hidden="true"></i> Edit</g:link></th>
                     <th class="bottom-right">
-                        <g:if test="${users.vacationMode==false}">
-                            <th><g:link controller="user" action="Vacation" id="${users.id}"
+                        <g:if test="${user.vacationMode==false}">
+                            <th><g:link controller="user" action="Vacation" id="${user.id}"
                                         class="btn btn-success btn-sm"><i class="fa fa-edit"
                                                                           aria-hidden="true"></i> Vacataion Mode ON</g:link>
                             </th>
                             <th class="bottom-right">
                         </g:if>
-                        <g:else><th><g:link controller="user" action="Working" id="${users.id}"
+                        <g:else><th><g:link controller="user" action="Working" id="${user.id}"
                                             class="btn btn-success btn-sm"><i class="fa fa-edit"
                                                                               aria-hidden="true"></i> Working Mode ON</g:link>
                         </th>
                             <th class="bottom-right"></g:else>
                         %{--sends delete request as POST form submission--}%
-                        <g:form controller="user" action="delete" id="${users.id}" method="POST">
+                        <g:form controller="user" action="delete" id="${user.id}" method="POST">
                             <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
                                     data-target="#userDeleteModal"><i class="fa fa-trash"
                                                                       aria-hidden="true"></i> Delete Task
@@ -142,7 +153,7 @@
                                     <button type="button" class="btn btn-success" data-dismiss="modal"><i
                                             class="fa fa-times"
                                             aria-hidden="true"></i> No</button>
-                                    <g:form controller="user" action="delete" id="${users.id}"
+                                    <g:form controller="user" action="delete" id="${user.id}"
                                             method="POST">
                                         <button class="btn btn-danger"><i class="fa fa-trash"
                                                                           aria-hidden="true"></i> Yes</button>
