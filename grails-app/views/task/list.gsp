@@ -27,8 +27,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="task" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i> New Task</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -65,6 +63,15 @@
                             <td><span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="${eachTask.detail}">${eachTask.title}</span></td>
                             <td>${eachTask.taskType.title}</td>
                             <td>
+                                <div class="label label-primary">
+                                    <common:dateFormatWithTime
+                                            dateValue="${show.dateCreated}"/>
+                                </div>
+                            </td>
+                            <td>${show.taskType.title}</td>
+                            <td>
+                                <g:if test="${show.user == null}">
+
                                 <g:if test="${eachTask.user == null}">
 
                                     <div class="label label-warning">No data</div>
@@ -96,7 +103,7 @@
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
                         </tr>
-                    </g:each>
+                                </g:if></g:each>
                 </table>
             </div>
             <ul class="pagination pagination-lg">

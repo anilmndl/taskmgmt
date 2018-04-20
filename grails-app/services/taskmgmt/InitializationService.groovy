@@ -133,7 +133,7 @@ class InitializationService {
     void initCustomer() {
 
         for (int i; i < 50; i++) {
-            new Customer(firstName: "ram", lastName: lastName[i], address: address[i],
+            new Customer(firstName: firstName[i], lastName: lastName[i], address: address[i],
                     email: email[i], phoneNumber: 123456789, dateCreated: new Date()).save()
         }
     }

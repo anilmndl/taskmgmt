@@ -21,8 +21,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="role" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i> New Role</g:link>
             </div>
         </g:form>
     </fieldset>

@@ -49,7 +49,6 @@ class TaskService {
 
     def complete(Task task) {
         task.dateModified = new Date()
-        task.dateCompleted = task.dateModified
         task.dateCompleted = new Date()
         task.taskStatus = TaskStatus.COMPLETED
         if (task.validate()) {
@@ -60,18 +59,14 @@ class TaskService {
     }
 
     def assignRandomTaskToRandomUser(Task task) {
-        List<TaskType> newTaskTypeList = task.taskType.linkedTaskTypes
-        newTaskTypeList.each {
-            def newUsersList = it.users
-            List<User> userList
-            newUsersList.each {
-                if(it.vacationMode==false){
-                    userList.add(it)
-                }
+        def possibleTaskTypes = task.taskType.linkedTaskTypes
+        possibleTaskTypes.each {
+            def usersNotInVacation = it.users.collect(){
+                it.vacationMode==false
             }
             Random random = new Random()
             new Task(taskStatus: TaskStatus.CREATED, title: it.title, detail: it.description,
-                    users: userList[random.nextInt(userList.size())], taskType: it,
+                    users: usersNotInVacation[random.nextInt(usersNotInVacation().size())], taskType: it,
                     dateCreated: new Date()).save()
         }
     }
@@ -105,8 +100,8 @@ class TaskService {
     }
 
     def unassigned(Task task) {
-
         task.taskStatus = TaskStatus.UNASSIGNED
+        task.user = null
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
