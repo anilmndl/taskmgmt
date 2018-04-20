@@ -1,3 +1,4 @@
+import taskmgmt.Address
 import taskmgmt.InitializationService
 import taskmgmt.Role
 import taskmgmt.User
@@ -18,12 +19,17 @@ class BootStrap {
         Role managerRole = new Role(title: "User", description: "This is the manager", dateCreated: new Date(),authority: 'ROLE_MANAGER').save()
 
         //creating user
-        User adminUser = new User(username: 'admin', password: 'admin', firstName: "Sabin", lastName: "Shrestha", address: "1234 awesome street",
+        User adminUser = new User(username: 'admin', password: 'admin', firstName: "Kaushal", lastName: "Wagle",
+                address: new Address(address: "123 S. 4th Ave", city:"Pocatello", state: "ID", country: "US"),
                 phoneNumber: 54151651651, dateCreated: new Date(), role:adminRole, enabled: true).save()
+
         User managerUser = new User(username: 'manager', password:  'mgmt',firstName: "Kishor", lastName: "Simkhada",
-                address: "1234 hehe haha street", role:managerRole, phoneNumber: 48465131, dateCreated: new Date(), enabled: true).save()
+                address: new Address(address: "567 S. 8th Ave", city:"Boise", state: "ID", country: "US"),
+                role:managerRole, phoneNumber: 48465131, dateCreated: new Date(), enabled: true).save()
+
         User userUser = new User(username: 'user', password: 'user',firstName: "Alankar", lastName: "Pokhrael",
-                address: "1234 alan street", role:userRole, phoneNumber: 95151231, dateCreated: new Date(), enabled: true).save()
+                address: new Address(address: "890 S. 1st Ave", city:"Salt Lake", state: "UT", country: "US"),
+                role:userRole, phoneNumber: 95151231, dateCreated: new Date(), enabled: true).save()
 
         //assigning role to the user
         UserRole.create(adminUser, adminRole)

@@ -44,7 +44,12 @@
 
                     <tr>
                         <td>Address:</td>
-                        <td><strong><em>${users.address}</em></strong></td>
+                        <td><address>
+                            ${users.address?.address}<br/>
+                            ${users.address?.address2}<br/>
+                            ${users.address?.city}, ${users.address?.state}, ${users.address.postalCode}<br/>
+                            ${users.address?.country}
+                        </address></td>
                     </tr>
 
                     <tr>
