@@ -13,5 +13,6 @@ class Address {
         address2 nullable: true
         state nullable: true
         postalCode nullable: true
+
     }
 }
