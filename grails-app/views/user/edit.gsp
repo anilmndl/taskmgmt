@@ -43,17 +43,17 @@
 
             <div class="form-group">
                 <g:select class="btn btn-default dropdown-toggle" from="${roles}" name="role" optionKey="id"
-                          optionValue="title" value="${editUser?.role?.id}" noSelection="[null:'--select--']"/>
+                          optionValue="title" noSelection="['': '--select--']" required="required"/>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="address" onautocomplete="false">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" value="${editUser.address?.address}" placeholder="1234 Main St">
+                    <input type="text" class="form-control" id="address" name="line1" value="${editUser.address?.line1}" placeholder="1234 Main St">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="address2">Address 2</label>
-                    <input type="text" class="form-control" id="address2" name="address2" value="${editUser.address?.address2}" placeholder="Apartment, studio, or floor">
+                    <input type="text" class="form-control" id="address2" name="line2" value="${editUser.address?.line2}" placeholder="Apartment, studio, or floor">
                 </div>
             </div>
 
