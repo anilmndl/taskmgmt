@@ -71,12 +71,12 @@
                             </td>
                             <td>${show.taskType.title}</td>
                             <td>
-                                <g:if test="${show.users == null}">
+                                <g:if test="${show.user == null}">
 
                                     <div class="label label-warning">No data</div>
                                 </g:if>
                                 <g:else>
-                                    <mark>${show?.users?.firstName} ${show?.users?.lastName}</mark>
+                                    <mark>${show?.user?.firstName} ${show?.user?.lastName}</mark>
                                 </g:else>
                             </td>
                             <td>
