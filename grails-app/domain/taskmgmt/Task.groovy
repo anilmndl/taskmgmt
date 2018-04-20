@@ -11,7 +11,7 @@ class Task {
     TaskPriority taskPriority = TaskPriority.HIGH
     TaskType taskType           // this creates a belongsTo relationship with TaskType
     Customer customer           // this creates a belongsTO relationship with Customer
-    Users users
+    User user
     Date dateCreated
     Date dateModified
     Date dateCompleted          // the date when the task is marked completed
@@ -21,7 +21,7 @@ class Task {
     static  hasMany = [comments:Comment]
 
     static constraints = {
-        users nullable: true
+        user nullable: true
         taskStatus nullable: true
         dateModified nullable: true
         dateCompleted nullable: true

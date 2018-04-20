@@ -71,12 +71,12 @@
                             </td>
                             <td>${show.taskType.title}</td>
                             <td>
-                                <g:if test="${show.users == null}">
+                                <g:if test="${show.user == null}">
 
                                     <div class="label label-warning">No data</div>
                                 </g:if>
                                 <g:else>
-                                    <mark>${show?.users?.firstName} ${show?.users?.lastName}</mark>
+                                    <mark>${show?.user?.firstName} ${show?.user?.lastName}</mark>
                                 </g:else>
                             </td>
                             <td>
@@ -94,7 +94,7 @@
                             <td><strong><em>${show.taskStatus}</em></strong></td>
 
                             <td>
-                                <g:link controller="Task" action="detail" id="${show.id}"
+                                <g:link controller="Task" action="detail"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>

@@ -48,7 +48,7 @@
                                             id="${show.id}">${show.title}</g:link></td>
                                 <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
                                 <td><common:dateFormatWithTime dateValue="${show.dateModified}"/></td>
-                                <td><g:link controller="taskType" action="detail" id="${show.id}"
+                                <td><g:link controller="taskType" action="detail"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                            aria-hidden="true"></i> View Detail</g:link>
 

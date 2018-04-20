@@ -20,7 +20,7 @@ class TaskService {
         task.detail = task.detail ? task.detail : task.taskType.description
         Random rand = new Random()
         new Task(title: "randTaskType", description: "This is random")
-        new Users(firstName: "Kishor", middleName: "", lastName: "Simkhada", role: Role.findById(rand.nextInt(100)),
+        new User(firstName: "Kishor", middleName: "", lastName: "Simkhada", role: Role.findById(rand.nextInt(100)),
                 address: "420 S. 6th Ave #5, Pocatello, Idaho",
                 phoneNumber: 1029384756, dateCreated: new Date()).save()
         return task
@@ -63,7 +63,7 @@ class TaskService {
         List<TaskType> newTaskTypeList = task.taskType.linkedTaskTypes
         newTaskTypeList.each {
             def newUsersList = it.users
-            List<Users> userList
+            List<User> userList
             newUsersList.each {
                 if(it.vacationMode==false){
                     userList.add(it)
@@ -83,19 +83,19 @@ class TaskService {
             Random rand=new Random()
 
         new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
-                    users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                    users: User.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
                     dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
         new Task(taskStatus: TaskStatus.CREATED, title: "rndTask1", detail: "This is random",
-                users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                users: User.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
                 dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
         new Task(taskStatus: TaskStatus.CREATED, title: "rndTask2", detail: "This is random",
-                users: Users.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                users: User.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
                 dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
 
     }
 
     void newUsers() {
-        new Users(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findById(1),
+        new User(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findById(1),
                 address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: true).save()
     }
     Task createTask(Task task) {

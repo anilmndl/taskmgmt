@@ -17,7 +17,7 @@
     <g:form controller="Task" action="save">
         <div class="form-group">
             <label><h4>Title of Task*</h4></label>
-            <input type="text" class="form-control" name="title" placeholder="Task Title" required="required">
+            <input type="text" class="form-control" name="title" placeholder="Task Title">
         </div>
 
         <div class="form-group">

@@ -6,10 +6,13 @@ class Address {
     String address2
     String city
     String state
-    int postalCode
+    String postalCode
     String country
 
     static constraints = {
         address2 nullable: true
+        state nullable: true
+        postalCode nullable: true
+
     }
 }

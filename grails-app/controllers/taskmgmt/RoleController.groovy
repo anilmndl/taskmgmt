@@ -1,4 +1,8 @@
 package taskmgmt
+
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN', 'permitAll'])
 class RoleController {
 
     RoleService roleService
