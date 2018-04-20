@@ -40,7 +40,7 @@
 
         <div class="form-group">
             <label><h4>Due Date</h4></label>
-            <g:datePicker name="dueDate" noSelection="[null: '--select--']"/>
+            <g:datePicker name="dueDate" precision="day"  noSelection="[null: '--select--']"/>
         </div>
 
         <div class="form-group">

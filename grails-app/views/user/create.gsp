@@ -5,6 +5,7 @@
     <meta name="layout" content="main"/>
     <title>Create User</title>
     <asset:javascript src="jquery.liveaddress.min.js"/>
+
     <script>
         var ss = jQuery.LiveAddress({
             key: '17890891736670965',
@@ -89,7 +90,8 @@
                 <input type="hidden" name="country" value="US"/>
             </div>
             <label>Phone Number</label>
-            <input type="number" class="form-control" name="phoneNumber" placeholder="Phone Number"
+
+            <input type="tel" id="phone" class="form-control" name="phoneNumber" placeholder="Phone Number"
                    required="required" value="${user?.phoneNumber}"/>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
