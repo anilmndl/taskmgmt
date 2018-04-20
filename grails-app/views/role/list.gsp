@@ -43,7 +43,7 @@
                             <td>${show.title}</td>
                             <td><common:dateFormatWithTime dateValue="${show.dateCreated}"/></td>
                             <td>
-                                <g:link controller="Role" action="detail"
+                                <g:link controller="Role" action="detail" id="${show.id}"
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
