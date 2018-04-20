@@ -3,6 +3,7 @@ import taskmgmt.InitializationService
 import taskmgmt.Role
 import taskmgmt.User
 import taskmgmt.UserRole
+import taskmgmt.enums.RoleAuthority
 
 class BootStrap {
 
@@ -12,9 +13,9 @@ class BootStrap {
         initializationService.initCustomer()
 
         //creating the role
-        Role adminRole = new Role(title: "Admin", description: "This is the main system controller", dateCreated: new Date(), authority: 'ROLE_ADMIN').save()
-        Role userRole = new Role(title: "Manager", description: "This is the regular user", dateCreated: new Date(),authority: 'ROLE_USER').save()
-        Role managerRole = new Role(title: "User", description: "This is the manager", dateCreated: new Date(),authority: 'ROLE_MANAGER').save()
+        Role adminRole = new Role(title: "Admin", description: "This is the main system controller", dateCreated: new Date(), authority: RoleAuthority.ROLE_ADMIN).save()
+        Role userRole = new Role(title: "Manager", description: "This is the regular user", dateCreated: new Date(),authority: RoleAuthority.ROLE_MANAGER).save()
+        Role managerRole = new Role(title: "User", description: "This is the manager", dateCreated: new Date(),authority: RoleAuthority.ROLE_MANAGER).save()
 
         //creating user
         User adminUser = new User(username: 'admin', password: 'admin', firstName: "Kaushal", lastName: "Wagle",
