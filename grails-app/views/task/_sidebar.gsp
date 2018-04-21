@@ -7,7 +7,8 @@
                                                                     aria-hidden="true"></i> List Completed task</g:link></li>
             <li><g:link controller="task" action="create"><i class="fa fa-plus"
                                                                     aria-hidden="true"></i> Create New Task</g:link></li>
-            <hr>
+            
+
         </ul>
     </div>
 </div>
