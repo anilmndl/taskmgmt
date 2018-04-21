@@ -16,7 +16,12 @@ class UserController {
         def userList = User.createCriteria().list(params) {
             if (params.query) {
                 and {
-                    ilike("firstName", "%${params.query}%")
+                    or {
+                        ilike("firstName", "%${params.query}%")
+                        ilike("lastName","%${params.query}%")
+                        ilike("lastName","%${params.query}%")
+                        ilike("phoneNumber", "%${params.query}%")
+                    }
                     isNull("dateDeleted")
                 }
             } else {
