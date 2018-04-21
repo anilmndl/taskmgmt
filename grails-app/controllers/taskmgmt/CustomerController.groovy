@@ -1,8 +1,5 @@
 package taskmgmt
 
-import grails.plugin.springsecurity.annotation.Secured
-
-@Secured(['ROLE_ADMIN'])
 class CustomerController {
     static defaultAction = "list"
     //delete() method is only allows POST request

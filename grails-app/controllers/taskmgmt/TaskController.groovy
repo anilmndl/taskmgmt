@@ -1,16 +1,10 @@
 package taskmgmt
 
-import grails.gorm.DetachedCriteria
-import grails.plugin.springsecurity.annotation.Secured
-import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
-import java.text.DateFormat
-import java.text.ParseException
-import java.text.SimpleDateFormat
 
 
-@Secured(['ROLE_ADMIN'])
+
 class TaskController {
 
     TaskService taskService

@@ -1,11 +1,10 @@
 package taskmgmt
 
-import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityService
 
-@Secured(['ROLE_ADMIN'])
 class UserController {
     UserService userService
-
+    SpringSecurityService springSecurityService
     static defaultAction = "list"
     //delete() method is only allows POST request
     static allowedMethods = [delete: 'POST']
