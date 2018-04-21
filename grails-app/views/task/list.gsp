@@ -65,12 +65,12 @@
                             <td>
                                 <div class="label label-primary">
                                     <common:dateFormatWithTime
-                                            dateValue="${show.dateCreated}"/>
+                                            dateValue="${eachTask.dateCreated}"/>
                                 </div>
                             </td>
-                            <td>${show.taskType.title}</td>
+                            <td>${eachTask.taskType.title}</td>
                             <td>
-                                <g:if test="${show.user == null}">
+                                <g:if test="${eachTask.user == null}">
 
                                 <g:if test="${eachTask.user == null}">
 

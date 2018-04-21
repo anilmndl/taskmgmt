@@ -250,7 +250,7 @@
                         <table class="table table-striped">
                             <g:each in="${commentList}" var="commentText">
                                 <tr>
-                                    <td><blockquote class="blockquote-reverse">${commentText.content}<footer>
+                                    <td><blockquote class="blockquote">${commentText.content}<footer>
                                         <common:dateFormatWithTime dateValue="${commentText.dateCreated}"/>
                                     </footer></blockquote></td>
                                 </tr>

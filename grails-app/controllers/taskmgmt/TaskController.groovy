@@ -128,7 +128,11 @@ class TaskController {
     }
 
     def detail(Task task) {
-        List<Comment> commentList = task.comments.collect()
+        List<Comment> commentList = task.comments.findAll{
+            it.dateDeleted == null
+        }.sort{a,b->
+            b.id<=>a.id
+        }
 
         def userList = taskmgmt.User.createCriteria().list() {
             and {
