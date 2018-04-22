@@ -1,6 +1,7 @@
 package taskmgmt
 
 import grails.gorm.DetachedCriteria
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
@@ -14,6 +15,7 @@ import java.text.SimpleDateFormat
 class TaskController {
 
     TaskService taskService
+    SpringSecurityService springSecurityService
 
     //delete() method is only allows POST request
     static allowedMethods = [delete: 'POST']
@@ -214,8 +216,12 @@ class TaskController {
 
     def myTask() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        def taskList = Task.createCriteria().list(params) {
-            eq("taskType", TaskStatus.COMPLETED)
+        def taskList = Task.createCriteria().list() {
+            and{
+                isNull("dateDeleted")
+                isNull("dateCompleted")
+                //eq("user","${springSecurityService.getCurrentUser()}")
+            }
             order("dateCreated", "desc")
         }
         render view: "list", model: [tasks: taskList, listCount: taskList.size()]
