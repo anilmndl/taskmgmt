@@ -45,7 +45,7 @@
                 </strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th>Id</th>
+
                         <th>Title</th>
                         <th>Date Completed</th>
                         <th>Action</th>
@@ -53,11 +53,11 @@
                     <g:if test="${tasks}">
                         <g:each in="${tasks}" var="show">
                             <tr>
-                                <td>${show.id}</td>
+
                                 <td>${show.title}</td>
                                 <td><div class="label label-primary"><common:dateFormatWithTime dateValue="${show.dateCompleted}"/></div></td>
                                 <td>
-                                    <g:link controller="Task" action="detail" id="${show.id}"
+                                    <g:link controller="Task" action="detail"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                            aria-hidden="true"></i> View Details</g:link>
                                 </td>
