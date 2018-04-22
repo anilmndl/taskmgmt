@@ -71,7 +71,7 @@
             </div>
             <ul class="pagination pagination-sm">
                 <li>
-                    <g:paginate next="Forward" prev="Back" controller="user" action="list" total="${listCount}"/>
+                    %{--<g:paginate next="Forward" prev="Back" controller="user" action="list" total="${listCount}"/>--}%
                 </li>
             </ul>
         </div>

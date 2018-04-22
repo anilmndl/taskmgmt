@@ -1,7 +1,6 @@
 package taskmgmt
 
 import grails.plugin.springsecurity.annotation.Secured
-
 @Secured(['ROLE_ADMIN'])
 class CustomerController {
     static defaultAction = "list"
@@ -82,11 +81,9 @@ class CustomerController {
             render view: "edit", model: [customerToEdit: customer]
         }
     }
-
     def detail(Customer customer) {
         render view: "detail", model: [customer: customer]
     }
-
     def setTaskPriority(Customer customer) {
         customerService.setTaskPriority(customer)
         render view: "detail", model: [Priority: customer]
