@@ -2,14 +2,17 @@ package taskmgmt
 
 class Address {
 
-    String address
-    String address2
+    String line1
+    String line2
     String city
     String state
-    int postalCode
+    String postalCode
     String country
 
     static constraints = {
-        address2 nullable: true
+        line2 nullable: true
+        state nullable: true
+        postalCode nullable: true
+
     }
 }

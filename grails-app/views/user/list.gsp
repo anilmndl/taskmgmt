@@ -22,8 +22,6 @@
                     <i class="icon-ok"></i>
                     Search
                 </button>
-                <g:link controller="user" action="create" class="btn btn-primary  btn-xs"><i class="fa fa-plus"
-                                                                                             aria-hidden="true"></i>New User</g:link>
             </div>
         </g:form>
     </fieldset>
@@ -35,33 +33,26 @@
                 </strong></div>
                 <table class="table table-striped">
                     <tr>
-                        <th><Id></Id></th>
+
                         <th>First name</th>
                         <th>Middle Name</th>
                         <th>Last Name</th>
-                        <th>Role</th>
-                        <th>Address</th>
                         <th>Phone Number</th>
-                        <th>Date Created</th>
-                        <th> Vaccation Mode</th>
+                        <th> Vacation Mode</th>
                         <th>Action</th>
                     </tr>
                     <g:if test="${users}">
                         <g:each in="${users}" var="user">
                             <tr>
-                                <td>${user.id}</td>
                                 <td>${user.firstName}</td>
                                 <td>${user.middleName}</td>
                                 <td>${user.lastName}</td>
-                                <td>${user.role.title}</td>
-                                <td>${user.address}</td>
                                 <td>${user.phoneNumber}</td>
-                                <td><common:dateFormatWithTime dateValue="${user.dateCreated}"/></td>
                                 <td><common:vacationMode IsOnVacation="${user.vacationMode}"/> </td>
                                 <td>
                                     <g:link controller="user" action="detail" id="${user.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
-                                                                              aria-hidden="true"></i> View Details</g:link>
+                                                                           aria-hidden="true"></i> View Details</g:link>
 
                                 </td>
                             </tr>

@@ -14,6 +14,7 @@
     <g:if test="${flash.message}">
         <div class="alert alert-danger" role="alert"><h2>${flash.message}</h2></div>
     </g:if>
+
     <div class="container-fluid">
         <div class="jumbotron">
             <h1>${detailRole.title}</h1>

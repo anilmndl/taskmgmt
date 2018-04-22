@@ -27,7 +27,7 @@ class CommonTagLib {
     def dateFormat = { attrs ->
         def output = ""
         if (attrs.dateValue != null) {
-            output = new SimpleDateFormat("EEE, dd mm yyyy").format(attrs.dateValue)
+            output = new SimpleDateFormat("EEE, dd MMM yyyy").format(attrs.dateValue)
         } else {
             output = "<span class=\"label label-warning\"><em>No Data</em></span>"
         }
@@ -59,18 +59,14 @@ class CommonTagLib {
                 def duration = attrs.dateValue - new Date()
                 if (duration.days >= 3 && duration.hours > 0 && duration.minutes > 0) {
                     output = "<div class=\"label label-success\">" +
-                            new SimpleDateFormat("hh:mm a, EEE," +
-                      " dd MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
+                            new SimpleDateFormat("dd MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
                 } else if (duration.days >= 1 && duration.hours > 0 && duration.minutes > 0 && duration.days < 3) {
                     output = "<div class=\"label label-warning\">" +
-                            new SimpleDateFormat("hh:mm a, EEE, dd " +
-                                    "MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
+                            new SimpleDateFormat("dd MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
                 } else if (duration.days < 1 && duration.hours < 0 && duration.minutes < 0) {
-                    output = "<div class=\"label label-danger\">" + new SimpleDateFormat("hh:mm a, EEE, dd " +
-                            "MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
+                    output = "<div class=\"label label-danger\">" + new SimpleDateFormat("dd MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
                 } else {
-                    output = "<div class=\"label label-danger\">" + new SimpleDateFormat("hh:mm a, EEE, dd " +
-                            "MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
+                    output = "<div class=\"label label-danger\">" + new SimpleDateFormat("dd MMMMMMMMMM yyyy").format(attrs.dateValue) + "</div>"
                 }
             }
         } else {

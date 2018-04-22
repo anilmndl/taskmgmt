@@ -98,11 +98,9 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#">Option 1</a></li>
-                        <li><a href="#">Option 2</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Option 3</a></li>
-                        <li><a href="#">Option 4</a></li>
+                        <sec:ifLoggedIn>
+                            <li><g:link controller="logout">Logout</g:link></li>
+                        </sec:ifLoggedIn>
                     </ul>
                 </li>
 

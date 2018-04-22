@@ -1,7 +1,5 @@
 package taskmgmt
-import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN'])
 class TaskTypeController {
 
     TaskTypeService taskTypeService
@@ -25,7 +23,7 @@ class TaskTypeController {
             }
             order("dateCreated","desc")
         }
-        [typeList: taskTypeList, listCount: taskTypeList.totalCount]
+        [taskTypeList: taskTypeList, listCount: taskTypeList.totalCount]
     }
 
     def create() {

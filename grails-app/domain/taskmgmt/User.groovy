@@ -19,8 +19,10 @@ class User implements Serializable {
     String firstName
     String middleName
     String lastName
-    String address
-    long phoneNumber
+    String email
+    Address address
+
+    String phoneNumber
     Date dateCreated
     Date dateModified
     Date dateDeleted
@@ -36,15 +38,12 @@ class User implements Serializable {
     static constraints = {
         password blank: false, password: true
         username blank: false, unique: true
-        firstName nullable: true
-        lastName nullable:true
-        vacationMode nullable: true
         middleName nullable: true
-        dateCreated nullable: true
         dateDeleted nullable: true
         dateModified nullable: true
         phoneNumber nullable: true
         address nullable: true
+        email nullable: true
     }
     def beforeInsert() {
         encodePassword()

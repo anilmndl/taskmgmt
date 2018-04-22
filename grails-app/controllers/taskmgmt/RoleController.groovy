@@ -1,8 +1,5 @@
 package taskmgmt
 
-import grails.plugin.springsecurity.annotation.Secured
-
-@Secured(['ROLE_ADMIN'])
 class RoleController {
 
     RoleService roleService
@@ -66,7 +63,13 @@ class RoleController {
     }
 
     def detail(Role role) {
-        render view: "detail", model: [detailRole: role]
+        if(role) {
+            render view: "detail", model: [detailRole: role]
+        }else{
+            flash.messagr= "You must select the role to view details"
+            redirect action: "list"
+        }
+
     }
 
     def create() {
