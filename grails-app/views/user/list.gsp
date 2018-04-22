@@ -35,25 +35,22 @@
                     <tr>
 
                         <th>First name</th>
-                        <th>Middle Name</th>
                         <th>Last Name</th>
                         <th>Phone Number</th>
                         <th> Vacation Mode</th>
                         <th>Action</th>
                     </tr>
-                    <g:if test="${users}">
-                        <g:each in="${users}" var="user">
+                    <g:if test="${userList}">
+                        <g:each in="${userList}" var="user">
                             <tr>
                                 <td>${user.firstName}</td>
-                                <td>${user.middleName}</td>
                                 <td>${user.lastName}</td>
-                                <td>${user.phoneNumber}</td>
+                                <td><common:formatPhone phoneNumber="${user.phoneNumber}"/></td>
                                 <td><common:vacationMode IsOnVacation="${user.vacationMode}"/> </td>
                                 <td>
                                     <g:link controller="user" action="detail" id="${user.id}"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                            aria-hidden="true"></i> View Details</g:link>
-
                                 </td>
                             </tr>
                         </g:each>

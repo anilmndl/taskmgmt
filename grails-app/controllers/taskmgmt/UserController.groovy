@@ -9,7 +9,7 @@ class UserController {
     //delete() method is only allows POST request
     static allowedMethods = [delete: 'POST']
 
-    def list(User user) {
+    def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
         def userList = User.createCriteria().list(params) {
@@ -28,7 +28,7 @@ class UserController {
             }
         }
 
-        [user: user, listCount: user]
+        [userList: userList, listCount: User.count()]
     }
 
     def create() {
