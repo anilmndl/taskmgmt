@@ -30,7 +30,7 @@
         <div class="form-group">
             <label><h4>Username</h4></label>
             <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id"
-                      optionValue="firstName" value="${editTask?.users?.id}" noSelection="['': '--Select--']"/>
+                      optionValue="firstName" value="${editTask?.user?.id}" noSelection="['': '--Select--']"/>
         </div>
 
         <div class="form-group">
