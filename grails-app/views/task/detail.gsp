@@ -144,6 +144,7 @@
                                                                               aria-hidden="true"></i> Reassign User
                                     </button>
                                 </g:form>
+                                <g:render template="/task/assignUserModal"/>
                             </th>
                         </g:if>
 
