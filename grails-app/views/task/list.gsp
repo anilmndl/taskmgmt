@@ -90,7 +90,7 @@
                                 </g:else>
                             </td>
                             <td>
-                                    <common:dueDate dateValue="${eachTask.dueDate}"/>
+                                    <common:dueDate dateValue="${eachTask?.dueDate}"/>
                             </td>
                             <td>
                                 ${eachTask.taskPriority}

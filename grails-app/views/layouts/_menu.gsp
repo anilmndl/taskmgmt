@@ -93,13 +93,17 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i>
-                        username
+                <sec:ifLoggedIn>
+                    ${sec.loggedInUserInfo(field:'username').toUpperCase()}
+                </sec:ifLoggedIn>
                         <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu">
                         <sec:ifLoggedIn>
                             <li><g:link controller="logout">Logout</g:link></li>
+                            <li><g:link controller="user" action="edit" id="${sec.loggedInUserInfo(field:'id')}">Edit Profile</g:link></li>
+                            <li><g:link controller="user" action="Vacation" id="${sec.loggedInUserInfo(field:'id')}">Vacation Mode</g:link></li>
+                            <li><g:link controller="user" action="UserInfo" id="${sec.loggedInUserInfo(field:'id')}" value="">Change Password</g:link></li>
                         </sec:ifLoggedIn>
                     </ul>
                 </li>

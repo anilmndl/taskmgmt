@@ -122,4 +122,7 @@ class UserController {
         }
         render view: "detail", model: [user: user]
     }
+   def UserInfo(User user){
+       render view: "changePassword", model: [editUser: user]
+   }
 }
