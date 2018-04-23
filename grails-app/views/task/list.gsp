@@ -81,20 +81,17 @@
                                     <i class="fa fa-check"
                                        aria-hidden="true"></i>
                                 </g:if></span></td>
-                            <td>${eachTask.taskType.title}</td>
-
-                            <td>
-                                <g:if test="${eachTask.user == null}">
-
-                                    <div class="label label-warning">No data</div>
-                                </g:if>
-                                <g:else>
-                                    <mark>${eachTask?.user?.firstName} ${eachTask?.user?.lastName}</mark>
-                                </g:else>
+                           <td>${eachTask.taskType.title}</td>
+                        <td>
+                        <g:if test="${eachTask.user == null}">
+                                <div class="label label-warning">No data</div>
+                        </g:if>
+                            <g:else>
+                                <mark>${eachTask?.user?.firstName} ${eachTask?.user?.lastName}</mark>
+                            </g:else>
                             </td>
                             <td>
                                 <g:if test="${eachTask.customer == null}">
-
                                     <div class="label label-warning">No data</div>
                                 </g:if>
                                 <g:else>
@@ -102,7 +99,7 @@
                                 </g:else>
                             </td>
                             <td>
-                                <common:dueDate dateValue="${eachTask.dueDate}"/>
+                                    <common:dueDate dateValue="${eachTask?.dueDate}"/>
                             </td>
                             <td>
                                 ${eachTask.taskPriority}
@@ -114,7 +111,7 @@
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
-                        </tr>
+                            </tr>
                     </g:each>
                 </table>
             </div>

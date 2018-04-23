@@ -1,5 +1,3 @@
-import grails.plugin.springsecurity.annotation.Secured
-
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'taskmgmt.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'taskmgmt.UserRole'

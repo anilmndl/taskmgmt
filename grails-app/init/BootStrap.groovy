@@ -19,12 +19,11 @@ class BootStrap {
         //creating user
         User adminUser = new User(username: 'admin', password: 'admin', firstName: "Kaushal", lastName: "Wagle",
                 address: new Address(line1: "123 S. 4th Ave", city:"Pocatello", state: "ID", country: "US").save(),
-                phoneNumber: 54151651651, dateCreated: new Date(), role:adminRole, enabled: true).save()
+                phoneNumber: 5415165165, dateCreated: new Date(), role:adminRole, enabled: true).save()
 
-        User userUser = new User(username: 'user', password: 'user',firstName: "Alankar", lastName: "Pokhrael",
+        User userUser = new User(username: 'user', password: 'use',firstName: "Alankar", lastName: "Pokhrael",
                 address: new Address(line1: "890 S. 1st Ave", city:"Salt Lake", state: "UT", country: "US").save(),
-                role:userRole, phoneNumber: 95151231, dateCreated: new Date(), enabled: true).save()
-
+                role:userRole, phoneNumber: 9515123133, dateCreated: new Date(), enabled: true).save()
         initializationService.initTask()
         initializationService.initComment()
 

@@ -52,6 +52,16 @@ class CommonTagLib {
         }
         out << output
     }
+    def formatPhone= { attrs ->
+        def output = ""
+        if(attrs.phoneNumber){
+            def phone=attrs.phoneNumber.substring(6)
+            def mid=attrs.phoneNumber.substring(3,6)
+            def area=attrs.phoneNumber.substring(0,3)
+            output="<span>(${area}) ${mid}-${phone}</span>"
+        }
+        out << output
+    }
     def dueDate = { attrs ->
         def output = ""
         if (attrs.dateValue != null) {

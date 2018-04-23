@@ -28,7 +28,7 @@ class UserController {
             }
         }
 
-        [users: userList, listCount: userList.totalCount]
+        [userList: userList, listCount: User.count()]
     }
 
     def create() {
@@ -122,4 +122,7 @@ class UserController {
         }
         render view: "detail", model: [user: user]
     }
+   def UserInfo(User user){
+       render view: "changePassword", model: [editUser: user]
+   }
 }

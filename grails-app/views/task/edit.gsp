@@ -29,16 +29,14 @@
 
         <div class="form-group">
             <label><h4>Username</h4></label>
-            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id"
+            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="user" optionKey="id"
                       optionValue="firstName" value="${editTask?.user?.id}" noSelection="['': '--Select--']"/>
         </div>
-
         <div class="form-group">
             <label><h4>Customer</h4></label>
             <g:select class="btn btn-default dropdown-toggle" from="${customerList}" name="customer" optionKey="id"
                       optionValue="firstName" value="${editTask?.customer?.id}" noSelection="['': '--Select--']"/>
         </div>
-
         <div class="form-group">
             <label><h4>Due Date</h4></label>
             <g:datePicker name="dueDate" value="${editTask.dueDate}" noSelection="[null:'--select--']"/>
