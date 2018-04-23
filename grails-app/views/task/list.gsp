@@ -60,23 +60,19 @@
                     </tr>
                     <g:each in="${tasks}" var="eachTask">
                         <tr>
-                            <td><span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="${eachTask.detail}">${eachTask.title}</span></td>
-                        <td>${eachTask.taskType.title}</td>
+                            <td>
+                            <span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="${eachTask.detail}">${eachTask.title}</span></td>
                         <td>${eachTask.taskType.title}</td>
                         <td>
                         <g:if test="${eachTask.user == null}">
-
-                            <g:if test="${eachTask.user == null}">
-
                                 <div class="label label-warning">No data</div>
-                            </g:if>
+                        </g:if>
                             <g:else>
                                 <mark>${eachTask?.user?.firstName} ${eachTask?.user?.lastName}</mark>
                             </g:else>
                             </td>
                             <td>
                                 <g:if test="${eachTask.customer == null}">
-
                                     <div class="label label-warning">No data</div>
                                 </g:if>
                                 <g:else>
@@ -97,7 +93,7 @@
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
                             </tr>
-                        </g:if></g:each>
+                        </g:each>
                 </table>
             </div>
             <ul class="pagination pagination-lg">

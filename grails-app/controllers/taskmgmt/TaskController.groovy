@@ -160,7 +160,6 @@ class TaskController {
         }
         render view: "completed", model: [tasks: taskList, listCount: taskList.size()]
     }
-
     def save(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
             task = taskService?.createTask(task)
