@@ -23,6 +23,16 @@
                 <p>
 
                 <h3 class="text-center">${user.firstName}</h3></p>
+                <p>
+
+                <g:if test="${user.vacationMode== true}">
+                    <h4 class="text-center"> ( Is on vacation) </h4>
+                </g:if>
+                <g:else>
+                    <h4 class="text-center">(Is Working) </h4>
+                </g:else>
+
+                </p>
                 <hr>
                 <table class="table table-responsive">
                     <label>Details:</label>
@@ -110,14 +120,14 @@
                     <th class="bottom-right">
                         <g:if test="${user.vacationMode==false}">
                             <th><g:link controller="user" action="Vacation" id="${user.id}"
-                                        class="btn btn-success btn-sm"><i class="fa fa-edit"
-                                                                          aria-hidden="true"></i> Vacataion Mode ON</g:link>
+                                        class="btn btn-primary btn-sm"><i class="fa fa-edit"
+                                                                          aria-hidden="true"></i>On Vacation</g:link>
                             </th>
                             <th class="bottom-right">
                         </g:if>
                         <g:else><th><g:link controller="user" action="Working" id="${user.id}"
-                                            class="btn btn-success btn-sm"><i class="fa fa-edit"
-                                                                              aria-hidden="true"></i> Working Mode ON</g:link>
+                                            class="btn btn-info btn-sm"><i class="fa fa-edit"
+                                                                              aria-hidden="true"></i> Working </g:link>
                         </th>
                             <th class="bottom-right"></g:else>
                         %{--sends delete request as POST form submission--}%

@@ -1,11 +1,10 @@
 package taskmgmt
 
-import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityService
 
-@Secured(['ROLE_ADMIN'])
 class UserController {
     UserService userService
-
+    SpringSecurityService springSecurityService
     static defaultAction = "list"
     //delete() method is only allows POST request
     static allowedMethods = [delete: 'POST']
@@ -16,7 +15,12 @@ class UserController {
         def userList = User.createCriteria().list(params) {
             if (params.query) {
                 and {
-                    ilike("firstName", "%${params.query}%")
+                    or {
+                        ilike("firstName", "%${params.query}%")
+                        ilike("lastName","%${params.query}%")
+                        ilike("lastName","%${params.query}%")
+                        ilike("phoneNumber", "%${params.query}%")
+                    }
                     isNull("dateDeleted")
                 }
             } else {
