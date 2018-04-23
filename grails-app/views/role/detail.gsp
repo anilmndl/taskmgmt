@@ -17,67 +17,32 @@
 
     <div class="container-fluid">
         <div class="jumbotron">
-            <h1>${detailRole.title}</h1>
+            <h1>${role.title}</h1>
 
             <h4 class="tab-content">Date Created:
-                <common:dateFormatWithTime dateValue="${detailRole.dateCreated}"/></h4>
-            <g:if test="${detailRole.dateModified != null}"><h4>Last Modified:
-                <common:dateFormatWithTime dateValue="${detailRole.dateModified}"/></h4></g:if>
-            <h3 class="alert alert-info">${detailRole.description}</h3>
+                <common:dateFormatWithTime dateValue="${role.dateCreated}"/></h4>
+            <g:if test="${role.dateModified != null}"><h4>Last Modified:
+                <common:dateFormatWithTime dateValue="${role.dateModified}"/></h4></g:if>
+            <h3 class="alert alert-info">${role.description}</h3>
             <table class="table table-responsive col-sm-2">
                 <tr>
                     <th>
-                        <g:link controller="role" action="edit" id="${detailRole.id}"
+                        <g:link controller="role" action="edit" id="${role.id}"
                                 class="btn btn-success btn-sm"><i class="fa fa-edit"
                                                                   aria-hidden="true"></i> Edit</g:link>
                     </th>
                     <th class="bottom-right">
                     %{--sends delete request as POST form submission--}%
-                        <g:form controller="role" action="delete" id="${detailRole.id}" method="POST">
+                        <g:form controller="role" action="delete" id="${role.id}" method="POST">
                             <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
-                                    data-target="#roleDeleteModal"><i class="fa fa-trash"
-                                                                      aria-hidden="true"></i> Delete Task
+                                    data-target="#deleteModal"><i class="fa fa-trash"
+                                                                      aria-hidden="true"></i> Delete
                             </button>
                         </g:form>
+                        <g:render template="/layouts/deleteModal" model="[data:role]"/>
                     </th>
                 </tr>
             </table>
-
-            <!-- Modal -->
-            <div class="modal fade" id="roleDeleteModal" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-                            <h2 class="modal-title" id="exampleModalLongTitle">Delete Role</h2>
-                        </div>
-
-                        <div class="modal-body">
-                            <h4>Are you sure you want to delete this role?</h4>
-                        </div>
-
-                        <div class="modal-footer">
-                            <table class="table table-responsive">
-                                <button type="button" class="btn btn-success" data-dismiss="modal"><i
-                                        class="fa fa-times"
-                                        aria-hidden="true"></i> No</button>
-                                <g:form controller="role" action="delete" id="${detailRole.id}"
-                                        method="POST">
-                                    <button class="btn btn-danger"><i class="fa fa-trash"
-                                                                      aria-hidden="true"></i> Yes</button>
-                                </g:form>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        %{--end Modal--}%
-
     </div>
 </div>
 </div>

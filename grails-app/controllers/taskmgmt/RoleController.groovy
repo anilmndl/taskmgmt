@@ -64,7 +64,7 @@ class RoleController {
 
     def detail(Role role) {
         if(role) {
-            render view: "detail", model: [detailRole: role]
+            render view: "detail", model: [role: role]
         }else{
             flash.messagr= "You must select the role to view details"
             redirect action: "list"

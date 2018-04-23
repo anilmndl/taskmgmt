@@ -69,7 +69,7 @@ class TaskTypeController {
     }
 
     def detail(TaskType taskType) {
-        render view: "detail", model: [detailTaskType: taskType, taskTypes: TaskType.list()]
+        render view: "detail", model: [taskType: taskType, taskTypes: TaskType.list()]
     }
 
     def assign(TaskType taskType){
