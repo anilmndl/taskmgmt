@@ -76,7 +76,7 @@ class TaskController {
         def tasks = Task.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
-                isNull("dateCompleted")
+                //isNull("dateCompleted")
                 if (params.query && params.date && params.taskType) {
                     and {
                         ilike("title", "%${params.query}%")
@@ -121,7 +121,7 @@ class TaskController {
         }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList    : userList, customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
@@ -215,11 +215,11 @@ class TaskController {
             and{
                 isNull("dateDeleted")
                 isNull("dateCompleted")
-                //eq("user","${springSecurityService.getCurrentUser()}")
+                eq("user",springSecurityService.getCurrentUser())
             }
             order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: taskList, listCount: taskList.size()]
+        render view: "list", model: [tasks: taskList, listCount: taskList.size(),currentUser: springSecurityService.getCurrentUser()]
     }
 
 

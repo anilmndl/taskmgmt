@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label><h4>User</h4></label>
-            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id"
+            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="user" optionKey="id"
                       optionValue="firstName" noSelection="['': '--Select--']"/>
         </div>
 

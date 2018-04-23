@@ -9,7 +9,22 @@
 <g:render template="/task/sidebar"/>
 
 <div class="col-sm-10 col-md-offset-2 main">
-    <h1 class="page-header">Tasks</h1>
+    <h1 class="page-header">
+        <g:if test="${actionName == "myTask"}">
+            <g:if test="${currentUser == null}">
+                My Tasks
+            </g:if>
+            <g:else>
+                Tasks assigned to ${currentUser.firstName} ${currentUser.lastName}
+            </g:else>
+        </g:if>
+        <g:elseif test="${actionName == "listCompleted"}">
+            Tasks Completed
+        </g:elseif>
+        <g:else>
+            All Tasks
+        </g:else>
+    </h1>
 
     <h2 class="alert-danger">${flash.message}</h2>
 
@@ -60,19 +75,22 @@
                     </tr>
                     <g:each in="${tasks}" var="eachTask">
                         <tr>
-                            <td><span class="d-inline-block" data-toggle="tooltip" data-placement="top" title="${eachTask.detail}">${eachTask.title}</span></td>
-                        <td>${eachTask.taskType.title}</td>
-                        <td>${eachTask.taskType.title}</td>
-                        <td>
-                        <g:if test="${eachTask.user == null}">
+                            <td><span class="d-inline-block" data-toggle="tooltip" data-placement="top"
+                                      title="${eachTask.detail}">${eachTask.title}
+                                <g:if test="${eachTask.taskStatus == taskmgmt.enums.TaskStatus.COMPLETED}">
+                                    <i class="fa fa-check"
+                                       aria-hidden="true"></i>
+                                </g:if></span></td>
+                            <td>${eachTask.taskType.title}</td>
 
-                            <g:if test="${eachTask.user == null}">
+                            <td>
+                                <g:if test="${eachTask.user == null}">
 
-                                <div class="label label-warning">No data</div>
-                            </g:if>
-                            <g:else>
-                                <mark>${eachTask?.user?.firstName} ${eachTask?.user?.lastName}</mark>
-                            </g:else>
+                                    <div class="label label-warning">No data</div>
+                                </g:if>
+                                <g:else>
+                                    <mark>${eachTask?.user?.firstName} ${eachTask?.user?.lastName}</mark>
+                                </g:else>
                             </td>
                             <td>
                                 <g:if test="${eachTask.customer == null}">
@@ -96,8 +114,8 @@
                                         class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                        aria-hidden="true"></i> View Details</g:link>
                             </td>
-                            </tr>
-                        </g:if></g:each>
+                        </tr>
+                    </g:each>
                 </table>
             </div>
             <ul class="pagination pagination-lg">
