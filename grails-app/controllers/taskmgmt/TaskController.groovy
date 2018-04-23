@@ -76,7 +76,7 @@ class TaskController {
         def tasks = Task.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
-                isNull("dateCompleted")
+                //isNull("dateCompleted")
                 if (params.query && params.date && params.taskType) {
                     and {
                         ilike("title", "%${params.query}%")
@@ -121,7 +121,7 @@ class TaskController {
         }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList    : userList, customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {

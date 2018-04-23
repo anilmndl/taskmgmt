@@ -2,12 +2,12 @@ package taskmgmt.enums
 
 enum TaskStatus {
 
-    CREATED("UNASSIGNED"),
-    UNASSIGNED("UNASSIGNED"),
-    ASSIGNED("ASSIGNED"),
-    IN_PROGRESS("IN_PROGRESS"),
-    COMPLETED("COMPLETED"),
-    DELETED("DELETED")
+    CREATED("Unassigned"),
+    UNASSIGNED("Unassigned"),
+    ASSIGNED("Assigned"),
+    IN_PROGRESS("In-progress"),
+    COMPLETED("Completed"),
+    DELETED("Deleted")
 
     final String value
     TaskStatus(String value){

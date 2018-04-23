@@ -111,17 +111,17 @@
                                 </th>
                                 <th><g:link controller="task" action="assigned" id="${task.id}"
                                             class="btn btn-warning btn-sm"><i class="fa fa-lock"
-                                                                              aria-hidden="true"></i> Assigned Task</g:link>
+                                                                              aria-hidden="true"></i> Assign User</g:link>
                                 </th>
                             </g:if>
                             <g:elseif test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
                                 <th><g:link controller="task" action="unassigned" id="${task.id}"
                                             class="btn btn-info btn-sm"><i class="fa fa-unlock"
-                                                                           aria-hidden="true"></i> Unassigned Task</g:link>
+                                                                           aria-hidden="true"></i> Unassign User</g:link>
                                 </th>
                                 <th><g:link controller="task" action="inProgress" id="${task.id}"
                                             class="btn btn-info btn-sm"><i class="fa fa-inprogress"
-                                                                           aria-hidden="true"></i> In_Progress Task</g:link>
+                                                                           aria-hidden="true"></i> Mark as "In-Progress"</g:link>
                                 </th>
                             </g:elseif>
                             <g:elseif test="${task.taskStatus == taskmgmt.enums.TaskStatus.IN_PROGRESS}">
