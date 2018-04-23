@@ -50,7 +50,6 @@ class TaskService {
             throw new Exception("Oops! Something went wrong. Update failed.")
         }
     }
-
     def complete(Task task) {
         task.dateModified = new Date()
         task.dateCompleted = new Date()
