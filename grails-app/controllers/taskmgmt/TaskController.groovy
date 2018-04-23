@@ -215,11 +215,11 @@ class TaskController {
             and{
                 isNull("dateDeleted")
                 isNull("dateCompleted")
-                //eq("user","${springSecurityService.getCurrentUser()}")
+                eq("user",springSecurityService.getCurrentUser())
             }
             order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: taskList, listCount: taskList.size()]
+        render view: "list", model: [tasks: taskList, listCount: taskList.size(),currentUser: springSecurityService.getCurrentUser()]
     }
 
 
