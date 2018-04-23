@@ -1,3 +1,4 @@
+<%@ page import="taskmgmt.enums.TaskPriority" %>
 <!doctype html>
 <html>
 <head>
@@ -37,13 +38,19 @@
             <g:select class="btn btn-default dropdown-toggle" from="${customerList}" name="customer" optionKey="id"
                       optionValue="firstName" value="${editTask?.customer?.id}" noSelection="['': '--Select--']"/>
         </div>
+
+        <div class="form-group">
+            <label><h4>Task Priority</h4></label>
+            <g:select class="btn btn-default dropdown-toggle" from="${taskmgmt.enums.TaskPriority.values()}" name="taskPriority" optionKey="key"
+                      optionValue="value"/></div>
+
         <div class="form-group">
             <label><h4>Due Date</h4></label>
-            <g:datePicker name="dueDate" value="${editTask.dueDate}" noSelection="[null:'--select--']"/>
+            <g:datePicker name="dueDate" value="${editTask.dueDate}" precision="day" noSelection="[null:'--select--']"/>
         </div>
 
         <div class="form-group">
-            <label><h2>Detail</h2></label>
+            <label><h4>Detail</h4></label>
             <textarea class="form-control" placeholder="Detail Task" name="detail">${editTask?.detail}</textarea>
         </div>
         <button type="submit" class="btn btn btn-primary">Update</button>

@@ -19,7 +19,11 @@
         <div class="jumbotron">
             <g:hiddenField name="id" value="${task.id}"/>
 
-            <h2 class="text-center">${task.title}</h2>
+            <h2 class="text-center">${task.title}
+                <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.COMPLETED}">
+                    <i class="fa fa-check"
+                       aria-hidden="true"></i>
+                </g:if></h2>
 
             <hr>
 
@@ -193,8 +197,10 @@
                         <table class="table table-striped">
                             <g:each in="${commentList}" var="commentText">
                                 <tr>
-                                    <td><blockquote class="blockquote"><b class="text-success"><g:if
-                                            test="${commentText.user == null}">Anynomous</g:if>
+                                    <td><blockquote class="blockquote"><b class="text-success">
+                                        <g:if test="${commentText.user == null}">
+                                            Anynomous
+                                        </g:if>
                                         <g:else>
                                             <g:link controller="user" id="${commentText.user.id}"
                                                     action="detail">

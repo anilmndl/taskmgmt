@@ -15,8 +15,8 @@ class InitializationService {
     void initTask() {
         for (int i; i < 5; i++) {
             new Task(taskStatus: TaskStatus.CREATED, title: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1).title, detail: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1).description,
-                    users: User.findById(rand.nextInt((int)User.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
-                    dateCreated: new Date()/*, customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1)*/).save()
+                    user: User.findById(rand.nextInt((int)User.list().size())+1), taskType: TaskType.findById(rand.nextInt((int)TaskType.list().size())+1),
+                    dateCreated: new Date(), customer: Customer.findById(rand.nextInt((int)Customer.list().size())+1),dueDate: new Date()).save()
 
         }
     }
@@ -136,7 +136,7 @@ class InitializationService {
     }
 
     void initComment() {
-        for(int i; i<100;i++){
+        for(int i; i<10;i++){
             Task task = Task.findById(rand.nextInt((int)Task.list().size())+1)
             new Comment(content: "Jhakkass xa yar. La keep it up. Sahi lagyo", dateCreated: new Date(),task:task ,user: task
                     .user).save()

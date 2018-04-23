@@ -115,9 +115,9 @@
                     </g:each>
                 </table>
             </div>
-            <ul class="pagination pagination-lg">
+            <ul class="pagination pagination-md">
                 <li>
-                    <g:paginate next="Forward" prev="Back" maxsteps="0" controller="task" action="list"
+                    <g:paginate next="Next" prev="Prev" maxsteps="0" controller="task" action="list"
                                 total="${listCount}"/>
                 </li>
 

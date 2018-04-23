@@ -24,12 +24,13 @@ class BootStrap {
         User userUser = new User(username: 'user', password: 'user',firstName: "Alankar", lastName: "Pokhrael",
                 address: new Address(line1: "890 S. 1st Ave", city:"Salt Lake", state: "UT", country: "US").save(),
                 role:userRole, phoneNumber: 9515123133, dateCreated: new Date(), enabled: true).save()
-        initializationService.initTask()
-        initializationService.initComment()
 
         //assigning role to the user
         UserRole.create(adminUser, adminRole)
         UserRole.create(userUser, userRole)
+
+        initializationService.initTask()
+        initializationService.initComment()
     }
 
     def destroy = {
