@@ -40,13 +40,16 @@ class TaskService {
 
     def update(Task task) {
         task.dateModified = new Date()
+        task
+        if(task.user!=null && task.taskStatus!=TaskStatus.ASSIGNED){
+                task.taskStatus=TaskStatus.ASSIGNED
+        }
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
             throw new Exception("Oops! Something went wrong. Update failed.")
         }
     }
-
     def complete(Task task) {
         task.dateModified = new Date()
         task.dateCompleted = new Date()

@@ -26,11 +26,11 @@ class UserService {
         user.dateModified = new Date()
         address.save failOnError: true
         user.address = address
-        user.save failOnError: true, flush:true
+        user.save failOnError: true, flush: true
     }
 
-    def Vacation(User user){
-        user.vacationMode= true
+    def Vacation(User user) {
+        user.vacationMode = true
         if (user.validate()) {
             user.save failOnError: true, flush: true
         } else {
@@ -38,12 +38,22 @@ class UserService {
         }
     }
 
-    def Working(User user){
-        user.vacationMode=false
+    def Working(User user) {
+        user.vacationMode = false
         if (user.validate()) {
             user.save failOnError: true, flush: true
         } else {
             throw new Exception("Oops! Something went wrong. Update failed.")
+        }
+    }
+
+    def ChanePassword(User user) {
+        user.vacationMode=true
+        if (user.validate()) {
+            user.save failsOnError: true, flush: true
+        }
+        else{
+            throw new Exception("Password Change Failed")
         }
     }
 }
