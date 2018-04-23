@@ -98,7 +98,7 @@
 
                 </tr>
             </table>
-            <g:if test="${task.taskStatus != taskmgmt.enums.TaskStatus.COMPLETED}">
+            <g:if test="${task.taskStatus != taskmgmt.enums.TaskStatus.COMPLETED && currentUser!=null}">
                 <table class="table table-responsive">
                     <tr>
                         <g:if test="${task.dateCompleted == null}">
