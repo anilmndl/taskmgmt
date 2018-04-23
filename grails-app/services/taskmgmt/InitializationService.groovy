@@ -30,26 +30,23 @@ class InitializationService {
 
     }
 
-//    void initRole() {
-//        //creating the role
-//        Role adminRole = new Role(authority: 'ROLE_ADMIN').save()
-//        Role userRole = new Role(authority: 'ROLE_USER').save()
-//        Role managerRole = new Role(authority: 'ROLE_MANAGER').save()
-//    }
-//
-//    void initUser() {
-//        //creating user
-//        User adminUser = new User(username: 'admin', password: 'admin', enabled: true).save()
-//        User managerUser = new User(username: 'manager', password: 'mgmt', enabled: true).save()
-//        User userUser = new User(username: 'user', password: 'user', enabled: true).save()
-//    }
-//
-//    void initUserRole() {
-//        //assigning role to the user
-//        UserRole.create(adminUser, adminRole)
-//        UserRole.create(managerUser, managerRole)
-//        UserRole.create(userUser, userRole)
-//    }
+    void initUserRole() {
+        //creating the role
+        Role adminRole = new Role(authority: 'ROLE_ADMIN').save()
+        Role userRole = new Role(authority: 'ROLE_USER').save()
+        Role managerRole = new Role(authority: 'ROLE_MANAGER').save()
+
+        //creating user
+        User adminUser = new User(username: 'admin', password: 'admin', enabled: true).save()
+        User managerUser = new User(username: 'manager', password: 'mgmt', enabled: true).save()
+        User userUser = new User(username: 'user', password: 'user', enabled: true).save()
+
+        //assigning role to the user
+        UserRole.create(adminUser,adminRole)
+        UserRole.create(userUser,userRole)
+        UserRole.create(managerUser,managerRole)
+    }
+
     String[] firstName = ["Budz", "Pain", "Konan", "Nagato", "Itachi", "Tobi", "Madara", "Naruto", "Danzou", "Kakashi", "Kerry", "Edward", "Florentino", "Melda", "Jamee", "Jeffrey", "Jerilyn", "Fatima", "Albertina", "Gregoria", "Kellee", "Garnett",
                           "Shawana", "Kasha", "Florinda", "Bev", "Amberly", "Karrie", "Malorie", "Richard", "Fatimah", "Asa", "Lanita", "Mariela", "Serina",
                           "Georgann", "Christoper", "Eliana", "Malcolm", "Lisette", "Pamelia", "Lorita", "Glynda", "Patience", "Rachael", "Homer", "Kamilah",

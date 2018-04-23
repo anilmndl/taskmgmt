@@ -98,36 +98,41 @@
 
                 </tr>
             </table>
-            <g:if test="${task.taskStatus != taskmgmt.enums.TaskStatus.COMPLETED && currentUser!=null}">
+            <g:if test="${task.taskStatus != taskmgmt.enums.TaskStatus.COMPLETED && currentUser != null}">
                 <table class="table table-responsive">
                     <tr>
                         <g:if test="${task.dateCompleted == null}">
-                            <th>
-                                <g:link controller="task" action="edit" id="${task.id}"
-                                        class="btn btn-info btn-sm"><i class="fa fa-edit"
-                                                                       aria-hidden="true"></i> Edit Task</g:link>
-                            </th>
-                            </th>
-                            <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.CREATED || task.taskStatus == taskmgmt.enums.TaskStatus.UNASSIGNED}">
-                                <th><g:form controller="task" action="assigned" id="${task.id}" method="POST">
-                                    <button type="button" class="btn btn-success btn-sm pull-left" data-toggle="modal"
-                                            data-target="#assignUserModal"><i class="fa fa-male"
-                                                                              aria-hidden="true"></i> Assign User
-                                    </button>
-                                </g:form>
-                                    <g:render template="/task/assignUserModal"/>
+                            <sec:access expression="hasRole('ROLE_ADMIN')">
+                                <th>
+                                    <g:link controller="task" action="edit" id="${task.id}"
+                                            class="btn btn-info btn-sm"><i class="fa fa-edit"
+                                                                           aria-hidden="true"></i> Edit Task</g:link>
                                 </th>
-                            </g:if>
-                            <g:elseif test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
-                                <th><g:link controller="task" action="unassigned" id="${task.id}"
-                                            class="btn btn-warning btn-sm"><i class="fa fa-ticket"
-                                                                              aria-hidden="true"></i> Unassign User</g:link>
                                 </th>
+                                <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.CREATED || task.taskStatus == taskmgmt.enums.TaskStatus.UNASSIGNED}">
+                                    <th><g:form controller="task" action="assigned" id="${task.id}" method="POST">
+                                        <button type="button" class="btn btn-success btn-sm pull-left"
+                                                data-toggle="modal"
+                                                data-target="#assignUserModal"><i class="fa fa-male"
+                                                                                  aria-hidden="true"></i> Assign User
+                                        </button>
+                                    </g:form>
+                                        <g:render template="/task/assignUserModal"/>
+                                    </th>
+                                </g:if>
+                                <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
+                                    <th><g:link controller="task" action="unassigned" id="${task.id}"
+                                                class="btn btn-warning btn-sm"><i class="fa fa-ticket"
+                                                                                  aria-hidden="true"></i> Unassign User</g:link>
+                                    </th>
+                                </g:if>
+                            </sec:access>
+                            <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
                                 <th><g:link controller="task" action="inProgress" id="${task.id}"
                                             class="btn btn-success btn-sm"><i class="fa fa-flag"
                                                                               aria-hidden="true"></i> Mark as "In-Progress"</g:link>
                                 </th>
-                            </g:elseif>
+                            </g:if>
                             <g:elseif test="${task.taskStatus == taskmgmt.enums.TaskStatus.IN_PROGRESS}">
                                 <th><g:link controller="task" action="completed" id="${task.id}"
                                             class="btn btn-success btn-sm pull-left"><i class="fa fa-check"
@@ -136,29 +141,32 @@
                             </g:elseif>
 
                         </g:if>
-                        <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
-                            <th>
-                                <g:form controller="task" action="reassignTask" id="${task.id}" method="POST">
-                                    <button type="button" class="btn btn-primary btn-sm pull-left" data-toggle="modal"
-                                            data-target="#assignUserModal"><i class="fa fa-male"
-                                                                              aria-hidden="true"></i> Reassign User
+                        <sec:access expression="hasRole('ROLE_ADMIN')">
+                            <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED}">
+                                <th>
+                                    <g:form controller="task" action="reassignTask" id="${task.id}" method="POST">
+                                        <button type="button" class="btn btn-primary btn-sm pull-left"
+                                                data-toggle="modal"
+                                                data-target="#assignUserModal"><i class="fa fa-male"
+                                                                                  aria-hidden="true"></i> Reassign User
+                                        </button>
+                                    </g:form>
+                                    <g:render template="/task/assignUserModal"/>
+
+                                </th>
+                            </g:if>
+
+                            <th class="bottom-right">
+                            %{--sends delete request as POST form submission--}%
+                                <g:form controller="task" action="delete" id="${task.id}" method="POST">
+                                    <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
+                                            data-target="#deleteModal"><i class="fa fa-trash"
+                                                                          aria-hidden="true"></i> Delete
                                     </button>
                                 </g:form>
-                                <g:render template="/task/assignUserModal"/>
+                                <g:render template="/layouts/deleteModal" model="[data: task]"/>
                             </th>
-                        </g:if>
-
-                        <th class="bottom-right">
-                        %{--sends delete request as POST form submission--}%
-                            <g:form controller="task" action="delete" id="${task.id}" method="POST">
-                                <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
-                                        data-target="#deleteModal"><i class="fa fa-trash"
-                                                                          aria-hidden="true"></i> Delete
-                                </button>
-                            </g:form>
-                            <g:render template="/layouts/deleteModal" model="[data:task]"/>
-                        </th>
-
+                        </sec:access>
                     </tr>
                 </table>
             </g:if>
