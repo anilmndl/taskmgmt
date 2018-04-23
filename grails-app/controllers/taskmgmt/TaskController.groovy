@@ -1,9 +1,6 @@
 package taskmgmt
 
-import grails.gorm.DetachedCriteria
 import grails.plugin.springsecurity.SpringSecurityService
-import grails.plugin.springsecurity.annotation.Secured
-import org.h2.engine.User
 import taskmgmt.enums.TaskStatus
 
 
@@ -54,7 +51,7 @@ class TaskController {
 
     def update(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
-            task = taskService?.createTask(task)
+            task = taskService?.autoFillTask(task)
         }
         try {
             taskService?.update(task)
@@ -139,7 +136,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [task: task, commentList: commentList, userList: userList]
+        render view: "detail", model: [task: task, commentList: commentList, userList: userList, currentUser: springSecurityService.getCurrentUser()]
     }
 
 
@@ -163,11 +160,11 @@ class TaskController {
 
     def save(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
-            task = taskService?.createTask(task)
+            task = taskService?.autoFillTask(task)
         }
-        if ((task.user == null)) {
-            task = taskService?.randomUser(task)
-        }
+//        if ((task.user == null)) {
+//            task = taskService?.randomUser(task)
+//        }
         try {
             taskService?.save(task)
             redirect action: "list"
@@ -186,7 +183,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [task: task]
+        detail(task)
     }
 
     def assigned(Task task) {
@@ -196,7 +193,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [task: task]
+        detail(task)
     }
 
     def inProgress(Task task) {
@@ -206,7 +203,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [task: task]
+        detail(task)
     }
 
     def myTask() {
@@ -236,8 +233,7 @@ class TaskController {
 
     def reassignTask(Task task) {
         try {
-            task.taskStatus=TaskStatus.ASSIGNED
-            taskService?.update(task)
+            taskService.assigned(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()

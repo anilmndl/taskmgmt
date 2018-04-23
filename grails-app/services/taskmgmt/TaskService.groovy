@@ -8,6 +8,9 @@ class TaskService {
 
     def save(Task task) {
         task.dateCreated = new Date()
+        if(task.user != null){
+            task.taskStatus = TaskStatus.ASSIGNED
+        }
         if (task.validate()) {
             task.save failOnError: true, flush: true
         } else {
@@ -93,7 +96,7 @@ class TaskService {
         new User(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findById(1),
                 address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: true).save()
     }
-    Task createTask(Task task) {
+    Task autoFillTask(Task task) {
         task.title = task.title ? task.title : task.taskType.title
         task.detail = task.detail ? task.detail : task.taskType.description
         return task
