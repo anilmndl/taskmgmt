@@ -27,6 +27,12 @@ class InitializationService {
         new TaskType(title: "Hulu is Life", description: "Next episode of family guy is out").save()
         new TaskType(title: "Crush the CrunchyRoll", description: "Anime is not cartoon").save()
         new TaskType(title: "Life of Prime", description: "Download now watch months later.").save()
+        new TaskType(title:"Scan the Document", description:"Scan all the received document").save()
+        new TaskType(title:"Call customer", description:"Call all the customer who left the voicemail").save()
+        new TaskType(title:"Receive mail", description:"Receive the mail from the mail center").save()
+        new TaskType(title:"Respond the email", description:"Responding all the email to customer who inqury about the product").save()
+        new TaskType(title:"Organizing meeting", description:"Organizing weekly meeting to get the status of the work").save()
+        new TaskType(title:"Allocate the budget", description:"Assigning the budget on the basis of the spent amount").save()
 
     }
 

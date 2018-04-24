@@ -35,7 +35,7 @@
                                         method="POST" class="form-inline">
                                     <div class="list-group-item list-inline">${taskTypes.title}
                                     <g:hiddenField name="isAssign" value="true"/>
-                                    <g:hiddenField name="" value="${taskType.id}"/>
+                                    <g:hiddenField name="taskType" value="${taskType.id}"/>
                                     <button type="submit" class="btn btn-default btn-sm ">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
