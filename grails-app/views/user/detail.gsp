@@ -78,8 +78,8 @@
                         <td>
                             <div class="list-group">
 
-                                <g:if test="${user.taskTypes}">
-                                    <g:each var="taskType" in="${user.taskTypes}">
+                                <g:if test="${subscribeTaskType}">
+                                    <g:each var="taskType" in="${subscribeTaskType}">
                                         <g:form controller="user" action="subscribe" id="${user.id}"
                                                 method="POST" class="form-inline">
                                             <div class=" list-group-item list-inline">${taskType.title}
@@ -121,13 +121,13 @@
                         <g:if test="${user.vacationMode==false}">
                             <th><g:link controller="user" action="Vacation" id="${user.id}"
                                         class="btn btn-primary btn-sm"><i class="fa fa-edit"
-                                                                          aria-hidden="true"></i>On Vacation</g:link>
+                                                                          aria-hidden="true"></i>Turn On Vacation Mode</g:link>
                             </th>
                             <th class="bottom-right">
                         </g:if>
                         <g:else><th><g:link controller="user" action="Working" id="${user.id}"
                                             class="btn btn-info btn-sm"><i class="fa fa-edit"
-                                                                              aria-hidden="true"></i> Working </g:link>
+                                                                              aria-hidden="true"></i> Turn on Working Mode </g:link>
                         </th>
                             <th class="bottom-right"></g:else>
                         %{--sends delete request as POST form submission--}%

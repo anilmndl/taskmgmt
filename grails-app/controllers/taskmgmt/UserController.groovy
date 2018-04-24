@@ -54,7 +54,10 @@ class UserController {
     }
 
     def detail(User user) {
-        render view: "detail", model: [user: user, taskTypes: TaskType.list()]
+        def subscribeTaskType=user.taskTypes.sort {a,b->
+            a.id<=>b.id
+        }
+        render view: "detail", model: [user: user, taskTypes: TaskType.list() ,subscribeTaskType: subscribeTaskType]
     }
 
     def delete(User user) {
