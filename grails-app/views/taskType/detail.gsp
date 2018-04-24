@@ -13,7 +13,7 @@
     <h1 class="page-header">Task Type Detail</h1>
 
     <g:if test="${flash.message}">
-        <div class="alert alert-danger" role="alert"><h2>${flash.message}</h2></div>
+        <div class="alert alert-info" role="alert"><h4>${flash.message}</h4></div>
     </g:if>
 
     <div class="container-fluid">
@@ -27,31 +27,30 @@
 
             <span><h3 class="alert alert-info">${taskType.description}</h3></span>
 
-            <div class="form-inline ">
+            <div class="list-group ">
                 <h2>TaskTypes</h2>
-                <g:if test="${taskType.linkedTaskTypes}">
-                    <ul>
-                        <g:each var="taskType" in="${taskType.children}">
-                            <li>${taskType.title}
+                <g:if test="${taskType?.linkedTaskTypes}">
+                        <g:each var="taskType" in="${taskType?.linkedTaskTypes}">
                                 <g:form controller="taskType" action="assign" id="${taskType.id}"
-                                        method="POST">
-                                    <g:hiddenField name="isAssign" value="false"/>
-                                    <g:hiddenField name="toAssign" value="${taskType.id}"/>
+                                        method="POST" class="form-inline">
+                                    <div class="list-group-item list-inline">${taskTypes.title}
+                                    <g:hiddenField name="isAssign" value="true"/>
+                                    <g:hiddenField name="" value="${taskType.id}"/>
                                     <button type="submit" class="btn btn-default btn-sm ">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
+                                    </div>
                                 </g:form>
-                            </li>
                         </g:each>
                     </ul>
                 </g:if>
-                <div class="list-inline">
+                <div class="list-group-item list-inline">
                     <g:form class="form-group"
                             controller="taskType" action="assign" id="${taskType.id}"
                             method="POST">
                         <g:hiddenField name="isAssign" value="true"/>
                         <div class="form-group form-inline">
-                            <g:select from="${taskTypes}"
+                            <g:select  class="form-control dropdown-toggle" from="${taskTypes}"
                                       name="taskType"
                                       optionKey="id" optionValue="title" required="required"
                                       value="${taskTypes.id}"/>
