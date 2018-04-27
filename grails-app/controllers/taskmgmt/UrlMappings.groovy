@@ -10,8 +10,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-                "/"(controller:"task")
-                "/land"(redirect: "/")
+                "/"(view:"index")
         "500"(view:'/error')
         "404"(view:'/notFound')
                 "/login/$action?"(controller: "login")
