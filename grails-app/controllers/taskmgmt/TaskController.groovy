@@ -118,14 +118,14 @@ class TaskController {
         }
         render view: "create",
                 model: [taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]),
-                        userList: userList, customerList: Customer.findAllByDateDeletedIsNull()]
+                        userList    : userList, customerList: Customer.findAllByDateDeletedIsNull()]
     }
 
     def detail(Task task) {
-        List<Comment> commentList = task.comments.findAll{
+        List<Comment> commentList = task.comments.findAll {
             it.dateDeleted == null
-        }.sort{a,b->
-            b.id<=>a.id
+        }.sort { a, b ->
+            b.id <=> a.id
         }
 
         def userList = taskmgmt.User.createCriteria().list() {
@@ -157,6 +157,7 @@ class TaskController {
         }
         render view: "completed", model: [tasks: taskList, listCount: taskList.size()]
     }
+
     def save(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
             task = taskService?.autoFillTask(task)
@@ -164,13 +165,20 @@ class TaskController {
 //        if ((task.user == null)) {
 //            task = taskService?.randomUser(task)
 //        }
+
+        boolean errorThrown = false
         try {
             taskService?.save(task)
             redirect action: "list"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: taskmgmt.User.list()]
+            errorThrown = true
+        }
+        if (errorThrown) {
+            render view: "edit",
+                    model: [editTask                                                                           : task, taskTypeList:
+                            TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: taskmgmt.User.list()]
         }
 
     }
@@ -208,14 +216,14 @@ class TaskController {
     def myTask() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         def taskList = Task.createCriteria().list() {
-            and{
+            and {
                 isNull("dateDeleted")
                 isNull("dateCompleted")
-                eq("user",springSecurityService.getCurrentUser())
+                eq("user", springSecurityService.getCurrentUser())
             }
             order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: taskList, listCount: taskList.size(),currentUser: springSecurityService.getCurrentUser()]
+        render view: "list", model: [tasks: taskList, listCount: taskList.size(), currentUser: springSecurityService.getCurrentUser()]
     }
 
 

@@ -97,10 +97,10 @@
                                             method="POST">
                                         <g:hiddenField name="isSubscribe" value="true"/>
                                         <div class="form-group form-inline">
-                                            <g:select class="form-control dropdown-toggle" from="${taskTypes}"
+                                            <g:select class="form-control dropdown-toggle" from="${unSubscribedTaskTypes}"
                                                       name="taskType"
                                                       optionKey="id" optionValue="title" required="required"
-                                                      value="${taskTypes?.id}"/>
+                                                      value="${unSubscribedTaskTypes?.id}"/>
                                             <button type="submit" class="btn btn-success">Subscribe</button>
                                         </div>
 

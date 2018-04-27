@@ -17,8 +17,8 @@ class UserController {
                 and {
                     or {
                         ilike("firstName", "%${params.query}%")
-                        ilike("lastName","%${params.query}%")
-                        ilike("lastName","%${params.query}%")
+                        ilike("lastName", "%${params.query}%")
+                        ilike("lastName", "%${params.query}%")
                         ilike("phoneNumber", "%${params.query}%")
                     }
                     isNull("dateDeleted")
@@ -54,10 +54,23 @@ class UserController {
     }
 
     def detail(User user) {
-        def subscribeTaskType=user.taskTypes.sort {a,b->
-            a.id<=>b.id
+        def subscribeTaskType = user.taskTypes.sort { a, b ->
+            a.id <=> b.id
         }
-        render view: "detail", model: [user: user, taskTypes: TaskType.list() ,subscribeTaskType: subscribeTaskType]
+
+        List<TaskType> unSubscribedTaskTypes = null
+        subscribeTaskType.each {thisTaskType->
+            boolean subscribed = false
+            TaskType.each {eachTaskType->
+                if(thisTaskType.id==eachTaskType.id){
+                    subscribeTaskType=true
+                }
+            }
+            if(!subscribeTaskType){
+                unSubscribedTaskTypes.add(thisTaskType)
+            }
+        }
+        render view: "detail", model: [user: user, taskTypes: TaskType.list(), subscribeTaskType: subscribeTaskType, unSubscribedTaskTypes: unSubscribedTaskTypes]
     }
 
     def delete(User user) {
@@ -116,7 +129,7 @@ class UserController {
         render view: "detail", model: [user: user]
     }
 
-    def Working(User user){
+    def Working(User user) {
         try {
             userService?.Working(user)
         }
@@ -125,7 +138,8 @@ class UserController {
         }
         render view: "detail", model: [user: user]
     }
-   def UserInfo(User user){
-       render view: "changePassword", model: [editUser: user]
-   }
+
+    def UserInfo(User user) {
+        render view: "changePassword", model: [editUser: user]
+    }
 }
