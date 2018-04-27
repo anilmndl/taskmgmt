@@ -1,3 +1,4 @@
+<%@ page import="taskmgmt.enums.RoleAuthority" %>
 <!doctype html>
 <html>
 <head>
@@ -131,13 +132,13 @@
                                     </th>
                                 </g:if>
                             </sec:access>
-                            <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED && currentUser==task.user}">
+                            <g:if test="${task.taskStatus == taskmgmt.enums.TaskStatus.ASSIGNED && (currentUser==task.user || adminRole in currentUserAuthorities)}">
                                 <th><g:link controller="task" action="inProgress" id="${task.id}"
                                             class="btn btn-success btn-sm"><i class="fa fa-flag"
                                                                               aria-hidden="true"></i> Mark as "In-Progress"</g:link>
                                 </th>
                             </g:if>
-                            <g:elseif test="${task.taskStatus == taskmgmt.enums.TaskStatus.IN_PROGRESS && currentUser==task.user}">
+                            <g:elseif test="${task.taskStatus == taskmgmt.enums.TaskStatus.IN_PROGRESS && (currentUser==task.user || adminRole in currentUserAuthorities)}">
                                 <th><g:link controller="task" action="completed" id="${task.id}"
                                             class="btn btn-success btn-sm pull-left"><i class="fa fa-check"
                                                                                         aria-hidden="true"></i> Mark Completed</g:link>

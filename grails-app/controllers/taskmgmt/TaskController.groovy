@@ -72,7 +72,8 @@ class TaskController {
         def tasks = Task.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
-                //isNull("dateCompleted")
+
+
                 if (params.query && params.date && params.taskType) {
                     and {
                         ilike("title", "%${params.query}%")
@@ -83,20 +84,10 @@ class TaskController {
                         ilike("title", "%${params.query}%")
                         gt("dateCreated", params.date)
                     }
-                } else if (params.query && params.taskType) {
-                    and {
-                        ilike("title", "%${params.query}%")
-                        eqProperty("taskType", "%${params.taskType}%")
-                    }
-                } else if (params.taskType && params.date) {
-                    gt("dateCreated", params.date)
-                    eqProperty("taskType", "%${params.taskType}%")
                 } else if (params.date) {
                     gt("dateCreated", params.date)
                 } else if (params.query) {
                     ilike("title", "%${params.query}%")
-                } else if (params.taskType) {
-                    eqProperty("taskType", "%${params.taskType}%")
                 } else {
                     true
                 }
@@ -135,7 +126,10 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [task: task, commentList: commentList, userList: userList, currentUser: springSecurityService.getCurrentUser()]
+        render view: "detail", model: [task    : task, commentList: commentList,
+                                       userList: userList, currentUser: springSecurityService.getCurrentUser(),
+        adminRole: Role.findByAuthority('ROLE_ADMIN'), currentUserAuthorities: springSecurityService.getCurrentUser().getAuthorities()]
+
     }
 
 

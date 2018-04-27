@@ -8,9 +8,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <g:link controller="task" action="list" class="navbar-brand"><i class="fa fa-home"></i></g:link>
+            %{--<a href="../land.gsp" class="navbar-brand"><i class="fa fa-home"></i></a>--}%
+            <g:link url="/" class="navbar-brand"><i class="fa fa-home"></i></g:link>
         </div>
-
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
@@ -107,10 +107,6 @@
                             <li><g:link controller="logout">Logout</g:link></li>
                             <li><g:link controller="user" action="edit"
                                         id="${sec.loggedInUserInfo(field: 'id')}">Edit Profile</g:link></li>
-                            <li><g:link controller="user" action="Vacation"
-                                        id="${sec.loggedInUserInfo(field: 'id')}">Vacation Mode</g:link></li>
-                            <li><g:link controller="user" action="UserInfo" id="${sec.loggedInUserInfo(field: 'id')}"
-                                        value="">Change Password</g:link></li>
 
                         </ul>
                     </li>
