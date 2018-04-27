@@ -13,7 +13,7 @@ class InitializationService {
 
 
     void initTask() {
-        for (int i; i < 5; i++) {
+        for (int i; i < 15; i++) {
             new Task(taskStatus: TaskStatus.ASSIGNED, title: TaskType.findById(rand.nextInt((int) TaskType.list().size()) + 1).title, detail: TaskType.findById(rand.nextInt((int) TaskType.list().size()) + 1).description,
                     user: User.findById(rand.nextInt((int) User.list().size()) + 1), taskType: TaskType.findById(rand.nextInt((int) TaskType.list().size()) + 1),
                     dateCreated: new Date(), customer: Customer.findById(rand.nextInt((int) Customer.list().size()) + 1), dueDate: new Date()).save()
@@ -21,8 +21,12 @@ class InitializationService {
         }
     }
 
+    String[] taskTypes=["CHECK THE UTILITIES AND SERVICES","CONDUCT INSPECTIONS","UNPACK THE MUSIC FIRST","DEEP CLEAN","SET UP YOUR INTERNET SERVICE, COMPUTER AND TV","NOTIFY PEOPLE OF YOUR NEW ADDRESS","INVEST IN NEW FURNITURE AND APPLIANCES","STOCK UP ON ESSENTIALS"]
+    String[] taskTypesDescription=[" make sure your utilities are turned on, including water, electricity and gas.","examine your new space and become fully acquainted with it.","Set up an iPod with speakers, a laptop or a stereo.","vacuum the floors and make sure all surfaces, including countertops and large appliances, have been cleaned thoroughly.","Transfer your cable and Internet service, find a new provider or set up a Wi-Fi hotspot.","complete a change of address with the post office online at https://moversguide.usps.com.","Examine your property to make sure nothing was damaged or lost during the move."]
     void initTaskType() {
-
+        for(int i=0;i<7;i++){
+            new TaskType(title: taskTypes[i], description: taskTypesDescription[i]).save()
+        }
         new TaskType(title: "Watch Netflix", description: "Binge watch and waste time").save()
         new TaskType(title: "Hulu is Life", description: "Next episode of family guy is out").save()
         new TaskType(title: "Crush the CrunchyRoll", description: "Anime is not cartoon").save()

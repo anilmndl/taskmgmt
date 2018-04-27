@@ -73,7 +73,14 @@ class TaskController {
         def tasks = Task.createCriteria().list(params) {
             and {
                 isNull("dateDeleted")
-                if (params.query && params.date) {
+
+
+                if (params.query && params.date && params.taskType) {
+                    and {
+                        ilike("title", "%${params.query}%")
+                        eqProperty("taskType", "%${params.taskType}%")
+                    }
+                } else if (params.query && params.date) {
                     and {
                         ilike("title", "%${params.query}%")
                         gt("dateCreated", params.date)

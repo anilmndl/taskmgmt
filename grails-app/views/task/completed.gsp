@@ -45,6 +45,7 @@
                 </strong></div>
                 <table class="table table-striped">
                     <tr>
+
                         <th>Title</th>
                         <th>Date Completed</th>
                         <th>Action</th>
@@ -56,7 +57,7 @@
                                 <td>${show.title}</td>
                                 <td><div class="label label-primary"><common:dateFormatWithTime dateValue="${show.dateCompleted}"/></div></td>
                                 <td>
-                                    <g:link controller="Task" action="detail" id="${show.id}"
+                                    <g:link controller="Task" action="detail"
                                             class="btn btn-info btn-xs"><i class="fa fa-eye"
                                                                            aria-hidden="true"></i> View Details</g:link>
                                 </td>
