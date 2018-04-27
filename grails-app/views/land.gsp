@@ -36,21 +36,20 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-dark navbar-expand-lg">
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" class="img-fluid" alt="logo">
-                    </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
-                                 aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span
-                            class="navbar-toggler-icon"></span></button>
-
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item"><a class="nav-link active" href="#home">HOME <span
                                     class="sr-only">(current)</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="#features">FEATURES</a></li>
                             <li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
-                            <li class="nav-item"><g:link controller="task" action="list"
-                                                         class="nav-link">View Task</g:link></li>
-                            <li class="nav-item"><g:link controller="user" action="list"
-                                                         class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Login</g:link></li>
+                            <sec:ifNotLoggedIn>
+                                <li class="nav-item"><g:link controller="task" action="list"
+                                                             class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Login</g:link></li>
+                            </sec:ifNotLoggedIn>
+                            <sec:ifLoggedIn>
+                                <li class="nav-item"><g:link controller="task" action="list"
+                                                             class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">View Task</g:link></li>
+                            </sec:ifLoggedIn>
                         </ul>
                     </div>
                 </nav>
