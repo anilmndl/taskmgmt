@@ -87,7 +87,6 @@ class CommonTagLib {
             //            https://stackoverflow.com/questions/2755835/duration-between-two-dates-in-groovy
 
         }
-
         out << output
     }
 

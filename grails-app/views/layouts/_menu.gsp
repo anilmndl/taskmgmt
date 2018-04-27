@@ -44,20 +44,20 @@
                     </ul>
                 </li>
             </ul>
+            <sec:ifAnyGranted roles = "ROLE_ADMIN">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i> Roles<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><g:link controller="Role" action="Create"><i class="fa fa-tags"
-                                                                         aria-hidden="true"></i> New Roles</g:link></li>
                         <li><g:link controller="Role" action="list"><i class="fa fa-table"
                                                                        aria-hidden="true"></i> List Roles</g:link></li>
 
                     </ul>
                 </li>
             </ul>
+            </sec:ifAnyGranted>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

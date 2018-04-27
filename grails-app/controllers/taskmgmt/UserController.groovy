@@ -36,8 +36,10 @@ class UserController {
     }
 
     def edit(User user) {
-        render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
+        //if(springSecurityService.currentUser == user || springSecurityService.currentUser.getAuthorities()[0].authority == "ROLE_ADMIN"){
+            render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
     }
+
 
     def save(User user, Address address) {
         try {
@@ -57,7 +59,8 @@ class UserController {
         def subscribeTaskType=user.taskTypes.sort {a,b->
             a.id<=>b.id
         }
-        render view: "detail", model: [user: user, taskTypes: TaskType.list() ,subscribeTaskType: subscribeTaskType]
+        render view: "detail", model: [user: user, taskTypes: TaskType.list() ,subscribeTaskType: subscribeTaskType,
+                                       authority:springSecurityService.currentUser.getAuthorities()[0]]
     }
 
     def delete(User user) {
