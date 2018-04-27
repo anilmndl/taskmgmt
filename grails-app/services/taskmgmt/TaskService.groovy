@@ -67,7 +67,7 @@ class TaskService {
     def assignRandomTaskToRandomUser(Task task) {
         def possibleTaskTypes = task.taskType.linkedTaskTypes
         possibleTaskTypes.each {
-            def usersNotInVacation = it.users.collect(){
+            def usersNotInVacation = it.users.collect{
                 it.vacationMode==false
             }
             Random random = new Random()
