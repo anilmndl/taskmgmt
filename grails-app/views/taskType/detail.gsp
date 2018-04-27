@@ -51,7 +51,7 @@
                             method="POST">
                         <g:hiddenField name="isAssign" value="true"/>
                         <div class="form-group form-inline">
-                            <g:select class="form-control dropdown-toggle" from="${unsubTaskTypes}"
+                            <g:select class="form-control dropdown-toggle" from="${unSubscribedTaskTypes}"
                                       name="taskType"
                                       optionKey="id" optionValue="title" required="required"/>
                             <button type="submit" class="btn btn-success">Assign</button>

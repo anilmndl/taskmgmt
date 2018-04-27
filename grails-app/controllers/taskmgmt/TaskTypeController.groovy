@@ -69,8 +69,10 @@ class TaskTypeController {
     }
 
     def detail(TaskType taskType) {
+        def unSubscribedTaskTypes =  TaskType.list()
+        unSubscribedTaskTypes.removeAll(taskType.linkedTaskTypes)
         render view: "detail", model: [taskType: taskType, taskTypes: TaskType.list(),
-                                       unsubTaskTypes: TaskType.list().removeAll(taskType.linkedTaskTypes)]
+                                       unSubscribedTaskTypes: unSubscribedTaskTypes]
     }
 
     def assign(TaskType taskType){
