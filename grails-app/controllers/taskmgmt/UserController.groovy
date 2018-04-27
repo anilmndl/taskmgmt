@@ -131,7 +131,7 @@ class UserController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [user: user]
+        redirect action: "detail", params: ["id": user.id]
     }
 
     def Working(User user) {
@@ -141,7 +141,7 @@ class UserController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [user: user]
+        redirect action: "detail",  params: ["id": user.id]
     }
 
     def UserInfo(User user) {

@@ -25,9 +25,14 @@ class BootStrap {
                 address: new Address(line1: "890 S. 1st Ave", city:"Salt Lake", state: "UT", country: "US").save(),
                 role:userRole, phoneNumber: 9515123133, dateCreated: new Date(), enabled: true).save()
 
+        User sabin = new User(username: 'sanrizz', password: 'kinaChahiyoPassw0rd',firstName: "Sabin", lastName: "Shrestha",
+                address: new Address(line1: "890 S. 1st Ave", city:"Salt Lake", state: "UT", country: "US").save(),
+                role:adminUser, phoneNumber: 9515123133, dateCreated: new Date(), enabled: true).save()
+
         //assigning role to the user
         UserRole.create(adminUser, adminRole)
         UserRole.create(userUser, userRole)
+        UserRole.create(sabin, adminRole)
 
         initializationService.initTask()
         initializationService.initComment()

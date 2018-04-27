@@ -35,6 +35,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
         [pattern: '/user/detail/**', access: ['ROLE_USER']],
         [pattern: '/user/vacation/**', access: ['ROLE_USER']],
         [pattern: '/user/subscribe/**', access: ['ROLE_USER']],
+        [pattern: '/user/working/**', access: ['ROLE_USER']],
 
         // taskType CRUD
         [pattern: '/taskType/detail/**', access: ['ROLE_USER']],
@@ -52,12 +53,14 @@ grails.plugin.springsecurity.interceptUrlMap = [
         // user CRUD
         [pattern: '/user/delete/**', access: ['ROLE_ADMIN']],
         [pattern: '/user/create/**', access: ['ROLE_ADMIN']],
+        [pattern: '/user/save/**', access: ['ROLE_ADMIN']],
 
         // taskType CRUD
         [pattern: '/taskType/create/**', access: ['ROLE_ADMIN']],
         [pattern: '/taskType/edit/**', access: ['ROLE_ADMIN']],
         [pattern: '/taskType/assign/**', access: ['ROLE_ADMIN']],
         [pattern: '/taskType/delete/**', access: ['ROLE_ADMIN']],
+        [pattern: '/taskType/save/**', access: ['ROLE_ADMIN']],
 
         // role CRUD
         [pattern: '/role/edit/**', access: ['ROLE_ADMIN']],

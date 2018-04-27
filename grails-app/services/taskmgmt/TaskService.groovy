@@ -1,14 +1,20 @@
 package taskmgmt
 
-import grails.transaction.Transactional
+import grails.gorm.DetachedCriteria
+import grails.plugin.springsecurity.SpringSecurityService
 import taskmgmt.enums.TaskStatus
+import org.springframework.transaction.annotation.Transactional
+
+import javax.jws.soap.SOAPBinding
 
 @Transactional
 class TaskService {
+    SpringSecurityService springSecurityService
+
 
     def save(Task task) {
         task.dateCreated = new Date()
-        if(task.user != null){
+        if (task.user != null) {
             task.taskStatus = TaskStatus.ASSIGNED
         }
         if (task.validate()) {
@@ -44,8 +50,8 @@ class TaskService {
     def update(Task task) {
         task.dateModified = new Date()
         task
-        if(task.user!=null && task.taskStatus!=TaskStatus.ASSIGNED){
-                task.taskStatus=TaskStatus.ASSIGNED
+        if (task.user != null && task.taskStatus != TaskStatus.ASSIGNED) {
+            task.taskStatus = TaskStatus.ASSIGNED
         }
         if (task.validate()) {
             task.save failOnError: true, flush: true
@@ -53,6 +59,7 @@ class TaskService {
             throw new Exception("Oops! Something went wrong. Update failed.")
         }
     }
+
     def complete(Task task) {
         task.dateModified = new Date()
         task.dateCompleted = new Date()
@@ -65,40 +72,39 @@ class TaskService {
     }
 
     def assignRandomTaskToRandomUser(Task task) {
-        def possibleTaskTypes = task.taskType.linkedTaskTypes
-        possibleTaskTypes.each {
-            def usersNotInVacation = it.users.collect(){
-                it.vacationMode==false
+        Random random = new Random()
+        def linkedTaskType = task.taskType.linkedTaskTypes
+        List<User> users = User.findAllByVacationModeNotEqual(true)
+
+        for(int i=0; i < linkedTaskType.size(); i++){
+            if(users[i] == null){
+                users[i] = springSecurityService.currentUser as User
             }
-            Random random = new Random()
-            new Task(taskStatus: TaskStatus.CREATED, title: it.title, detail: it.description,
-                    users: usersNotInVacation[random.nextInt(usersNotInVacation().size())], taskType: it,
-                    dateCreated: new Date()).save()
+            new Task(taskStatus: (users!= null) ? TaskStatus.ASSIGNED : TaskStatus.CREATED , title: linkedTaskType[i].title, detail: linkedTaskType[i].description,
+            user: users[i], taskType: linkedTaskType[i], dueDate: new Date(), dateCreated: new Date()).save()
         }
     }
-    // I did the restrict to a single task
-    // SanRIZZ.........
-    // 1.c done   
 
-    void newTasks(){
-            Random rand=new Random()
+    void newTasks() {
+        Random rand = new Random()
 
         new Task(taskStatus: TaskStatus.CREATED, title: "rndTask", detail: "This is random",
-                    users: User.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
-                    dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
+                users: User.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
+                dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
         new Task(taskStatus: TaskStatus.CREATED, title: "rndTask1", detail: "This is random",
                 users: User.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
                 dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
         new Task(taskStatus: TaskStatus.CREATED, title: "rndTask2", detail: "This is random",
                 users: User.findByFirstName("Alankar"), taskType: TaskType.findById(rand.nextInt(100)),
                 dateCreated: new Date(), customer: Customer.findByFirstName("Dumb")).save()
-
     }
+
 
     void newUsers() {
         new User(firstName: "Alankar", middleName: "wait for it.........", lastName: "Pokhrel", role: Role.findById(1),
                 address: "925 S. 8th Ave., Pocatello, Idaho", phoneNumber: 123456789, dateCreated: new Date(), vacationMode: true).save()
     }
+
     Task autoFillTask(Task task) {
         task.title = task.title ? task.title : task.taskType.title
         task.detail = task.detail ? task.detail : task.taskType.description
@@ -142,3 +148,4 @@ class TaskService {
         }
     }
 }
+

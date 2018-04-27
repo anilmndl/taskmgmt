@@ -30,12 +30,11 @@ class TaskController {
         try {
             taskService?.complete(task)
             taskService?.assignRandomTaskToRandomUser(task)
-            redirect action: "listCompleted"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "detail", model: [task: task]
         }
+        redirect action: "list"
     }
 
     def edit(Task task) {
