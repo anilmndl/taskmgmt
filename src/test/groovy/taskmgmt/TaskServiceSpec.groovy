@@ -20,7 +20,7 @@ class TaskServiceSpec extends Specification {
 
     void "create_task_inserts_a_new_task_in_the_db"() {
         when:
-        service.createTask("Test Task")
+        service.autoFillTask("Test Task")
 
         then:
         Task.list() != null
@@ -29,7 +29,7 @@ class TaskServiceSpec extends Specification {
 
     void "create_task_throws ValidationException if title is empty or null"() {
         when:
-        service.createTask("")
+        service.autoFillTask("")
 
         then:
         thrown ValidationException

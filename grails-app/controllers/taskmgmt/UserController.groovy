@@ -17,8 +17,8 @@ class UserController {
                 and {
                     or {
                         ilike("firstName", "%${params.query}%")
-                        ilike("lastName","%${params.query}%")
-                        ilike("lastName","%${params.query}%")
+                        ilike("lastName", "%${params.query}%")
+                        ilike("lastName", "%${params.query}%")
                         ilike("phoneNumber", "%${params.query}%")
                     }
                     isNull("dateDeleted")
@@ -28,7 +28,7 @@ class UserController {
             }
         }
 
-        [users: userList, listCount: userList.totalCount]
+        [userList: userList, listCount: User.count()]
     }
 
     def create() {
@@ -36,8 +36,10 @@ class UserController {
     }
 
     def edit(User user) {
+        //if(springSecurityService.currentUser == user || springSecurityService.currentUser.getAuthorities()[0].authority == "ROLE_ADMIN"){
         render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
     }
+
 
     def save(User user, Address address) {
         try {
@@ -54,7 +56,16 @@ class UserController {
     }
 
     def detail(User user) {
-        render view: "detail", model: [user: user, taskTypes: TaskType.list()]
+        def subscribeTaskType = user.taskTypes.sort { a, b ->
+            a.id <=> b.id
+        }
+
+        def unSubscribedTaskTypes = TaskType.list()
+        unSubscribedTaskTypes.removeAll(subscribeTaskType)
+
+        render view: "detail", model: [user                 : user, taskTypes: TaskType.list(), subscribeTaskType: subscribeTaskType,
+                                       unSubscribedTaskTypes: unSubscribedTaskTypes,
+                                       authority            : springSecurityService.currentUser.getAuthorities()[0]]
     }
 
     def delete(User user) {
@@ -113,7 +124,7 @@ class UserController {
         render view: "detail", model: [user: user]
     }
 
-    def Working(User user){
+    def Working(User user) {
         try {
             userService?.Working(user)
         }
@@ -121,5 +132,9 @@ class UserController {
             flash.message = e.getMessage()
         }
         render view: "detail", model: [user: user]
+    }
+
+    def UserInfo(User user) {
+        render view: "changePassword", model: [editUser: user]
     }
 }

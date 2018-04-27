@@ -1,13 +1,13 @@
 package taskmgmt
 
+import grails.plugin.springsecurity.SpringSecurityService
 import taskmgmt.enums.TaskStatus
-
-
 
 
 class TaskController {
 
     TaskService taskService
+    SpringSecurityService springSecurityService
 
     //delete() method is only allows POST request
     static allowedMethods = [delete: 'POST']
@@ -51,7 +51,7 @@ class TaskController {
 
     def update(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
-            task = taskService?.createTask(task)
+            task = taskService?.autoFillTask(task)
         }
         try {
             taskService?.update(task)
@@ -122,10 +122,10 @@ class TaskController {
     }
 
     def detail(Task task) {
-        List<Comment> commentList = task.comments.findAll{
+        List<Comment> commentList = task.comments.findAll {
             it.dateDeleted == null
-        }.sort{a,b->
-            b.id<=>a.id
+        }.sort { a, b ->
+            b.id <=> a.id
         }
 
         def userList = taskmgmt.User.createCriteria().list() {
@@ -136,7 +136,7 @@ class TaskController {
             order("dateCreated", "desc")
         }
 
-        render view: "detail", model: [task: task, commentList: commentList, userList: userList]
+        render view: "detail", model: [task: task, commentList: commentList, userList: userList, currentUser: springSecurityService.getCurrentUser()]
     }
 
 
@@ -160,18 +160,25 @@ class TaskController {
 
     def save(Task task) {
         if ((task.title == null || task.detail == null) && task.taskType != null) {
-            task = taskService?.createTask(task)
+            task = taskService?.autoFillTask(task)
         }
-        if ((task.user == null)) {
-            task = taskService?.randomUser(task)
-        }
+//        if ((task.user == null)) {
+//            task = taskService?.randomUser(task)
+//        }
+
+        boolean errorThrown = false
         try {
             taskService?.save(task)
             redirect action: "list"
         }
         catch (Exception e) {
             flash.message = e.getMessage()
-            render view: "edit", model: [editTask: task, taskTypeList: TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: taskmgmt.User.list()]
+            errorThrown = true
+        }
+        if (errorThrown) {
+            render view: "edit",
+                    model: [editTask                                                                           : task, taskTypeList:
+                            TaskType.findAllByDateDeletedIsNull([sort: "dateCreated", order: "desc"]), userList: taskmgmt.User.list()]
         }
 
     }
@@ -183,7 +190,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [task: task]
+        detail(task)
     }
 
     def assigned(Task task) {
@@ -193,7 +200,7 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [task: task]
+        detail(task)
     }
 
     def inProgress(Task task) {
@@ -203,16 +210,20 @@ class TaskController {
         catch (Exception e) {
             flash.message = e.getMessage()
         }
-        render view: "detail", model: [task: task]
+        detail(task)
     }
 
     def myTask() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        def taskList = Task.createCriteria().list(params) {
-            eq("taskType", TaskStatus.COMPLETED)
+        def taskList = Task.createCriteria().list() {
+            and {
+                isNull("dateDeleted")
+                isNull("dateCompleted")
+                eq("user", springSecurityService.getCurrentUser())
+            }
             order("dateCreated", "desc")
         }
-        render view: "list", model: [tasks: taskList, listCount: taskList.size()]
+        render view: "list", model: [tasks: taskList, listCount: taskList.size(), currentUser: springSecurityService.getCurrentUser()]
     }
 
 
@@ -229,8 +240,7 @@ class TaskController {
 
     def reassignTask(Task task) {
         try {
-            task.taskStatus=TaskStatus.ASSIGNED
-            taskService?.update(task)
+            taskService.assigned(task)
         }
         catch (Exception e) {
             flash.message = e.getMessage()

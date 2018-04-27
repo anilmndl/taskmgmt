@@ -1,5 +1,7 @@
 package taskmgmt
 
+import grails.plugin.springsecurity.SpringSecurityService
+
 import java.text.SimpleDateFormat
 import groovy.time.TimeCategory
 
@@ -11,6 +13,7 @@ class CommonTagLib {
     static namespace = "common"
 
     TaskService taskService
+    SpringSecurityService springSecurityService
 
     def hello = { attrs ->
         def output = ''
@@ -52,6 +55,16 @@ class CommonTagLib {
         }
         out << output
     }
+    def formatPhone = { attrs ->
+        def output = ""
+        if (attrs.phoneNumber) {
+            def phone = attrs.phoneNumber.substring(6)
+            def mid = attrs.phoneNumber.substring(3, 6)
+            def area = attrs.phoneNumber.substring(0, 3)
+            output = "<span>(${area}) ${mid}-${phone}</span>"
+        }
+        out << output
+    }
     def dueDate = { attrs ->
         def output = ""
         if (attrs.dateValue != null) {
@@ -74,7 +87,12 @@ class CommonTagLib {
             //            https://stackoverflow.com/questions/2755835/duration-between-two-dates-in-groovy
 
         }
-
         out << output
+    }
+
+    def userFullName = { attrs ->
+        def fullName = springSecurityService.getCurrentUser().firstName.capitalize() + " "+
+                springSecurityService.getCurrentUser().lastName.capitalize()
+        out << fullName
     }
 }

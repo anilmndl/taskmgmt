@@ -2,9 +2,9 @@ package taskmgmt.enums
 
 enum TaskPriority {
 
-    HIGH("HIGH"),
-    MEDIUM("MEDIUM"),
-    LOW("LOW"),
+    HIGH("High"),
+    MEDIUM("Medium"),
+    LOW("Low"),
 
     final String value
 

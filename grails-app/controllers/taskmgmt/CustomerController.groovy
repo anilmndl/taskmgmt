@@ -1,5 +1,4 @@
 package taskmgmt
-
 class CustomerController {
     static defaultAction = "list"
     //delete() method is only allows POST request
@@ -79,11 +78,9 @@ class CustomerController {
             render view: "edit", model: [customerToEdit: customer]
         }
     }
-
     def detail(Customer customer) {
         render view: "detail", model: [customer: customer]
     }
-
     def setTaskPriority(Customer customer) {
         customerService.setTaskPriority(customer)
         render view: "detail", model: [Priority: customer]

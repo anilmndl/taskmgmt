@@ -9,6 +9,7 @@ class Comment {
     Date dateModified
 
     static constraints = {
+        user nullable: true
         dateDeleted nullable: true
         dateModified nullable: true
     }

@@ -1,3 +1,4 @@
+<%@ page import="taskmgmt.enums.TaskPriority" %>
 <!doctype html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 
         <div class="form-group">
             <label><h4>User</h4></label>
-            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="users" optionKey="id"
+            <g:select class="btn btn-default dropdown-toggle" from="${userList}" name="user" optionKey="id"
                       optionValue="firstName" noSelection="['': '--Select--']"/>
         </div>
 
@@ -36,6 +37,12 @@
             <label><h4>Customer</h4></label>
             <g:select class="btn btn-default dropdown-toggle" from="${customerList}" name="customer" optionKey="id"
                       optionValue="firstName" noSelection="['': '--Select--']"/>
+        </div>
+
+        <div class="form-group">
+            <label><h4>Task Priority</h4></label>
+            <g:select class="btn btn-default dropdown-toggle" from="${TaskPriority.values()}" name="taskPriority" optionKey="key"
+                      optionValue="value" noSelection="['High': 'High']"/>
         </div>
 
         <div class="form-group">
