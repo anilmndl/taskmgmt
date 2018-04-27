@@ -37,7 +37,7 @@ class UserController {
 
     def edit(User user) {
         //if(springSecurityService.currentUser == user || springSecurityService.currentUser.getAuthorities()[0].authority == "ROLE_ADMIN"){
-            render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
+        render view: "edit", model: [editUser: user, roles: Role.list(), taskTypes: TaskType.list()]
     }
 
 
@@ -60,22 +60,12 @@ class UserController {
             a.id <=> b.id
         }
 
-        List<TaskType> unSubscribedTaskTypes = null
-        subscribeTaskType.each {thisTaskType->
-            boolean subscribed = false
-            TaskType.each {eachTaskType->
-                if(thisTaskType.id==eachTaskType.id){
-                    subscribeTaskType=true
-                }
-            }
-            if(!subscribeTaskType){
-                unSubscribedTaskTypes.add(thisTaskType)
-            }
-        }
+        def unSubscribedTaskTypes = TaskType.list()
+        unSubscribedTaskTypes.removeAll(subscribeTaskType)
 
-        render view: "detail", model: [user: user, taskTypes: TaskType.list() ,subscribeTaskType: subscribeTaskType,
+        render view: "detail", model: [user                 : user, taskTypes: TaskType.list(), subscribeTaskType: subscribeTaskType,
                                        unSubscribedTaskTypes: unSubscribedTaskTypes,
-                                       authority:springSecurityService.currentUser.getAuthorities()[0]]
+                                       authority            : springSecurityService.currentUser.getAuthorities()[0]]
     }
 
     def delete(User user) {

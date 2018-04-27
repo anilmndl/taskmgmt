@@ -107,10 +107,6 @@
                             <li><g:link controller="logout">Logout</g:link></li>
                             <li><g:link controller="user" action="edit"
                                         id="${sec.loggedInUserInfo(field: 'id')}">Edit Profile</g:link></li>
-                            <li><g:link controller="user" action="Vacation"
-                                        id="${sec.loggedInUserInfo(field: 'id')}">Vacation Mode</g:link></li>
-                            <li><g:link controller="user" action="UserInfo" id="${sec.loggedInUserInfo(field: 'id')}"
-                                        value="">Change Password</g:link></li>
 
                         </ul>
                     </li>
