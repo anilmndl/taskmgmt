@@ -33,11 +33,11 @@
             <div class="list-group ">
                 <g:if test="${taskType?.linkedTaskTypes}">
                     <g:each var="tskType" in="${taskType?.linkedTaskTypes}">
-                        <g:form controller="taskType" action="assign" id="${tskType.id}"
+                        <g:form controller="taskType" action="assign" id="${taskType.id}"
                                 method="POST" class="form-inline">
                             <div class="list-group-item list-inline">${tskType.title}
                             <g:hiddenField name="isAssign" value="false"/>
-                            <g:hiddenField name="taskType" value="${tskType.id}"/>
+                            <g:hiddenField name="tskType" value="${tskType.id}"/>
                                 <button type="submit" class="btn btn-default btn-sm ">
                                     <spaSn aria-hidden="true">&times;</spaSn>
                                 </button>

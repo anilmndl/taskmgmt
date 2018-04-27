@@ -76,7 +76,7 @@ class TaskTypeController {
     }
 
     def assign(TaskType taskType){
-        TaskType toAssign = TaskType.get(params.taskType)
+        TaskType toAssign = TaskType.get(params.tskType)
         if (params.isAssign == "true") {
             try {
                 taskType.linkedTaskTypes.add(toAssign)
