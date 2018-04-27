@@ -44,20 +44,20 @@
                     </ul>
                 </li>
             </ul>
+            <sec:ifAnyGranted roles = "ROLE_ADMIN">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa fa-tasks" aria-hidden="true"></i> Roles<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><g:link controller="Role" action="Create"><i class="fa fa-tags"
-                                                                         aria-hidden="true"></i> New Roles</g:link></li>
                         <li><g:link controller="Role" action="list"><i class="fa fa-table"
                                                                        aria-hidden="true"></i> List Roles</g:link></li>
 
                     </ul>
                 </li>
             </ul>
+            </sec:ifAnyGranted>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -107,10 +107,6 @@
                             <li><g:link controller="logout">Logout</g:link></li>
                             <li><g:link controller="user" action="edit"
                                         id="${sec.loggedInUserInfo(field: 'id')}">Edit Profile</g:link></li>
-                            <li><g:link controller="user" action="Vacation"
-                                        id="${sec.loggedInUserInfo(field: 'id')}">Vacation Mode</g:link></li>
-                            <li><g:link controller="user" action="UserInfo" id="${sec.loggedInUserInfo(field: 'id')}"
-                                        value="">Change Password</g:link></li>
 
                         </ul>
                     </li>

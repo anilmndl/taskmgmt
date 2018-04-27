@@ -31,16 +31,7 @@
                                 class="btn btn-success btn-sm"><i class="fa fa-edit"
                                                                   aria-hidden="true"></i> Edit</g:link>
                     </th>
-                    <th class="bottom-right">
-                    %{--sends delete request as POST form submission--}%
-                        <g:form controller="role" action="delete" id="${role.id}" method="POST">
-                            <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
-                                    data-target="#deleteModal"><i class="fa fa-trash"
-                                                                      aria-hidden="true"></i> Delete
-                            </button>
-                        </g:form>
-                        <g:render template="/layouts/deleteModal" model="[data:role]"/>
-                    </th>
+
                 </tr>
             </table>
     </div>

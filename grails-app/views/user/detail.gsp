@@ -97,10 +97,10 @@
                                             method="POST">
                                         <g:hiddenField name="isSubscribe" value="true"/>
                                         <div class="form-group form-inline">
-                                            <g:select class="form-control dropdown-toggle" from="${taskTypes}"
+                                            <g:select class="form-control dropdown-toggle" from="${unSubscribedTaskTypes}"
                                                       name="taskType"
                                                       optionKey="id" optionValue="title" required="required"
-                                                      value="${taskTypes?.id}"/>
+                                                      value="${unSubscribedTaskTypes?.id}"/>
                                             <button type="submit" class="btn btn-success">Subscribe</button>
                                         </div>
 
@@ -114,30 +114,35 @@
                 </table>
                 <table class="table table-responsive">
                     <tr>
-                        <th><g:link controller="user" action="edit" id="${user.id}"
-                                    class="btn btn-success btn-sm"><i class="fa fa-edit"
-                                                                      aria-hidden="true"></i> Edit</g:link></th>
-                    <th class="bottom-right">
-                        <g:if test="${user.vacationMode==false}">
-                            <th><g:link controller="user" action="Vacation" id="${user.id}"
-                                        class="btn btn-primary btn-sm"><i class="fa fa-edit"
-                                                                          aria-hidden="true"></i>Turn On Vacation Mode</g:link>
-                            </th>
-                            <th class="bottom-right">
+                        <g:if test="${authority.authority == "ROLE_ADMIN" || authority.id == user.id}">
+                            <th><g:link controller="user" action="edit" id="${user.id}"
+                                        class="btn btn-success btn-sm"><i class="fa fa-edit"
+                                                                          aria-hidden="true"></i> Edit</g:link></th>
                         </g:if>
-                        <g:else><th><g:link controller="user" action="Working" id="${user.id}"
-                                            class="btn btn-info btn-sm"><i class="fa fa-edit"
-                                                                              aria-hidden="true"></i> Turn on Working Mode </g:link>
-                        </th>
-                            <th class="bottom-right"></g:else>
-                        %{--sends delete request as POST form submission--}%
-                        <g:form controller="user" action="delete" id="${user.id}" method="POST">
-                            <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
-                                    data-target="#deleteModal"><i class="fa fa-trash"
-                                                                      aria-hidden="true"></i> Delete
-                            </button>
-                        </g:form>
-                        <g:render template="/layouts/deleteModal" model="[data:user]"/>
+                    <th class="bottom-right">
+                        <g:if test="${authority.authority == "ROLE_ADMIN" || authority.id == user.id}">
+                            <g:if test="${user.vacationMode==false}">
+                                <th><g:link controller="user" action="Vacation" id="${user.id}"
+                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"
+                                                                              aria-hidden="true"></i>Turn On Vacation Mode</g:link>
+                                </th>
+                                <th class="bottom-right">
+                            </g:if>
+                            <g:else><th><g:link controller="user" action="Working" id="${user.id}"
+                                                class="btn btn-info btn-sm"><i class="fa fa-edit"
+                                                                                  aria-hidden="true"></i> Turn on Working Mode </g:link>
+                            </th>
+                                <th class="bottom-right"></g:else>
+                            %{--sends delete request as POST form submission--}%
+
+                            <g:form controller="user" action="delete" id="${user.id}" method="POST">
+                                <button type="button" class="btn btn-danger btn-sm pull-right" data-toggle="modal"
+                                        data-target="#deleteModal"><i class="fa fa-trash"
+                                                                          aria-hidden="true"></i> Delete
+                                </button>
+                            </g:form>
+                            <g:render template="/layouts/deleteModal" model="[data:user]"/>
+                         </g:if>
                     </th>
                     </tr>
                 </table>

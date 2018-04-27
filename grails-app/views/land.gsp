@@ -161,9 +161,7 @@
                 <div class="d-flex flex-column flex-lg-row">
                     <div>
                         <h2>Scheduling when you want</h2>
-
                         <p class="lead">Assigning different task periodically can make task challenging and interesting.</p>
-
                         <p>According to Forbes Magazine, "53% of American employees are unsatisfied with their current job." The main reason behind this is Job Enrichment. People are tired of doing the same job every day. This application helps to manage and assign different tasks to different users while tracking previously assigned task.
                         </p>
                     </div>
@@ -244,15 +242,11 @@
 
     <!-- jQuery and Bootstrap -->
     <asset:javascript src="js/jquery-3.2.1.min.js"/>
-    <script src="js/jquery-3.2.1.min.js"></script>
     <asset:javascript src="js/bootstrap.bundle.min.js"/>
-    <script src="js/bootstrap.bundle.min.js"></script>
     <!-- Plugins JS -->
     <asset:javascript src="js/owl.carousel.min.js"/>
-    <script src="js/owl.carousel.min.js"></script>
     <!-- Custom JS -->
     <asset:javascript src="js/script.js"/>
-    <script src="js/script.js"></script>
 
 </body>
 
