@@ -5,6 +5,7 @@
     <meta name="layout" content="main"/>
     <title>Create User</title>
     <asset:javascript src="jquery.liveaddress.min.js"/>
+    <asset:javascript src="customJS.js"/>
 
     <script>
         var ss = jQuery.LiveAddress({
@@ -19,16 +20,6 @@
                 postal_code: "#postalCode"
             }]
         });
-
-        function matchPassword(){
-            $('#password, #confirm_password').on('keyup', function () {
-                if ($('#password').val() == $('#confirm_password').val()) {
-                    $('#message').html('Matching').css('color', 'green');
-                } else
-                    $('#message').html('Not Matching').css('color', 'red');
-            });
-        }
-
     </script>
 </head>
 
@@ -49,8 +40,7 @@
             <label>Password:</label>
             <input type="password" id="password" class="form-control"/>
             <label>Re-type Password:</label>
-            <input type="password" id="confirm_password" class="form-control" name="password"
-                onchange="matchPassword()"/>
+            <input type="password" id="confirm_password" class="form-control" name="password"/>
             <span id='message'></span><br>
 
             <label>Role</label>
@@ -92,7 +82,7 @@
             <label>Phone Number</label>
 
             <input type="tel" id="phone" class="form-control" name="phoneNumber" placeholder="Phone Number"
-                   required="required" value="${user?.phoneNumber}"/>
+                   required="required" onclick="return val();" value="${user?.phoneNumber}"/>
         </div>
         <button type="submit" class="btn btn btn-primary">Add</button>
     </g:form>
