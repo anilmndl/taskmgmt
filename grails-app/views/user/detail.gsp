@@ -99,8 +99,7 @@
                                         <div class="form-group form-inline">
                                             <g:select class="form-control dropdown-toggle" from="${unSubscribedTaskTypes}"
                                                       name="taskType"
-                                                      optionKey="id" optionValue="title" required="required"
-                                                      value="${unSubscribedTaskTypes?.id}"/>
+                                                      optionKey="id" optionValue="title" required="required"/>
                                             <button type="submit" class="btn btn-success">Subscribe</button>
                                         </div>
 
