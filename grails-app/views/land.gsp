@@ -164,8 +164,6 @@
                         <p>According to Forbes Magazine, "53% of American employees are unsatisfied with their current job." The main reason behind this is Job Enrichment. People are tired of doing the same job every day. This application helps to manage and assign different tasks to different users while tracking previously assigned task.
                         </p>
                     </div>
-                    <img src="images/graphic.png" alt="graphic"
-                         class="img-fluid rounded align-self-start mr-lg-5 mb-5 mb-lg-0">
                 </div>
             </div>
         </div>

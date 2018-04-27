@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             %{--<a href="../land.gsp" class="navbar-brand"><i class="fa fa-home"></i></a>--}%
-            <g:link controller="task" action="landingPage" class="navbar-brand"><i class="fa fa-home"></i></g:link>
+            <g:link url="/" class="navbar-brand"><i class="fa fa-home"></i></g:link>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
