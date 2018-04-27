@@ -20,18 +20,15 @@ grails.plugin.springsecurity.interceptUrlMap = [
         [pattern: '/logout/**', access: ['permitAll']],
 
         // common files
-        [pattern: '/customer/**', access: ['permitAll']],
-        [pattern: '/task/**', access: ['permitAll']],
-
-        // admin accessibility
-        [pattern: '/**', access: ['ROLE_ADMIN']],
+        [pattern: '/customer/**', access: ['ROLE_USER', 'ROLE_ADMIN']],
+        [pattern: '/task/**', access: ['ROLE_USER', 'ROLE_ADMIN']],
 
         // -------------------- user's accessibility -----------------------------//
 
         // user CRUD
-        [pattern: '/user/list', access: ['ROLE_USER, ROLE_ADMIN']],
-        [pattern: '/user/edit', access: ['ROLE_USER, ROLE_ADMIN']],
-        [pattern: '/user/detail', access: ['ROLE_USER, ROLE_ADMIN']],
+        [pattern: '/user/list', access: ['ROLE_USER']],
+        [pattern: '/user/edit', access: ['ROLE_USER']],
+        [pattern: '/user/detail', access: ['ROLE_USER']],
 
         // taskType CRUD
         [pattern: '/taskType/detail', access: ['ROLE_USER']],
