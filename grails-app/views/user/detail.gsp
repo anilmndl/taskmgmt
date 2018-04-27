@@ -74,6 +74,7 @@
                     </tr>
 
                     <tr>
+
                         <td>Task Types</td>
                         <td>
                             <div class="list-group">
@@ -82,16 +83,22 @@
                                     <g:each var="taskType" in="${subscribeTaskType}">
                                         <g:form controller="user" action="subscribe" id="${user.id}"
                                                 method="POST" class="form-inline">
-                                            <div class=" list-group-item list-inline">${taskType.title}
-                                            <g:hiddenField name="isSubscribe" value="false"/>
-                                            <g:hiddenField name="taskType" value="${taskType.id}"/>
-                                                <button type="submit" class="btn btn-default btn-sm">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                            <div class=" list-group-item list-inline">
+
+
+                                                <g:if test="${authority.authority == "ROLE_ADMIN" || authority.id == user.id}">
+                                                    <g:hiddenField name="isSubscribe" value="false"/>
+                                                    <g:hiddenField name="taskType" value="${taskType.id}"/>
+                                                        <button type="submit" class="btn btn-default btn-sm">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                </g:if>
                                             </div>
                                         </g:form>
                                     </g:each>
                                 </g:if>
+
+                                <g:if test="${authority.authority == "ROLE_ADMIN" || authority.id == user.id}">
                                 <div class="list-group-item list-inline">
                                     <g:form class="form-group" controller="user" action="subscribe" id="${user.id}"
                                             method="POST">
@@ -105,6 +112,8 @@
 
                                     </g:form>
                                 </div>
+                                </g:if>
+
                             </div>
                         </td>
                     </tr>

@@ -8,7 +8,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(InitializationService)
-@Mock([Role, Users, TaskType, Task,Customer])
+@Mock([Role, User, TaskType, Task,Customer])
 class InitializationServiceSpec extends Specification {
 
     def setup() {
