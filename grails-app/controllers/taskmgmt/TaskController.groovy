@@ -240,5 +240,8 @@ class TaskController {
         //redirects to details page
         detail(task)
     }
+    def landingPage(){
+        render view:"../land"
+    }
 
 }

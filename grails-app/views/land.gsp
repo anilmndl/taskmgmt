@@ -47,8 +47,9 @@
                                     class="sr-only">(current)</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="#features">FEATURES</a></li>
                             <li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#contact">Team</a></li>
-                            <li class="nav-item"><g:link controller="login" action="auth"
+                            <li class="nav-item"><g:link controller="task" action="list"
+                                                         class="nav-link">View Task</g:link></li>
+                            <li class="nav-item"><g:link controller="user" action="list"
                                                          class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Login</g:link></li>
                         </ul>
                     </div>
@@ -61,7 +62,7 @@
     <div class="container mt-5">
         <h1>Task Management System</h1>
 
-        <p class="tagline">Managing, assigning and tracking of the task is tedious job in big organization.</p>
+        <p class="tagline">Managing, assigning and tracking of the task is a tedious job in big organizations.</p>
     </div>
 </header>
 
@@ -83,7 +84,7 @@
                             <div class="media-body">
                                 <h4 class="card-title">Simple</h4>
 
-                                <p class="card-text">This app is simple to use. This app is user friendly and has been given to try to other people who are not in the devlopment team to use it.</p>
+                                <p class="card-text">This Web Application is easy to use.It is a piece of cake even for a first time user. This application is user friendly and has been tested by people who were not in the development team.</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                             <div class="media-body">
                                 <h4 class="card-title">Customize</h4>
 
-                                <p class="card-text">This app is fully dynamic and customizable.This app is not only dynamic but also responsive.So it can be used in any device.</p>
+                                <p class="card-text">This app is fully dynamic and customizable.This app is not only dynamic but also responsive.It can be used in different platforms like IOS, Android, Windows and many more.</p>
                             </div>
                         </div>
                     </div>
@@ -115,7 +116,7 @@
                             <div class="media-body">
                                 <h4 class="card-title">Secure</h4>
 
-                                <p class="card-text">We have used the encryption technique to store our password. we have used the spring security to secure our app and manage the access to different user.</p>
+                                <p class="card-text">We have used the encryption technique to store our password. It prevent the system from being hacked from known attacks such as Brute Force, SQL Injection and DoS Attack.</p>
                             </div>
                         </div>
                     </div>
@@ -147,15 +148,11 @@
                     <div>
                         <h2>Communicate with ease</h2>
 
-                        <p class="lead">Uniquely underwhelm premium outsourcing with proactive leadership skills.</p>
+                        <p class="lead">The unique feature of this application is giving, receiving and sharing the feedback from the manager.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. Ut placerat dui eu nulla
-                        congue tincidunt ac a nibh. Mauris accumsan pulvinar lorem placerat volutpat. Praesent quis facilisis elit. Sed condimentum neque quis ex porttitor,
-                        </p>
+                        <p>Admin can set tasks to employees, every task has a priority i.e. 1 to 10, 1 being the least important. The due dates are also color coded, green indicates the task is due after 7 days, orange (moderate phase) shows 3 to 7 days and finally red (critical phase) shows less than 3 days.</p>
 
-                        <p>malesuada faucibus augue aliquet. Sed elit est, eleifend sed dapibus a, semper a eros. Vestibulum blandit vulputate pharetra. Phasellus lobortis leo a nisl euismod, eu faucibus justo sollicitudin. Mauris consectetur, tortor
-                        sed tempor malesuada, sem nunc porta augue, in dictum arcu tortor id turpis. Proin aliquet vulputate aliquam.
-                        </p>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -165,14 +162,9 @@
                     <div>
                         <h2>Scheduling when you want</h2>
 
-                        <p class="lead">Uniquely underwhelm premium outsourcing with proactive leadership skills.</p>
+                        <p class="lead">Assigning different task periodically can make task challenging and interesting.</p>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. Ut placerat dui eu nulla
-                        congue tincidunt ac a nibh. Mauris accumsan pulvinar lorem placerat volutpat. Praesent quis facilisis elit. Sed condimentum neque quis ex porttitor,
-                        </p>
-
-                        <p>malesuada faucibus augue aliquet. Sed elit est, eleifend sed dapibus a, semper a eros. Vestibulum blandit vulputate pharetra. Phasellus lobortis leo a nisl euismod, eu faucibus justo sollicitudin. Mauris consectetur, tortor
-                        sed tempor malesuada, sem nunc porta augue, in dictum arcu tortor id turpis. Proin aliquet vulputate aliquam.
+                        <p>According to Forbes Magazine, "53% of American employees are unsatisfied with their current job." The main reason behind this is Job Enrichment. People are tired of doing the same job every day. This application helps to manage and assign different tasks to different users while tracking previously assigned task.
                         </p>
                     </div>
                     <img src="images/graphic.png" alt="graphic"
@@ -189,27 +181,28 @@
                     <ul class="list-unstyled ui-steps">
                         <li class="media">
                             <div class="circle-icon mr-4">1</div>
+
                             <div class="media-body">
-                                <h5>Create an Account</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem</p>
+                                <h5>Task Creation</h5>
+
+                                <p>Admin creates different tasks as requested by customers. Admin, from the recommendation of the manager, creates tasks focusing on needs of the organizations.</p>
                             </div>
                         </li>
                         <li class="media my-4">
                             <div class="circle-icon mr-4">2</div>
 
                             <div class="media-body">
-                                <h5>Share with friends</h5>
+                                <h5>Task Assignment</h5>
 
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem eveniet</p>
+                                <p>Generally, Tasks are assigned in random manner but they can also be assigned to a specific employee with special request to the Admin/Manager.</p>
                             </div>
                         </li>
                         <li class="media">
                             <div class="circle-icon mr-4">3</div>
 
                             <div class="media-body">
-                                <h5>Enjoy your life</h5>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem</p>
+                                <h5>Task Completion</h5>
+                                <p>After tasks are completed, employees marks tasks as completed. Completed tasks can be found by clicking<span class="text-success"> Completed Task </span>Tab.</p>
                             </div>
                         </li>
                     </ul>
@@ -227,10 +220,11 @@
             </div>
 
             <div class="img-gallery owl-carousel owl-theme">
-                <img src="images/screen1.jpg" alt="image">
-                <img src="images/screen2.jpg" alt="image">
-                <img src="images/screen3.jpg" alt="image">
-                <img src="images/screen1.jpg" alt="image">
+                <asset:image src="1.jpg" alt="image"/>
+                <asset:image src="2.jpg" alt="image"/>
+                <asset:image src="3.jpg" alt="image"/>
+                <asset:image src="4.jpg" alt="image"/>
+                <asset:image src="5.jpg" alt="image"/>
             </div>
 
         </div>
@@ -239,7 +233,8 @@
     <!-- // end .section -->
     <footer class="my-5 text-center">
         <!-- Copyright removal is not prohibited! -->
-        <p class="mb-2"><small>COPYRIGHT © 2018. ALL RIGHTS RESERVED. | INFO-4492 | Spring 2018 |Idaho State University </small></p>
+        <p class="mb-2"><small>COPYRIGHT © 2018. ALL RIGHTS RESERVED. | INFO-4492 | Spring 2018 |Idaho State University</small>
+        </p>
         <small>
             <a href="#" class="m-2">PRESS</a>
             <a href="#" class="m-2">TERMS</a>
